@@ -5,17 +5,6 @@ description: Documento de requisitos de produto que define problema, objetivos, 
 
 # PRD - CAPAG
 
-## Controle Documental
-
-| Campo | Valor |
-| --- | --- |
-| status | DRAFT |
-| document_type | PRD |
-| created_at | 2026-06-13 |
-| updated_at | 2026-06-14 |
-| approved_at | null |
-| version | 0 |
-| revision | 5 |
 
 ## 1. Contexto
 

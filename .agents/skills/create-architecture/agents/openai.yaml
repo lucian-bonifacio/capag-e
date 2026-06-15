@@ -1,0 +1,4 @@
+interface:
+  display_name: "Criar Arquitetura"
+  short_description: "Gera arquitetura técnica a partir de PRD"
+  default_prompt: "Use $create-architecture para transformar meu PRD em um documento de arquitetura em Markdown."
