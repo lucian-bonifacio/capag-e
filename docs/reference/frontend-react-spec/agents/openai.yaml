@@ -1,0 +1,4 @@
+interface:
+  display_name: "Frontend React Spec CAPAG"
+  short_description: "Lente frontend React para SPECs"
+  default_prompt: "Use $frontend-react-spec para criar ou revisar a visão frontend React em uma SPEC do CAPAG."

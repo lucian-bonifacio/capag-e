@@ -1,0 +1,4 @@
+interface:
+  display_name: "Domain Engine Spec CAPAG"
+  short_description: "Lente domínio/engine para SPECs"
+  default_prompt: "Use $domain-engine-spec para criar ou revisar a visão de domínio e engine em uma SPEC do CAPAG."

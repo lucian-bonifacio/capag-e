@@ -1,0 +1,4 @@
+interface:
+  display_name: "Criar PRD"
+  short_description: "Entrevista guiada para criar PRDs"
+  default_prompt: "Use $create-prd para me entrevistar e gerar um PRD em layout obrigatório."

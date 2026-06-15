@@ -1,0 +1,4 @@
+interface:
+  display_name: "Backend FastAPI Spec CAPAG"
+  short_description: "SPECs de backend FastAPI CAPAG"
+  default_prompt: "Use $backend-fastapi-spec para criar ou revisar contratos backend FastAPI em uma SPEC do CAPAG."

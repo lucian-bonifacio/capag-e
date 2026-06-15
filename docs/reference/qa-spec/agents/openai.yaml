@@ -1,0 +1,4 @@
+interface:
+  display_name: "QA Spec CAPAG"
+  short_description: "Lente QA e testes para SPECs"
+  default_prompt: "Use $qa-spec para criar ou revisar critérios de teste e qualidade em uma SPEC do CAPAG."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architect Spec CAPAG"
+  short_description: "Especificação arquitetural CAPAG"
+  default_prompt: "Use $architect-spec para criar ou revisar a visão arquitetural de uma SPEC do CAPAG."
