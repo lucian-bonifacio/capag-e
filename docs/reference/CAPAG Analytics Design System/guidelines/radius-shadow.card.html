@@ -1,0 +1,22 @@
+<!-- @dsCard group="Spacing" viewport="700x160" name="Radius & Shadow" subtitle="Soft corners, subtle elevation only" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8" /><link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; padding:24px; background:var(--bg-app); font-family:var(--font-sans); }
+  .row { display:flex; gap:20px; align-items:center; }
+  .box { width:96px; height:72px; background:var(--surface-card); border:1px solid var(--border); display:flex; align-items:flex-end; padding:8px; }
+  .lbl { font-size:11px; color:var(--text-secondary); }
+  .name { font-size:11px; font-weight:600; color:var(--text-primary); margin-top:8px; }
+  .item { text-align:center; }
+</style></head>
+<body>
+  <div class="row">
+    <div class="item"><div class="box" style="border-radius:var(--radius-sm)"></div><div class="name">sm · 4px</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-md)"></div><div class="name">md · 6px</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-lg)"></div><div class="name">lg · 8px</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-xl)"></div><div class="name">xl · 12px</div></div>
+    <div style="width:1px;height:80px;background:var(--border)"></div>
+    <div class="item"><div class="box" style="border-radius:8px; box-shadow:var(--shadow-xs); border-color:var(--border)"></div><div class="name">shadow-xs</div></div>
+    <div class="item"><div class="box" style="border-radius:8px; box-shadow:var(--shadow-md); border-color:transparent"></div><div class="name">shadow-md</div></div>
+  </div>
+</body></html>

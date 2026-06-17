@@ -1,0 +1,40 @@
+<!-- @dsCard group="Components" viewport="700x420" name="BalanceLedger — visualização livro-razão" subtitle="Coluna única, colunas alinhadas, macrogrupo em caixa alta" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style> body { margin: 0; padding: 24px; background: var(--bg-app); } </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { BalanceLedger } = window.CAPAGAnalyticsDesignSystem_0c00db;
+  const grupos = [
+    { id:"ac", name:"Ativo Circulante", total:"R$ 21.430.000,00", percent:"44,5%", contas:[
+      { id:"a", name:"Caixa e Equivalentes de Caixa", code:"1.1.1.01", value:"R$ 4.210.500,00", included:true },
+      { id:"b", name:"Aplicações Financeiras", code:"1.1.1.02", value:"R$ 8.900.000,00", included:true },
+      { id:"c", name:"Créditos a Receber", code:"1.1.2.01", value:"R$ 8.319.500,00", included:false },
+    ]},
+    { id:"anc", name:"Ativo Não Circulante", total:"R$ 26.770.000,00", percent:"55,5%", contas:[
+      { id:"d", name:"Imobilizado", code:"1.2.3.01", value:"R$ 22.100.000,00", included:true },
+      { id:"e", name:"Intangível", code:"1.2.4.01", value:"R$ 4.670.000,00", included:true },
+    ]},
+  ];
+  function Demo() {
+    const [s, setS] = React.useState({ a:true, b:true, c:false, d:true, e:true });
+    return (
+      <div style={{maxWidth:620}}>
+        <BalanceLedger eyebrow="Aplicações" title="Ativos" total="R$ 48.200.000,00" groups={grupos}
+          state={s} onToggle={(id,v)=>setS((p)=>({...p,[id]:v}))} onAudit={()=>{}} onAuditGroup={()=>{}} defaultOpenIds={["ac"]} />
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!-- @dsCard group="Type" viewport="700x150" name="Tabular Numerals" subtitle="All financial values align on tabular figures" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8" /><link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; padding:22px; background:var(--surface-card); font-family:var(--font-sans); color:var(--text-primary); }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  h4 { margin:0 0 8px; font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--text-secondary); }
+  .val { font-size:18px; line-height:1.6; text-align:right; }
+  .prop { font-variant-numeric:normal; }
+</style></head>
+<body>
+  <div class="grid">
+    <div>
+      <h4>Proporcional — evite</h4>
+      <div class="val prop">R$ 4.210.500,00<br>R$ 18.900.000,00<br>R$ 311.111,11</div>
+    </div>
+    <div>
+      <h4>Tabular — use .tnum</h4>
+      <div class="val tnum">R$ 4.210.500,00<br>R$ 18.900.000,00<br>R$ 311.111,11</div>
+    </div>
+  </div>
+</body></html>

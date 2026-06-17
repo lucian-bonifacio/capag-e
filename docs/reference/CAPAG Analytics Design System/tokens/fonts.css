@@ -1,0 +1,8 @@
+/* ============================================================
+   CAPAG Analytics — Web fonts
+   Inter (UI) + JetBrains Mono (optional, monospace values).
+   Loaded from Google Fonts. If you need self-hosted binaries,
+   replace these @import lines with local @font-face rules.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");

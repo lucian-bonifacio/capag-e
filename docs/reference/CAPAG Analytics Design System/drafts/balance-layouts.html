@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Balanço Patrimonial — Variações de layout</title>
+<link rel="stylesheet" href="../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+<style>
+  html, body { margin: 0; background: var(--slate-100); }
+  .frame-label { margin: 0 0 2px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--primary); }
+  .frame-title { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -.01em; color: var(--text-primary); }
+  .frame-desc { margin: 6px 0 0; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 720px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="../ui_kits/dashboard/data.js"></script>
+<script type="text/babel" src="Variants.jsx"></script>
+<script type="text/babel">
+  const { Dialog, DataTable, Button, Badge } = window.CAPAGAnalyticsDesignSystem_0c00db;
+  const { VariantCurrent, VariantLedger } = window.CAPAGVariants;
+
+  function useBalanceState() {
+    const data = window.CAPAG_DATA;
+    const all = [...data.ativos, ...data.passivos];
+    const initial = {};
+    all.forEach((g) => g.contas.forEach((c) => (initial[c.id] = c.included)));
+    const [incl, setIncl] = React.useState(initial);
+    const toggle = (id, v) => setIncl((p) => ({ ...p, [id]: v }));
+    const excluded = Object.values(incl).filter((v) => !v).length;
+    return { data, incl, toggle, excluded };
+  }
+
+  // Paleta dark mode em tons de AZUL (sem preto) — sobrescreve os tokens só dentro do card
+  const darkBlue = {
+    background: "#0E1F3D",
+    "--surface-card": "#15294C",
+    "--surface-muted": "#1B335C",
+    "--surface-inset": "#23406F",
+    "--border": "#2C4570",
+    "--text-primary": "#EAF1FB",
+    "--text-secondary": "#9DB2D6",
+    "--text-muted": "#7187AE",
+    "--slate-700": "#C6D5EE",
+    "--slate-800": "#E6EEFB",
+    "--slate-300": "#3C5380",
+    "--primary-soft": "#1E3A66",
+    "--primary-text": "#9CC6FF",
+    "--blue-100": "#33548C",
+  };
+
+  function Frame({ label, title, desc, width, dark, children }) {
+    const base = { width, maxWidth: "100%", border: "1px solid var(--border)",
+      borderRadius: "var(--radius-xl)", padding: 28 };
+    const cardStyle = dark
+      ? { ...base, ...darkBlue, boxShadow: "0 1px 3px rgba(2,8,23,.5)" }
+      : { ...base, background: "var(--surface-card)", boxShadow: "var(--shadow-sm)" };
+    return (
+      <section style={{ marginBottom: 56 }}>
+        <header style={{ marginBottom: 16 }}>
+          <div className="frame-label">{label}</div>
+          <h2 className="frame-title">{title}</h2>
+          <p className="frame-desc">{desc}</p>
+        </header>
+        <div style={cardStyle}>
+          {children}
+        </div>
+      </section>
+    );
+  }
+
+  function App() {
+    const st = useBalanceState();
+    const [audit, setAudit] = React.useState(null);
+    const openAccount = (c, g) => setAudit({ title: "Auditoria — " + c.name, subtitle: c.code + " · " + g.name });
+    const openGroup = (g) => setAudit({ title: "Auditoria — " + g.name, subtitle: g.contas.length + " contas · " + g.total });
+    const shared = { data: st.data, incl: st.incl, toggle: st.toggle, onAudit: openAccount, onAuditGroup: openGroup };
+
+    const auditCols = [
+      { key: "data", header: "Data", width: 96 },
+      { key: "hist", header: "Histórico", wrap: true },
+      { key: "doc", header: "Documento", width: 110 },
+      { key: "deb", header: "Débito", align: "right", numeric: true, width: 120 },
+      { key: "cred", header: "Crédito", align: "right", numeric: true, width: 120 },
+    ];
+
+    return (
+      <div style={{ minHeight: "100vh", padding: "40px 40px 80px" }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
+          <header style={{ marginBottom: 40 }}>
+            <div className="frame-label" style={{ color: "var(--text-secondary)" }}>CAPAG Analytics · Rascunho</div>
+            <h1 style={{ margin: "4px 0 0", fontSize: 30, fontWeight: 700, letterSpacing: "-.02em", color: "var(--text-primary)" }}>
+              Balanço Patrimonial — refinando o livro-razão
+            </h1>
+            <p className="frame-desc" style={{ fontSize: 15 }}>
+              V1 (duas colunas) agora consistente com os mesmos refinamentos da V2 · valores com o mesmo peso dos textos ·
+              contas excluídas com opacidade + tachado · e a V3 = V2 em dark mode azul. Os controles são interativos.
+              {st.excluded > 0 && (
+                <span style={{ marginLeft: 10, verticalAlign: "middle", display: "inline-block" }}>
+                  <Badge variant="warning">{st.excluded} conta{st.excluded > 1 ? "s" : ""} excluída{st.excluded > 1 ? "s" : ""}</Badge>
+                </span>
+              )}
+            </p>
+          </header>
+
+          <Frame
+            label="Versão 2 · Refinada"
+            title="Livro-razão alinhado (coluna única)"
+            desc="Macrogrupo em CAIXA ALTA e destacado; as contas ficam recuadas à direita, em fonte menor e tom mais discreto — cara de subgrupo, sem precisar de muita opacidade. Colunas alinhadas (Conta · % · Valor · Incluir · Auditar). Ícone de auditoria (prancheta com check) no lugar da lupa, e switch azul suave, menos chamativo."
+            width={860}>
+            <VariantLedger {...shared} />
+          </Frame>
+
+          <Frame
+            label="Versão 1 · Refinada (duas colunas)"
+            title="Duas colunas, largura reduzida"
+            desc="Agora com os MESMOS ajustes da V2: macrogrupo em caixa alta, contas recuadas e discretas, ícone de auditoria (prancheta), switch suave e tachado nas excluídas. Antes a V1 ainda usava os componentes atuais do design system (lupa + switch cheio) — por isso parecia que só parte tinha mudado. Em ~860px as duas colunas ficam justas: dá para comparar com a leitura mais folgada da V2."
+            width={860}>
+            <VariantCurrent {...shared} />
+          </Frame>
+
+          <Frame
+            label="Versão 3 · Dark mode azul"
+            title="Livro-razão (V2) em modo escuro"
+            desc="A mesma Versão 2, agora em dark mode com tons de AZUL profundo (nada de preto): fundo azul-marinho, superfícies em azul um pouco mais claro, texto claro e o azul de destaque para switch/auditoria. Mantém macrogrupo em caixa alta, recuo das contas, tachado e opacidade nas excluídas."
+            width={860}
+            dark>
+            <VariantLedger {...shared} />
+          </Frame>
+        </div>
+
+        <Dialog open={!!audit} onClose={() => setAudit(null)} width={760}
+          title={audit && audit.title} subtitle={audit && audit.subtitle}
+          footer={<><Button variant="secondary" onClick={() => setAudit(null)}>Fechar</Button><Button>Exportar CSV</Button></>}>
+          <DataTable columns={auditCols} rows={window.CAPAG_DATA.lancamentos} />
+        </Dialog>
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Surfaces & Borders" subtitle="Background, card, muted fills, dividers" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8" /><link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; padding:20px; background:var(--surface-card); font-family:var(--font-sans); }
+  .row { display:flex; gap:14px; }
+  .sw { flex:1; }
+  .chip { height:64px; border-radius:var(--radius-md); }
+  .name { font-size:12px; font-weight:600; color:var(--text-primary); margin-top:8px; }
+  .hex { font-size:11px; color:var(--text-secondary); font-variant-numeric:tabular-nums; }
+</style></head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--bg-app); border:1px solid var(--border)"></div><div class="name">Fundo app</div><div class="hex">#F8FAFC</div></div>
+    <div class="sw"><div class="chip" style="background:var(--surface-card); border:1px solid var(--border)"></div><div class="name">Card</div><div class="hex">#FFFFFF</div></div>
+    <div class="sw"><div class="chip" style="background:var(--surface-muted); border:1px solid var(--border)"></div><div class="name">Muted</div><div class="hex">#F1F5F9</div></div>
+    <div class="sw"><div class="chip" style="background:#fff; border:1px solid var(--border)"></div><div class="name">Borda</div><div class="hex">#E2E8F0</div></div>
+  </div>
+</body></html>

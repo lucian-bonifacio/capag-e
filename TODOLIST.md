@@ -1,10 +1,10 @@
 # Todolist
 
 - [x] PRD
-- [ ] ARCHITETURE
-- [ ] DESIGN
-- [ ] AGENTS.md inicial
-- [ ] SPECs
+- [x] ARCHITECTURE
+- [x] DESIGN
+- [x] AGENTS.md inicial
+- [x] SPECs
 - [ ] TASKs
 - [ ] AGENTS.md refinado
 - [ ] Implementacao
@@ -47,3 +47,24 @@ glob_scan_max_depth = 4
 
 [permissions.user-edit.network]
 enabled = true
+
+
+
+
+
+
+# =========================================================
+# VARIÁVEIS GLOBAIS (Obrigatório vir no topo do arquivo)
+# =========================================================
+
+# Modelo e Cognição
+model = "gpt-5.5"
+model_reasoning_effort = "medium"
+
+# Autonomia Total sem Prompts
+approval_policy = "never"
+
+
+# Sandbox e Rede Local Morta
+sandbox_mode = "workspace-write"
+web_search = "disabled"

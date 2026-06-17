@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Agent Instructions"
+  short_description: "Generate AGENTS.md for SPECs and TASKs"
+  default_prompt: "Use $create-agent-instructions to create or update AGENTS.md for SPEC and TASK creation from the PRD, architecture, and governed docs."

@@ -1,0 +1,34 @@
+<!-- @dsCard group="Components" viewport="700x440" name="Balanço — Group & Account rows" subtitle="Collapsible group + account rows with switch & audit" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style> body { margin: 0; padding: 24px; background: var(--bg-app); } </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { BalanceGroup, AccountRow } = window.CAPAGAnalyticsDesignSystem_0c00db;
+  function Demo() {
+    const [s, setS] = React.useState({ a: true, b: true, c: false });
+    const set = (k) => (v) => setS((p) => ({ ...p, [k]: v }));
+    return (
+      <div style={{display:'flex', flexDirection:'column', gap:16, maxWidth:560}}>
+        <BalanceGroup name="Ativo Circulante" count={3} total="R$ 21.430.000,00" percent="44%" defaultOpen onAuditGroup={()=>{}}>
+          <AccountRow name="Caixa e Equivalentes" code="1.1.1.01" value="R$ 4.210.500,00" included={s.a} onToggle={set('a')} onAudit={()=>{}} />
+          <AccountRow name="Aplicações Financeiras" code="1.1.1.02" value="R$ 8.900.000,00" included={s.b} onToggle={set('b')} onAudit={()=>{}} />
+          <AccountRow name="Créditos a Receber" code="1.1.2.01" value="R$ 8.319.500,00" included={s.c} onToggle={set('c')} onAudit={()=>{}} />
+        </BalanceGroup>
+        <BalanceGroup name="Ativo Não Circulante" count={9} total="R$ 26.770.000,00" percent="56%" onAuditGroup={()=>{}} />
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body>
+</html>

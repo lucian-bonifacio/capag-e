@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Frontend Design System"
+  short_description: "Turn UI references into frontend design standards"
+  default_prompt: "Use $create-frontend-design-system to turn this visual reference folder into official frontend design-system docs and CSS tokens."
