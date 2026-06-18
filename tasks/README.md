@@ -16,6 +16,12 @@ TASKs correspondentes
 
 TASK nao substitui SPEC, nao decide arquitetura e nao cria regra de dominio.
 
+A rastreabilidade obrigatoria de execucao e:
+
+```text
+PRD -> Arquitetura -> SPEC -> TASK
+```
+
 ## Fontes Obrigatorias
 
 Antes de criar ou revisar TASKs, leia as fontes aplicaveis:

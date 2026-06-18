@@ -25,16 +25,16 @@ Regras:
 
 ## Próxima Tarefa
 
-ID: TASK-001
-Título: Criar índice e convenção de TASKs
+ID: TASK-002
+Título: Auditar estrutura mínima do repositório
 Status: pendente
-Task: `tasks/TASK-001-criar-indice-e-convencao-de-tasks.md`
-Log: `logs/LOG-001-criar-indice-e-convencao-de-tasks.md`
+Task: `tasks/TASK-002-auditar-estrutura-minima-repositorio.md`
+Log: `logs/LOG-002-auditar-estrutura-minima-repositorio.md`
 
 ## Lista De Tarefas
 
-1. [ ] Criar índice e convenção de TASKs
-   - Status: pendente
+1. [x] Criar índice e convenção de TASKs
+   - Status: concluido
    - Task: `tasks/TASK-001-criar-indice-e-convencao-de-tasks.md`
    - Log: `logs/LOG-001-criar-indice-e-convencao-de-tasks.md`
 
