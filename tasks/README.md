@@ -86,6 +86,8 @@ Toda TASK deve conter:
 
 ## SPEC De Origem
 
+## Dependencias
+
 ## Objetivo
 
 ## Fontes Usadas

@@ -33,11 +33,19 @@ logs/LOG-002A-ajustar-roadmap.md
 ## Referência
 
 - Task: `tasks/TASK-NNN-nome.md`
+- SPEC: `specs/SPEC-NNN-nome.md`
 - Status: pendente | aguardando_homologacao | concluido
+
+## Fontes Consultadas
+
+- `docs/product/PRD.md`
+- `docs/architecture.md`
+- `specs/SPEC-NNN-nome.md`
 
 ## Execução
 
 - Data:
+- Ação:
 - Resumo:
 
 ## Arquivos Alterados
@@ -47,7 +55,7 @@ logs/LOG-002A-ajustar-roadmap.md
 ## Validações
 
 - Comando:
-- Resultado:
+  - Resultado:
 
 ## Pendências Ou Bloqueios
 
@@ -57,6 +65,7 @@ logs/LOG-002A-ajustar-roadmap.md
 
 - Status: nao_enviada | aguardando_homologacao | aprovada | ajuste_solicitado
 - Data:
+- Decisão do usuário:
 - Observação:
 ```
 
@@ -66,6 +75,8 @@ logs/LOG-002A-ajustar-roadmap.md
 - Registrar comandos executados apenas quando forem relevantes para validação.
 - Resumir resultados; não colar saídas extensas.
 - Registrar erro como sintoma, causa objetiva quando conhecida e correção aplicada.
+- Registrar transições relevantes de status da TASK: `pendente`, `aguardando_homologacao` e `concluido`.
 - Registrar ajuste solicitado pelo usuário em `Homologação` ou `Pendências Ou Bloqueios`.
+- Quando houver ajuste em TASK já executada, registrar o ajuste como novo evento em `Execução`, registrar validações correspondentes em `Validações` e atualizar `Homologação` conforme o estado atual.
 - Atualizar o status do log em sincronia com o `ROADMAP.md`.
 - Não substituir TASK, SPEC, PRD, arquitetura ou ADR.

@@ -43,6 +43,7 @@ Siga o template obrigatório definido em `tasks/README.md`.
 A TASK deve conter:
 
 - SPEC de origem;
+- dependencias;
 - objetivo;
 - fontes usadas;
 - escopo exato;

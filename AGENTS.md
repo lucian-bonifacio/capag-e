@@ -65,6 +65,12 @@ Após homologação:
 - se o usuário pedir ajuste, use `scope-resolution`;
 - não marque TASK como `concluido` sem homologação do usuário.
 
+Quando não houver homologação, ajuste, bloqueio ou decisão governada pendente, retome o fluxo normal:
+
+1. Informe ao usuário a `## Próxima Tarefa` indicada no `ROADMAP.md`, seu status e que as fontes aplicáveis foram consultadas.
+2. Peça autorização simples para executar.
+3. Após a resposta do usuário, aplique novamente as regras desta seção `## 5. Fluxo De Trabalho`.
+
 Se `scope-resolution` classificar uma solicitação como nova TASK, peça confirmação explícita. Após aprovação, use `task-planner`. Não implemente a nova TASK no mesmo passo.
 
 ## 6. Gates De Exceção
