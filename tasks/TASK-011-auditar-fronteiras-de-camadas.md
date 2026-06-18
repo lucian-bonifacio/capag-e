@@ -21,8 +21,8 @@ Auditar e documentar as fronteiras esperadas entre `api`, `application`, `domain
 - `docs/product/PRD.md`
 - `docs/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- relatorio esperado de `tasks/reports/TASK-002-auditoria-estrutura-minima.md`
-- relatorio esperado de `tasks/reports/TASK-005-auditoria-specs.md`
+- log esperado de `logs/LOG-002-auditar-estrutura-minima-repositorio.md`
+- log esperado de `logs/LOG-005-auditar-indice-e-rastreabilidade-de-specs.md`
 
 ## Escopo Exato
 
@@ -54,9 +54,9 @@ Auditar e documentar as fronteiras esperadas entre `api`, `application`, `domain
 
 ## Passos Executaveis
 
-1. Ler os relatorios das TASKs 002 e 005.
+1. Ler os logs das TASKs 002 e 005.
 2. Ler as secoes de responsabilidades em `docs/architecture.md` e `SPEC-001`.
-3. Criar relatorio em `tasks/reports/TASK-011-fronteiras-de-camadas.md`.
+3. Criar log em `logs/LOG-011-auditar-fronteiras-de-camadas.md`.
 4. Montar matriz com uma linha por camada.
 5. Para cada camada, registrar responsabilidades, entradas, saidas, dependencias permitidas e dependencias proibidas.
 6. Registrar lacunas e ambiguidades sem resolve-las.
@@ -65,26 +65,26 @@ Auditar e documentar as fronteiras esperadas entre `api`, `application`, `domain
 
 ## Arquivos Ou Areas Provaveis
 
-- `tasks/reports/TASK-011-fronteiras-de-camadas.md`
+- `logs/LOG-011-auditar-fronteiras-de-camadas.md`
 - `docs/architecture.md` apenas para leitura
 - `specs/SPEC-001-modulo-0-fundacao-governada.md` apenas para leitura
 - `backend/` apenas para leitura, se existir
 
 ## Criterios De Aceite
 
-- Existe relatorio em `tasks/reports/TASK-011-fronteiras-de-camadas.md`.
-- O relatorio cita a SPEC de origem.
-- O relatorio contem matriz para `api`, `application`, `domain`, `io`, `engine`, `repositories`, `export` e `report`.
+- Existe log em `logs/LOG-011-auditar-fronteiras-de-camadas.md`.
+- O log cita a SPEC de origem.
+- O log contem matriz para `api`, `application`, `domain`, `io`, `engine`, `repositories`, `export` e `report`.
 - Cada camada tem responsabilidades e proibicoes registradas.
-- O relatorio identifica dependencias permitidas e proibidas.
+- O log identifica dependencias permitidas e proibidas.
 - Lacunas sao registradas sem alteracao de arquitetura ou SPEC.
 - Nenhum codigo, SPEC, documento operacional ou config e alterado.
 
 ## Validacao Esperada
 
-- Executar `test -f tasks/reports/TASK-011-fronteiras-de-camadas.md`.
-- Executar `git diff --stat` e confirmar que a execucao alterou apenas `tasks/reports/TASK-011-fronteiras-de-camadas.md`.
-- Conferir manualmente que o relatorio nao cria contrato funcional, regra de dominio, formula prudencial, schema, endpoint ou classe.
+- Executar `test -f logs/LOG-011-auditar-fronteiras-de-camadas.md`.
+- Executar `git diff --stat` e confirmar que a execucao alterou apenas `logs/LOG-011-auditar-fronteiras-de-camadas.md`.
+- Conferir manualmente que o log nao cria contrato funcional, regra de dominio, formula prudencial, schema, endpoint ou classe.
 
 ## Riscos
 

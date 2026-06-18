@@ -20,7 +20,7 @@ Configurar a base minima de testes backend com `pytest` executando via Docker Co
 - `docs/product/PRD.md`
 - `docs/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- relatorio esperado de `tasks/reports/TASK-006-auditoria-validacoes.md`
+- log esperado de `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`
 
 ## Escopo Exato
 
@@ -48,7 +48,7 @@ Configurar a base minima de testes backend com `pytest` executando via Docker Co
 
 ## Passos Executaveis
 
-1. Ler `tasks/reports/TASK-006-auditoria-validacoes.md`.
+1. Ler `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`.
 2. Confirmar que a lacuna de testes backend foi registrada.
 3. Verificar a estrutura backend criada pela TASK-003.
 4. Criar diretorio de testes backend minimo.

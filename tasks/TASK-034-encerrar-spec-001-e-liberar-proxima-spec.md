@@ -16,13 +16,13 @@ Encerrar documentalmente o ciclo de TASKs da SPEC-001 e registrar qual SPEC ou c
 ## Fontes Usadas
 
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- `tasks/reports/TASK-032-prontidao-fundacao-governada.md`
+- `logs/LOG-032-auditar-prontidao-fundacao-governada.md`
 - `TODOLIST.md`
 - `specs/README.md`, se existir
 
 ## Escopo Exato
 
-- Criar relatorio de encerramento da SPEC-001.
+- Criar log de encerramento da SPEC-001.
 - Registrar TASKs executadas, bloqueios remanescentes e decisao de passagem.
 - Indicar proxima SPEC candidata para TASKs, sem criar as TASKs dela nesta execucao.
 
@@ -36,26 +36,26 @@ Encerrar documentalmente o ciclo de TASKs da SPEC-001 e registrar qual SPEC ou c
 
 ## Passos Executaveis
 
-1. Ler relatorio da TASK-032.
+1. Ler log da TASK-032.
 2. Ler `TODOLIST.md`.
-3. Criar `tasks/reports/TASK-034-encerramento-spec-001.md`.
+3. Registrar achados em `logs/LOG-034-encerrar-spec-001-e-liberar-proxima-spec.md`.
 4. Registrar decisao de encerramento ou bloqueio.
 5. Indicar proxima etapa documental.
 
 ## Arquivos Ou Areas Provaveis
 
-- `tasks/reports/TASK-034-encerramento-spec-001.md`
+- `logs/LOG-034-encerrar-spec-001-e-liberar-proxima-spec.md`
 
 ## Criterios De Aceite
 
-- Existe relatorio de encerramento.
-- O relatorio registra se a SPEC-001 esta encerrada ou bloqueada.
-- O relatorio nao cria TASKs funcionais.
+- Existe log de encerramento.
+- O log registra se a SPEC-001 esta encerrada ou bloqueada.
+- O log nao cria TASKs funcionais.
 
 ## Validacao Esperada
 
-- Executar `test -f tasks/reports/TASK-034-encerramento-spec-001.md`.
-- Executar `git diff --stat` e confirmar escopo restrito ao relatorio.
+- Executar `test -f logs/LOG-034-encerrar-spec-001-e-liberar-proxima-spec.md`.
+- Executar `git diff --stat` e confirmar escopo restrito ao log.
 
 ## Riscos
 

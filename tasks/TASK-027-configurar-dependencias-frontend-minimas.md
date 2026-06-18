@@ -19,7 +19,7 @@ Configurar dependencias frontend minimas para uso dentro de container conforme a
 - `docs/frontend/UI_COMPONENT_RULES.md`
 - `docs/frontend/SCREEN_PATTERNS.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- relatorio esperado de `tasks/reports/TASK-026-auditoria-dependencias-frontend.md`
+- log esperado de `logs/LOG-026-auditar-dependencias-frontend.md`
 
 ## Escopo Exato
 
@@ -41,7 +41,7 @@ Configurar dependencias frontend minimas para uso dentro de container conforme a
 
 ## Passos Executaveis
 
-1. Ler relatorio da TASK-026.
+1. Ler log da TASK-026.
 2. Criar ou ajustar dependencias frontend minimas.
 3. Validar instalacao/build apenas se comandos existirem.
 4. Confirmar que nenhuma UI funcional foi criada.

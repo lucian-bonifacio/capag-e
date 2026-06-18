@@ -23,8 +23,8 @@ Criar ou refinar o `README.md` principal do projeto para orientar leitura inicia
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - `tasks/README.md`
 - `AGENTS.md`
-- relatorio esperado de `tasks/reports/TASK-007-auditoria-documentos-operacionais.md`
-- relatorio esperado de `tasks/reports/TASK-010-auditoria-ambiente-local.md`
+- log esperado de `logs/LOG-007-auditar-documentos-operacionais-e-agentes.md`
+- log esperado de `logs/LOG-010-auditar-ambiente-local-e-configuracao.md`
 - `specs/README.md`, se criado pela TASK-012
 
 ## Escopo Exato
@@ -59,7 +59,7 @@ Criar ou refinar o `README.md` principal do projeto para orientar leitura inicia
 
 ## Passos Executaveis
 
-1. Ler os relatorios das TASKs 007 e 010.
+1. Ler os logs das TASKs 007 e 010.
 2. Ler `README.md` atual, se existir.
 3. Ler `specs/README.md`, se existir.
 4. Criar ou atualizar `README.md` apenas com informacoes governadas e comandos ja existentes.
@@ -100,7 +100,7 @@ Criar ou refinar o `README.md` principal do projeto para orientar leitura inicia
   Mitigacao: incluir apenas comandos criados e validados por TASKs anteriores.
 
 - Risco: esconder bloqueios ou dependencias.
-  Mitigacao: apontar para SPECs, TASKs e relatorios de auditoria correspondentes.
+  Mitigacao: apontar para SPECs, TASKs e logs de auditoria correspondentes.
 
 ## Bloqueios Pendentes
 

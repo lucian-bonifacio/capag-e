@@ -21,7 +21,7 @@ Refinar `TODOLIST.md` para refletir o estado governado do projeto, separando mar
 - `docs/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - `tasks/README.md`
-- relatorio esperado de `tasks/reports/TASK-007-auditoria-documentos-operacionais.md`
+- log esperado de `logs/LOG-007-auditar-documentos-operacionais-e-agentes.md`
 - `specs/README.md`, se criado pela TASK-012
 
 ## Escopo Exato
@@ -54,7 +54,7 @@ Refinar `TODOLIST.md` para refletir o estado governado do projeto, separando mar
 
 ## Passos Executaveis
 
-1. Ler `tasks/reports/TASK-007-auditoria-documentos-operacionais.md`.
+1. Ler `logs/LOG-007-auditar-documentos-operacionais-e-agentes.md`.
 2. Ler `TODOLIST.md` atual.
 3. Identificar conteudo que deve permanecer como checklist operacional.
 4. Identificar conteudo que deve sair do `TODOLIST.md` por ser configuracao local, nota historica ou material temporario.

@@ -19,11 +19,11 @@ Criar ou ajustar `.gitignore` minimo para proteger artefatos temporarios, caches
 - `docs/product/PRD.md`
 - `docs/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- relatorio esperado de `tasks/reports/TASK-019-auditoria-higiene-repositorio.md`
+- log esperado de `logs/LOG-019-auditar-higiene-repositorio-e-artefatos.md`
 
 ## Escopo Exato
 
-- Ler o relatorio da TASK-019.
+- Ler o log da TASK-019.
 - Criar `.gitignore` se ele estiver ausente e a auditoria indicar necessidade.
 - Ajustar `.gitignore` existente apenas com categorias basicas identificadas pela auditoria, como:
   - arquivos `.env` e variantes locais;
@@ -52,7 +52,7 @@ Criar ou ajustar `.gitignore` minimo para proteger artefatos temporarios, caches
 
 ## Passos Executaveis
 
-1. Ler `tasks/reports/TASK-019-auditoria-higiene-repositorio.md`.
+1. Ler `logs/LOG-019-auditar-higiene-repositorio-e-artefatos.md`.
 2. Confirmar quais lacunas de `.gitignore` foram registradas.
 3. Criar ou editar `.gitignore` apenas para cobrir lacunas aprovadas.
 4. Garantir que `.env` e variantes locais estejam protegidos.
@@ -68,7 +68,7 @@ Criar ou ajustar `.gitignore` minimo para proteger artefatos temporarios, caches
 
 - A TASK-019 foi executada antes desta TASK.
 - `.gitignore` existe.
-- `.gitignore` cobre categorias basicas registradas no relatorio da TASK-019.
+- `.gitignore` cobre categorias basicas registradas no log da TASK-019.
 - Arquivos `.env` e variantes locais estao ignorados.
 - `.venv` e `node_modules` no host estao ignorados.
 - Nenhum arquivo `.env` e lido, criado ou alterado.

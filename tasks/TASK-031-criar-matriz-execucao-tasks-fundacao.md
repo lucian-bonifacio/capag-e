@@ -16,11 +16,11 @@ Criar matriz documental de ordem de execucao das TASKs derivadas da SPEC-001, co
 
 - `tasks/README.md`
 - `tasks/TASK-*.md`
-- relatorio esperado de `tasks/reports/TASK-030-auditoria-rastreabilidade-tasks.md`
+- log esperado de `logs/LOG-030-auditar-rastreabilidade-tasks-specs.md`
 
 ## Escopo Exato
 
-- Criar matriz em relatorio/documento de planejamento.
+- Criar matriz em log/documento de planejamento.
 - Ordenar TASKs por dependencias.
 - Indicar quais TASKs sao auditorias, estruturais, configuracao ou gate.
 - Nao executar nenhuma TASK.
@@ -34,14 +34,14 @@ Criar matriz documental de ordem de execucao das TASKs derivadas da SPEC-001, co
 
 ## Passos Executaveis
 
-1. Ler relatorio da TASK-030.
+1. Ler log da TASK-030.
 2. Montar matriz de execucao.
-3. Criar `tasks/reports/TASK-031-matriz-execucao-fundacao.md`.
+3. Registrar achados em `logs/LOG-031-criar-matriz-execucao-tasks-fundacao.md`.
 4. Validar que nenhuma TASK foi alterada.
 
 ## Arquivos Ou Areas Provaveis
 
-- `tasks/reports/TASK-031-matriz-execucao-fundacao.md`
+- `logs/LOG-031-criar-matriz-execucao-tasks-fundacao.md`
 
 ## Criterios De Aceite
 
@@ -51,8 +51,8 @@ Criar matriz documental de ordem de execucao das TASKs derivadas da SPEC-001, co
 
 ## Validacao Esperada
 
-- Executar `test -f tasks/reports/TASK-031-matriz-execucao-fundacao.md`.
-- Executar `git diff --stat` e confirmar escopo restrito ao relatorio.
+- Executar `test -f logs/LOG-031-criar-matriz-execucao-tasks-fundacao.md`.
+- Executar `git diff --stat` e confirmar escopo restrito ao log.
 
 ## Riscos
 

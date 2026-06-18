@@ -26,7 +26,7 @@ Auditar se as TASKs existentes referenciam SPEC de origem suficiente, dependenci
 - Verificar campos obrigatorios.
 - Verificar se cada TASK referencia SPEC de origem.
 - Verificar se dependencias e bloqueios estao explicitos.
-- Registrar lacunas em relatorio.
+- Registrar lacunas em log.
 
 ## Fora De Escopo
 
@@ -39,24 +39,24 @@ Auditar se as TASKs existentes referenciam SPEC de origem suficiente, dependenci
 
 1. Listar arquivos `tasks/TASK-*.md`.
 2. Conferir campos obrigatorios.
-3. Criar relatorio em `tasks/reports/TASK-030-auditoria-rastreabilidade-tasks.md`.
+3. Criar log em `logs/LOG-030-auditar-rastreabilidade-tasks-specs.md`.
 4. Registrar lacunas sem corrigir.
 
 ## Arquivos Ou Areas Provaveis
 
-- `tasks/reports/TASK-030-auditoria-rastreabilidade-tasks.md`
-- `tasks/` apenas para leitura, exceto o relatorio
+- `logs/LOG-030-auditar-rastreabilidade-tasks-specs.md`
+- `tasks/` apenas para leitura, exceto o log
 
 ## Criterios De Aceite
 
-- Existe relatorio de auditoria.
+- Existe log de auditoria.
 - Todas as TASKs sao listadas.
 - Lacunas sao registradas sem correcao.
 
 ## Validacao Esperada
 
-- Executar `test -f tasks/reports/TASK-030-auditoria-rastreabilidade-tasks.md`.
-- Executar `git diff --stat` e confirmar que apenas o relatorio foi criado.
+- Executar `test -f logs/LOG-030-auditar-rastreabilidade-tasks-specs.md`.
+- Executar `git diff --stat` e confirmar que apenas o log foi criado.
 
 ## Riscos
 

@@ -22,8 +22,8 @@ Configurar a base minima do Alembic para migrations futuras executando via conta
 - `docs/product/PRD.md`
 - `docs/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- relatorio esperado de `tasks/reports/TASK-006-auditoria-validacoes.md`
-- relatorio esperado de `tasks/reports/TASK-010-auditoria-ambiente-local.md`
+- log esperado de `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`
+- log esperado de `logs/LOG-010-auditar-ambiente-local-e-configuracao.md`
 
 ## Escopo Exato
 
@@ -50,7 +50,7 @@ Configurar a base minima do Alembic para migrations futuras executando via conta
 
 ## Passos Executaveis
 
-1. Ler os relatorios das TASKs 006 e 010.
+1. Ler os logs das TASKs 006 e 010.
 2. Confirmar que a lacuna de Alembic/migrations foi registrada.
 3. Verificar a estrutura backend criada pela TASK-003.
 4. Verificar a configuracao local criada pela TASK-013.

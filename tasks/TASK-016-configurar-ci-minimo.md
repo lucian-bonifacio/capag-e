@@ -10,7 +10,7 @@
 - `TASK-014-configurar-testes-backend-minimos.md`
 - `TASK-015-configurar-testes-frontend-minimos.md`
 
-Esta TASK so deve ser executada depois que as validacoes minimas de backend e frontend estiverem configuradas ou explicitamente dispensadas por relatorio.
+Esta TASK so deve ser executada depois que as validacoes minimas de backend e frontend estiverem configuradas ou explicitamente dispensadas por log.
 
 ## Objetivo
 
@@ -21,7 +21,7 @@ Configurar um workflow minimo de CI para executar validacoes basicas do projeto 
 - `docs/product/PRD.md`
 - `docs/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- relatorio esperado de `tasks/reports/TASK-006-auditoria-validacoes.md`
+- log esperado de `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`
 
 ## Escopo Exato
 
@@ -50,7 +50,7 @@ Configurar um workflow minimo de CI para executar validacoes basicas do projeto 
 
 ## Passos Executaveis
 
-1. Ler `tasks/reports/TASK-006-auditoria-validacoes.md`.
+1. Ler `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`.
 2. Confirmar comandos minimos disponiveis para backend e frontend.
 3. Criar `.github/workflows/ci.yml`.
 4. Configurar jobs apenas para comandos existentes e aprovados pelas TASKs anteriores.

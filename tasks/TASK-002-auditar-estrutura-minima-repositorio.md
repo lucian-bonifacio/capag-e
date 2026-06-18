@@ -27,7 +27,7 @@ Auditar a estrutura atual do repositorio contra o contrato minimo definido na SP
   - `tasks/`;
   - `backend/`;
   - `frontend/`.
-- Registrar lacunas estruturais em relatorio documental.
+- Registrar lacunas estruturais no log da TASK.
 - Classificar cada lacuna como:
   - ausente;
   - existente mas incompleta;
@@ -50,25 +50,25 @@ Auditar a estrutura atual do repositorio contra o contrato minimo definido na SP
 1. Listar a raiz do repositorio e os diretorios governados relevantes.
 2. Conferir cada caminho minimo previsto na SPEC-001.
 3. Registrar evidencias objetivas de existencia ou ausencia.
-4. Criar um relatorio documental em `tasks/reports/TASK-002-auditoria-estrutura-minima.md`.
-5. No relatorio, separar achados por caminho auditado.
-6. No relatorio, listar lacunas sem corrigi-las.
-7. No relatorio, sugerir proximas TASKs pequenas quando houver lacunas.
-8. Validar que nenhum arquivo fora de `tasks/reports/` foi alterado durante a execucao.
+4. Registrar os achados no log `logs/LOG-002-auditar-estrutura-minima-repositorio.md`.
+5. No log, separar achados por caminho auditado.
+6. No log, listar lacunas sem corrigi-las.
+7. No log, sugerir proximas TASKs pequenas quando houver lacunas.
+8. Validar que nenhum arquivo funcional de backend, frontend, engine, banco, exportacao ou laudo foi alterado durante a execucao.
 
 ## Arquivos Ou Areas Provaveis
 
-- `tasks/reports/TASK-002-auditoria-estrutura-minima.md`
+- `logs/LOG-002-auditar-estrutura-minima-repositorio.md`
 - raiz do repositorio apenas para leitura
 - `docs/` apenas para leitura
 - `specs/` apenas para leitura
-- `tasks/` apenas para leitura, exceto o relatorio da propria TASK
+- `tasks/` apenas para leitura
 
 ## Criterios De Aceite
 
-- Existe relatorio em `tasks/reports/TASK-002-auditoria-estrutura-minima.md`.
-- O relatorio cita a SPEC de origem.
-- O relatorio lista todos os caminhos minimos previstos pela SPEC-001.
+- O log da TASK existe em `logs/LOG-002-auditar-estrutura-minima-repositorio.md`.
+- O log cita a SPEC de origem.
+- O log lista todos os caminhos minimos previstos pela SPEC-001.
 - Cada caminho auditado possui status objetivo.
 - Lacunas estruturais sao registradas sem serem corrigidas nesta TASK.
 - Proximas TASKs sugeridas sao pequenas e independentes.
@@ -76,9 +76,10 @@ Auditar a estrutura atual do repositorio contra o contrato minimo definido na SP
 
 ## Validacao Esperada
 
-- Executar `test -f tasks/reports/TASK-002-auditoria-estrutura-minima.md`.
-- Executar `git diff --stat` e confirmar que a execucao alterou apenas `tasks/reports/TASK-002-auditoria-estrutura-minima.md`.
-- Conferir manualmente que o relatorio nao define regra de dominio, API, formula, arredondamento ou padrao visual.
+- Executar `test -f logs/LOG-002-auditar-estrutura-minima-repositorio.md`.
+- Executar `test ! -e tasks/reports/TASK-002-auditoria-estrutura-minima.md`.
+- Executar `git diff --stat` e confirmar que a execucao nao alterou arquivos funcionais de backend, frontend, engine, banco, exportacao ou laudo.
+- Conferir manualmente que o log nao define regra de dominio, API, formula, arredondamento ou padrao visual.
 
 ## Riscos
 

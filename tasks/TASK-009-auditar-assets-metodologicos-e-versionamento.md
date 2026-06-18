@@ -21,9 +21,9 @@ Auditar se o projeto possui estrutura, convencao e validacoes previstas para ass
 - `docs/product/PRD.md`
 - `docs/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- relatorio esperado de `tasks/reports/TASK-002-auditoria-estrutura-minima.md`
-- relatorio esperado de `tasks/reports/TASK-005-auditoria-specs.md`
-- relatorio esperado de `tasks/reports/TASK-006-auditoria-validacoes.md`
+- log esperado de `logs/LOG-002-auditar-estrutura-minima-repositorio.md`
+- log esperado de `logs/LOG-005-auditar-indice-e-rastreabilidade-de-specs.md`
+- log esperado de `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`
 
 ## Escopo Exato
 
@@ -36,7 +36,7 @@ Auditar se o projeto possui estrutura, convencao e validacoes previstas para ass
   - dado operacional persistido;
   - dado de auditoria;
   - resultado calculado.
-- Registrar lacunas em relatorio documental.
+- Registrar lacunas em log operacional.
 - Propor proximas TASKs pequenas para estruturar assets, convencao de versao ou validacao, quando necessario.
 
 ## Fora De Escopo
@@ -54,11 +54,11 @@ Auditar se o projeto possui estrutura, convencao e validacoes previstas para ass
 
 ## Passos Executaveis
 
-1. Ler os relatorios das TASKs 002, 005 e 006.
+1. Ler os logs das TASKs 002, 005 e 006.
 2. Verificar se existe diretorio ou convencao para assets metodologicos.
 3. Verificar se documentos governados citam versionamento metodologico suficiente para proxima etapa estrutural.
 4. Verificar se ha comandos, scripts ou testes de validacao de assets.
-5. Criar relatorio em `tasks/reports/TASK-009-auditoria-assets-metodologicos.md`.
+5. Criar log em `logs/LOG-009-auditar-assets-metodologicos-e-versionamento.md`.
 6. Registrar lacunas sem corrigi-las.
 7. Classificar lacunas como documentais, estruturais, tecnicas ou bloqueadas por SPEC funcional posterior.
 8. Sugerir proximas TASKs pequenas para lacunas encontradas.
@@ -66,7 +66,7 @@ Auditar se o projeto possui estrutura, convencao e validacoes previstas para ass
 
 ## Arquivos Ou Areas Provaveis
 
-- `tasks/reports/TASK-009-auditoria-assets-metodologicos.md`
+- `logs/LOG-009-auditar-assets-metodologicos-e-versionamento.md`
 - raiz do repositorio apenas para leitura
 - `docs/` apenas para leitura
 - `specs/` apenas para leitura
@@ -74,20 +74,20 @@ Auditar se o projeto possui estrutura, convencao e validacoes previstas para ass
 
 ## Criterios De Aceite
 
-- Existe relatorio em `tasks/reports/TASK-009-auditoria-assets-metodologicos.md`.
-- O relatorio cita a SPEC de origem.
-- O relatorio identifica se existe estrutura de assets metodologicos versionados.
-- O relatorio registra se ha convencao de versao metodologica.
-- O relatorio registra se ha validacao automatizada ou lacuna de validacao.
-- O relatorio separa lacunas documentais, estruturais, tecnicas e bloqueadas por SPEC posterior.
-- O relatorio sugere proximas TASKs pequenas quando houver lacunas.
+- Existe log em `logs/LOG-009-auditar-assets-metodologicos-e-versionamento.md`.
+- O log cita a SPEC de origem.
+- O log identifica se existe estrutura de assets metodologicos versionados.
+- O log registra se ha convencao de versao metodologica.
+- O log registra se ha validacao automatizada ou lacuna de validacao.
+- O log separa lacunas documentais, estruturais, tecnicas e bloqueadas por SPEC posterior.
+- O log sugere proximas TASKs pequenas quando houver lacunas.
 - Nenhum asset, documento governado, SPEC, codigo ou teste e criado ou alterado.
 
 ## Validacao Esperada
 
-- Executar `test -f tasks/reports/TASK-009-auditoria-assets-metodologicos.md`.
-- Executar `git diff --stat` e confirmar que a execucao alterou apenas `tasks/reports/TASK-009-auditoria-assets-metodologicos.md`.
-- Conferir manualmente que o relatorio nao define regra prudencial, formula, arredondamento, golden case ou contrato funcional.
+- Executar `test -f logs/LOG-009-auditar-assets-metodologicos-e-versionamento.md`.
+- Executar `git diff --stat` e confirmar que a execucao alterou apenas `logs/LOG-009-auditar-assets-metodologicos-e-versionamento.md`.
+- Conferir manualmente que o log nao define regra prudencial, formula, arredondamento, golden case ou contrato funcional.
 
 ## Riscos
 

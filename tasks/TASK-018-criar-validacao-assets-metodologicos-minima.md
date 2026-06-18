@@ -20,8 +20,8 @@ Criar uma validacao minima via Docker Compose para inventario e formato basico d
 - `docs/product/PRD.md`
 - `docs/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- relatorio esperado de `tasks/reports/TASK-006-auditoria-validacoes.md`
-- relatorio esperado de `tasks/reports/TASK-009-auditoria-assets-metodologicos.md`
+- log esperado de `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`
+- log esperado de `logs/LOG-009-auditar-assets-metodologicos-e-versionamento.md`
 
 ## Escopo Exato
 
@@ -54,8 +54,8 @@ Criar uma validacao minima via Docker Compose para inventario e formato basico d
 
 ## Passos Executaveis
 
-1. Ler `tasks/reports/TASK-006-auditoria-validacoes.md`.
-2. Ler `tasks/reports/TASK-009-auditoria-assets-metodologicos.md`.
+1. Ler `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`.
+2. Ler `logs/LOG-009-auditar-assets-metodologicos-e-versionamento.md`.
 3. Confirmar que ha convencao suficiente para validacao estrutural minima.
 4. Criar script ou teste de validacao estrutural minima.
 5. Documentar comando de execucao quando necessario.

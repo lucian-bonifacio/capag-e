@@ -19,7 +19,7 @@ Criar a estrutura minima de diretorios do backend conforme a arquitetura aprovad
 - `docs/product/PRD.md`
 - `docs/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- relatorio esperado de `tasks/reports/TASK-002-auditoria-estrutura-minima.md`
+- log esperado de `logs/LOG-002-auditar-estrutura-minima-repositorio.md`
 
 ## Escopo Exato
 
@@ -53,7 +53,7 @@ Criar a estrutura minima de diretorios do backend conforme a arquitetura aprovad
 
 ## Passos Executaveis
 
-1. Ler `tasks/reports/TASK-002-auditoria-estrutura-minima.md`.
+1. Ler `logs/LOG-002-auditar-estrutura-minima-repositorio.md`.
 2. Confirmar que a estrutura `backend/` esta ausente ou insuficiente.
 3. Criar `backend/`.
 4. Criar os subdiretorios de camada definidos no escopo.

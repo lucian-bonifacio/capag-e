@@ -25,7 +25,7 @@ Configurar a base minima de testes frontend com Vitest e React Testing Library e
 - `docs/frontend/UI_COMPONENT_RULES.md`
 - `docs/frontend/SCREEN_PATTERNS.md`
 - `frontend/src/styles/globals.css`
-- relatorio esperado de `tasks/reports/TASK-006-auditoria-validacoes.md`
+- log esperado de `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`
 
 ## Escopo Exato
 
@@ -54,7 +54,7 @@ Configurar a base minima de testes frontend com Vitest e React Testing Library e
 
 ## Passos Executaveis
 
-1. Ler `tasks/reports/TASK-006-auditoria-validacoes.md`.
+1. Ler `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`.
 2. Confirmar que a lacuna de testes frontend foi registrada.
 3. Verificar a estrutura frontend organizada pela TASK-008.
 4. Criar ou ajustar configuracao minima de Vitest.

@@ -23,9 +23,9 @@ Auditar documentos operacionais e instrucoes de agentes para identificar desalin
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - `AGENTS.md`
 - `TODOLIST.md`
-- relatorio esperado de `tasks/reports/TASK-002-auditoria-estrutura-minima.md`
-- relatorio esperado de `tasks/reports/TASK-005-auditoria-specs.md`
-- relatorio esperado de `tasks/reports/TASK-006-auditoria-validacoes.md`
+- log esperado de `logs/LOG-002-auditar-estrutura-minima-repositorio.md`
+- log esperado de `logs/LOG-005-auditar-indice-e-rastreabilidade-de-specs.md`
+- log esperado de `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`
 
 ## Escopo Exato
 
@@ -43,7 +43,7 @@ Auditar documentos operacionais e instrucoes de agentes para identificar desalin
   - necessidade de TASKs pequenas e verificaveis.
 - Verificar se documentos operacionais registram Docker/Docker Compose como unico ambiente oficial.
 - Verificar se documentos operacionais evitam instrucoes de `.venv`, `node_modules` no host ou instalacao global/local fora de container.
-- Registrar lacunas e conflitos em relatorio documental.
+- Registrar lacunas e conflitos em log operacional.
 - Propor proximas TASKs pequenas para refinamento de documentos operacionais.
 
 ## Fora De Escopo
@@ -59,19 +59,19 @@ Auditar documentos operacionais e instrucoes de agentes para identificar desalin
 
 ## Passos Executaveis
 
-1. Ler os relatorios das TASKs 002, 005 e 006.
+1. Ler os logs das TASKs 002, 005 e 006.
 2. Listar documentos operacionais existentes na raiz.
 3. Ler `AGENTS.md` e `TODOLIST.md`.
 4. Ler `README.md`, se existir.
 5. Comparar os documentos com `docs/product/PRD.md`, `docs/architecture.md` e `SPEC-001`.
-6. Criar relatorio em `tasks/reports/TASK-007-auditoria-documentos-operacionais.md`.
+6. Criar log em `logs/LOG-007-auditar-documentos-operacionais-e-agentes.md`.
 7. Registrar lacunas, conflitos e pontos defasados sem corrigi-los.
 8. Sugerir proximas TASKs pequenas para refinamento documental.
 9. Validar que nenhum documento operacional foi alterado durante a execucao.
 
 ## Arquivos Ou Areas Provaveis
 
-- `tasks/reports/TASK-007-auditoria-documentos-operacionais.md`
+- `logs/LOG-007-auditar-documentos-operacionais-e-agentes.md`
 - `AGENTS.md` apenas para leitura
 - `TODOLIST.md` apenas para leitura
 - `README.md` apenas para leitura, se existir
@@ -79,25 +79,25 @@ Auditar documentos operacionais e instrucoes de agentes para identificar desalin
 
 ## Criterios De Aceite
 
-- Existe relatorio em `tasks/reports/TASK-007-auditoria-documentos-operacionais.md`.
-- O relatorio cita a SPEC de origem.
-- O relatorio lista os documentos operacionais auditados.
-- O relatorio identifica alinhamentos, lacunas e conflitos com PRD, arquitetura e SPEC-001.
-- O relatorio identifica se ha lacuna ou conflito sobre ambiente oficial Docker-only.
-- O relatorio sugere TASKs futuras pequenas para refinamento.
+- Existe log em `logs/LOG-007-auditar-documentos-operacionais-e-agentes.md`.
+- O log cita a SPEC de origem.
+- O log lista os documentos operacionais auditados.
+- O log identifica alinhamentos, lacunas e conflitos com PRD, arquitetura e SPEC-001.
+- O log identifica se ha lacuna ou conflito sobre ambiente oficial Docker-only.
+- O log sugere TASKs futuras pequenas para refinamento.
 - Nenhum documento operacional e alterado.
 - Nenhuma skill, plugin ou configuracao do Codex e alterada.
 
 ## Validacao Esperada
 
-- Executar `test -f tasks/reports/TASK-007-auditoria-documentos-operacionais.md`.
-- Executar `git diff --stat` e confirmar que a execucao alterou apenas `tasks/reports/TASK-007-auditoria-documentos-operacionais.md`.
+- Executar `test -f logs/LOG-007-auditar-documentos-operacionais-e-agentes.md`.
+- Executar `git diff --stat` e confirmar que a execucao alterou apenas `logs/LOG-007-auditar-documentos-operacionais-e-agentes.md`.
 - Conferir manualmente que `AGENTS.md`, `TODOLIST.md`, `README.md`, skills, plugins e configs nao foram alterados.
 
 ## Riscos
 
 - Risco: auditoria virar refinamento imediato dos documentos.
-  Mitigacao: registrar lacunas em relatorio e propor TASKs futuras, sem editar documentos nesta TASK.
+  Mitigacao: registrar lacunas em log e propor TASKs futuras, sem editar documentos nesta TASK.
 
 - Risco: documentos operacionais contradizerem fontes governadas.
   Mitigacao: registrar conflito e tratar PRD, arquitetura e SPECs como fontes superiores para a proxima TASK.

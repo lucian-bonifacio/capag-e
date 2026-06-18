@@ -16,7 +16,7 @@ Atualizar `TODOLIST.md` para refletir o status real da fundacao governada apos a
 ## Fontes Usadas
 
 - `TODOLIST.md`
-- relatorio esperado de `tasks/reports/TASK-032-prontidao-fundacao-governada.md`
+- log esperado de `logs/LOG-032-auditar-prontidao-fundacao-governada.md`
 
 ## Escopo Exato
 
@@ -33,7 +33,7 @@ Atualizar `TODOLIST.md` para refletir o status real da fundacao governada apos a
 
 ## Passos Executaveis
 
-1. Ler relatorio da TASK-032.
+1. Ler log da TASK-032.
 2. Atualizar `TODOLIST.md` conforme status comprovado.
 3. Validar que apenas `TODOLIST.md` foi alterado.
 

@@ -26,7 +26,7 @@ Auditar a configuracao de dependencias frontend necessarias para React, Vite, Ty
 - Verificar `package.json` e arquivos correlatos, se existirem.
 - Verificar presenca ou ausencia de React, Vite, TypeScript, Tailwind, Vitest e demais ferramentas aprovadas.
 - Verificar se ha qualquer instrucao indevida de `node_modules` no host ou instalacao local/global.
-- Registrar lacunas em relatorio.
+- Registrar lacunas em log.
 
 ## Fora De Escopo
 
@@ -37,24 +37,24 @@ Auditar a configuracao de dependencias frontend necessarias para React, Vite, Ty
 ## Passos Executaveis
 
 1. Auditar arquivos de dependencias frontend.
-2. Criar relatorio em `tasks/reports/TASK-026-auditoria-dependencias-frontend.md`.
+2. Criar log em `logs/LOG-026-auditar-dependencias-frontend.md`.
 3. Registrar lacunas sem corrigi-las.
 
 ## Arquivos Ou Areas Provaveis
 
-- `tasks/reports/TASK-026-auditoria-dependencias-frontend.md`
+- `logs/LOG-026-auditar-dependencias-frontend.md`
 - `frontend/` apenas para leitura
 
 ## Criterios De Aceite
 
-- Existe relatorio de auditoria.
-- O relatorio identifica qualquer exigencia de `node_modules` no host ou instalacao global como lacuna.
+- Existe log de auditoria.
+- O log identifica qualquer exigencia de `node_modules` no host ou instalacao global como lacuna.
 - Nenhum arquivo de frontend e alterado.
 
 ## Validacao Esperada
 
-- Executar `test -f tasks/reports/TASK-026-auditoria-dependencias-frontend.md`.
-- Executar `git diff --stat` e confirmar que apenas o relatorio foi criado.
+- Executar `test -f logs/LOG-026-auditar-dependencias-frontend.md`.
+- Executar `git diff --stat` e confirmar que apenas o log foi criado.
 
 ## Riscos
 

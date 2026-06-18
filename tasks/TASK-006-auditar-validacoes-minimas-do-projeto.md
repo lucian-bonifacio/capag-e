@@ -20,8 +20,8 @@ Auditar quais validacoes documentais e tecnicas minimas existem ou faltam no pro
 - `docs/product/PRD.md`
 - `docs/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- relatorio esperado de `tasks/reports/TASK-002-auditoria-estrutura-minima.md`
-- relatorio esperado de `tasks/reports/TASK-005-auditoria-specs.md`
+- log esperado de `logs/LOG-002-auditar-estrutura-minima-repositorio.md`
+- log esperado de `logs/LOG-005-auditar-indice-e-rastreabilidade-de-specs.md`
 
 ## Escopo Exato
 
@@ -52,10 +52,10 @@ Auditar quais validacoes documentais e tecnicas minimas existem ou faltam no pro
 
 ## Passos Executaveis
 
-1. Ler os relatorios das TASKs 002 e 005.
+1. Ler os logs das TASKs 002 e 005.
 2. Verificar arquivos de configuracao existentes na raiz, `backend/`, `frontend/` e `.github/`, se existirem.
 3. Verificar se ha comandos documentados para testes, build, migrations e validacao de assets.
-4. Criar relatorio em `tasks/reports/TASK-006-auditoria-validacoes.md`.
+4. Criar log em `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`.
 5. Classificar cada validacao como:
    - existente;
    - ausente;
@@ -66,7 +66,7 @@ Auditar quais validacoes documentais e tecnicas minimas existem ou faltam no pro
 
 ## Arquivos Ou Areas Provaveis
 
-- `tasks/reports/TASK-006-auditoria-validacoes.md`
+- `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`
 - raiz do repositorio apenas para leitura
 - `backend/` apenas para leitura, se existir
 - `frontend/` apenas para leitura
@@ -74,20 +74,20 @@ Auditar quais validacoes documentais e tecnicas minimas existem ou faltam no pro
 
 ## Criterios De Aceite
 
-- Existe relatorio em `tasks/reports/TASK-006-auditoria-validacoes.md`.
-- O relatorio cobre todas as validacoes listadas no escopo.
-- O relatorio identifica se as validacoes existentes respeitam ambiente oficial Docker-only.
-- O relatorio registra exigencia de `.venv`, `node_modules` no host ou instalacao fora de container como lacuna.
+- Existe log em `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`.
+- O log cobre todas as validacoes listadas no escopo.
+- O log identifica se as validacoes existentes respeitam ambiente oficial Docker-only.
+- O log registra exigencia de `.venv`, `node_modules` no host ou instalacao fora de container como lacuna.
 - Cada validacao possui status objetivo.
-- O relatorio separa lacunas documentais de lacunas tecnicas.
-- O relatorio sugere TASKs futuras pequenas e independentes.
+- O log separa lacunas documentais de lacunas tecnicas.
+- O log sugere TASKs futuras pequenas e independentes.
 - Nenhum teste, workflow, config, backend, frontend ou asset e criado ou alterado.
 
 ## Validacao Esperada
 
-- Executar `test -f tasks/reports/TASK-006-auditoria-validacoes.md`.
-- Executar `git diff --stat` e confirmar que a execucao alterou apenas `tasks/reports/TASK-006-auditoria-validacoes.md`.
-- Conferir manualmente que o relatorio nao cria configuracao, teste, CI, asset ou regra prudencial.
+- Executar `test -f logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`.
+- Executar `git diff --stat` e confirmar que a execucao alterou apenas `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`.
+- Conferir manualmente que o log nao cria configuracao, teste, CI, asset ou regra prudencial.
 
 ## Riscos
 

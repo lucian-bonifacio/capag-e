@@ -20,8 +20,8 @@ Auditar se o projeto possui configuracao suficiente para ambiente local governad
 - `docs/product/PRD.md`
 - `docs/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- relatorio esperado de `tasks/reports/TASK-002-auditoria-estrutura-minima.md`
-- relatorio esperado de `tasks/reports/TASK-006-auditoria-validacoes.md`
+- log esperado de `logs/LOG-002-auditar-estrutura-minima-repositorio.md`
+- log esperado de `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`
 
 ## Escopo Exato
 
@@ -36,7 +36,7 @@ Auditar se o projeto possui configuracao suficiente para ambiente local governad
 - Auditar se os comandos oficiais usam `docker compose`.
 - Auditar se ha qualquer exigencia indevida de `.venv`, `node_modules` no host, Python local, Node local, `pip` local ou package manager Node local.
 - Verificar se a configuracao existente preserva a restricao de nao versionar segredos.
-- Registrar lacunas em relatorio documental.
+- Registrar lacunas em log operacional.
 - Propor proximas TASKs pequenas para criar configuracao local quando houver lacunas.
 
 ## Fora De Escopo
@@ -58,12 +58,12 @@ Auditar se o projeto possui configuracao suficiente para ambiente local governad
 
 ## Passos Executaveis
 
-1. Ler os relatorios das TASKs 002 e 006.
+1. Ler os logs das TASKs 002 e 006.
 2. Verificar arquivos de configuracao existentes na raiz do repositorio.
 3. Verificar configuracoes existentes em `backend/` e `frontend/`, se existirem.
 4. Verificar se existem exemplos seguros de variaveis de ambiente, sem ler arquivos `.env`.
 5. Verificar se ha comandos documentados para execucao local.
-6. Criar relatorio em `tasks/reports/TASK-010-auditoria-ambiente-local.md`.
+6. Criar log em `logs/LOG-010-auditar-ambiente-local-e-configuracao.md`.
 7. Registrar lacunas sem corrigi-las.
 8. Classificar lacunas como documentais, estruturais, tecnicas ou bloqueadas por TASK anterior.
 9. Sugerir proximas TASKs pequenas para configuracao local.
@@ -71,7 +71,7 @@ Auditar se o projeto possui configuracao suficiente para ambiente local governad
 
 ## Arquivos Ou Areas Provaveis
 
-- `tasks/reports/TASK-010-auditoria-ambiente-local.md`
+- `logs/LOG-010-auditar-ambiente-local-e-configuracao.md`
 - raiz do repositorio apenas para leitura
 - `backend/` apenas para leitura, se existir
 - `frontend/` apenas para leitura
@@ -79,23 +79,23 @@ Auditar se o projeto possui configuracao suficiente para ambiente local governad
 
 ## Criterios De Aceite
 
-- Existe relatorio em `tasks/reports/TASK-010-auditoria-ambiente-local.md`.
-- O relatorio cita a SPEC de origem.
-- O relatorio informa se ha configuracao local para Docker Compose, PostgreSQL, backend e frontend.
-- O relatorio informa se existem comandos documentados de desenvolvimento.
-- O relatorio informa se o ambiente oficial esta restrito a Docker/Docker Compose.
-- O relatorio registra qualquer exigencia de `.venv`, `node_modules` no host ou instalacao local/global como lacuna.
-- O relatorio registra lacunas sem corrigi-las.
-- O relatorio sugere TASKs futuras pequenas quando houver lacunas.
+- Existe log em `logs/LOG-010-auditar-ambiente-local-e-configuracao.md`.
+- O log cita a SPEC de origem.
+- O log informa se ha configuracao local para Docker Compose, PostgreSQL, backend e frontend.
+- O log informa se existem comandos documentados de desenvolvimento.
+- O log informa se o ambiente oficial esta restrito a Docker/Docker Compose.
+- O log registra qualquer exigencia de `.venv`, `node_modules` no host ou instalacao local/global como lacuna.
+- O log registra lacunas sem corrigi-las.
+- O log sugere TASKs futuras pequenas quando houver lacunas.
 - Nenhum arquivo `.env` e lido, criado ou alterado.
 - Nenhum arquivo de configuracao, codigo, teste ou CI e criado ou alterado.
 
 ## Validacao Esperada
 
-- Executar `test -f tasks/reports/TASK-010-auditoria-ambiente-local.md`.
-- Executar `git diff --stat` e confirmar que a execucao alterou apenas `tasks/reports/TASK-010-auditoria-ambiente-local.md`.
+- Executar `test -f logs/LOG-010-auditar-ambiente-local-e-configuracao.md`.
+- Executar `git diff --stat` e confirmar que a execucao alterou apenas `logs/LOG-010-auditar-ambiente-local-e-configuracao.md`.
 - Conferir manualmente que nenhum arquivo `.env` foi lido, criado ou alterado.
-- Conferir manualmente que o relatorio nao cria configuracao local nem define comando novo como aprovado.
+- Conferir manualmente que o log nao cria configuracao local nem define comando novo como aprovado.
 
 ## Riscos
 

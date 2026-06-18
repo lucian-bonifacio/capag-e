@@ -22,7 +22,7 @@ Auditar se a fundacao governada esta pronta para iniciar TASKs derivadas de SPEC
 - `docs/product/PRD.md`
 - `docs/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- relatorios e entregaveis das TASKs de fundacao
+- logs e entregaveis das TASKs de fundacao
 
 ## Escopo Exato
 
@@ -43,25 +43,25 @@ Auditar se a fundacao governada esta pronta para iniciar TASKs derivadas de SPEC
 ## Passos Executaveis
 
 1. Ler entregaveis das TASKs de fundacao.
-2. Criar relatorio em `tasks/reports/TASK-032-prontidao-fundacao-governada.md`.
+2. Criar log em `logs/LOG-032-auditar-prontidao-fundacao-governada.md`.
 3. Registrar status final.
 4. Listar bloqueios remanescentes.
 
 ## Arquivos Ou Areas Provaveis
 
-- `tasks/reports/TASK-032-prontidao-fundacao-governada.md`
+- `logs/LOG-032-auditar-prontidao-fundacao-governada.md`
 
 ## Criterios De Aceite
 
-- Existe relatorio de prontidao.
-- O relatorio recomenda seguir ou bloquear com justificativa.
-- O relatorio confirma se a fundacao opera exclusivamente via Docker/Docker Compose.
+- Existe log de prontidao.
+- O log recomenda seguir ou bloquear com justificativa.
+- O log confirma se a fundacao opera exclusivamente via Docker/Docker Compose.
 - Nenhuma lacuna e corrigida nesta TASK.
 
 ## Validacao Esperada
 
-- Executar `test -f tasks/reports/TASK-032-prontidao-fundacao-governada.md`.
-- Executar `git diff --stat` e confirmar escopo restrito ao relatorio.
+- Executar `test -f logs/LOG-032-auditar-prontidao-fundacao-governada.md`.
+- Executar `git diff --stat` e confirmar escopo restrito ao log.
 
 ## Riscos
 

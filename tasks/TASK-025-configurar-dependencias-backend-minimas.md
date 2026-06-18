@@ -16,7 +16,7 @@ Criar configuracao minima de dependencias backend para uso dentro de container c
 
 - `docs/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- relatorio esperado de `tasks/reports/TASK-024-auditoria-dependencias-backend.md`
+- log esperado de `logs/LOG-024-auditar-dependencias-backend.md`
 
 ## Escopo Exato
 
@@ -37,7 +37,7 @@ Criar configuracao minima de dependencias backend para uso dentro de container c
 
 ## Passos Executaveis
 
-1. Ler relatorio da TASK-024.
+1. Ler log da TASK-024.
 2. Criar ou ajustar configuracao minima de dependencias.
 3. Validar formato do arquivo criado.
 4. Confirmar que nenhum codigo funcional foi criado.
@@ -64,7 +64,7 @@ Criar configuracao minima de dependencias backend para uso dentro de container c
 ## Riscos
 
 - Risco: escolher formato de dependencias sem criterio.
-  Mitigacao: seguir relatorio da TASK-024.
+  Mitigacao: seguir log da TASK-024.
 
 ## Bloqueios Pendentes
 

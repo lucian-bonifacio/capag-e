@@ -21,7 +21,7 @@ Criar uma configuracao minima de Docker Compose como unico ambiente oficial do C
 - `docs/product/PRD.md`
 - `docs/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- relatorio esperado de `tasks/reports/TASK-010-auditoria-ambiente-local.md`
+- log esperado de `logs/LOG-010-auditar-ambiente-local-e-configuracao.md`
 
 ## Escopo Exato
 
@@ -53,7 +53,7 @@ Criar uma configuracao minima de Docker Compose como unico ambiente oficial do C
 
 ## Passos Executaveis
 
-1. Ler `tasks/reports/TASK-010-auditoria-ambiente-local.md`.
+1. Ler `logs/LOG-010-auditar-ambiente-local-e-configuracao.md`.
 2. Confirmar que a lacuna de Docker Compose foi registrada.
 3. Criar `docker-compose.yml` minimo.
 4. Incluir PostgreSQL 16 com volume nomeado.

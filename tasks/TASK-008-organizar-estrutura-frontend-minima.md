@@ -24,11 +24,11 @@ Organizar a estrutura minima do frontend conforme a arquitetura aprovada e os do
 - `docs/frontend/UI_COMPONENT_RULES.md`
 - `docs/frontend/SCREEN_PATTERNS.md`
 - `frontend/src/styles/globals.css`
-- relatorio esperado de `tasks/reports/TASK-004-auditoria-frontend-governada.md`
+- log esperado de `logs/LOG-004-auditar-estrutura-frontend-governada.md`
 
 ## Escopo Exato
 
-- Ler o relatorio da TASK-004 antes de qualquer alteracao.
+- Ler o log da TASK-004 antes de qualquer alteracao.
 - Criar ou ajustar somente a estrutura minima de pastas frontend necessaria, quando a auditoria indicar lacuna.
 - Organizar, quando aplicavel, pastas para:
   - `components/`;
@@ -58,7 +58,7 @@ Organizar a estrutura minima do frontend conforme a arquitetura aprovada e os do
 
 ## Passos Executaveis
 
-1. Ler `tasks/reports/TASK-004-auditoria-frontend-governada.md`.
+1. Ler `logs/LOG-004-auditar-estrutura-frontend-governada.md`.
 2. Identificar apenas lacunas estruturais aprovadas para correcao nesta TASK.
 3. Criar ou ajustar pastas minimas de frontend conforme lacunas registradas.
 4. Criar arquivos sentinela apenas quando necessarios para versionamento.
@@ -79,7 +79,7 @@ Organizar a estrutura minima do frontend conforme a arquitetura aprovada e os do
 ## Criterios De Aceite
 
 - A TASK-004 foi executada antes desta TASK.
-- Alteracoes estruturais correspondem apenas a lacunas registradas no relatorio da TASK-004.
+- Alteracoes estruturais correspondem apenas a lacunas registradas no log da TASK-004.
 - A estrutura frontend minima fica coerente com `docs/architecture.md`.
 - `frontend/src/styles/globals.css` permanece como fonte de tokens runtime.
 - Nenhuma tela funcional e criada.
@@ -92,7 +92,7 @@ Organizar a estrutura minima do frontend conforme a arquitetura aprovada e os do
 ## Validacao Esperada
 
 - Executar `git diff --stat` e confirmar que as alteracoes estao restritas a `frontend/`.
-- Conferir manualmente que as alteracoes correspondem ao relatorio da TASK-004.
+- Conferir manualmente que as alteracoes correspondem ao log da TASK-004.
 - Conferir manualmente que nao houve criacao de tela funcional, rota definitiva, cliente de API funcional ou regra prudencial.
 - Conferir manualmente que `frontend/src/styles/globals.css` nao foi alterado indevidamente.
 

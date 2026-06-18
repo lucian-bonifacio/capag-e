@@ -19,7 +19,7 @@ Criar um indice oficial das SPECs em `specs/`, registrando status, modulo, fonte
 - `docs/product/PRD.md`
 - `docs/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- relatorio esperado de `tasks/reports/TASK-005-auditoria-specs.md`
+- log esperado de `logs/LOG-005-auditar-indice-e-rastreabilidade-de-specs.md`
 
 ## Escopo Exato
 
@@ -51,11 +51,11 @@ Criar um indice oficial das SPECs em `specs/`, registrando status, modulo, fonte
 
 ## Passos Executaveis
 
-1. Ler `tasks/reports/TASK-005-auditoria-specs.md`.
+1. Ler `logs/LOG-005-auditar-indice-e-rastreabilidade-de-specs.md`.
 2. Listar as SPECs existentes em `specs/`.
 3. Criar `specs/README.md`.
 4. Preencher o indice com uma linha por SPEC.
-5. Registrar status e bloqueios conforme relatorio da TASK-005.
+5. Registrar status e bloqueios conforme log da TASK-005.
 6. Registrar TASKs derivadas existentes, sem criar novas TASKs nesta execucao.
 7. Validar que nenhuma SPEC foi alterada.
 
@@ -89,7 +89,7 @@ Criar um indice oficial das SPECs em `specs/`, registrando status, modulo, fonte
   Mitigacao: declarar que o indice resume status e rastreabilidade, mas nao substitui as SPECs.
 
 - Risco: marcar SPEC incompleta como suficiente.
-  Mitigacao: usar a classificacao do relatorio da TASK-005 e registrar bloqueios explicitamente.
+  Mitigacao: usar a classificacao do log da TASK-005 e registrar bloqueios explicitamente.
 
 - Risco: criar TASK funcional a partir do indice sem revisar a SPEC.
   Mitigacao: exigir referencia direta a SPEC suficiente em toda TASK derivada.
