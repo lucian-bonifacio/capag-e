@@ -15,7 +15,7 @@ Criar validações automatizadas de assets governados e relatório de cobertura 
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-009-modulo-8-governanca-metodologia.md`
 
 ## Escopo Exato

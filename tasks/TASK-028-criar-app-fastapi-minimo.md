@@ -15,7 +15,7 @@ Criar uma aplicacao FastAPI minima para validar bootstrap do backend via contain
 
 ## Fontes Usadas
 
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 
 ## Escopo Exato

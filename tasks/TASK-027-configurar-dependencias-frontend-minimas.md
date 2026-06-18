@@ -14,7 +14,7 @@ Configurar dependencias frontend minimas para uso dentro de container conforme a
 
 ## Fontes Usadas
 
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `docs/frontend/DESIGN_TOKENS.md`
 - `docs/frontend/UI_COMPONENT_RULES.md`
 - `docs/frontend/SCREEN_PATTERNS.md`

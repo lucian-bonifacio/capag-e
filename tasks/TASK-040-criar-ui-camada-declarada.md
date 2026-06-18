@@ -16,7 +16,7 @@ Criar tela da camada declarada para exibir contas, status metodológico, alertas
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-002-modulo-1-camada-declarada.md`
 - `docs/frontend/DESIGN_TOKENS.md`
 - `docs/frontend/UI_COMPONENT_RULES.md`

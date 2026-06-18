@@ -16,7 +16,7 @@ Estruturar assets metodológicos de ROA e componentes ROA, sem calcular resultad
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-007-modulo-6-motor-roa-plra.md`
 
 ## Escopo Exato

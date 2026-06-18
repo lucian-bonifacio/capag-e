@@ -15,7 +15,7 @@ Criar shell frontend minimo conforme documentos visuais governados e validado vi
 
 ## Fontes Usadas
 
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `docs/frontend/DESIGN_TOKENS.md`
 - `docs/frontend/UI_COMPONENT_RULES.md`
 - `docs/frontend/SCREEN_PATTERNS.md`

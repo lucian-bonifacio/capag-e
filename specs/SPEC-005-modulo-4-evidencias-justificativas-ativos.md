@@ -17,7 +17,7 @@ Sem essa camada, ajustes materiais podem alterar `PLRA` ou `CAPAG-E` sem suporte
 Fontes principais obrigatorias:
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 
 Fontes de referencia autorizadas pelo usuario:
 

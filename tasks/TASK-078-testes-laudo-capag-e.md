@@ -16,7 +16,7 @@ Consolidar testes do gerador de laudo CAPAG-E, cobrindo status, seções, bloque
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-008-modulo-7-gerador-laudo-capag-e.md`
 
 ## Escopo Exato

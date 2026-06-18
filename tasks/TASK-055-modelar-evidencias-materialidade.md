@@ -15,7 +15,7 @@ Modelar `AdjustmentEvidence`, status de evidência, política default de materia
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-005-modulo-4-evidencias-justificativas-ativos.md`
 
 ## Escopo Exato

@@ -15,7 +15,7 @@ Criar a base de normalização comportamental e razão por conta para a camada r
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-003-modulo-2-capag-reclassificada.md`
 
 ## Escopo Exato

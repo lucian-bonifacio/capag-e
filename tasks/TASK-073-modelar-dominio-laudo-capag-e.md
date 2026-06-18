@@ -16,7 +16,7 @@ Modelar `CapagReport`, `ReportSection`, status do laudo e seções obrigatórias
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-008-modulo-7-gerador-laudo-capag-e.md`
 
 ## Escopo Exato

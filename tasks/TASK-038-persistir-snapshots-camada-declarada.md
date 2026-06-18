@@ -16,7 +16,7 @@ Persistir snapshots da camada declarada com versão metodológica e rastreabilid
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-002-modulo-1-camada-declarada.md`
 
 ## Escopo Exato

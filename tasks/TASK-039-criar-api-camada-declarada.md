@@ -16,7 +16,7 @@ Criar endpoints da camada declarada para consultar resultado por conta, status m
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-002-modulo-1-camada-declarada.md`
 
 ## Escopo Exato

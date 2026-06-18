@@ -23,7 +23,7 @@ O sistema atual usa linguagem como `PLR ajustado`, `FCO` e `CAPAG-e`. Essa lingu
 Fontes principais obrigatorias:
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 
 Fontes de referencia autorizadas pelo usuario:
 

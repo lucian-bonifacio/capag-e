@@ -16,7 +16,7 @@ Criar exportação comparativa da camada reclassificada e consolidar testes do m
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-003-modulo-2-capag-reclassificada.md`
 
 ## Escopo Exato

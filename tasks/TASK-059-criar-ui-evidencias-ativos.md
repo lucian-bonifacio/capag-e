@@ -15,7 +15,7 @@ Criar tela de evidências, justificativas, materialidade e avaliação de ativos
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-005-modulo-4-evidencias-justificativas-ativos.md`
 - `docs/frontend/DESIGN_TOKENS.md`
 - `docs/frontend/UI_COMPONENT_RULES.md`

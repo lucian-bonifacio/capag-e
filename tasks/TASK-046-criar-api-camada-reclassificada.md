@@ -15,7 +15,7 @@ Criar API para consultar perfis, classificações, comparação declarado vs rec
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-003-modulo-2-capag-reclassificada.md`
 
 ## Escopo Exato

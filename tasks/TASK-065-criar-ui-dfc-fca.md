@@ -15,7 +15,7 @@ Criar tela de DFC/FCA para exibir fluxos, componentes, pendências, evidências 
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-006-modulo-5-dfc-direta-fca.md`
 - `docs/frontend/DESIGN_TOKENS.md`
 - `docs/frontend/UI_COMPONENT_RULES.md`

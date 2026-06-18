@@ -14,7 +14,7 @@ Criar configuracao minima de dependencias backend para uso dentro de container c
 
 ## Fontes Usadas
 
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - log esperado de `logs/LOG-024-auditar-dependencias-backend.md`
 

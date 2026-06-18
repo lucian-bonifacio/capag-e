@@ -19,7 +19,7 @@ Auditar e documentar as fronteiras esperadas entre `api`, `application`, `domain
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - log esperado de `logs/LOG-002-auditar-estrutura-minima-repositorio.md`
 - log esperado de `logs/LOG-005-auditar-indice-e-rastreabilidade-de-specs.md`
@@ -55,7 +55,7 @@ Auditar e documentar as fronteiras esperadas entre `api`, `application`, `domain
 ## Passos Executaveis
 
 1. Ler os logs das TASKs 002 e 005.
-2. Ler as secoes de responsabilidades em `docs/architecture.md` e `SPEC-001`.
+2. Ler as secoes de responsabilidades em `docs/architecture/architecture.md` e `SPEC-001`.
 3. Criar log em `logs/LOG-011-auditar-fronteiras-de-camadas.md`.
 4. Montar matriz com uma linha por camada.
 5. Para cada camada, registrar responsabilidades, entradas, saidas, dependencias permitidas e dependencias proibidas.
@@ -66,7 +66,7 @@ Auditar e documentar as fronteiras esperadas entre `api`, `application`, `domain
 ## Arquivos Ou Areas Provaveis
 
 - `logs/LOG-011-auditar-fronteiras-de-camadas.md`
-- `docs/architecture.md` apenas para leitura
+- `docs/architecture/architecture.md` apenas para leitura
 - `specs/SPEC-001-modulo-0-fundacao-governada.md` apenas para leitura
 - `backend/` apenas para leitura, se existir
 

@@ -15,7 +15,7 @@ Criar API de preview, geração e consulta de laudo CAPAG-E, consumindo resultad
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-008-modulo-7-gerador-laudo-capag-e.md`
 
 ## Escopo Exato

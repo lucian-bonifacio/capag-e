@@ -15,7 +15,7 @@ Modelar o resultado auditável por conta da camada declarada, preservando `I051`
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-002-modulo-1-camada-declarada.md`
 
 ## Escopo Exato

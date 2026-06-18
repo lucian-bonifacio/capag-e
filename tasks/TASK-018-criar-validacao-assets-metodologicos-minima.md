@@ -18,7 +18,7 @@ Criar uma validacao minima via Docker Compose para inventario e formato basico d
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - log esperado de `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`
 - log esperado de `logs/LOG-009-auditar-assets-metodologicos-e-versionamento.md`

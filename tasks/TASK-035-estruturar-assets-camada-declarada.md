@@ -15,7 +15,7 @@ Criar a estrutura governada para assets da camada declarada, separando plano ref
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-002-modulo-1-camada-declarada.md`
 
 ## Escopo Exato

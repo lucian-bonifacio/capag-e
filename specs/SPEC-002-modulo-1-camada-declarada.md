@@ -17,7 +17,7 @@ O problema central desta SPEC e que a ECD pode declarar um `COD_CTA_REF` especif
 Fontes principais obrigatorias:
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 
 Fontes de referencia autorizadas pelo usuario para fechar contratos metodologicos da camada declarada:
 

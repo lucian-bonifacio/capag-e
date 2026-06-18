@@ -15,7 +15,7 @@ Auditar a configuracao de dependencias frontend necessarias para React, Vite, Ty
 
 ## Fontes Usadas
 
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `docs/frontend/DESIGN_TOKENS.md`
 - `docs/frontend/UI_COMPONENT_RULES.md`
 - `docs/frontend/SCREEN_PATTERNS.md`

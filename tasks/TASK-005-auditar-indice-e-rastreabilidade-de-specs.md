@@ -17,7 +17,7 @@ Auditar as SPECs existentes em `specs/`, verificar se cada uma possui fontes, es
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - arquivos existentes em `specs/`
 - log esperado de `logs/LOG-002-auditar-estrutura-minima-repositorio.md`
@@ -70,7 +70,7 @@ Auditar as SPECs existentes em `specs/`, verificar se cada uma possui fontes, es
 - `logs/LOG-005-auditar-indice-e-rastreabilidade-de-specs.md`
 - `specs/` apenas para leitura
 - `docs/product/PRD.md` apenas para leitura
-- `docs/architecture.md` apenas para leitura
+- `docs/architecture/architecture.md` apenas para leitura
 
 ## Criterios De Aceite
 

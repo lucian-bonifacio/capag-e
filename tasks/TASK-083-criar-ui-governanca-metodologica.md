@@ -16,7 +16,7 @@ Criar UI de governança metodológica para visualizar versões, cobertura, statu
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-009-modulo-8-governanca-metodologia.md`
 - `docs/frontend/DESIGN_TOKENS.md`
 - `docs/frontend/UI_COMPONENT_RULES.md`

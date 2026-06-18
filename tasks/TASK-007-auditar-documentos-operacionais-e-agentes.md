@@ -19,7 +19,7 @@ Auditar documentos operacionais e instrucoes de agentes para identificar desalin
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - `AGENTS.md`
 - `TODOLIST.md`
@@ -63,7 +63,7 @@ Auditar documentos operacionais e instrucoes de agentes para identificar desalin
 2. Listar documentos operacionais existentes na raiz.
 3. Ler `AGENTS.md` e `TODOLIST.md`.
 4. Ler `README.md`, se existir.
-5. Comparar os documentos com `docs/product/PRD.md`, `docs/architecture.md` e `SPEC-001`.
+5. Comparar os documentos com `docs/product/PRD.md`, `docs/architecture/architecture.md` e `SPEC-001`.
 6. Criar log em `logs/LOG-007-auditar-documentos-operacionais-e-agentes.md`.
 7. Registrar lacunas, conflitos e pontos defasados sem corrigi-los.
 8. Sugerir proximas TASKs pequenas para refinamento documental.

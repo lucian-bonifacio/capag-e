@@ -17,7 +17,7 @@ Consolidar testes de governança metodológica e atualizar documentos operaciona
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-009-modulo-8-governanca-metodologia.md`
 - `AGENTS.md`
 - `README.md`

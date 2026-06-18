@@ -18,7 +18,7 @@ Refinar `TODOLIST.md` para refletir o estado governado do projeto, separando mar
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - `tasks/README.md`
 - log esperado de `logs/LOG-007-auditar-documentos-operacionais-e-agentes.md`

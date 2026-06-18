@@ -16,7 +16,7 @@ Criar o cenário reclassificado completo, com persistência de classificações,
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-003-modulo-2-capag-reclassificada.md`
 
 ## Escopo Exato

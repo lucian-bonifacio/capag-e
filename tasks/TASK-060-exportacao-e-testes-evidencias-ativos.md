@@ -16,7 +16,7 @@ Incluir evidências, materialidade, avaliações de ativos, bloqueios e ressalva
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-005-modulo-4-evidencias-justificativas-ativos.md`
 
 ## Escopo Exato

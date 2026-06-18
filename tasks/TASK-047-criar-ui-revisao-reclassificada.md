@@ -15,7 +15,7 @@ Criar tela de revisão comportamental para visualizar classificação reclassifi
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-003-modulo-2-capag-reclassificada.md`
 - `docs/frontend/DESIGN_TOKENS.md`
 - `docs/frontend/UI_COMPONENT_RULES.md`

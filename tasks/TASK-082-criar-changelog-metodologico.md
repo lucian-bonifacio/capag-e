@@ -15,7 +15,7 @@ Criar `docs/methodology/changelog-metodologico.md` para registrar mudanças meto
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-009-modulo-8-governanca-metodologia.md`
 
 ## Escopo Exato

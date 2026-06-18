@@ -1,0 +1,32 @@
+name: capag
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: capag
+      POSTGRES_USER: capag
+      POSTGRES_PASSWORD: capag_local_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - capag_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U capag -d capag"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend-tests:
+    image: python:3.12-slim
+    profiles:
+      - test
+    working_dir: /workspace/backend
+    volumes:
+      - .:/workspace
+    command: >
+      sh -c "python -m pip install --disable-pip-version-check --root-user-action=ignore pytest
+      && python -m pytest"
+
+volumes:
+  capag_postgres_data:

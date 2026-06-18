@@ -19,7 +19,7 @@ Criar ou refinar o `README.md` principal do projeto para orientar leitura inicia
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - `tasks/README.md`
 - `AGENTS.md`

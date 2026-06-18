@@ -17,7 +17,7 @@ O problema central é que a classificação declarada no `I051` pode divergir do
 Fontes principais obrigatórias:
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 
 Fontes de referência autorizadas pelo usuário:
 

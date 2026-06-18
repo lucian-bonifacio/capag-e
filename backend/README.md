@@ -1,6 +1,6 @@
 # Backend CAPAG
 
-Este diretorio contem a estrutura minima do backend do CAPAG, conforme responsabilidades definidas em `docs/architecture.md` e `specs/SPEC-001-modulo-0-fundacao-governada.md`.
+Este diretorio contem a estrutura minima do backend do CAPAG, conforme responsabilidades definidas em `docs/architecture/architecture.md` e `specs/SPEC-001-modulo-0-fundacao-governada.md`.
 
 ## Camadas
 
@@ -22,3 +22,13 @@ Este diretorio contem a estrutura minima do backend do CAPAG, conforme responsab
 - Nao implementar parser ECD, motores prudenciais, exportacao Excel ou laudo nesta etapa.
 - Nao duplicar regra prudencial fora de `app/engine/`.
 - Nao usar `float` para valores contabeis, fiscais, financeiros ou prudenciais.
+
+## Validacao Minima
+
+Executar testes backend pelo ambiente oficial:
+
+```bash
+COMPOSE_DISABLE_ENV_FILE=1 docker compose --profile test run --rm backend-tests
+```
+
+O teste atual e apenas sentinela para validar o runner de `pytest`; ele nao define comportamento funcional do CAPAG.

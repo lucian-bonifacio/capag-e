@@ -16,7 +16,7 @@ Criar exportação DFC/FCA e consolidar testes do módulo, preservando audit row
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-006-modulo-5-dfc-direta-fca.md`
 
 ## Escopo Exato

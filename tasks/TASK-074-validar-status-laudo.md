@@ -15,7 +15,7 @@ Implementar validações para emissão de laudo final, preliminar, com ressalvas
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-008-modulo-7-gerador-laudo-capag-e.md`
 
 ## Escopo Exato

@@ -15,7 +15,7 @@ Modelar `CapagEAssessment`, métodos permitidos, status de componentes, status f
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-004-modulo-3-contrato-capag-e-plra-fca-roa.md`
 
 ## Escopo Exato

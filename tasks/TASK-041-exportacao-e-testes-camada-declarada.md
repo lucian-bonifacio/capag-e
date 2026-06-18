@@ -16,7 +16,7 @@ Implementar exportação Excel da camada declarada e consolidar testes obrigató
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-002-modulo-1-camada-declarada.md`
 
 ## Escopo Exato

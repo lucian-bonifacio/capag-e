@@ -27,7 +27,7 @@ PRD -> Arquitetura -> SPEC -> TASK
 Antes de criar ou revisar TASKs, leia as fontes aplicaveis:
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - SPEC de origem em `specs/`
 - documentos governados adicionais aplicaveis
 

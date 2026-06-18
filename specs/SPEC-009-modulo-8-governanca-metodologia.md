@@ -15,7 +15,7 @@ O problema central e evitar divergencia entre metodologia documentada e comporta
 Fontes principais obrigatorias:
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 
 Fontes de referencia autorizadas pelo usuario:
 
@@ -95,7 +95,7 @@ Documentos e artefatos:
 - `AGENTS.md`;
 - `CLAUDE.md`, se existir;
 - `docs/product/PRD.md`;
-- `docs/architecture.md`;
+- `docs/architecture/architecture.md`;
 - `specs/*.md`;
 - `docs/reference/manual-plr-capag-ecd-pgfn-v2.md`;
 - `docs/reference/manual-motor-operacional-universal-ebitda.md`;

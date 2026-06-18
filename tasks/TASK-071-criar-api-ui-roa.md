@@ -15,7 +15,7 @@ Criar API e tela ROA para consultar cálculo, componentes, audit rows, pendênci
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-007-modulo-6-motor-roa-plra.md`
 - `docs/frontend/DESIGN_TOKENS.md`
 - `docs/frontend/UI_COMPONENT_RULES.md`

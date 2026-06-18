@@ -17,7 +17,7 @@ Sem uma fundacao governada, novas implementacoes podem misturar regra prudencial
 Fontes principais obrigatorias:
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 
 Fontes frontend governadas consultadas porque esta SPEC toca organizacao visual e rotas frontend:
 
@@ -94,7 +94,9 @@ O repositorio deve convergir para esta estrutura-alvo minima, sem exigir que tod
 ├── AGENTS.md
 ├── TODOLIST.md
 ├── docs/
-│   ├── architecture.md
+│   ├── architecture/
+│   │   ├── architecture.md
+│   │   └── adr/
 │   ├── product/PRD.md
 │   └── frontend/
 ├── specs/
@@ -227,7 +229,7 @@ Erros a registrar como bloqueio:
 - A todolist deve refletir que PRD, arquitetura, design e AGENTS inicial ja existem.
 - Deve existir diretorio `specs/`.
 - Esta SPEC deve existir em `specs/SPEC-001-modulo-0-fundacao-governada.md`.
-- A SPEC deve citar explicitamente `docs/product/PRD.md` e `docs/architecture.md` como fontes principais.
+- A SPEC deve citar explicitamente `docs/product/PRD.md` e `docs/architecture/architecture.md` como fontes principais.
 - A SPEC deve citar documentos frontend governados por envolver organizacao visual e frontend.
 - A SPEC deve declarar que `docs/reference/` nao foi usado como fonte normativa direta.
 - A SPEC deve conter escopo, fora de escopo, decisoes aprovadas, decisoes pendentes, contratos, responsabilidades, entradas/saidas, estados/erros, criterios, validacao, riscos e bloqueios.

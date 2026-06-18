@@ -15,7 +15,7 @@ O problema central e transformar analise auditavel, contrato CAPAG-E, evidencias
 Fontes principais obrigatorias:
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 
 Fontes de referencia autorizadas pelo usuario:
 

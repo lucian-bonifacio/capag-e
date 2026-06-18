@@ -11,7 +11,7 @@ Auditar a estrutura atual do repositorio contra o contrato minimo definido na SP
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - `AGENTS.md`
 
@@ -20,7 +20,7 @@ Auditar a estrutura atual do repositorio contra o contrato minimo definido na SP
 - Verificar a existencia dos caminhos minimos definidos pela SPEC-001:
   - `AGENTS.md`;
   - `TODOLIST.md`;
-  - `docs/architecture.md`;
+  - `docs/architecture/architecture.md`;
   - `docs/product/PRD.md`;
   - `docs/frontend/`;
   - `specs/`;

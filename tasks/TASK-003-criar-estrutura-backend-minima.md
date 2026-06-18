@@ -17,7 +17,7 @@ Criar a estrutura minima de diretorios do backend conforme a arquitetura aprovad
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - log esperado de `logs/LOG-002-auditar-estrutura-minima-repositorio.md`
 
@@ -35,7 +35,7 @@ Criar a estrutura minima de diretorios do backend conforme a arquitetura aprovad
   - `backend/app/report/`;
   - `backend/app/assets/`.
 - Criar apenas arquivos sentinela ou `__init__.py` quando necessario para manter os pacotes versionaveis.
-- Registrar em README curto do backend que as responsabilidades seguem `docs/architecture.md` e `SPEC-001`.
+- Registrar em README curto do backend que as responsabilidades seguem `docs/architecture/architecture.md` e `SPEC-001`.
 
 ## Fora De Escopo
 
@@ -79,7 +79,7 @@ Criar a estrutura minima de diretorios do backend conforme a arquitetura aprovad
 - A TASK-002 foi executada antes desta TASK.
 - `backend/` existe.
 - As pastas de camada previstas no escopo existem.
-- `backend/README.md` cita `docs/architecture.md` e `SPEC-001` como fontes de responsabilidade.
+- `backend/README.md` cita `docs/architecture/architecture.md` e `SPEC-001` como fontes de responsabilidade.
 - Nenhum endpoint funcional e criado.
 - Nenhum schema Pydantic funcional e criado.
 - Nenhum modelo SQLAlchemy ou migration e criado.

@@ -16,7 +16,7 @@ Sanear TASKs pendentes e documentos operacionais que ainda referenciam `tasks/re
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - `tasks/README.md`
 - `tasks/TASK-002-auditar-estrutura-minima-repositorio.md`

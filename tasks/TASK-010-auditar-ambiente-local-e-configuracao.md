@@ -18,7 +18,7 @@ Auditar se o projeto possui configuracao suficiente para ambiente local governad
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - log esperado de `logs/LOG-002-auditar-estrutura-minima-repositorio.md`
 - log esperado de `logs/LOG-006-auditar-validacoes-minimas-do-projeto.md`

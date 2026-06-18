@@ -15,7 +15,7 @@ Criar exportação ROA + PLRA e consolidar testes do módulo, cobrindo blocos RO
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-007-modulo-6-motor-roa-plra.md`
 
 ## Escopo Exato

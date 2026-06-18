@@ -15,7 +15,7 @@ Modelar `MethodologyVersion` e regras de publicação de assets governados, gara
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-009-modulo-8-governanca-metodologia.md`
 
 ## Escopo Exato

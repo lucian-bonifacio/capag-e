@@ -17,7 +17,7 @@ Auditar a estrutura atual do frontend contra a arquitetura aprovada e os documen
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - `docs/frontend/DESIGN_TOKENS.md`
 - `docs/frontend/UI_COMPONENT_RULES.md`
@@ -57,7 +57,7 @@ Auditar a estrutura atual do frontend contra a arquitetura aprovada e os documen
 1. Ler `logs/LOG-002-auditar-estrutura-minima-repositorio.md`.
 2. Conferir a existencia e organizacao de `frontend/`.
 3. Conferir a existencia de `frontend/src/styles/globals.css`.
-4. Comparar a estrutura encontrada com `docs/architecture.md` e documentos governados de frontend.
+4. Comparar a estrutura encontrada com `docs/architecture/architecture.md` e documentos governados de frontend.
 5. Criar log em `logs/LOG-004-auditar-estrutura-frontend-governada.md`.
 6. Registrar achados por area auditada.
 7. Registrar lacunas sem corrigi-las.

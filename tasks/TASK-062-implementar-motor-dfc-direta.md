@@ -15,7 +15,7 @@ Implementar motor DFC direta para classificar fluxos financeiros efetivos com co
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-006-modulo-5-dfc-direta-fca.md`
 
 ## Escopo Exato

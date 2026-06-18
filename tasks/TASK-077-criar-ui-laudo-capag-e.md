@@ -15,7 +15,7 @@ Criar tela de laudo CAPAG-E com método, `CAPAG-P`, responsável, preview de se�
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-008-modulo-7-gerador-laudo-capag-e.md`
 - `docs/frontend/DESIGN_TOKENS.md`
 - `docs/frontend/UI_COMPONENT_RULES.md`

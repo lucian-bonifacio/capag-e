@@ -15,7 +15,7 @@ O problema central e que o `FCO` atual cobre apenas fluxo operacional. Para `CAP
 Fontes principais obrigatorias:
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 
 Fontes de referencia autorizadas pelo usuario:
 

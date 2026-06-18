@@ -15,7 +15,7 @@ Criar matriz de rastreabilidade metodológica entre tema, fonte normativa, manua
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-009-modulo-8-governanca-metodologia.md`
 
 ## Escopo Exato

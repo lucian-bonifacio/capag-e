@@ -20,7 +20,7 @@ Auditar se a fundacao governada esta pronta para iniciar TASKs derivadas de SPEC
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - logs e entregaveis das TASKs de fundacao
 

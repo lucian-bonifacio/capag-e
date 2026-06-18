@@ -18,7 +18,7 @@ Organizar a estrutura minima do frontend conforme a arquitetura aprovada e os do
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - `docs/frontend/DESIGN_TOKENS.md`
 - `docs/frontend/UI_COMPONENT_RULES.md`
@@ -80,7 +80,7 @@ Organizar a estrutura minima do frontend conforme a arquitetura aprovada e os do
 
 - A TASK-004 foi executada antes desta TASK.
 - Alteracoes estruturais correspondem apenas a lacunas registradas no log da TASK-004.
-- A estrutura frontend minima fica coerente com `docs/architecture.md`.
+- A estrutura frontend minima fica coerente com `docs/architecture/architecture.md`.
 - `frontend/src/styles/globals.css` permanece como fonte de tokens runtime.
 - Nenhuma tela funcional e criada.
 - Nenhum componente de negocio e criado.

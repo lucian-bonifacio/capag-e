@@ -16,7 +16,7 @@ Integrar `ROA Final` ao contrato CAPAG-E no método `roa_plra`, preservando `PLR
 ## Fontes Usadas
 
 - `docs/product/PRD.md`
-- `docs/architecture.md`
+- `docs/architecture/architecture.md`
 - `specs/SPEC-007-modulo-6-motor-roa-plra.md`
 - `specs/SPEC-004-modulo-3-contrato-capag-e-plra-fca-roa.md`
 
