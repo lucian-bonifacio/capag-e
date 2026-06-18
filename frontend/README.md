@@ -26,3 +26,13 @@ Este diretorio contem a estrutura minima do frontend do CAPAG, conforme responsa
 - Nao alterar status retornado pelo backend.
 - Nao criar tokens visuais fora dos documentos governados.
 - Nao criar ou exigir `node_modules` no host.
+
+## Validacao Minima
+
+Executar testes frontend pelo ambiente oficial:
+
+```bash
+COMPOSE_DISABLE_ENV_FILE=1 docker compose --profile test run --rm frontend-tests
+```
+
+O teste atual e apenas sentinela para validar o runner de Vitest e React Testing Library; ele nao define comportamento de tela, rota, API ou regra de negocio.

@@ -32,3 +32,11 @@ COMPOSE_DISABLE_ENV_FILE=1 docker compose --profile test run --rm backend-tests
 ```
 
 O teste atual e apenas sentinela para validar o runner de `pytest`; ele nao define comportamento funcional do CAPAG.
+
+Validar a configuracao minima do Alembic pelo ambiente oficial:
+
+```bash
+COMPOSE_DISABLE_ENV_FILE=1 docker compose --profile test run --rm backend-tests sh -c "python -m pip install --disable-pip-version-check --root-user-action=ignore alembic && alembic -c alembic.ini heads"
+```
+
+Esta validacao apenas confirma que o Alembic reconhece a estrutura de migrations. Ela nao cria migration funcional, nao aplica migrations e nao define modelo de banco.

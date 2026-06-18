@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-014-configurar-testes-backend-minimos.md`
 - SPEC: `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -22,6 +22,10 @@
 - Data: 2026-06-18
 - Acao: Configuracao minima de testes backend.
 - Resumo: Criados `backend/pytest.ini` e `backend/tests/test_pytest_runner.py` como teste sentinela nao funcional. Adicionado servico `backend-tests` ao `docker-compose.yml` usando imagem `python:3.12-slim` em profile `test`, com instalacao de `pytest` apenas dentro do container efemero. Documentado em `backend/README.md` o comando oficial via Docker Compose. Nenhum teste prudencial, parser ECD, engine, API funcional, banco, migration, exportacao, laudo, fixture contabil ou golden case foi criado.
+
+- Data: 2026-06-18
+- Acao: Homologacao registrada.
+- Resumo: Usuario homologou a TASK-014; `ROADMAP.md` atualizado para marcar a tarefa como concluida e recalcular a proxima tarefa como `TASK-015`.
 
 ## Arquivos Alterados
 
@@ -53,7 +57,7 @@
 
 ## Homologacao
 
-- Status: aguardando_homologacao
+- Status: aprovada
 - Data: 2026-06-18
-- Decisao do usuario:
-- Observacao: Aguardando homologacao do usuario.
+- Decisao do usuario: Homologado.
+- Observacao: TASK-014 homologada pelo usuario.

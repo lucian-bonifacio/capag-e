@@ -43,7 +43,6 @@ Use as skills operacionais do projeto quando o fluxo exigir:
 - `scope-resolution`: classificar dúvidas, sugestões, ajustes, reprovações e mudanças de escopo.
 - `task-planner`: criar nova TASK governada após confirmação explícita.
 
-## 5. Fluxo De Trabalho
 
 Após a resposta do usuário ao pedido de autorização da seção `## 2. Ao Iniciar A Sessão`:
 

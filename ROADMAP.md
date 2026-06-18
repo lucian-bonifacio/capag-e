@@ -25,11 +25,11 @@ Regras:
 
 ## Próxima Tarefa
 
-ID: TASK-014
-Título: Configurar testes backend mínimos
-Status: aguardando_homologacao
-Task: `tasks/TASK-014-configurar-testes-backend-minimos.md`
-Log: `logs/LOG-014-configurar-testes-backend-minimos.md`
+ID: TASK-018
+Título: Criar validação de assets metodológicos mínima
+Status: pendente
+Task: `tasks/TASK-018-criar-validacao-assets-metodologicos-minima.md`
+Log: `logs/LOG-018-criar-validacao-assets-metodologicos-minima.md`
 
 ## Lista De Tarefas
 
@@ -113,23 +113,23 @@ Log: `logs/LOG-014-configurar-testes-backend-minimos.md`
     - Task: `tasks/TASK-013-criar-configuracao-docker-compose-minima.md`
     - Log: `logs/LOG-013-criar-configuracao-docker-compose-minima.md`
 
-17. [ ] Configurar testes backend mínimos
-    - Status: aguardando_homologacao
+17. [x] Configurar testes backend mínimos
+    - Status: concluido
     - Task: `tasks/TASK-014-configurar-testes-backend-minimos.md`
     - Log: `logs/LOG-014-configurar-testes-backend-minimos.md`
 
-18. [ ] Configurar testes frontend mínimos
-    - Status: pendente
+18. [x] Configurar testes frontend mínimos
+    - Status: concluido
     - Task: `tasks/TASK-015-configurar-testes-frontend-minimos.md`
     - Log: `logs/LOG-015-configurar-testes-frontend-minimos.md`
 
-19. [ ] Configurar CI mínimo
-    - Status: pendente
+19. [x] Configurar CI mínimo
+    - Status: concluido
     - Task: `tasks/TASK-016-configurar-ci-minimo.md`
     - Log: `logs/LOG-016-configurar-ci-minimo.md`
 
-20. [ ] Configurar Alembic mínimo
-    - Status: pendente
+20. [x] Configurar Alembic mínimo
+    - Status: concluido
     - Task: `tasks/TASK-017-configurar-alembic-minimo.md`
     - Log: `logs/LOG-017-configurar-alembic-minimo.md`
 

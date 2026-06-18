@@ -28,5 +28,19 @@ services:
       sh -c "python -m pip install --disable-pip-version-check --root-user-action=ignore pytest
       && python -m pytest"
 
+  frontend-tests:
+    image: node:20-alpine
+    profiles:
+      - test
+    working_dir: /workspace/frontend
+    volumes:
+      - .:/workspace
+    command: >
+      sh -c "rm -rf /tmp/capag-frontend
+      && cp -R /workspace/frontend /tmp/capag-frontend
+      && cd /tmp/capag-frontend
+      && npm install --no-package-lock --audit=false --fund=false
+      && npm run test"
+
 volumes:
   capag_postgres_data:
