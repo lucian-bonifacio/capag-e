@@ -25,11 +25,11 @@ Regras:
 
 ## Próxima Tarefa
 
-ID: TASK-003
-Título: Criar estrutura backend mínima
+ID: TASK-004
+Título: Auditar estrutura frontend governada
 Status: pendente
-Task: `tasks/TASK-003-criar-estrutura-backend-minima.md`
-Log: `logs/LOG-003-criar-estrutura-backend-minima.md`
+Task: `tasks/TASK-004-auditar-estrutura-frontend-governada.md`
+Log: `logs/LOG-004-auditar-estrutura-frontend-governada.md`
 
 ## Lista De Tarefas
 
@@ -48,8 +48,8 @@ Log: `logs/LOG-003-criar-estrutura-backend-minima.md`
    - Task: `tasks/TASK-002A-descontinuar-reports-em-tasks-pendentes.md`
    - Log: `logs/LOG-002A-descontinuar-reports-em-tasks-pendentes.md`
 
-4. [ ] Criar estrutura backend mínima
-   - Status: pendente
+4. [x] Criar estrutura backend mínima
+   - Status: concluido
    - Task: `tasks/TASK-003-criar-estrutura-backend-minima.md`
    - Log: `logs/LOG-003-criar-estrutura-backend-minima.md`
 
