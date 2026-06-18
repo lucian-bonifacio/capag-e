@@ -1,0 +1,4 @@
+interface:
+  display_name: "Roadmap Manager"
+  short_description: "Mantém o ROADMAP vivo do projeto"
+  default_prompt: "Use $roadmap-manager para criar ou atualizar o ROADMAP.md do projeto."

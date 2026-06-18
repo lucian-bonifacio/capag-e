@@ -1,0 +1,4 @@
+interface:
+  display_name: "Execution Log"
+  short_description: "Registra evidência operacional de TASKs"
+  default_prompt: "Use $execution-log para criar ou atualizar o log operacional de uma TASK."

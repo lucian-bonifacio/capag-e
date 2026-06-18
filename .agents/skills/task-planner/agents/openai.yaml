@@ -1,0 +1,4 @@
+interface:
+  display_name: "Task Planner"
+  short_description: "Cria TASKs governadas do CAPAG"
+  default_prompt: "Use $task-planner para criar uma nova TASK governada no CAPAG."

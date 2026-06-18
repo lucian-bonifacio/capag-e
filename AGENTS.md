@@ -2,332 +2,107 @@
 
 ## 1. Objetivo
 
-Este arquivo orienta agentes de IA, assistentes de código e ferramentas automatizadas na criação de SPECs e TASKs do projeto CAPAG.
+Este arquivo é a regra operacional principal para agentes de IA, assistentes de código e ferramentas automatizadas que atuem no projeto CAPAG.
 
-O foco deste documento é governar:
+O projeto deve evoluir por execução governada de TASKs, com rastreabilidade entre PRD, arquitetura, SPECs, TASKs, logs, validações e homologação do usuário.
 
-- criação de SPECs a partir de PRD, arquitetura e documentos governados;
-- criação de TASKs correspondentes a SPECs suficientes;
-- decisões técnicas, bloqueios, critérios de aceite e validações que precisam estar explícitos antes de uma TASK.
+## 2. Ao Iniciar A Sessão
 
-## 2. Fontes Obrigatórias
+Ao iniciar trabalho neste repositório pela primeira vez na sessão:
 
-Antes de criar ou revisar qualquer SPEC ou TASK, leia as fontes aplicáveis.
+1. Leia este `AGENTS.md` inteiro.
+2. Leia o `ROADMAP.md`.
+3. Identifique a `## Próxima Tarefa`.
+4. Leia `tasks/README.md`.
+5. Leia a TASK indicada.
+6. Leia a SPEC de origem indicada pela TASK.
+7. Leia PRD, arquitetura e documentos governados aplicáveis.
+8. Quando o escopo envolver UI, telas, componentes, UX ou visual, leia também:
+   - `docs/frontend/DESIGN_TOKENS.md`
+   - `docs/frontend/UI_COMPONENT_RULES.md`
+   - `docs/frontend/SCREEN_PATTERNS.md`
+   - `frontend/src/styles/globals.css`
+9. Informe ao usuário a TASK identificada, seu status e que as fontes aplicáveis foram consultadas.
+10. Peça autorização simples para executar.
 
-Fontes base obrigatórias:
+Materiais históricos em `docs/reference/` e outros diretórios de referência não são fonte normativa direta para implementação. Use esses materiais somente com autorização explícita do usuário ou quando forem citados pela SPEC/TASK governada.
 
-- `docs/product/PRD.md`
-- `docs/architecture.md`
+## 3. Documentos Operacionais
 
-Fontes de frontend governadas, quando a SPEC ou TASK envolver UI, telas, componentes, UX ou visual:
+- `ROADMAP.md`: documento vivo de execução, próxima tarefa e status.
+- `tasks/`: detalhamento governado das TASKs.
+- `logs/`: evidência operacional objetiva de execução.
+- `specs/`: contratos técnicos por módulo.
 
-- `docs/frontend/DESIGN_TOKENS.md`
-- `docs/frontend/UI_COMPONENT_RULES.md`
-- `docs/frontend/SCREEN_PATTERNS.md`
-- `frontend/src/styles/globals.css`
+## 4. Skills Operacionais
 
-Materiais históricos de referência já foram usados para consolidar o PRD e a arquitetura. Não use esses materiais como fonte direta para novas SPECs ou TASKs, salvo autorização explícita do usuário.
+Use as skills operacionais do projeto quando o fluxo exigir:
 
-Se existirem ADRs, decisões técnicas ou documentos governados adicionais aprovados, eles prevalecem sobre inferências e devem ser considerados antes da SPEC ou TASK.
+- `execution-log`: criar ou atualizar logs em `logs/`.
+- `roadmap-manager`: criar ou atualizar `ROADMAP.md`.
+- `scope-resolution`: classificar dúvidas, sugestões, ajustes, reprovações e mudanças de escopo.
+- `task-planner`: criar nova TASK governada após confirmação explícita.
 
-## 3. Fluxo Obrigatório: PRD -> Arquitetura -> SPEC -> TASK
+## 5. Fluxo De Trabalho
 
-O fluxo obrigatório é:
+Após a resposta do usuário ao pedido de autorização da seção `## 2. Ao Iniciar A Sessão`:
 
-```text
-PRD + Arquitetura + Docs governados
-        ↓
-SPECs especializadas
-        ↓
-TASKs correspondentes
-```
+- Se o usuário autorizar claramente, execute a TASK.
+- Se a resposta não for autorização clara, use `scope-resolution`.
+- Se houver TASK em `aguardando_homologacao`, solicite ao usuário uma conclusão de homologação antes de qualquer nova execução. Não execute a próxima TASK, salvo pedido expresso do usuário.
 
-Regras:
+Durante a execução:
 
-- SPEC vem antes da TASK.
-- TASK nasce de SPEC suficiente.
-- Uma SPEC insuficiente não deve virar TASK.
-- Se faltar decisão, fonte, contrato, regra, critério de aceite ou validação, registre bloqueio e faça pergunta direta ao usuário.
-- Não preencha lacunas técnicas, metodológicas ou normativas com suposição silenciosa.
+1. Execute apenas o escopo da TASK.
+2. Execute as validações esperadas pela TASK.
+3. Ao final da implementação, use `execution-log` para registrar a evidência operacional.
+4. Use `roadmap-manager` para mover a TASK para `aguardando_homologacao`.
+5. Informe o usuário e aguarde homologação.
 
-## 4. Regras Para Criar SPECs
+Após homologação:
 
-Toda SPEC deve transformar PRD, arquitetura e documentos governados em uma especificação técnica verificável.
+- se o usuário aprovar, use `execution-log` para registrar aprovação e `roadmap-manager` para marcar `concluido` e recalcular a próxima tarefa;
+- se o usuário pedir ajuste, use `scope-resolution`;
+- não marque TASK como `concluido` sem homologação do usuário.
 
-Uma SPEC deve explicitar:
+Se `scope-resolution` classificar uma solicitação como nova TASK, peça confirmação explícita. Após aprovação, use `task-planner`. Não implemente a nova TASK no mesmo passo.
 
-- objetivo técnico;
-- contexto e problema;
-- fontes usadas;
-- escopo;
-- fora de escopo;
-- decisões já aprovadas;
-- decisões pendentes;
-- contratos;
-- responsabilidades por camada ou área;
-- dados de entrada e saída;
-- estados e erros relevantes;
-- critérios de aceite verificáveis;
-- estratégia de validação esperada;
-- riscos e mitigação;
-- bloqueios.
+## 6. Gates De Exceção
 
-Uma SPEC não deve:
+Pare e peça decisão expressa do usuário quando a execução exigir:
 
-- esconder decisão pendente;
-- deixar contrato para a TASK decidir;
-- deixar regra de negócio para a TASK decidir;
-- deixar critério de aceite subjetivo;
-- usar execução de trabalho como substituto de decisão técnica;
-- duplicar regra de domínio em camada errada.
-
-Quando a SPEC atravessar mais de uma área, aplique mais de uma lente especializada.
-
-## 5. Lentes Especializadas Para SPECs
-
-### 5.1 Lente Arquitetural
-
-Use quando a SPEC envolver:
-
-- camadas;
-- fronteiras;
-- contratos;
-- responsabilidades;
-- ADRs;
-- riscos técnicos;
-- dependências entre módulos;
-- mudança estrutural.
-
-A SPEC deve explicitar:
-
-- dono da regra ou responsabilidade;
-- camadas afetadas;
-- camadas que não devem ser afetadas;
-- contratos de entrada e saída;
-- dependências permitidas e proibidas;
-- impacto em dados, migração, compatibilidade e exportação;
-- auditoria, rastreabilidade e observabilidade;
-- critérios arquiteturais de aceite;
-- ADRs necessários e bloqueios.
-
-Bloqueie quando a SPEC exigir decisão arquitetural ausente.
-
-### 5.2 Lente Backend FastAPI
-
-Use quando a SPEC envolver:
-
-- rotas FastAPI;
-- schemas;
-- validação;
-- serialização;
-- contratos HTTP;
-- erros;
-- upload ou importação;
-- integração da API com domínio, parser, engine ou exportação.
-
-A SPEC deve explicitar:
-
-- endpoint, método e path;
-- path params, query params, headers e body;
-- schemas de request, response e erro;
-- códigos de status;
-- validações da API;
-- validações delegadas ao domínio, IO, engine ou export;
-- contrato consumido pelo frontend;
-- representação de valores precisos sem `float`;
-- observabilidade e diagnósticos;
-- testes de contrato e integração.
-
-Bloqueie quando faltar contrato de API, formato de erro ou separação de responsabilidade.
-
-### 5.3 Lente Frontend React
-
-Use quando a SPEC envolver:
-
-- telas;
-- fluxos;
-- estados de UI;
-- consumo de API;
-- tabelas;
-- upload;
-- erros;
-- acessibilidade;
-- documentos visuais governados.
-
-A SPEC deve explicitar:
-
-- tela ou componente afetado;
-- usuário e fluxo;
-- estados de vazio, loading, sucesso, erro, alerta e bloqueio;
-- contrato de API consumido;
-- dados necessários para renderização;
-- tabelas, colunas, filtros, ações e formatação;
-- interação e acessibilidade mínima;
-- critérios visuais de aceite;
-- regra que não pode ficar no frontend.
-
-Para SPECs frontend, observe obrigatoriamente:
-
-- `docs/frontend/DESIGN_TOKENS.md`
-- `docs/frontend/UI_COMPONENT_RULES.md`
-- `docs/frontend/SCREEN_PATTERNS.md`
-- `frontend/src/styles/globals.css`
-
-Bloqueie quando faltar contrato de API, estado de UI essencial ou critério visual.
-
-### 5.4 Lente QA
-
-Use quando a SPEC precisar definir:
-
-- estratégia de validação;
-- critérios de aceite;
-- testes unitários;
-- testes de integração;
-- golden tests;
-- fixtures;
-- regressão;
-- evidências de qualidade.
-
-A SPEC deve explicitar:
-
-- comportamento esperado;
-- entradas e saídas;
-- critérios verificáveis;
-- nível de teste proporcional ao risco;
-- fixtures;
-- casos nominais;
-- casos de borda;
-- dados inválidos;
-- golden cases quando necessário;
-- comandos e evidências esperadas;
-- lacunas de cobertura justificadas.
-
-Bloqueie quando critério de aceite não for verificável ou resultado esperado estiver indefinido.
-
-## 6. Regras Para Criar TASKs
-
-TASK nasce de SPEC suficiente.
-
-Não crie TASK quando a SPEC ainda tiver decisão essencial pendente.
-
-Toda TASK deve conter:
-
-- referência à SPEC de origem;
-- objetivo da TASK;
-- escopo exato;
-- fora de escopo;
-- passos executáveis;
-- arquivos, módulos ou áreas prováveis;
-- critérios de aceite herdados ou derivados da SPEC;
-- validação esperada;
-- riscos;
-- bloqueios pendentes, se houver.
-
-TASK não deve decidir:
-
-- arquitetura;
-- contrato de API;
-- regra de domínio;
-- fórmula;
-- fonte normativa;
-- política de arredondamento;
-- padrão visual;
-- estratégia de teste crítica.
-
-Se a TASK precisar decidir qualquer item acima, a SPEC está incompleta.
-
-Uma SPEC pode gerar uma ou mais TASKs. Ao dividir TASKs:
-
-- mantenha cada TASK executável de forma independente;
-- preserve dependências entre TASKs;
-- não duplique escopo;
-- não crie TASK ampla demais;
-- mantenha critérios de aceite verificáveis.
-
-## 7. Decisões Técnicas E Bloqueios
-
-Registre bloqueio e faça pergunta direta ao usuário quando faltar:
-
-- decisão arquitetural;
-- contrato de API;
-- fonte normativa;
-- regra de domínio;
-- regra de cálculo;
-- política de precisão ou arredondamento;
-- comportamento de tela;
-- estado de erro, loading, vazio, sucesso, alerta ou bloqueio;
-- critério de aceite verificável;
-- resultado esperado para teste;
-- estratégia de teste necessária.
+- descumprir PRD;
+- descumprir arquitetura;
+- descumprir SPEC;
+- descumprir TASK;
+- alterar contrato de API;
+- alterar regra prudencial, fórmula, fonte normativa ou arredondamento;
+- alterar padrão visual governado;
+- usar `float` em valor contábil, fiscal, financeiro ou prudencial;
+- executar fora do ambiente Docker/Docker Compose;
+- ler ou alterar segredo;
+- executar comando destrutivo;
+- ampliar escopo de forma relevante.
 
 Não contorne bloqueios por conveniência.
 
-Não trate código existente, testes ou worklogs como fonte normativa suficiente para criar ou alterar regra prudencial, contábil, fiscal, financeira ou metodológica.
+## 7. Ambiente Oficial
 
-## 8. Documentos De Frontend Governados
+O ambiente oficial do projeto é exclusivamente Docker/Docker Compose.
 
-Os documentos de frontend são fonte obrigatória para SPECs e TASKs que envolvam UI, visual, componentes, layout ou experiência de uso:
+Regras:
 
-- `docs/frontend/DESIGN_TOKENS.md`
-- `docs/frontend/UI_COMPONENT_RULES.md`
-- `docs/frontend/SCREEN_PATTERNS.md`
-- `frontend/src/styles/globals.css`
+- comandos oficiais devem executar via `docker compose`;
+- dependências Python devem ser instaladas apenas dentro de imagem/container;
+- dependências Node devem ser instaladas apenas dentro de imagem/container;
+- PostgreSQL deve rodar em container;
+- testes, builds, migrations e validações devem rodar via container;
+- o host deve exigir apenas Git, Docker e Docker Compose.
 
-Esses documentos definem:
+Proibições:
 
-- tokens visuais;
-- regras objetivas de componentes;
-- padrões de tela;
-- CSS variables e aliases compatíveis com Tailwind/shadcn.
-
-SPECs frontend devem declarar explicitamente quais regras desses documentos afetam o escopo.
-
-TASKs frontend devem herdar essas restrições da SPEC de origem.
-
-## 9. Domain Engine Específico Do Projeto
-
-A lente de domínio/engine é específica do CAPAG e de domínios prudenciais/contábeis equivalentes.
-
-Não generalize automaticamente para outros projetos sem adaptação explícita.
-
-Use essa lente quando uma SPEC envolver:
-
-- domínio prudencial ou contábil;
-- engine de cálculo;
-- regras de CAPAG-E;
-- PLR;
-- FCO;
-- auditoria;
-- classificação prudencial;
-- valores contábeis, fiscais, financeiros ou prudenciais;
-- `Decimal`;
-- arredondamento;
-- integração de cálculo com parser, API, frontend ou exportação.
-
-SPECs com essa lente devem explicitar:
-
-- conceitos, entidades, estados e invariantes afetados;
-- dono da regra prudencial;
-- entradas conceituais exigidas;
-- saídas, alertas e diagnósticos;
-- fórmula, método ou critério prudencial;
-- fonte normativa ou decisão aprovada;
-- uso obrigatório de `Decimal`;
-- escala, quantização e política de arredondamento;
-- onde o arredondamento ocorre;
-- onde o arredondamento não deve ocorrer;
-- tratamento de zero, nulo, sinal, período, exercício e moeda;
-- evidências para auditoria;
-- etapas intermediárias preservadas;
-- contrato de saída para API, frontend ou exportação;
-- golden cases e testes esperados.
-
-Bloqueie quando houver:
-
-- regra prudencial indefinida;
-- fórmula indefinida;
-- política de arredondamento indefinida;
-- fonte normativa ausente;
-- tentativa de usar `float`;
-- tentativa de duplicar regra no frontend, API ou exportação;
-- ausência de golden case para comportamento de alto risco.
+- não criar ou exigir `.venv` local;
+- não criar ou exigir `node_modules` no host;
+- não usar `pip install` global;
+- não usar `npm install -g`, `pnpm add -g`, `yarn global` ou equivalente;
+- não exigir Python, Node, npm, pnpm, yarn ou pip instalados no host para operar o projeto.

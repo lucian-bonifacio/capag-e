@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scope Resolution"
+  short_description: "Classifica dúvidas, ajustes e escopo"
+  default_prompt: "Use $scope-resolution para classificar uma dúvida, ajuste ou mudança de escopo."
