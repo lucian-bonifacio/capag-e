@@ -40,3 +40,11 @@ COMPOSE_DISABLE_ENV_FILE=1 docker compose --profile test run --rm backend-tests 
 ```
 
 Esta validacao apenas confirma que o Alembic reconhece a estrutura de migrations. Ela nao cria migration funcional, nao aplica migrations e nao define modelo de banco.
+
+Validar a estrutura minima de assets metodologicos pelo ambiente oficial:
+
+```bash
+COMPOSE_DISABLE_ENV_FILE=1 docker compose --profile test run --rm backend-tests sh -c "python -m pip install --disable-pip-version-check --root-user-action=ignore pytest && python -m pytest tests/test_assets_structure.py"
+```
+
+Esta validacao apenas confirma a existencia do pacote `app/assets/` e a ausencia de arquivos temporarios indevidos. Ela nao cria assets, nao interpreta regra prudencial, nao valida formula, nao define arredondamento e nao cria golden cases.
