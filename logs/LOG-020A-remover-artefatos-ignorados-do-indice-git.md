@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-020A-remover-artefatos-ignorados-do-indice-git.md`
 - SPEC: `specs/SPEC-001-modulo-0-fundacao-governada.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -25,6 +25,10 @@
 - Data: 2026-06-18
 - Acao: Remocao do indice Git concluida apos execucao manual.
 - Resumo: Usuario executou manualmente `git rm --cached -- backend/tests/__pycache__/test_pytest_runner.cpython-312-pytest-9.1.0.pyc`. Validacao posterior confirmou que nao ha arquivos rastreados ainda ignorados pelo `.gitignore`, que o arquivo aparece como removido do indice Git e que o arquivo fisico continua existindo no disco.
+
+- Data: 2026-06-18
+- Acao: Homologacao registrada.
+- Resumo: Usuario homologou a TASK-020A; `ROADMAP.md` atualizado para marcar a tarefa como concluida e recalcular a proxima tarefa como `TASK-021`.
 
 ## Arquivos Alterados
 
@@ -51,11 +55,11 @@
 
 ## Pendencias Ou Bloqueios
 
-- Nenhum bloqueio para homologacao.
+- Nenhum.
 
 ## Homologacao
 
-- Status: aguardando_homologacao
+- Status: aprovada
 - Data: 2026-06-18
-- Decisao do usuario:
-- Observacao: Aguardando homologacao do usuario.
+- Decisao do usuario: Homologado.
+- Observacao: TASK-020A homologada pelo usuario.

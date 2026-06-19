@@ -25,11 +25,11 @@ Regras:
 
 ## Próxima Tarefa
 
-ID: TASK-020A
-Título: Remover artefatos ignorados do índice Git
-Status: aguardando_homologacao
-Task: `tasks/TASK-020A-remover-artefatos-ignorados-do-indice-git.md`
-Log: `logs/LOG-020A-remover-artefatos-ignorados-do-indice-git.md`
+ID: TASK-021
+Título: Refinar AGENTS.md
+Status: pendente
+Task: `tasks/TASK-021-refinar-agents-md.md`
+Log: `logs/LOG-021-refinar-agents-md.md`
 
 ## Lista De Tarefas
 
@@ -148,8 +148,8 @@ Log: `logs/LOG-020A-remover-artefatos-ignorados-do-indice-git.md`
     - Task: `tasks/TASK-020-ajustar-gitignore-minimo.md`
     - Log: `logs/LOG-020-ajustar-gitignore-minimo.md`
 
-24. [ ] Remover artefatos ignorados do índice Git
-    - Status: aguardando_homologacao
+24. [x] Remover artefatos ignorados do índice Git
+    - Status: concluido
     - Task: `tasks/TASK-020A-remover-artefatos-ignorados-do-indice-git.md`
     - Log: `logs/LOG-020A-remover-artefatos-ignorados-do-indice-git.md`
 
