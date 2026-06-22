@@ -7,7 +7,7 @@
 ## Dependencias
 
 - `TASK-032-auditar-prontidao-fundacao-governada.md`
-- `TASK-033-atualizar-status-todolist-pos-fundacao.md`
+- `TASK-033-atualizar-roadmap-pos-fundacao.md`
 
 ## Objetivo
 
@@ -17,7 +17,7 @@ Encerrar documentalmente o ciclo de TASKs da SPEC-001 e registrar qual SPEC ou c
 
 - `specs/SPEC-001-modulo-0-fundacao-governada.md`
 - `logs/LOG-032-auditar-prontidao-fundacao-governada.md`
-- `TODOLIST.md`
+- `ROADMAP.md`
 - `specs/README.md`, se existir
 
 ## Escopo Exato
@@ -37,7 +37,7 @@ Encerrar documentalmente o ciclo de TASKs da SPEC-001 e registrar qual SPEC ou c
 ## Passos Executaveis
 
 1. Ler log da TASK-032.
-2. Ler `TODOLIST.md`.
+2. Ler `ROADMAP.md`.
 3. Registrar achados em `logs/LOG-034-encerrar-spec-001-e-liberar-proxima-spec.md`.
 4. Registrar decisao de encerramento ou bloqueio.
 5. Indicar proxima etapa documental.
@@ -65,4 +65,3 @@ Encerrar documentalmente o ciclo de TASKs da SPEC-001 e registrar qual SPEC ou c
 ## Bloqueios Pendentes
 
 Bloqueada ate a execucao das TASKs 032 e 033.
-

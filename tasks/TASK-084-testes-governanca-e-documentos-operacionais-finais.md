@@ -21,7 +21,7 @@ Consolidar testes de governança metodológica e atualizar documentos operaciona
 - `specs/SPEC-009-modulo-8-governanca-metodologia.md`
 - `AGENTS.md`
 - `README.md`
-- `TODOLIST.md`
+- `ROADMAP.md`
 
 ## Escopo Exato
 
@@ -50,7 +50,7 @@ Consolidar testes de governança metodológica e atualizar documentos operaciona
 - `docs/methodology/`
 - `README.md`
 - `AGENTS.md`
-- `TODOLIST.md`
+- `ROADMAP.md`
 - `.agents/skills/`, se autorizado
 
 ## Criterios De Aceite

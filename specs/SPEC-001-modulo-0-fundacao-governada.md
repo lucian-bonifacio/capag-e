@@ -92,7 +92,7 @@ O repositorio deve convergir para esta estrutura-alvo minima, sem exigir que tod
 ```text
 <project-root>/
 ├── AGENTS.md
-├── TODOLIST.md
+├── ROADMAP.md
 ├── docs/
 │   ├── architecture/
 │   │   ├── architecture.md
@@ -202,6 +202,7 @@ Saidas esperadas:
 
 - diretorio `specs/` com SPECs versionadas em Markdown;
 - diretorio `tasks/` para TASKs derivadas de SPECs suficientes;
+- `ROADMAP.md` como painel operacional vivo de proxima tarefa, status e ponteiros para TASKs e logs;
 - estrutura inicial de projeto aderente a arquitetura;
 - validacoes documentais e tecnicas basicas;
 - rastreabilidade entre TASK, SPEC, PRD e arquitetura.
@@ -226,7 +227,7 @@ Erros a registrar como bloqueio:
 
 ## 12. Criterios De Aceite
 
-- A todolist deve refletir que PRD, arquitetura, design e AGENTS inicial ja existem.
+- O `ROADMAP.md` deve refletir a proxima tarefa, status permitidos e ponteiros para TASKs e logs.
 - Deve existir diretorio `specs/`.
 - Esta SPEC deve existir em `specs/SPEC-001-modulo-0-fundacao-governada.md`.
 - A SPEC deve citar explicitamente `docs/product/PRD.md` e `docs/architecture/architecture.md` como fontes principais.
@@ -241,7 +242,7 @@ Erros a registrar como bloqueio:
 Validacao documental:
 
 - conferir existencia de `specs/SPEC-001-modulo-0-fundacao-governada.md`;
-- conferir se a todolist foi atualizada;
+- conferir se o `ROADMAP.md` foi atualizado quando houver transicao operacional de TASK;
 - conferir se a SPEC cita fontes obrigatorias;
 - conferir se nao ha TASK criada antes de aprovacao da SPEC.
 

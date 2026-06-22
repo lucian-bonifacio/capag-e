@@ -27,6 +27,19 @@ Ao iniciar trabalho neste repositório pela primeira vez na sessão:
 
 Materiais históricos em `docs/reference/` e outros diretórios de referência não são fonte normativa direta para implementação. Use esses materiais somente com autorização explícita do usuário ou quando forem citados pela SPEC/TASK governada.
 
+### Reuso De Fontes Na Mesma Sessão
+
+Dentro da mesma sessão, uma fonte obrigatória já consultada pode ser considerada consultada novamente sem releitura integral quando todas as condições abaixo forem verdadeiras:
+
+- o conteúdo relevante da fonte permanece disponível no contexto da conversa;
+- não houve alteração no arquivo desde a consulta anterior;
+- não houve compactação, perda de contexto ou troca de sessão que comprometa a compreensão do conteúdo;
+- a nova TASK não exige uma leitura mais específica ou diferente daquela fonte.
+
+Mesmo nesses casos, o agente deve reler a TASK em execução e a SPEC de origem indicada pela TASK, pois esses documentos são o contrato direto da execução.
+
+Se houver dúvida sobre atualidade, completude ou aplicabilidade do conteúdo já consultado, releia a fonte antes de executar.
+
 ## 3. Documentos Operacionais
 
 - `ROADMAP.md`: documento vivo de execução, próxima tarefa e status.
@@ -43,6 +56,7 @@ Use as skills operacionais do projeto quando o fluxo exigir:
 - `scope-resolution`: classificar dúvidas, sugestões, ajustes, reprovações e mudanças de escopo.
 - `task-planner`: criar nova TASK governada após confirmação explícita.
 
+## 5. Fluxo De Trabalho
 
 Após a resposta do usuário ao pedido de autorização da seção `## 2. Ao Iniciar A Sessão`:
 
@@ -58,6 +72,8 @@ Durante a execução:
 4. Use `roadmap-manager` para mover a TASK para `aguardando_homologacao`.
 5. Informe o usuário e aguarde homologação.
 
+Se uma validação esperada ainda não existir, estiver bloqueada pela maturidade do projeto ou não puder ser executada sem violar o ambiente oficial, registre objetivamente a limitação no log da TASK.
+
 Após homologação:
 
 - se o usuário aprovar, use `execution-log` para registrar aprovação e `roadmap-manager` para marcar `concluido` e recalcular a próxima tarefa;
@@ -71,6 +87,8 @@ Quando não houver homologação, ajuste, bloqueio ou decisão governada pendent
 3. Após a resposta do usuário, aplique novamente as regras desta seção `## 5. Fluxo De Trabalho`.
 
 Se `scope-resolution` classificar uma solicitação como nova TASK, peça confirmação explícita. Após aprovação, use `task-planner`. Não implemente a nova TASK no mesmo passo.
+
+Criar uma TASK não autoriza sua execução no mesmo passo. Após criar ou planejar uma TASK, aguarde confirmação explícita do usuário para executá-la dentro do fluxo governado.
 
 ## 6. Gates De Exceção
 

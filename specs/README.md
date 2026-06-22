@@ -18,7 +18,7 @@ Este documento e um indice de rastreabilidade. Ele nao substitui as SPECs, nao a
 
 | SPEC | Modulo | Status documental | Suficiencia para TASK | Fontes principais | Dependencias conhecidas | Bloqueios declarados | TASKs derivadas existentes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `SPEC-001-modulo-0-fundacao-governada.md` | Modulo 0 - Fundacao Governada | suficiente_para_task | Suficiente para TASKs estruturais e documentais de fundacao. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; docs frontend governados quando aplicavel. | PRD e arquitetura aprovados. | Nao ha bloqueio para TASKs estruturais; permanecem bloqueadas TASKs funcionais de dominio prudencial sem SPEC especifica suficiente. | `TASK-001` a `TASK-034`, incluindo `TASK-002A`, `TASK-011A` e `TASK-011B`. |
+| `SPEC-001-modulo-0-fundacao-governada.md` | Modulo 0 - Fundacao Governada | suficiente_para_task | Suficiente para TASKs estruturais e documentais de fundacao. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; docs frontend governados quando aplicavel. | PRD e arquitetura aprovados. | Nao ha bloqueio para TASKs estruturais; permanecem bloqueadas TASKs funcionais de dominio prudencial sem SPEC especifica suficiente. | `TASK-001` a `TASK-034`, incluindo `TASK-002A`, `TASK-011A`, `TASK-011B` e `TASK-021A`. |
 | `SPEC-002-modulo-1-camada-declarada.md` | Modulo 1 - Camada Declarada | suficiente_para_task | Suficiente para TASKs da camada declarada. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-001`. | Fundacao governada; fronteiras de camadas; metodologia declarada conforme SPEC. | Nao ha bloqueio para TASKs da camada declarada; permanecem bloqueadas alteracoes fora dos limites da SPEC. | `TASK-035` a `TASK-041`. |
 | `SPEC-003-modulo-2-capag-reclassificada.md` | Modulo 2 - CAPAG Reclassificada | suficiente_para_task | Suficiente para TASKs da camada reclassificada. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-001`; SPECs relacionadas quando houver integracao. | Camada declarada; contratos posteriores para resultado, evidencias e laudo quando necessarios. | Nao ha bloqueio para TASKs do Modulo 2; cenarios podem ser parciais ou bloqueados ate contratos posteriores existirem. | `TASK-042` a `TASK-048`. |
 | `SPEC-004-modulo-3-contrato-capag-e-plra-fca-roa.md` | Modulo 3 - Contrato CAPAG-E, PLRA, FCA e ROA | suficiente_para_task | Suficiente para TASKs do contrato CAPAG-E. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-001`; SPECs de componentes quando aplicavel. | Componentes `PLRA`, `FCA` e `ROA`; modulos de evidencias e laudo para integracoes especificas. | Nao ha bloqueio para TASKs do contrato; componentes ausentes, parciais ou bloqueados devem ser representados sem esconder limitacoes. | `TASK-049` a `TASK-054`; `TASK-070`. |
@@ -37,7 +37,7 @@ Este documento e um indice de rastreabilidade. Ele nao substitui as SPECs, nao a
 - Suficiencia: TASKs estruturais e documentais de fundacao.
 - Dependencias: PRD e arquitetura aprovados.
 - Bloqueios: nao ha bloqueio para TASKs estruturais; TASKs funcionais de dominio prudencial exigem SPEC propria suficiente.
-- TASKs derivadas: `TASK-001` a `TASK-034`, incluindo `TASK-002A`, `TASK-011A` e `TASK-011B`.
+- TASKs derivadas: `TASK-001` a `TASK-034`, incluindo `TASK-002A`, `TASK-011A`, `TASK-011B` e `TASK-021A`.
 
 ### SPEC-002 - Modulo 1: Camada Declarada
 

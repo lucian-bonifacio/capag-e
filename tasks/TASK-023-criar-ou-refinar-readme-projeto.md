@@ -49,7 +49,6 @@ Criar ou refinar o `README.md` principal do projeto para orientar leitura inicia
 - Alterar SPECs.
 - Alterar TASKs.
 - Alterar `AGENTS.md`.
-- Alterar `TODOLIST.md`.
 - Criar comandos novos de setup ou validacao.
 - Documentar fluxo local baseado em `.venv` ou `node_modules` no host.
 - Criar configuracoes de Docker, backend, frontend, testes ou CI.
