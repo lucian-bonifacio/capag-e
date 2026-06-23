@@ -25,11 +25,11 @@ Regras:
 
 ## Próxima Tarefa
 
-ID: TASK-023
-Título: Criar ou refinar README do projeto
+ID: TASK-024
+Título: Auditar dependências backend
 Status: pendente
-Task: `tasks/TASK-023-criar-ou-refinar-readme-projeto.md`
-Log: `logs/LOG-023-criar-ou-refinar-readme-projeto.md`
+Task: `tasks/TASK-024-auditar-dependencias-backend.md`
+Log: `logs/LOG-024-auditar-dependencias-backend.md`
 
 ## Lista De Tarefas
 
@@ -168,8 +168,8 @@ Log: `logs/LOG-023-criar-ou-refinar-readme-projeto.md`
     - Task: `tasks/TASK-022-registrar-descontinuidade-todolist.md`
     - Log: `logs/LOG-022-registrar-descontinuidade-todolist.md`
 
-28. [ ] Criar ou refinar README do projeto
-    - Status: pendente
+28. [x] Criar ou refinar README do projeto
+    - Status: concluido
     - Task: `tasks/TASK-023-criar-ou-refinar-readme-projeto.md`
     - Log: `logs/LOG-023-criar-ou-refinar-readme-projeto.md`
 
