@@ -25,8 +25,25 @@ services:
     volumes:
       - .:/workspace
     command: >
-      sh -c "python -m pip install --disable-pip-version-check --root-user-action=ignore pytest
+      sh -c "rm -rf /tmp/capag-backend
+      && cp -R /workspace/backend /tmp/capag-backend
+      && cd /tmp/capag-backend
+      && python -m pip install --disable-pip-version-check --root-user-action=ignore -e '.[test]'
       && python -m pytest"
+
+  frontend:
+    image: node:20-alpine
+    working_dir: /workspace/frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/workspace
+    command: >
+      sh -c "rm -rf /tmp/capag-frontend
+      && cp -R /workspace/frontend /tmp/capag-frontend
+      && cd /tmp/capag-frontend
+      && npm install --no-package-lock --audit=false --fund=false
+      && npm run dev"
 
   frontend-tests:
     image: node:20-alpine
@@ -40,7 +57,8 @@ services:
       && cp -R /workspace/frontend /tmp/capag-frontend
       && cd /tmp/capag-frontend
       && npm install --no-package-lock --audit=false --fund=false
-      && npm run test"
+      && npm run test
+      && npm run build"
 
 volumes:
   capag_postgres_data:

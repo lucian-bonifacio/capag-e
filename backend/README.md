@@ -23,6 +23,12 @@ Este diretorio contem a estrutura minima do backend do CAPAG, conforme responsab
 - Nao duplicar regra prudencial fora de `app/engine/`.
 - Nao usar `float` para valores contabeis, fiscais, financeiros ou prudenciais.
 
+## Dependencias
+
+O manifesto minimo de dependencias backend esta em `backend/pyproject.toml`.
+
+Instalacao e validacao devem ocorrer somente dentro de containers via Docker Compose. O fluxo oficial nao cria nem exige `.venv` no host.
+
 ## Validacao Minima
 
 Executar testes backend pelo ambiente oficial:

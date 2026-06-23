@@ -25,11 +25,11 @@ Regras:
 
 ## Próxima Tarefa
 
-ID: TASK-025
-Título: Configurar dependências backend mínimas
+ID: TASK-035
+Título: Estruturar assets da camada declarada
 Status: pendente
-Task: `tasks/TASK-025-configurar-dependencias-backend-minimas.md`
-Log: `logs/LOG-025-configurar-dependencias-backend-minimas.md`
+Task: `tasks/TASK-035-estruturar-assets-camada-declarada.md`
+Log: `logs/LOG-035-estruturar-assets-camada-declarada.md`
 
 ## Lista De Tarefas
 
@@ -178,53 +178,53 @@ Log: `logs/LOG-025-configurar-dependencias-backend-minimas.md`
     - Task: `tasks/TASK-024-auditar-dependencias-backend.md`
     - Log: `logs/LOG-024-auditar-dependencias-backend.md`
 
-30. [ ] Configurar dependências backend mínimas
-    - Status: pendente
+30. [x] Configurar dependências backend mínimas
+    - Status: concluido
     - Task: `tasks/TASK-025-configurar-dependencias-backend-minimas.md`
     - Log: `logs/LOG-025-configurar-dependencias-backend-minimas.md`
 
-31. [ ] Auditar dependências frontend
-    - Status: pendente
+31. [x] Auditar dependências frontend
+    - Status: concluido
     - Task: `tasks/TASK-026-auditar-dependencias-frontend.md`
     - Log: `logs/LOG-026-auditar-dependencias-frontend.md`
 
-32. [ ] Configurar dependências frontend mínimas
-    - Status: pendente
+32. [x] Configurar dependências frontend mínimas
+    - Status: concluido
     - Task: `tasks/TASK-027-configurar-dependencias-frontend-minimas.md`
     - Log: `logs/LOG-027-configurar-dependencias-frontend-minimas.md`
 
-33. [ ] Criar app FastAPI mínimo
-    - Status: pendente
+33. [x] Criar app FastAPI mínimo
+    - Status: concluido
     - Task: `tasks/TASK-028-criar-app-fastapi-minimo.md`
     - Log: `logs/LOG-028-criar-app-fastapi-minimo.md`
 
-34. [ ] Criar shell frontend mínimo
-    - Status: pendente
+34. [x] Criar shell frontend mínimo
+    - Status: concluido
     - Task: `tasks/TASK-029-criar-shell-frontend-minimo.md`
     - Log: `logs/LOG-029-criar-shell-frontend-minimo.md`
 
-35. [ ] Auditar rastreabilidade TASKs e SPECs
-    - Status: pendente
+35. [x] Auditar rastreabilidade TASKs e SPECs
+    - Status: concluido
     - Task: `tasks/TASK-030-auditar-rastreabilidade-tasks-specs.md`
     - Log: `logs/LOG-030-auditar-rastreabilidade-tasks-specs.md`
 
-36. [ ] Criar matriz de execução das TASKs de fundação
-    - Status: pendente
+36. [x] Criar matriz de execução das TASKs de fundação
+    - Status: concluido
     - Task: `tasks/TASK-031-criar-matriz-execucao-tasks-fundacao.md`
     - Log: `logs/LOG-031-criar-matriz-execucao-tasks-fundacao.md`
 
-37. [ ] Auditar prontidão da fundação governada
-    - Status: pendente
+37. [x] Auditar prontidão da fundação governada
+    - Status: concluido
     - Task: `tasks/TASK-032-auditar-prontidao-fundacao-governada.md`
     - Log: `logs/LOG-032-auditar-prontidao-fundacao-governada.md`
 
-38. [ ] Atualizar ROADMAP após fundação
-    - Status: pendente
+38. [x] Atualizar ROADMAP após fundação
+    - Status: concluido
     - Task: `tasks/TASK-033-atualizar-roadmap-pos-fundacao.md`
     - Log: `logs/LOG-033-atualizar-roadmap-pos-fundacao.md`
 
-39. [ ] Encerrar SPEC-001 e liberar próxima SPEC
-    - Status: pendente
+39. [x] Encerrar SPEC-001 e liberar próxima SPEC
+    - Status: concluido
     - Task: `tasks/TASK-034-encerrar-spec-001-e-liberar-proxima-spec.md`
     - Log: `logs/LOG-034-encerrar-spec-001-e-liberar-proxima-spec.md`
 
