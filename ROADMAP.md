@@ -25,11 +25,11 @@ Regras:
 
 ## Próxima Tarefa
 
-ID: TASK-024
-Título: Auditar dependências backend
+ID: TASK-025
+Título: Configurar dependências backend mínimas
 Status: pendente
-Task: `tasks/TASK-024-auditar-dependencias-backend.md`
-Log: `logs/LOG-024-auditar-dependencias-backend.md`
+Task: `tasks/TASK-025-configurar-dependencias-backend-minimas.md`
+Log: `logs/LOG-025-configurar-dependencias-backend-minimas.md`
 
 ## Lista De Tarefas
 
@@ -173,8 +173,8 @@ Log: `logs/LOG-024-auditar-dependencias-backend.md`
     - Task: `tasks/TASK-023-criar-ou-refinar-readme-projeto.md`
     - Log: `logs/LOG-023-criar-ou-refinar-readme-projeto.md`
 
-29. [ ] Auditar dependências backend
-    - Status: pendente
+29. [x] Auditar dependências backend
+    - Status: concluido
     - Task: `tasks/TASK-024-auditar-dependencias-backend.md`
     - Log: `logs/LOG-024-auditar-dependencias-backend.md`
 
