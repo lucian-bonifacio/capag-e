@@ -1,0 +1,38 @@
+{
+  "asset_type": "internal_methodology_rules",
+  "schema_version": "0.1.0",
+  "methodology_version_id": null,
+  "description": "Safe empty template for internal methodology rules. Do not use as approved prudential methodology.",
+  "required_fields": [
+    "reference_code",
+    "purpose",
+    "methodology_description",
+    "plra_category",
+    "fco_category",
+    "capag_category",
+    "flow_nature",
+    "operational_treatment",
+    "include_in_calculation",
+    "sign",
+    "rule_status",
+    "valid_from",
+    "valid_to",
+    "methodology_version_id",
+    "observation"
+  ],
+  "allowed_purposes": [
+    "PLR",
+    "PLRA",
+    "FCO",
+    "CAPAG_E_DECLARADA",
+    "AUDITORIA",
+    "EXPORTACAO"
+  ],
+  "allowed_rule_statuses": [
+    "ATIVA",
+    "BLOQUEADA",
+    "EM_REVISAO",
+    "DEPRECIADA"
+  ],
+  "rules": []
+}

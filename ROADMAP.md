@@ -25,11 +25,11 @@ Regras:
 
 ## Próxima Tarefa
 
-ID: TASK-035
-Título: Estruturar assets da camada declarada
+ID: TASK-038
+Título: Persistir snapshots da camada declarada
 Status: pendente
-Task: `tasks/TASK-035-estruturar-assets-camada-declarada.md`
-Log: `logs/LOG-035-estruturar-assets-camada-declarada.md`
+Task: `tasks/TASK-038-persistir-snapshots-camada-declarada.md`
+Log: `logs/LOG-038-persistir-snapshots-camada-declarada.md`
 
 ## Lista De Tarefas
 
@@ -228,62 +228,67 @@ Log: `logs/LOG-035-estruturar-assets-camada-declarada.md`
     - Task: `tasks/TASK-034-encerrar-spec-001-e-liberar-proxima-spec.md`
     - Log: `logs/LOG-034-encerrar-spec-001-e-liberar-proxima-spec.md`
 
-40. [ ] Estruturar assets da camada declarada
-    - Status: pendente
+40. [x] Estruturar assets da camada declarada
+    - Status: concluido
     - Task: `tasks/TASK-035-estruturar-assets-camada-declarada.md`
     - Log: `logs/LOG-035-estruturar-assets-camada-declarada.md`
 
-41. [ ] Implementar matcher metodológico declarado
-    - Status: pendente
+41. [x] Ajustar governança da identificação exata da ECD
+    - Status: concluido
+    - Task: `tasks/TASK-035A-ajustar-governanca-identificacao-exata-ecd.md`
+    - Log: `logs/LOG-035A-ajustar-governanca-identificacao-exata-ecd.md`
+
+42. [x] Implementar matcher metodológico declarado
+    - Status: concluido
     - Task: `tasks/TASK-036-implementar-matcher-metodologico-declarado.md`
     - Log: `logs/LOG-036-implementar-matcher-metodologico-declarado.md`
 
-42. [ ] Modelar resultado por conta declarada
-    - Status: pendente
+43. [x] Modelar resultado por conta declarada
+    - Status: concluido
     - Task: `tasks/TASK-037-modelar-resultado-conta-declarada.md`
     - Log: `logs/LOG-037-modelar-resultado-conta-declarada.md`
 
-43. [ ] Persistir snapshots da camada declarada
+44. [ ] Persistir snapshots da camada declarada
     - Status: pendente
     - Task: `tasks/TASK-038-persistir-snapshots-camada-declarada.md`
     - Log: `logs/LOG-038-persistir-snapshots-camada-declarada.md`
 
-44. [ ] Criar API da camada declarada
+45. [ ] Criar API da camada declarada
     - Status: pendente
     - Task: `tasks/TASK-039-criar-api-camada-declarada.md`
     - Log: `logs/LOG-039-criar-api-camada-declarada.md`
 
-45. [ ] Criar UI da camada declarada
+46. [ ] Criar UI da camada declarada
     - Status: pendente
     - Task: `tasks/TASK-040-criar-ui-camada-declarada.md`
     - Log: `logs/LOG-040-criar-ui-camada-declarada.md`
 
-46. [ ] Exportação e testes da camada declarada
+47. [ ] Exportação e testes da camada declarada
     - Status: pendente
     - Task: `tasks/TASK-041-exportacao-e-testes-camada-declarada.md`
     - Log: `logs/LOG-041-exportacao-e-testes-camada-declarada.md`
 
-47. [ ] Normalização e razão comportamental
+48. [ ] Normalização e razão comportamental
     - Status: pendente
     - Task: `tasks/TASK-042-normalizacao-razao-comportamental.md`
     - Log: `logs/LOG-042-normalizacao-razao-comportamental.md`
 
-48. [ ] Gerar perfil comportamental por conta
+49. [ ] Gerar perfil comportamental por conta
     - Status: pendente
     - Task: `tasks/TASK-043-gerar-perfil-comportamental-conta.md`
     - Log: `logs/LOG-043-gerar-perfil-comportamental-conta.md`
 
-49. [ ] Classificação, score e salvaguardas reclassificadas
+50. [ ] Classificação, score e salvaguardas reclassificadas
     - Status: pendente
     - Task: `tasks/TASK-044-classificacao-score-salvaguardas-reclassificada.md`
     - Log: `logs/LOG-044-classificacao-score-salvaguardas-reclassificada.md`
 
-50. [ ] Cenário reclassificado e revisão humana
+51. [ ] Cenário reclassificado e revisão humana
     - Status: pendente
     - Task: `tasks/TASK-045-cenario-reclassificado-revisao-humana.md`
     - Log: `logs/LOG-045-cenario-reclassificado-revisao-humana.md`
 
-51. [ ] Criar API da camada reclassificada
+52. [ ] Criar API da camada reclassificada
     - Status: pendente
     - Task: `tasks/TASK-046-criar-api-camada-reclassificada.md`
     - Log: `logs/LOG-046-criar-api-camada-reclassificada.md`

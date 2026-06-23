@@ -85,11 +85,11 @@ Esta SPEC nao cobre:
 - A camada declarada nao audita se o contador classificou corretamente.
 - A camada declarada deve apontar problemas de cobertura metodologica.
 - Plano referencial oficial e metodologia interna sao artefatos distintos.
-- Plano referencial oficial traduz o significado formal do `COD_CTA_REF`.
-- Metodologia interna define tratamento por finalidade: PLR/PLRA, FCO, CAPAG-E, auditoria e exportacao.
-- Prefixos amplos perigosos nao podem classificar resultado final.
-- Regra mais especifica vence regra mais ampla.
-- Ausencia de regra segura deve gerar status revisavel, nao classificacao generica.
+- Plano referencial oficial valida e enriquece o significado formal do `COD_CTA_REF` exato declarado na ECD.
+- Metodologia interna define tratamento por finalidade para o codigo referencial exato: PLR/PLRA, FCO, CAPAG-E, auditoria e exportacao.
+- O plano referencial oficial nao identifica codigo alternativo ao declarado na ECD.
+- A metodologia interna nao usa prefixo, codigo generico ou fallback amplo para inferir tratamento.
+- Ausencia de regra metodologica exata deve gerar status revisavel, nao classificacao por inferencia.
 - Valores contabeis e prudenciais usam `Decimal` no backend.
 - Valores financeiros trafegam na API como string decimal.
 - Frontend, Excel e laudo nao recalculam regra de negocio.
@@ -100,7 +100,7 @@ Nao ha decisao essencial pendente para criar TASKs da camada declarada, desde qu
 
 - TASKs podem estruturar plano oficial, metodologia, matcher, API, UI e Excel conforme os contratos desta SPEC.
 - TASKs nao podem inventar regras prudenciais ausentes.
-- TASKs devem tratar regras ainda nao aprovadas como `EM_REVISAO`, `BLOQUEADA`, `GENERICA_PERIGOSA` ou `NAO_MAPEADO_METODOLOGICAMENTE`, conforme o caso.
+- TASKs devem tratar regras ainda nao aprovadas como `EM_REVISAO`, `BLOQUEADA`, `DEPRECIADA` ou `NAO_MAPEADO_METODOLOGICAMENTE`, conforme o caso.
 
 Decisoes que permanecem para SPECs posteriores:
 
@@ -128,7 +128,7 @@ O parser e normalizador devem preservar dados necessarios para auditoria, inclui
 
 ### 8.2 Plano Referencial Oficial
 
-O plano referencial oficial deve representar o significado formal do `COD_CTA_REF` e nao pode decidir calculo.
+O plano referencial oficial deve representar o significado formal do `COD_CTA_REF` exato declarado na ECD, funcionando como legenda, validador e enriquecedor. Ele nao pode decidir calculo nem inferir codigo alternativo ao declarado.
 
 Campos minimos:
 
@@ -158,8 +158,7 @@ A metodologia interna deve definir tratamento por finalidade e nao redefinir a s
 
 Campos minimos:
 
-- `pattern`;
-- `match_type`;
+- `reference_code`;
 - `purpose`;
 - `methodology_description`;
 - `plra_category`;
@@ -169,8 +168,6 @@ Campos minimos:
 - `operational_treatment`;
 - `include_in_calculation`;
 - `sign`;
-- `specificity_level`;
-- `priority`;
 - `rule_status`;
 - `valid_from`;
 - `valid_to`;
@@ -190,9 +187,7 @@ Finalidades minimas:
 Status permitidos:
 
 - `ATIVA`: pode classificar.
-- `GENERICA_SEGURA`: pode classificar quando nao houver regra mais especifica.
 - `BLOQUEADA`: nao pode classificar resultado final.
-- `GENERICA_PERIGOSA`: nao pode classificar resultado final.
 - `EM_REVISAO`: nao pode ser usada automaticamente em calculo novo.
 - `DEPRECIADA`: nao pode ser usada em calculo novo, salvo consulta historica explicita.
 
@@ -210,14 +205,13 @@ Processo obrigatorio:
 
 1. Buscar o codigo no plano referencial oficial.
 2. Se nao existir, retornar `COD_CTA_REF_NAO_ENCONTRADO_NA_TABELA_OFICIAL`.
-3. Gerar candidatos metodologicos por especificidade.
-4. Avaliar primeiro regra exata ativa.
-5. Avaliar prefixo de maior profundidade ativo.
-6. Avaliar prefixos de menor profundidade ativos.
-7. Aceitar regra generica apenas se `GENERICA_SEGURA`.
-8. Ignorar `BLOQUEADA`, `GENERICA_PERIGOSA`, `EM_REVISAO` e `DEPRECIADA` para calculo novo.
-9. Se regra segura com tratamento da finalidade existir, retornar `MAPEADO`.
-10. Se nenhuma regra segura existir, retornar `NAO_MAPEADO_METODOLOGICAMENTE`.
+3. Buscar regra metodologica pelo mesmo `reference_code` exato, finalidade, exercicio, leiaute e tipo de entidade quando aplicavel.
+4. Se existir regra exata `ATIVA` com tratamento da finalidade, retornar `MAPEADO`.
+5. Se existir regra exata `BLOQUEADA`, retornar `REGRA_BLOQUEADA` e nao classificar calculo novo.
+6. Se existir regra exata `EM_REVISAO`, retornar `REGRA_EM_REVISAO` e nao classificar calculo novo.
+7. Se existir regra exata `DEPRECIADA`, retornar `REGRA_DEPRECIADA` e nao classificar calculo novo.
+8. Se nenhuma regra metodologica exata existir, retornar `NAO_MAPEADO_METODOLOGICAMENTE`.
+9. Nao avaliar prefixos, codigos genericos ou fallback amplo para inferir tratamento.
 
 ### 8.6 Resultado Por Conta Declarada
 
@@ -424,7 +418,7 @@ Erros e pendencias:
 - conta sem `I051`;
 - `COD_CTA_REF` ausente no plano oficial;
 - metodologia inexistente para codigo oficial;
-- regra bloqueada/perigosa como unica candidata;
+- regra bloqueada, em revisao ou depreciada como unica candidata;
 - conflito ou duplicidade de regra;
 - codigo metodologico inexistente no plano oficial;
 - tentativa de usar `float`;
@@ -435,18 +429,19 @@ Erros e pendencias:
 - A camada declarada preserva o `COD_CTA_REF` do `I051`.
 - O plano referencial oficial e separado da metodologia interna.
 - A metodologia interna possui status de regra.
-- O matcher aplica regra exata antes de prefixo.
-- O matcher aplica prefixo mais especifico antes de prefixo amplo.
-- Prefixos `BLOQUEADA` ou `GENERICA_PERIGOSA` nao classificam resultado final.
+- O matcher valida o codigo exato declarado na ECD contra o plano referencial oficial.
+- O plano referencial oficial enriquece o codigo declarado com descricao, hierarquia, natureza, vigencia, leiaute e tipo de entidade, sem inferir codigo alternativo.
+- O matcher aplica metodologia apenas quando existir regra exata para o codigo declarado e finalidade.
+- Prefixos, codigos genericos e fallbacks amplos nao classificam resultado final.
 - `EM_REVISAO` e `DEPRECIADA` nao sao usadas em calculo novo.
-- Codigo oficial sem regra segura retorna `NAO_MAPEADO_METODOLOGICAMENTE`.
+- Codigo oficial sem regra metodologica exata retorna `NAO_MAPEADO_METODOLOGICAMENTE`.
 - Codigo ausente no plano oficial retorna `COD_CTA_REF_NAO_ENCONTRADO_NA_TABELA_OFICIAL`.
 - Conta sem vinculo referencial retorna `SEM_VINCULO_REFERENCIAL`.
 - Resultado por conta expõe codigo declarado, descricao oficial, regra aplicada, status da regra, tratamento e status final.
 - API serializa valores financeiros como string decimal.
 - Frontend consome payload e nao recalcula metodologia.
 - Excel serializa snapshots e nao recalcula regra.
-- Conta `1725` com `2.01.01.07.01` nunca e classificada como fornecedor por `2.01.01.*`.
+- Conta `1725` com `2.01.01.07.01` nunca e classificada como fornecedor por `2.01.01.*`, pois prefixos nao sao fonte de tratamento metodologico.
 
 ## 13. Estrategia De Validacao Esperada
 
@@ -455,7 +450,7 @@ Testes unitarios:
 - extracao de `I051`;
 - normalizacao de valores como `Decimal`;
 - lookup no plano referencial oficial;
-- matcher por especificidade;
+- matcher por codigo exato;
 - status de regra;
 - resultado por conta declarada;
 - serializacao decimal para API;
@@ -470,24 +465,24 @@ Testes de integracao:
 
 Testes/golden cases obrigatorios:
 
-- emprestimo nao pode virar fornecedor: `2.01.01.07.01` nao vira `pagamentos_fornecedores`;
+- emprestimo nao pode virar fornecedor: `2.01.01.07.01` nao vira `pagamentos_fornecedores` por prefixo;
 - fornecedor real pode virar fornecedor;
-- tributo a recuperar nao pode virar cliente: `1.01.02.03.*` nao vira `recebimento_clientes`;
-- prefixo bloqueado nao pode classificar: se apenas `2.01.01.*` estiver bloqueado, resultado e `NAO_MAPEADO_METODOLOGICAMENTE`;
-- regra mais especifica vence: `2.01.01.07.*` vence `2.01.01.*`;
+- tributo a recuperar nao pode virar cliente: `1.01.02.03.*` nao vira `recebimento_clientes` por prefixo;
+- prefixo nao pode classificar: se apenas `2.01.01.*` existir como regra, resultado e `NAO_MAPEADO_METODOLOGICAMENTE`;
+- regra exata vence por ser a unica forma permitida de tratamento: `2.01.01.07.01` pode classificar quando houver regra exata aprovada;
 - conta `1725` preserva descricao oficial e tratamento de financiamento;
 - Excel contem colunas declaradas e versao metodologica;
 - frontend exibe estados de vazio, loading, sucesso, pendencia e erro sem recalculo.
 
 Validacoes automaticas de metodologia:
 
-- detectar prefixos amplos ativos com filhos de tratamentos diferentes;
-- detectar regras duplicadas por codigo/padrao/finalidade;
-- detectar conflito entre regra exata e prefixo;
+- detectar qualquer regra metodologica baseada em prefixo ou padrao amplo;
+- detectar regras duplicadas por codigo/finalidade/vigencia;
+- detectar duplicidade ou conflito entre regras exatas por codigo/finalidade/vigencia;
 - detectar codigos metodologicos ausentes no plano oficial;
 - detectar codigos oficiais relevantes sem metodologia;
 - detectar regras vencidas em uso;
-- detectar regras bloqueadas aplicadas;
+- detectar regras bloqueadas, em revisao ou depreciadas aplicadas;
 - detectar tratamentos iguais aplicados a naturezas oficiais diferentes sem justificativa;
 - detectar categorias FCO incompatíveis com natureza oficial;
 - detectar codigos de divida tratados como fornecedor.
@@ -495,7 +490,7 @@ Validacoes automaticas de metodologia:
 ## 14. Riscos E Mitigacoes
 
 - Risco: prefixo amplo voltar a classificar conta especifica.
-  Mitigacao: status de regra, matcher seguro e golden tests obrigatorios.
+  Mitigacao: metodologia por codigo exato, rejeicao de prefixos como fallback e golden tests obrigatorios.
 
 - Risco: plano oficial e metodologia interna serem misturados.
   Mitigacao: contratos separados e campos separados no resultado por conta.
@@ -507,7 +502,7 @@ Validacoes automaticas de metodologia:
   Mitigacao: exportacao serializa snapshot declarado e nao chama motor.
 
 - Risco: regra metodologica incompleta virar classificacao falsa.
-  Mitigacao: `NAO_MAPEADO_METODOLOGICAMENTE` com acao de revisao.
+  Mitigacao: ausencia de regra exata retorna `NAO_MAPEADO_METODOLOGICAMENTE` com acao de revisao.
 
 - Risco: metodologia nova alterar historico.
   Mitigacao: snapshots com `methodology_version_id`.

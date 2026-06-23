@@ -10,7 +10,7 @@
 
 ## Objetivo
 
-Implementar o matcher metodológico seguro da camada declarada, respeitando regra mais específica, bloqueio de prefixo amplo perigoso e status metodológicos definidos pela SPEC-002.
+Implementar o matcher metodológico seguro da camada declarada, respeitando o `COD_CTA_REF` exato declarado na ECD, a validação/enriquecimento pelo plano referencial oficial e os status metodológicos definidos pela SPEC-002.
 
 ## Fontes Usadas
 
@@ -20,9 +20,11 @@ Implementar o matcher metodológico seguro da camada declarada, respeitando regr
 
 ## Escopo Exato
 
-- Implementar algoritmo de match para `reference_code`, exercício, leiaute, entidade e finalidade.
+- Implementar algoritmo de match exato para `reference_code`, exercício, leiaute, entidade e finalidade.
+- Validar/enriquecer o `reference_code` contra o plano referencial oficial, sem inferir codigo alternativo.
 - Retornar status previstos pela SPEC-002.
-- Impedir uso de regras `BLOQUEADA`, `GENERICA_PERIGOSA`, `EM_REVISAO` e `DEPRECIADA` em cálculo novo.
+- Impedir uso de regras `BLOQUEADA`, `EM_REVISAO` e `DEPRECIADA` em cálculo novo.
+- Retornar `NAO_MAPEADO_METODOLOGICAMENTE` quando nao houver regra metodologica exata para o codigo e finalidade.
 - Usar `Decimal` quando valor financeiro participar de resultado.
 
 ## Fora De Escopo
@@ -36,8 +38,8 @@ Implementar o matcher metodológico seguro da camada declarada, respeitando regr
 
 1. Ler assets estruturados da TASK-035.
 2. Implementar matcher no backend.
-3. Criar testes unitários para casos seguros, genéricos e bloqueados.
-4. Validar que prefixo amplo perigoso não classifica resultado final.
+3. Criar testes unitários para codigo oficial existente, codigo oficial ausente, regra exata ativa, regra ausente, regra bloqueada, regra em revisao e regra depreciada.
+4. Validar que prefixos ou padroes amplos não classificam resultado final.
 
 ## Arquivos Ou Areas Provaveis
 
@@ -46,10 +48,11 @@ Implementar o matcher metodológico seguro da camada declarada, respeitando regr
 
 ## Criterios De Aceite
 
-- Regra exata ativa vence regra ampla.
-- Regra genérica perigosa não classifica cálculo novo.
+- Regra exata ativa classifica o codigo declarado.
+- Ausencia de regra exata retorna `NAO_MAPEADO_METODOLOGICAMENTE`.
+- Prefixo ou padrao amplo não classifica cálculo novo.
 - Código inexistente retorna status adequado.
-- Testes cobrem exemplo de prefixo amplo perigoso.
+- Testes cobrem exemplo de `2.01.01.07.01` nao classificado por `2.01.01.*`.
 
 ## Validacao Esperada
 
@@ -59,7 +62,7 @@ Implementar o matcher metodológico seguro da camada declarada, respeitando regr
 ## Riscos
 
 - Risco: regra ampla classificar indevidamente conta específica.
-  Mitigação: testes obrigatórios para prefixos perigosos.
+  Mitigação: matcher deve aceitar apenas regra metodologica exata e testes obrigatórios devem rejeitar prefixos.
 
 ## Bloqueios Pendentes
 

@@ -1,0 +1,22 @@
+{
+  "asset_type": "official_reference_accounts",
+  "schema_version": "0.1.0",
+  "methodology_version_id": null,
+  "description": "Safe empty template for official reference accounts. Do not use as a complete official reference plan.",
+  "required_fields": [
+    "reference_code",
+    "official_description",
+    "parent_reference_code",
+    "level",
+    "nature",
+    "valid_from",
+    "valid_to",
+    "layout",
+    "entity_type",
+    "source",
+    "status",
+    "methodology_version_id"
+  ],
+  "records": []
+}
+
