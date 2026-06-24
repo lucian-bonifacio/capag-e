@@ -3,6 +3,7 @@ from pathlib import Path
 import sys
 
 from alembic import context
+from sqlalchemy import engine_from_config, pool
 
 config = context.config
 
@@ -13,7 +14,9 @@ backend_root = Path(__file__).resolve().parents[1]
 if str(backend_root) not in sys.path:
     sys.path.insert(0, str(backend_root))
 
-target_metadata = None
+from app.repositories import Base
+
+target_metadata = Base.metadata
 
 
 def run_migrations_offline() -> None:
@@ -30,10 +33,17 @@ def run_migrations_offline() -> None:
 
 
 def run_migrations_online() -> None:
-    raise RuntimeError(
-        "Alembic online migrations require database models and an engine, "
-        "which are outside the scope of this foundation task."
+    connectable = engine_from_config(
+        config.get_section(config.config_ini_section, {}),
+        prefix="sqlalchemy.",
+        poolclass=pool.NullPool,
     )
+
+    with connectable.connect() as connection:
+        context.configure(connection=connection, target_metadata=target_metadata)
+
+        with context.begin_transaction():
+            context.run_migrations()
 
 
 if context.is_offline_mode():

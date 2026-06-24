@@ -68,11 +68,20 @@ Durante a execução:
 
 1. Execute apenas o escopo da TASK.
 2. Execute as validações esperadas pela TASK.
-3. Ao final da implementação, use `execution-log` para registrar a evidência operacional.
-4. Use `roadmap-manager` para mover a TASK para `aguardando_homologacao`.
-5. Informe o usuário e aguarde homologação.
+3. Quando a TASK envolver UI, fluxo interativo ou jornada end-to-end, aplique também as regras da subseção `### Validação De UI E Playwright`.
+4. Ao final da implementação, use `execution-log` para registrar a evidência operacional.
+5. Use `roadmap-manager` para mover a TASK para `aguardando_homologacao`.
+6. Informe o usuário e aguarde homologação.
 
 Se uma validação esperada ainda não existir, estiver bloqueada pela maturidade do projeto ou não puder ser executada sem violar o ambiente oficial, registre objetivamente a limitação no log da TASK.
+
+### Validação De UI E Playwright
+
+- Testes E2E governados devem ser executáveis pelo ambiente oficial Docker/Docker Compose.
+- MCP Playwright pode ser usado pelo agente para navegar, inspecionar, capturar evidência visual e diagnosticar problemas durante execução ou homologação assistida.
+- MCP Playwright não substitui testes automatizados reproduzíveis quando a TASK exigir validação E2E governada.
+- Ao concluir TASK com UI ou fluxo interativo, registre no log quais validações foram executadas: testes unitários/frontend, build, Playwright via Docker Compose quando existir, e inspeção MCP Playwright quando usada.
+- Se Playwright ainda não estiver configurado para o fluxo da TASK, registre a limitação no log em vez de omitir validação visual.
 
 Após homologação:
 

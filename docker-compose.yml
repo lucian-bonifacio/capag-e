@@ -17,6 +17,26 @@ services:
       timeout: 5s
       retries: 5
 
+  backend:
+    image: python:3.12-slim
+    working_dir: /workspace/backend
+    environment:
+      CAPAG_DATABASE_URL: postgresql+psycopg://capag:capag_local_password@postgres:5432/capag
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/workspace
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: >
+      sh -c "rm -rf /tmp/capag-backend
+      && cp -R /workspace/backend /tmp/capag-backend
+      && cd /tmp/capag-backend
+      && python -m pip install --disable-pip-version-check --root-user-action=ignore -e .
+      && alembic -c alembic.ini upgrade head
+      && python -m uvicorn app.main:app --host 0.0.0.0 --port 8000"
+
   backend-tests:
     image: python:3.12-slim
     profiles:

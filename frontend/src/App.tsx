@@ -1,15 +1,65 @@
-import { Activity, FileInput, LayoutDashboard, Scale } from "lucide-react";
+import { Activity, ClipboardList, FileInput, LayoutDashboard, Scale } from "lucide-react";
+import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { BrowserRouter, Navigate, Route, Routes, useParams } from "react-router-dom";
 
+import { fetchDeclaredAccounts, fetchDeclaredSummary } from "./api/declared";
+import { DeclaredLayerPage } from "./routes/DeclaredLayerPage";
 import "./App.css";
 
 const navItems = [
-  { label: "Dashboard", icon: LayoutDashboard, active: true },
+  { label: "Dashboard", icon: LayoutDashboard, active: false },
+  { label: "Camada Declarada", icon: ClipboardList, active: true },
   { label: "Balanco Patrimonial", icon: Scale, active: false },
   { label: "Auditoria", icon: Activity, active: false },
   { label: "Importar ECD", icon: FileInput, active: false },
 ];
 
-export function App() {
+function createQueryClient() {
+  return new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+        staleTime: 30_000,
+      },
+    },
+  });
+}
+
+function DeclaredLayerRoute() {
+  const { analysisId = "", year = "" } = useParams();
+
+  const summaryQuery = useQuery({
+    queryKey: ["declared-summary", analysisId, year],
+    queryFn: () => fetchDeclaredSummary(analysisId, year),
+    enabled: analysisId.length > 0 && year.length > 0,
+  });
+
+  const accountsQuery = useQuery({
+    queryKey: ["declared-accounts", analysisId, year],
+    queryFn: () => fetchDeclaredAccounts(analysisId, year),
+    enabled: analysisId.length > 0 && year.length > 0,
+  });
+
+  const retry = () => {
+    void summaryQuery.refetch();
+    void accountsQuery.refetch();
+  };
+
+  return (
+    <DeclaredLayerPage
+      accounts={accountsQuery.data?.accounts}
+      analysisId={analysisId}
+      isError={summaryQuery.isError || accountsQuery.isError}
+      isLoading={summaryQuery.isLoading || accountsQuery.isLoading}
+      onRetry={retry}
+      summary={summaryQuery.data}
+      year={year}
+    />
+  );
+}
+
+function GovernedShell() {
   return (
     <div className="app-shell">
       <aside className="app-sidebar" aria-label="Navegacao principal">
@@ -33,25 +83,29 @@ export function App() {
       </aside>
 
       <div className="app-main">
-        <header className="app-topbar">
-          <div>
-            <h1 className="app-title">Fundacao</h1>
-            <p className="app-subtitle">Shell administrativo inicial</p>
-          </div>
-          <span className="app-status">Sem dados importados</span>
-        </header>
-
-        <main className="app-content">
-          <section className="app-panel" aria-labelledby="shell-title">
-            <p className="eyebrow">Bootstrap</p>
-            <h2 id="shell-title">Frontend pronto para proximas telas</h2>
-            <p>
-              Estrutura visual minima carregada com tokens governados, sem API,
-              dados de dominio ou regra prudencial.
-            </p>
-          </section>
-        </main>
+        <Routes>
+          <Route
+            element={<DeclaredLayerRoute />}
+            path="/analises/:analysisId/exercicios/:year/declarada"
+          />
+          <Route
+            element={<Navigate replace to="/analises/1/exercicios/2024/declarada" />}
+            path="*"
+          />
+        </Routes>
       </div>
     </div>
+  );
+}
+
+export function App() {
+  const [queryClient] = useState(createQueryClient);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <GovernedShell />
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
