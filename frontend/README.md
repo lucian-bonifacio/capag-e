@@ -35,4 +35,10 @@ Executar testes frontend pelo ambiente oficial:
 COMPOSE_DISABLE_ENV_FILE=1 docker compose --profile test run --rm frontend-tests
 ```
 
-O teste atual e apenas sentinela para validar o runner de Vitest e React Testing Library; ele nao define comportamento de tela, rota, API ou regra de negocio.
+Executar testes end-to-end governados pelo ambiente oficial:
+
+```bash
+COMPOSE_DISABLE_ENV_FILE=1 docker compose --profile test run --rm frontend-e2e
+```
+
+O Playwright deve ser executado via Docker Compose e nao exige `node_modules` no host. MCP Playwright pode apoiar inspecao manual e visual durante desenvolvimento ou homologacao, mas nao substitui testes reproduziveis pelo ambiente Docker Compose.

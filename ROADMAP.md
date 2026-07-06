@@ -25,11 +25,11 @@ Regras:
 
 ## Próxima Tarefa
 
-ID: TASK-041K
-Título: Configurar Playwright E2E da camada declarada
+ID: TASK-041A
+Título: Modelar importacao ECD e status da analise
 Status: pendente
-Task: `tasks/TASK-041K-configurar-playwright-e2e-camada-declarada.md`
-Log: `logs/LOG-041K-configurar-playwright-e2e-camada-declarada.md`
+Task: `tasks/TASK-041A-modelar-importacao-ecd-status-analise.md`
+Log: `logs/LOG-041A-modelar-importacao-ecd-status-analise.md`
 
 ## Lista De Tarefas
 
@@ -273,8 +273,8 @@ Log: `logs/LOG-041K-configurar-playwright-e2e-camada-declarada.md`
     - Task: `tasks/TASK-041L-ajustar-fluxo-homologacao-por-grupo.md`
     - Log: `logs/LOG-041L-ajustar-fluxo-homologacao-por-grupo.md`
 
-49. [ ] Configurar Playwright E2E da camada declarada
-    - Status: pendente
+49. [x] Configurar Playwright E2E da camada declarada
+    - Status: concluido
     - Task: `tasks/TASK-041K-configurar-playwright-e2e-camada-declarada.md`
     - Log: `logs/LOG-041K-configurar-playwright-e2e-camada-declarada.md`
 

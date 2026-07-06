@@ -80,5 +80,19 @@ services:
       && npm run test
       && npm run build"
 
+  frontend-e2e:
+    image: mcr.microsoft.com/playwright:v1.61.1-noble
+    profiles:
+      - test
+    working_dir: /workspace/frontend
+    volumes:
+      - .:/workspace
+    command: >
+      sh -c "rm -rf /tmp/capag-frontend
+      && cp -R /workspace/frontend /tmp/capag-frontend
+      && cd /tmp/capag-frontend
+      && npm install --no-package-lock --audit=false --fund=false
+      && npm run test:e2e"
+
 volumes:
   capag_postgres_data:
