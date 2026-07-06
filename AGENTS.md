@@ -92,7 +92,7 @@ Um grupo de execução pode ser autorizado pelo usuário como:
 Mesmo dentro de um grupo:
 
 1. Cada TASK continua sendo executada individualmente.
-2. Cada TASK exige leitura das fontes aplicáveis, escopo próprio, validações próprias, log próprio e atualização própria do `ROADMAP.md`.
+2. Cada TASK continua exigindo leitura das fontes aplicáveis (respeitando a sessão `### Reuso De Fontes Na Mesma Sessão`), escopo próprio, validações próprias, log próprio e atualização própria do `ROADMAP.md`.
 3. Testes e validações previstas são obrigatórios ao final de cada TASK.
 4. Gates de exceção continuam valendo para cada TASK.
 5. Uma TASK concluída dentro do grupo deve ser movida para `aguardando_homologacao`.
