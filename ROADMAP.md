@@ -25,11 +25,11 @@ Regras:
 
 ## Próxima Tarefa
 
-ID: TASK-040
-Título: Criar UI da camada declarada
-Status: aguardando_homologacao
-Task: `tasks/TASK-040-criar-ui-camada-declarada.md`
-Log: `logs/LOG-040-criar-ui-camada-declarada.md`
+ID: TASK-041K
+Título: Configurar Playwright E2E da camada declarada
+Status: pendente
+Task: `tasks/TASK-041K-configurar-playwright-e2e-camada-declarada.md`
+Log: `logs/LOG-041K-configurar-playwright-e2e-camada-declarada.md`
 
 ## Lista De Tarefas
 
@@ -258,18 +258,18 @@ Log: `logs/LOG-040-criar-ui-camada-declarada.md`
     - Task: `tasks/TASK-039-criar-api-camada-declarada.md`
     - Log: `logs/LOG-039-criar-api-camada-declarada.md`
 
-46. [ ] Criar UI da camada declarada
-    - Status: aguardando_homologacao
+46. [x] Criar UI da camada declarada
+    - Status: concluido
     - Task: `tasks/TASK-040-criar-ui-camada-declarada.md`
     - Log: `logs/LOG-040-criar-ui-camada-declarada.md`
 
-47. [ ] Exportação e testes da camada declarada
-    - Status: aguardando_homologacao
+47. [x] Exportação e testes da camada declarada
+    - Status: concluido
     - Task: `tasks/TASK-041-exportacao-e-testes-camada-declarada.md`
     - Log: `logs/LOG-041-exportacao-e-testes-camada-declarada.md`
 
-48. [ ] Ajustar fluxo de homologacao por grupo
-    - Status: pendente
+48. [x] Ajustar fluxo de homologacao por grupo
+    - Status: concluido
     - Task: `tasks/TASK-041L-ajustar-fluxo-homologacao-por-grupo.md`
     - Log: `logs/LOG-041L-ajustar-fluxo-homologacao-por-grupo.md`
 

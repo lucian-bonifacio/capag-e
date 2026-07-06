@@ -62,7 +62,11 @@ Após a resposta do usuário ao pedido de autorização da seção `## 2. Ao Ini
 
 - Se o usuário autorizar claramente, execute a TASK.
 - Se a resposta não for autorização clara, use `scope-resolution`.
-- Se houver TASK em `aguardando_homologacao`, solicite ao usuário uma conclusão de homologação antes de qualquer nova execução. Não execute a próxima TASK, salvo pedido expresso do usuário.
+- Se houver TASK em `aguardando_homologacao`, solicite ao usuário uma conclusão de homologação antes de qualquer nova execução, salvo quando a autorização vigente definir explicitamente um grupo de execução ou quando o usuário pedir expressamente para continuar.
+
+### Execução Individual
+
+Uma TASK individual é o padrão de execução.
 
 Durante a execução:
 
@@ -71,9 +75,36 @@ Durante a execução:
 3. Quando a TASK envolver UI, fluxo interativo ou jornada end-to-end, aplique também as regras da subseção `### Validação De UI E Playwright`.
 4. Ao final da implementação, use `execution-log` para registrar a evidência operacional.
 5. Use `roadmap-manager` para mover a TASK para `aguardando_homologacao`.
-6. Informe o usuário e aguarde homologação.
+6. Informe o usuário e aguarde homologação, exceto quando a TASK fizer parte de um grupo de execução autorizado.
 
 Se uma validação esperada ainda não existir, estiver bloqueada pela maturidade do projeto ou não puder ser executada sem violar o ambiente oficial, registre objetivamente a limitação no log da TASK.
+
+Quando não houver teste automatizado adequado para o escopo alterado, crie teste automatizado focado se isso couber na TASK e não violar SPEC, TASK, arquitetura ou gates de exceção. Se criar teste não couber sem ampliar escopo ou violar gate, registre a limitação no log e peça decisão governada ou proponha nova TASK conforme o fluxo de escopo.
+
+### Execução Por Grupo
+
+Um grupo de execução pode ser autorizado pelo usuário como:
+
+- sequência contínua de TASKs a partir da `## Próxima Tarefa`;
+- lista explícita de TASKs;
+- conjunto definido pelo usuário por critério objetivo.
+
+Mesmo dentro de um grupo:
+
+1. Cada TASK continua sendo executada individualmente.
+2. Cada TASK exige leitura das fontes aplicáveis, escopo próprio, validações próprias, log próprio e atualização própria do `ROADMAP.md`.
+3. Testes e validações previstas são obrigatórios ao final de cada TASK.
+4. Gates de exceção continuam valendo para cada TASK.
+5. Uma TASK concluída dentro do grupo deve ser movida para `aguardando_homologacao`.
+
+Quando houver grupo autorizado, o agente não deve parar para homologação individual entre TASKs do grupo. Ao final do grupo, ou ao encontrar bloqueio que impeça continuidade governada, informe o resultado consolidado e solicite homologação do conjunto.
+
+Se uma TASK do grupo falhar, bloquear ou exigir decisão expressa do usuário:
+
+- pare o grupo no ponto afetado;
+- registre a evidência no log da TASK;
+- mantenha concluídas em `aguardando_homologacao` as TASKs já executadas;
+- solicite decisão governada antes de continuar.
 
 ### Validação De UI E Playwright
 
@@ -85,8 +116,10 @@ Se uma validação esperada ainda não existir, estiver bloqueada pela maturidad
 
 Após homologação:
 
-- se o usuário aprovar, use `execution-log` para registrar aprovação e `roadmap-manager` para marcar `concluido` e recalcular a próxima tarefa;
-- se o usuário pedir ajuste, use `scope-resolution`;
+- se o usuário aprovar uma TASK individual, use `execution-log` para registrar aprovação e `roadmap-manager` para marcar `concluido` e recalcular a próxima tarefa;
+- se o usuário aprovar um grupo, use `execution-log` para registrar aprovação das TASKs aprovadas e `roadmap-manager` para marcar essas TASKs como `concluido` e recalcular a próxima tarefa;
+- se o usuário reprovar parcialmente um grupo ou pedir ajuste em uma TASK do grupo, use `scope-resolution` para classificar o ajuste, mantenha como `concluido` apenas as TASKs explicitamente aprovadas e mantenha a TASK afetada em estado governado compatível com a decisão;
+- se o usuário pedir ajuste em TASK individual, use `scope-resolution`;
 - não marque TASK como `concluido` sem homologação do usuário.
 
 Quando não houver homologação, ajuste, bloqueio ou decisão governada pendente, retome o fluxo normal:
@@ -94,6 +127,8 @@ Quando não houver homologação, ajuste, bloqueio ou decisão governada pendent
 1. Informe ao usuário a `## Próxima Tarefa` indicada no `ROADMAP.md`, seu status e que as fontes aplicáveis foram consultadas.
 2. Peça autorização simples para executar.
 3. Após a resposta do usuário, aplique novamente as regras desta seção `## 5. Fluxo De Trabalho`.
+
+Nota: se desejar, o usuário pode autorizar um grupo de TASKs em vez de apenas a próxima TASK, desde que informe uma sequência, lista ou critério objetivo.
 
 Se `scope-resolution` classificar uma solicitação como nova TASK, peça confirmação explícita. Após aprovação, use `task-planner`. Não implemente a nova TASK no mesmo passo.
 

@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-040-criar-ui-camada-declarada.md`
 - SPEC: `specs/SPEC-002-modulo-1-camada-declarada.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -60,7 +60,7 @@
 
 ## Homologacao
 
-- Status: aguardando_homologacao
-- Data: 2026-06-23
-- Decisao do usuario:
-- Observacao: Homologacao intermediaria pulada por autorizacao expressa do usuario para permitir execucao sequencial da TASK-041.
+- Status: aprovada
+- Data: 2026-07-06
+- Decisao do usuario: Aprovada.
+- Observacao: TASK homologada pelo usuario e marcada como concluida no ROADMAP.

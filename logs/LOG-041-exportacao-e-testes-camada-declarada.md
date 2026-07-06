@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-041-exportacao-e-testes-camada-declarada.md`
 - SPEC: `specs/SPEC-002-modulo-1-camada-declarada.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -44,7 +44,7 @@
 
 ## Homologacao
 
-- Status: aguardando_homologacao
-- Data: 2026-06-23
-- Decisao do usuario:
-- Observacao: Enviada para homologacao junto com a TASK-040, conforme autorizacao expressa do usuario para execucao sequencial sem homologacao intermediaria.
+- Status: aprovada
+- Data: 2026-07-06
+- Decisao do usuario: Aprovada.
+- Observacao: TASK homologada pelo usuario e marcada como concluida no ROADMAP.
