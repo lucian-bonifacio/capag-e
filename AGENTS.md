@@ -160,6 +160,7 @@ O ambiente oficial do projeto é exclusivamente Docker/Docker Compose.
 Regras:
 
 - comandos oficiais devem executar via `docker compose`;
+- comandos oficiais podem usar o comportamento padrão do Docker Compose para `.env` local;
 - dependências Python devem ser instaladas apenas dentro de imagem/container;
 - dependências Node devem ser instaladas apenas dentro de imagem/container;
 - PostgreSQL deve rodar em container;
@@ -173,3 +174,5 @@ Proibições:
 - não usar `pip install` global;
 - não usar `npm install -g`, `pnpm add -g`, `yarn global` ou equivalente;
 - não exigir Python, Node, npm, pnpm, yarn ou pip instalados no host para operar o projeto.
+- não ler, copiar ou expor conteúdo de arquivos `.env` por conveniência;
+- não versionar segredos reais.

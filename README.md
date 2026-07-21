@@ -58,38 +58,38 @@ O ambiente oficial exige no host apenas:
 
 Comandos oficiais devem usar `docker compose`. O fluxo oficial nao usa `.venv` local, `node_modules` no host, `pip install` global, instalacoes globais de Node ou package managers no host.
 
-Arquivos `.env` reais nao devem ser lidos, criados ou alterados por conveniencia. Use os contratos governados e o Compose existente.
+O Docker Compose pode usar `.env` local pelo comportamento padrao da ferramenta. Arquivos `.env` locais nao devem ser versionados, e agentes nao devem ler, copiar ou expor seu conteudo por conveniencia.
 
 ## Comandos Disponiveis
 
 Validar a configuracao Docker Compose:
 
 ```bash
-COMPOSE_DISABLE_ENV_FILE=1 docker compose --profile test config
+docker compose --profile test config
 ```
 
-Subir o PostgreSQL local em container:
+Subir o ambiente local em containers:
 
 ```bash
-COMPOSE_DISABLE_ENV_FILE=1 docker compose up -d postgres
+docker compose up -d postgres backend frontend
 ```
 
 Executar testes backend minimos:
 
 ```bash
-COMPOSE_DISABLE_ENV_FILE=1 docker compose --profile test run --rm backend-tests
+docker compose --profile test run --rm backend-tests
 ```
 
 Executar testes frontend minimos:
 
 ```bash
-COMPOSE_DISABLE_ENV_FILE=1 docker compose --profile test run --rm frontend-tests
+docker compose --profile test run --rm frontend-tests
 ```
 
 Validar a estrutura minima do Alembic:
 
 ```bash
-COMPOSE_DISABLE_ENV_FILE=1 docker compose --profile test run --rm backend-tests sh -c "python -m pip install --disable-pip-version-check --root-user-action=ignore alembic && alembic -c alembic.ini heads"
+docker compose --profile test run --rm backend-tests sh -c "python -m pip install --disable-pip-version-check --root-user-action=ignore alembic && alembic -c alembic.ini heads"
 ```
 
 Estes comandos sao validacoes de fundacao. Eles nao implementam parser ECD, motores prudenciais, endpoints funcionais, migrations de dominio, telas finais, exportacao Excel ou laudo.
