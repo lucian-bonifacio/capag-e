@@ -1,0 +1,62 @@
+- generic [ref=f10e3]:
+  - complementary "Navegacao principal" [ref=f10e4]:
+    - generic [ref=f10e5]: CAPAG Analytics
+    - navigation [ref=f10e6]:
+      - link "Dashboard" [ref=f10e7] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f10e8]
+        - generic [ref=f10e13]: Dashboard
+      - link "Camada Declarada" [ref=f10e14] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f10e15]
+        - generic [ref=f10e18]: Camada Declarada
+      - link "Balanco Patrimonial" [ref=f10e19] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f10e20]
+        - generic [ref=f10e24]: Balanco Patrimonial
+      - link "Auditoria" [ref=f10e25] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f10e26]
+        - generic [ref=f10e28]: Auditoria
+      - link "Importar ECD" [ref=f10e29] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f10e30]
+        - generic [ref=f10e34]: Importar ECD
+  - generic [ref=f10e35]:
+    - banner [ref=f10e36]:
+      - generic [ref=f10e37]:
+        - heading "Importar ECD" [level=1] [ref=f10e38]
+        - paragraph [ref=f10e39]: Entrada oficial para análise declarada
+      - generic [ref=f10e40]: Concluido
+    - main [ref=f10e41]:
+      - generic [ref=f10e42]:
+        - generic [ref=f10e44]:
+          - paragraph [ref=f10e45]: Arquivo ECD
+          - heading "Selecionar e importar" [level=2] [ref=f10e46]
+        - generic [ref=f10e47]:
+          - generic [ref=f10e48] [cursor=pointer]:
+            - img [ref=f10e49]
+            - generic [ref=f10e53]: ECD 2024 DATAPACK.txt
+            - button "ECD 2024 DATAPACK.txt" [ref=f10e85]
+          - generic [ref=f10e55]:
+            - button "Importar ECD" [ref=f10e56] [cursor=pointer]:
+              - img [ref=f10e86]
+              - text: Importar ECD
+            - button "Abrir análise" [ref=f10e60] [cursor=pointer]:
+              - img [ref=f10e61]
+              - text: Abrir análise
+      - generic [ref=f10e63]:
+        - generic [ref=f10e65]:
+          - paragraph [ref=f10e66]: Status
+          - heading "Processamento da análise" [level=2] [ref=f10e67]
+        - generic [ref=f10e68]:
+          - generic [ref=f10e69]:
+            - img [ref=f10e89]
+            - generic [ref=f10e75]:
+              - strong [ref=f10e76]: Importação ECD
+              - generic [ref=f10e77]: Análise analysis-bc7478b47f261603 criada para 2024.
+          - generic [ref=f10e78]:
+            - img [ref=f10e92]
+            - generic [ref=f10e82]:
+              - strong [ref=f10e83]: Camada declarada
+              - generic [ref=f10e84]: 191 snapshots; status concluido_com_pendencias.

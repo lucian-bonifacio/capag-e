@@ -1,0 +1,62 @@
+- generic [ref=e3]:
+  - complementary "Navegacao principal" [ref=e4]:
+    - generic [ref=e5]: CAPAG Analytics
+    - navigation [ref=e6]:
+      - link "Dashboard" [ref=e7] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=e8]
+        - generic [ref=e13]: Dashboard
+      - link "Camada Declarada" [ref=e14] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=e15]
+        - generic [ref=e18]: Camada Declarada
+      - link "Balanco Patrimonial" [ref=e19] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=e20]
+        - generic [ref=e24]: Balanco Patrimonial
+      - link "Auditoria" [ref=e25] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=e26]
+        - generic [ref=e28]: Auditoria
+      - link "Importar ECD" [ref=e29] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=e30]
+        - generic [ref=e34]: Importar ECD
+  - generic [ref=e35]:
+    - banner [ref=e36]:
+      - generic [ref=e37]:
+        - heading "Importar ECD" [level=1] [ref=e38]
+        - paragraph [ref=e39]: Entrada oficial para análise declarada
+      - generic [ref=e40]: Aguardando
+    - main [ref=e41]:
+      - generic [ref=e42]:
+        - generic [ref=e44]:
+          - paragraph [ref=e45]: Arquivo ECD
+          - heading "Selecionar e importar" [level=2] [ref=e46]
+        - generic [ref=e47]:
+          - generic [ref=e48] [cursor=pointer]:
+            - img [ref=e49]
+            - generic [ref=e53]: Nenhum arquivo selecionado
+            - button "Nenhum arquivo selecionado" [ref=e54]
+          - generic [ref=e55]:
+            - button "Importar ECD" [disabled] [ref=e56]:
+              - img [ref=e57]
+              - text: Importar ECD
+            - button "Abrir análise" [disabled] [ref=e60]:
+              - img [ref=e61]
+              - text: Abrir análise
+      - generic [ref=e63]:
+        - generic [ref=e65]:
+          - paragraph [ref=e66]: Status
+          - heading "Processamento da análise" [level=2] [ref=e67]
+        - generic [ref=e68]:
+          - generic [ref=e69]:
+            - img [ref=e71]
+            - generic [ref=e75]:
+              - strong [ref=e76]: Importação ECD
+              - generic [ref=e77]: Aguardando envio do arquivo.
+          - generic [ref=e78]:
+            - img [ref=e80]
+            - generic [ref=e82]:
+              - strong [ref=e83]: Camada declarada
+              - generic [ref=e84]: Aguardando execução no backend.

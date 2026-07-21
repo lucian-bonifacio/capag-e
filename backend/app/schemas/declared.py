@@ -10,6 +10,10 @@ class DeclaredAccountResponse(BaseModel):
 
     account_code: str
     account_name: str
+    account_type: str | None
+    account_level: int | None
+    parent_account_code: str | None
+    account_order: int | None
     declared_reference_code: str | None
     official_description: str | None
     official_reference_status: str | None
@@ -43,7 +47,14 @@ class DeclaredLayerSummaryResponse(BaseModel):
     methodology_version_id: str | None
 
 
+class DeclaredRunResponse(BaseModel):
+    analysis_id: str
+    year: int
+    status: str
+    snapshots_created: int
+    status_counts: dict[str, int]
+
+
 class ApiErrorResponse(BaseModel):
     error_code: str
     message: str
-

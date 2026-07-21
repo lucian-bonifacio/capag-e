@@ -8,13 +8,22 @@ from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
-from app.repositories import DeclaredAccountSnapshot
+from app.repositories import (
+    AnalysisModel,
+    DeclaredAccountSnapshot,
+    EcdI050AccountModel,
+    ExerciseModel,
+)
 
 
 @dataclass(frozen=True)
 class DeclaredAccountSnapshotView:
     account_code: str
     account_name: str
+    account_type: str | None
+    account_level: int | None
+    parent_account_code: str | None
+    account_order: int | None
     declared_reference_code: str | None
     official_description: str | None
     official_reference_status: str | None
@@ -108,10 +117,31 @@ class SqlAlchemyDeclaredSnapshotReader:
         if not snapshots:
             raise DeclaredSnapshotsNotFound("Declared snapshot not found.")
 
-        return [
+        account_metadata = self._account_metadata_by_code(analysis_id=analysis_id, year=year)
+        views = [
             DeclaredAccountSnapshotView(
                 account_code=snapshot.account_code,
                 account_name=snapshot.account_name,
+                account_type=(
+                    account_metadata[snapshot.account_code].account_type
+                    if snapshot.account_code in account_metadata
+                    else None
+                ),
+                account_level=(
+                    account_metadata[snapshot.account_code].level
+                    if snapshot.account_code in account_metadata
+                    else None
+                ),
+                parent_account_code=(
+                    account_metadata[snapshot.account_code].parent_account_code
+                    if snapshot.account_code in account_metadata
+                    else None
+                ),
+                account_order=(
+                    account_metadata[snapshot.account_code].line_number
+                    if snapshot.account_code in account_metadata
+                    else None
+                ),
                 declared_reference_code=snapshot.declared_reference_code,
                 official_description=snapshot.official_description,
                 official_reference_status=snapshot.official_reference_status,
@@ -128,6 +158,14 @@ class SqlAlchemyDeclaredSnapshotReader:
             )
             for snapshot in snapshots
         ]
+        return sorted(
+            views,
+            key=lambda view: (
+                view.account_order is None,
+                view.account_order or 0,
+                view.account_code,
+            ),
+        )
 
     def _list_snapshots(
         self,
@@ -144,5 +182,28 @@ class SqlAlchemyDeclaredSnapshotReader:
                     .order_by(DeclaredAccountSnapshot.account_code, DeclaredAccountSnapshot.id)
                 )
             )
+        except SQLAlchemyError as exc:
+            raise DeclaredSnapshotsUnavailable("Declared snapshot reader failed.") from exc
+
+    def _account_metadata_by_code(
+        self,
+        *,
+        analysis_id: str,
+        year: int,
+    ) -> dict[str, EcdI050AccountModel]:
+        try:
+            exercise_id = self._session.scalar(
+                select(ExerciseModel.id)
+                .join(AnalysisModel, AnalysisModel.id == ExerciseModel.analysis_id)
+                .where(AnalysisModel.id == analysis_id)
+                .where(ExerciseModel.year == year)
+            )
+            if exercise_id is None:
+                return {}
+
+            accounts = self._session.scalars(
+                select(EcdI050AccountModel).where(EcdI050AccountModel.exercise_id == exercise_id)
+            )
+            return {account.account_code: account for account in accounts}
         except SQLAlchemyError as exc:
             raise DeclaredSnapshotsUnavailable("Declared snapshot reader failed.") from exc

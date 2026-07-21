@@ -1,0 +1,123 @@
+- generic [ref=f16e3]:
+  - complementary "Navegacao principal" [ref=f16e4]:
+    - generic [ref=f16e5]: CAPAG Analytics
+    - navigation [ref=f16e6]:
+      - link "Dashboard" [ref=f16e7] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f16e8]
+        - generic [ref=f16e13]: Dashboard
+      - link "Camada Declarada" [ref=f16e14] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f16e15]
+        - generic [ref=f16e18]: Camada Declarada
+      - link "Balanco Patrimonial" [ref=f16e19] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f16e20]
+        - generic [ref=f16e24]: Balanco Patrimonial
+      - link "Auditoria" [ref=f16e25] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f16e26]
+        - generic [ref=f16e28]: Auditoria
+      - link "Importar ECD" [ref=f16e29] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f16e30]
+        - generic [ref=f16e34]: Importar ECD
+  - generic [ref=f16e35]:
+    - banner [ref=f16e36]:
+      - generic [ref=f16e37]:
+        - heading "Importar ECD" [level=1] [ref=f16e38]
+        - paragraph [ref=f16e39]: Entrada oficial para análise declarada
+      - generic [ref=f16e40]: Aguardando
+    - main [ref=f16e41]:
+      - generic [ref=f16e42]:
+        - generic [ref=f16e44]:
+          - paragraph [ref=f16e45]: Arquivo ECD
+          - heading "Selecionar e importar" [level=2] [ref=f16e46]
+        - generic [ref=f16e47]:
+          - generic [ref=f16e48] [cursor=pointer]:
+            - img [ref=f16e49]
+            - generic [ref=f16e53]: ECD 2024 DATAPACK.txt
+            - button "ECD 2024 DATAPACK.txt" [active] [ref=f16e152]
+          - generic [ref=f16e55]:
+            - button "Importar ECD" [ref=f16e56] [cursor=pointer]:
+              - img [ref=f16e57]
+              - text: Importar ECD
+            - button "Abrir análise" [disabled] [ref=f16e60]:
+              - img [ref=f16e61]
+              - text: Abrir análise
+      - generic [ref=f16e63]:
+        - generic [ref=f16e65]:
+          - paragraph [ref=f16e66]: Status
+          - heading "Processamento da análise" [level=2] [ref=f16e67]
+        - generic [ref=f16e68]:
+          - generic [ref=f16e69]:
+            - img [ref=f16e71]
+            - generic [ref=f16e75]:
+              - strong [ref=f16e76]: Importação ECD
+              - generic [ref=f16e77]: Aguardando envio do arquivo.
+          - generic [ref=f16e78]:
+            - img [ref=f16e80]
+            - generic [ref=f16e82]:
+              - strong [ref=f16e83]: Camada declarada
+              - generic [ref=f16e84]: Aguardando execução no backend.
+      - generic [ref=f16e85]:
+        - generic [ref=f16e87]:
+          - paragraph [ref=f16e88]: Importações existentes
+          - heading "Análises disponíveis" [level=2] [ref=f16e89]
+        - table [ref=f16e92]:
+          - rowgroup [ref=f16e93]:
+            - row "Arquivo Período Status Análise Ações" [ref=f16e94]:
+              - columnheader "Arquivo" [ref=f16e95]
+              - columnheader "Período" [ref=f16e96]
+              - columnheader "Status" [ref=f16e97]
+              - columnheader "Análise" [ref=f16e98]
+              - columnheader "Ações" [ref=f16e99]
+          - rowgroup [ref=f16e100]:
+            - row "ECD 2024 INVENTCLOUD.txt ecd-23cd543e13f5b4c7 01/01/2024 a 31/12/2024 concluido_com_pendencias analysis-23cd543e13f5b4c7 Abrir Remover" [ref=f16e101]:
+              - cell "ECD 2024 INVENTCLOUD.txt ecd-23cd543e13f5b4c7" [ref=f16e102]:
+                - strong [ref=f16e103]: ECD 2024 INVENTCLOUD.txt
+                - generic [ref=f16e104]: ecd-23cd543e13f5b4c7
+              - cell "01/01/2024 a 31/12/2024" [ref=f16e105]
+              - cell "concluido_com_pendencias" [ref=f16e106]:
+                - generic [ref=f16e107]: concluido_com_pendencias
+              - cell "analysis-23cd543e13f5b4c7" [ref=f16e108]
+              - cell "Abrir Remover" [ref=f16e109]:
+                - generic [ref=f16e110]:
+                  - button "Abrir" [ref=f16e111] [cursor=pointer]:
+                    - img [ref=f16e112]
+                    - text: Abrir
+                  - button "Remover" [ref=f16e114] [cursor=pointer]:
+                    - img [ref=f16e115]
+                    - text: Remover
+            - row "ECD 2024 DATAPACK.txt ecd-bc7478b47f261603 01/01/2024 a 31/12/2024 concluido_com_pendencias analysis-bc7478b47f261603 Abrir Remover" [ref=f16e118]:
+              - cell "ECD 2024 DATAPACK.txt ecd-bc7478b47f261603" [ref=f16e119]:
+                - strong [ref=f16e120]: ECD 2024 DATAPACK.txt
+                - generic [ref=f16e121]: ecd-bc7478b47f261603
+              - cell "01/01/2024 a 31/12/2024" [ref=f16e122]
+              - cell "concluido_com_pendencias" [ref=f16e123]:
+                - generic [ref=f16e124]: concluido_com_pendencias
+              - cell "analysis-bc7478b47f261603" [ref=f16e125]
+              - cell "Abrir Remover" [ref=f16e126]:
+                - generic [ref=f16e127]:
+                  - button "Abrir" [ref=f16e128] [cursor=pointer]:
+                    - img [ref=f16e129]
+                    - text: Abrir
+                  - button "Remover" [ref=f16e131] [cursor=pointer]:
+                    - img [ref=f16e132]
+                    - text: Remover
+            - row "valid_declared.ecd ecd-4e09dd93b1e120bc 01/01/2024 a 31/12/2024 concluido_com_pendencias analysis-4e09dd93b1e120bc Abrir Remover" [ref=f16e135]:
+              - cell "valid_declared.ecd ecd-4e09dd93b1e120bc" [ref=f16e136]:
+                - strong [ref=f16e137]: valid_declared.ecd
+                - generic [ref=f16e138]: ecd-4e09dd93b1e120bc
+              - cell "01/01/2024 a 31/12/2024" [ref=f16e139]
+              - cell "concluido_com_pendencias" [ref=f16e140]:
+                - generic [ref=f16e141]: concluido_com_pendencias
+              - cell "analysis-4e09dd93b1e120bc" [ref=f16e142]
+              - cell "Abrir Remover" [ref=f16e143]:
+                - generic [ref=f16e144]:
+                  - button "Abrir" [ref=f16e145] [cursor=pointer]:
+                    - img [ref=f16e146]
+                    - text: Abrir
+                  - button "Remover" [ref=f16e148] [cursor=pointer]:
+                    - img [ref=f16e149]
+                    - text: Remover

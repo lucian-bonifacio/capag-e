@@ -1,0 +1,81 @@
+- generic [ref=e3]:
+  - complementary "Navegacao principal" [ref=e4]:
+    - generic [ref=e5]: CAPAG Analytics
+    - navigation [ref=e6]:
+      - link "Dashboard" [ref=e7] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=e8]
+        - generic [ref=e13]: Dashboard
+      - link "Camada Declarada" [ref=e14] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=e15]
+        - generic [ref=e18]: Camada Declarada
+      - link "Balanco Patrimonial" [ref=e19] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=e20]
+        - generic [ref=e24]: Balanco Patrimonial
+      - link "Auditoria" [ref=e25] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=e26]
+        - generic [ref=e28]: Auditoria
+      - link "Importar ECD" [ref=e29] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=e30]
+        - generic [ref=e34]: Importar ECD
+  - generic [ref=e35]:
+    - banner [ref=e95]:
+      - generic [ref=e96]:
+        - heading "Camada Declarada" [level=1] [ref=e97]
+        - paragraph [ref=e98]: Análise analysis-4e09dd93b1e120bc · Exercício 2024
+      - generic [ref=e99]: Leitura ECD
+    - main [ref=e100]:
+      - region "Resumo da camada declarada" [ref=e101]:
+        - article [ref=e102]:
+          - paragraph [ref=e103]: Contas
+          - strong [ref=e104]: "1"
+          - generic [ref=e105]: snapshot declarado
+        - article [ref=e106]:
+          - paragraph [ref=e107]: Versão
+          - strong [ref=e108]: metodologia-2024.1
+          - generic [ref=e109]: metodologia aplicada
+        - article [ref=e110]:
+          - paragraph [ref=e111]: Status
+          - strong [ref=e112]: "1"
+          - generic [ref=e113]: categorias retornadas
+      - generic [ref=e114]:
+        - generic [ref=e116]:
+          - paragraph [ref=e117]: Status Metodológico
+          - heading "Distribuição por conta" [level=2] [ref=e118]
+        - generic [ref=e120]:
+          - generic [ref=e121]: COD_CTA_REF_NAO_ENCONTRADO_NA_TABELA_OFICIAL
+          - generic [ref=e122]: "1"
+      - generic [ref=e123]:
+        - generic [ref=e125]:
+          - paragraph [ref=e126]: Contas Declaradas
+          - heading "Classificação recebida da API" [level=2] [ref=e127]
+        - table [ref=e129]:
+          - rowgroup [ref=e130]:
+            - row "Conta Referencial ECD Descrição oficial Metodologia Status Valor base Valor considerado Ação" [ref=e131]:
+              - columnheader "Conta" [ref=e132]
+              - columnheader "Referencial ECD" [ref=e133]
+              - columnheader "Descrição oficial" [ref=e134]
+              - columnheader "Metodologia" [ref=e135]
+              - columnheader "Status" [ref=e136]
+              - columnheader "Valor base" [ref=e137]
+              - columnheader "Valor considerado" [ref=e138]
+              - columnheader "Ação" [ref=e139]
+          - rowgroup [ref=e140]:
+            - row "1725 Emprestimo - Sicoob 2.01.01.07.01 sem descrição oficial sem regra sem tratamento COD_CTA_REF_NAO_ENCONTRADO_NA_TABELA_OFICIAL 100000.00 0.00 revisar_base_oficial" [ref=e141]:
+              - cell "1725 Emprestimo - Sicoob" [ref=e142]:
+                - strong [ref=e143]: "1725"
+                - generic [ref=e144]: Emprestimo - Sicoob
+              - cell "2.01.01.07.01" [ref=e145]
+              - cell "sem descrição oficial" [ref=e146]
+              - cell "sem regra sem tratamento" [ref=e147]:
+                - generic [ref=e148]: sem regra
+                - generic [ref=e149]: sem tratamento
+              - cell "COD_CTA_REF_NAO_ENCONTRADO_NA_TABELA_OFICIAL" [ref=e150]:
+                - generic [ref=e151]: COD_CTA_REF_NAO_ENCONTRADO_NA_TABELA_OFICIAL
+              - cell "100000.00" [ref=e152]
+              - cell "0.00" [ref=e153]
+              - cell "revisar_base_oficial" [ref=e154]

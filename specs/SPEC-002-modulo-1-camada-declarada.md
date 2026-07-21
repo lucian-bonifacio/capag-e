@@ -219,6 +219,10 @@ Cada conta declarada deve produzir objeto com:
 
 - `account_code`;
 - `account_name`;
+- `account_type`, originado do `IND_CTA` do `I050`;
+- `account_level`, originado do `NIVEL` do `I050`;
+- `parent_account_code`, originado do `COD_CTA_SUP` do `I050`;
+- `account_order`, originado da ordem/linha do `I050`;
 - `declared_reference_code`;
 - `official_description`;
 - `official_reference_status`;
@@ -307,6 +311,7 @@ O frontend nao pode:
 - recalcular PLR/FCO/CAPAG-E;
 - alterar status retornado pelo backend;
 - tratar prefixo amplo como fallback local.
+- inferir hierarquia de contas por prefixo quando o payload trouxer `account_level`, `parent_account_code` e `account_order` do `I050`.
 
 ### 8.9 Excel
 

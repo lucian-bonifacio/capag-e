@@ -1,6 +1,8 @@
 from decimal import Decimal
+from io import BytesIO
 
 from fastapi.testclient import TestClient
+from openpyxl import load_workbook
 
 from app.api.declared import get_declared_snapshot_reader
 from app.application.declared_service import (
@@ -40,6 +42,10 @@ class FakeDeclaredSnapshotReader:
             DeclaredAccountSnapshotView(
                 account_code="1725",
                 account_name="EMPRESTIMO - SICOOB CREDICITRUS - C",
+                account_type="A",
+                account_level=5,
+                parent_account_code="2.01.01.07",
+                account_order=20,
                 declared_reference_code="2.01.01.07.01",
                 official_description="Emprestimos e financiamentos",
                 official_reference_status="ATIVA",
@@ -57,6 +63,10 @@ class FakeDeclaredSnapshotReader:
             DeclaredAccountSnapshotView(
                 account_code="9999",
                 account_name="Conta sem metodologia exata",
+                account_type="A",
+                account_level=3,
+                parent_account_code="9.99",
+                account_order=30,
                 declared_reference_code="9.99.99",
                 official_description="Conta oficial de teste",
                 official_reference_status="ATIVA",
@@ -87,6 +97,10 @@ def test_declared_accounts_endpoint_serializes_decimal_values_as_strings() -> No
     assert payload["year"] == 2024
     assert payload["accounts"][0]["base_value"] == "100000.00"
     assert payload["accounts"][0]["considered_value"] == "0.00"
+    assert payload["accounts"][0]["account_type"] == "A"
+    assert payload["accounts"][0]["account_level"] == 5
+    assert payload["accounts"][0]["parent_account_code"] == "2.01.01.07"
+    assert payload["accounts"][0]["account_order"] == 20
     assert payload["accounts"][0]["final_status"] == "MAPEADO"
     assert payload["accounts"][1]["final_status"] == "NAO_MAPEADO_METODOLOGICAMENTE"
     assert payload["accounts"][1]["recommended_action"] == "revisar_metodologia"
@@ -126,13 +140,48 @@ def test_declared_endpoint_maps_missing_snapshot_to_explicit_error() -> None:
     }
 
 
+def test_declared_excel_endpoint_downloads_workbook_from_snapshots() -> None:
+    app.dependency_overrides[get_declared_snapshot_reader] = FakeDeclaredSnapshotReader
+    client = TestClient(app)
+
+    response = client.get("/api/v1/analyses/analysis-1/exercises/2024/declared/export.xlsx")
+
+    app.dependency_overrides.clear()
+    assert response.status_code == 200
+    assert response.headers["content-type"] == (
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+    assert (
+        response.headers["content-disposition"]
+        == 'attachment; filename="capag-declarada-analysis-1-2024.xlsx"'
+    )
+
+    workbook = load_workbook(BytesIO(response.content))
+    assert workbook["resumo_executivo"]["B1"].value == "analysis-1"
+    assert workbook["campos_resultado"]["A2"].value == "1725"
+    assert workbook["campos_resultado"]["I2"].value == "100000.00"
+    assert workbook["campos_resultado"]["J2"].value == "0.00"
+    assert workbook["log_auditoria"]["B2"].value == "snapshot_declarado_persistido"
+    assert _has_no_formulas(workbook)
+
+
 def test_declared_openapi_contains_declared_contracts() -> None:
     paths = app.openapi()["paths"]
 
     assert "/api/v1/analyses/{analysis_id}/exercises/{year}/declared" in paths
     assert "/api/v1/analyses/{analysis_id}/exercises/{year}/declared/accounts" in paths
+    assert "/api/v1/analyses/{analysis_id}/exercises/{year}/declared/export.xlsx" in paths
     accounts_operation = paths[
         "/api/v1/analyses/{analysis_id}/exercises/{year}/declared/accounts"
     ]["get"]
     assert accounts_operation["responses"]["200"]["description"] == "Successful Response"
 
+
+def _has_no_formulas(workbook) -> bool:
+    for sheet in workbook.worksheets:
+        for row in sheet.iter_rows():
+            for cell in row:
+                if isinstance(cell.value, str) and cell.value.startswith("="):
+                    return False
+
+    return True

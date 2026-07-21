@@ -114,6 +114,10 @@ def _account(
     return DeclaredAccountSnapshotView(
         account_code=account_code,
         account_name="Conta de teste",
+        account_type="A",
+        account_level=3,
+        parent_account_code="1",
+        account_order=10,
         declared_reference_code=declared_reference_code,
         official_description="Descricao oficial" if declared_reference_code else None,
         official_reference_status="ATIVA" if declared_reference_code else None,

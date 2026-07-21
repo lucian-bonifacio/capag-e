@@ -1,0 +1,62 @@
+- generic [ref=f2e3]:
+  - complementary "Navegacao principal" [ref=f2e4]:
+    - generic [ref=f2e5]: CAPAG Analytics
+    - navigation [ref=f2e6]:
+      - link "Dashboard" [ref=f2e7] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f2e8]
+        - generic [ref=f2e13]: Dashboard
+      - link "Camada Declarada" [ref=f2e14] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f2e15]
+        - generic [ref=f2e18]: Camada Declarada
+      - link "Balanco Patrimonial" [ref=f2e19] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f2e20]
+        - generic [ref=f2e24]: Balanco Patrimonial
+      - link "Auditoria" [ref=f2e25] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f2e26]
+        - generic [ref=f2e28]: Auditoria
+      - link "Importar ECD" [ref=f2e29] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f2e30]
+        - generic [ref=f2e34]: Importar ECD
+  - generic [ref=f2e35]:
+    - banner [ref=f2e36]:
+      - generic [ref=f2e37]:
+        - heading "Importar ECD" [level=1] [ref=f2e38]
+        - paragraph [ref=f2e39]: Entrada oficial para análise declarada
+      - generic [ref=f2e40]: Aguardando
+    - main [ref=f2e41]:
+      - generic [ref=f2e42]:
+        - generic [ref=f2e44]:
+          - paragraph [ref=f2e45]: Arquivo ECD
+          - heading "Selecionar e importar" [level=2] [ref=f2e46]
+        - generic [ref=f2e47]:
+          - generic [ref=f2e48] [cursor=pointer]:
+            - img [ref=f2e49]
+            - generic [ref=f2e53]: ECD 2024 INVENTCLOUD.txt
+            - button "ECD 2024 INVENTCLOUD.txt" [active] [ref=f2e85]
+          - generic [ref=f2e55]:
+            - button "Importar ECD" [ref=f2e56] [cursor=pointer]:
+              - img [ref=f2e57]
+              - text: Importar ECD
+            - button "Abrir análise" [disabled] [ref=f2e60]:
+              - img [ref=f2e61]
+              - text: Abrir análise
+      - generic [ref=f2e63]:
+        - generic [ref=f2e65]:
+          - paragraph [ref=f2e66]: Status
+          - heading "Processamento da análise" [level=2] [ref=f2e67]
+        - generic [ref=f2e68]:
+          - generic [ref=f2e69]:
+            - img [ref=f2e71]
+            - generic [ref=f2e75]:
+              - strong [ref=f2e76]: Importação ECD
+              - generic [ref=f2e77]: Aguardando envio do arquivo.
+          - generic [ref=f2e78]:
+            - img [ref=f2e80]
+            - generic [ref=f2e82]:
+              - strong [ref=f2e83]: Camada declarada
+              - generic [ref=f2e84]: Aguardando execução no backend.

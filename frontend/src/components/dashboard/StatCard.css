@@ -1,0 +1,69 @@
+.stat-card {
+  background-color: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.stat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-card-icon {
+  color: var(--text-muted);
+}
+
+.stat-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.stat-card-value {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  line-height: var(--leading-tight);
+}
+
+.stat-card-hint {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+/* Variantes - apenas influenciam os icones ou texto no momento, 
+   podendo colorir o valor conforme a imagem de referencia */
+
+.stat-card-success .stat-card-value {
+  color: var(--success);
+}
+.stat-card-success .stat-card-icon {
+  color: var(--success);
+}
+
+.stat-card-warning .stat-card-value {
+  color: var(--warning);
+}
+.stat-card-warning .stat-card-icon {
+  color: var(--warning);
+}
+
+.stat-card-danger .stat-card-value {
+  color: var(--danger);
+}
+.stat-card-danger .stat-card-icon {
+  color: var(--danger);
+}
+
+.stat-card-primary .stat-card-value {
+  color: var(--primary);
+}
+.stat-card-primary .stat-card-icon {
+  color: var(--primary);
+}

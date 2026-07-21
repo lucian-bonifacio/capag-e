@@ -1,0 +1,32 @@
+- generic [ref=f30e3]:
+  - complementary "Navegacao principal" [ref=f30e4]:
+    - generic [ref=f30e5]: CAPAG Analytics
+    - navigation [ref=f30e6]:
+      - link "Dashboard" [ref=f30e7] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f30e8]
+        - generic [ref=f30e13]: Dashboard
+      - link "Camada Declarada" [ref=f30e14] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f30e15]
+        - generic [ref=f30e18]: Camada Declarada
+      - link "Balanco Patrimonial" [ref=f30e19] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f30e20]
+        - generic [ref=f30e24]: Balanco Patrimonial
+      - link "Auditoria" [ref=f30e25] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f30e26]
+        - generic [ref=f30e28]: Auditoria
+      - link "Importar ECD" [ref=f30e29] [cursor=pointer]:
+        - /url: /importar-ecd
+        - img [ref=f30e30]
+        - generic [ref=f30e34]: Importar ECD
+  - generic [ref=f30e35]:
+    - banner [ref=f30e36]:
+      - generic [ref=f30e37]:
+        - heading "Camada Declarada" [level=1] [ref=f30e38]
+        - paragraph [ref=f30e39]: Análise analysis-bc7478b47f261603 · Exercício 2024
+      - generic [ref=f30e40]: Leitura ECD
+    - main [ref=f30e41]:
+      - region "Carregando camada declarada" [ref=f30e42]
