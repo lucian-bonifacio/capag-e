@@ -130,9 +130,18 @@ def test_declared_layer_end_to_end_contract_for_governed_ecd_fixtures(
         accounts = accounts_response.json()["accounts"]
         assert accounts[0]["final_status"] == expected_status
         assert "account_type" in accounts[0]
+        assert "account_nature" in accounts[0]
         assert "account_level" in accounts[0]
         assert "parent_account_code" in accounts[0]
         assert "account_order" in accounts[0]
+
+        balance_accounts_response = client.get(
+            f"/api/v1/analyses/{imported['analysis_id']}/exercises/{imported['year']}/declared/balance/accounts"
+        )
+        assert balance_accounts_response.status_code == 200
+        balance_accounts = balance_accounts_response.json()["accounts"]
+        assert balance_accounts[0]["account_type"] is not None
+        assert "account_nature" in balance_accounts[0]
 
         excel_response = client.get(
             f"/api/v1/analyses/{imported['analysis_id']}/exercises/{imported['year']}/declared/export.xlsx"

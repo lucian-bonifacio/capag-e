@@ -3,7 +3,11 @@ import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-quer
 import { useState } from "react";
 import { BrowserRouter, Link, Navigate, Route, Routes, useLocation, useParams } from "react-router-dom";
 
-import { fetchDeclaredAccounts, fetchDeclaredSummary } from "./api/declared";
+import {
+  fetchDeclaredAccounts,
+  fetchDeclaredBalanceAccounts,
+  fetchDeclaredSummary,
+} from "./api/declared";
 import { BalanceDashboardPage } from "./routes/BalanceDashboardPage";
 import { DeclaredLayerPage } from "./routes/DeclaredLayerPage";
 import { ImportEcdPage } from "./routes/ImportEcdPage";
@@ -37,23 +41,24 @@ function DeclaredLayerRoute() {
     enabled: analysisId.length > 0 && year.length > 0,
   });
 
-  const accountsQuery = useQuery({
-    queryKey: ["declared-accounts", analysisId, year],
-    queryFn: () => fetchDeclaredAccounts(analysisId, year),
+  const balanceAccountsQuery = useQuery({
+    queryKey: ["declared-balance-accounts", analysisId, year],
+    queryFn: () => fetchDeclaredBalanceAccounts(analysisId, year),
     enabled: analysisId.length > 0 && year.length > 0,
   });
 
   const retry = () => {
     void summaryQuery.refetch();
-    void accountsQuery.refetch();
+    void balanceAccountsQuery.refetch();
   };
 
   return (
     <BalanceDashboardPage
-      accounts={accountsQuery.data?.accounts}
+      accounts={balanceAccountsQuery.data?.accounts}
       analysisId={analysisId}
-      isError={summaryQuery.isError || accountsQuery.isError}
-      isLoading={summaryQuery.isLoading || accountsQuery.isLoading}
+      consistencyWarnings={balanceAccountsQuery.data?.consistency_warnings}
+      isError={summaryQuery.isError || balanceAccountsQuery.isError}
+      isLoading={summaryQuery.isLoading || balanceAccountsQuery.isLoading}
       onRetry={retry}
       summary={summaryQuery.data}
       year={year}

@@ -25,6 +25,7 @@ const accountsResponse: DeclaredAccountsResponse = {
       account_code: "1",
       account_name: "Ativo",
       account_type: "S",
+      account_nature: "01",
       account_level: 1,
       parent_account_code: null,
       account_order: 1,
@@ -50,6 +51,7 @@ const accountsResponse: DeclaredAccountsResponse = {
       account_code: "1.1",
       account_name: "Ativo Circulante",
       account_type: "S",
+      account_nature: "01",
       account_level: 2,
       parent_account_code: "1",
       account_order: 2,
@@ -75,6 +77,7 @@ const accountsResponse: DeclaredAccountsResponse = {
       account_code: "1725",
       account_name: "Emprestimo - Sicoob",
       account_type: "A",
+      account_nature: "01",
       account_level: 3,
       parent_account_code: "1.1",
       account_order: 3,
@@ -100,6 +103,7 @@ const accountsResponse: DeclaredAccountsResponse = {
       account_code: "3001",
       account_name: "Conta sem regra",
       account_type: "A",
+      account_nature: "01",
       account_level: 3,
       parent_account_code: "1.1",
       account_order: 4,
@@ -125,6 +129,7 @@ const accountsResponse: DeclaredAccountsResponse = {
       account_code: "4001",
       account_name: "Codigo fora da base",
       account_type: "A",
+      account_nature: "01",
       account_level: 3,
       parent_account_code: "1.1",
       account_order: 5,
@@ -195,7 +200,7 @@ describe("declared layer route", () => {
       undefined,
     );
     expect(fetchMock).toHaveBeenCalledWith(
-      "/api/v1/analyses/7/exercises/2024/declared/accounts",
+      "/api/v1/analyses/7/exercises/2024/declared/balance/accounts",
       undefined,
     );
   });
@@ -267,6 +272,68 @@ describe("declared layer route", () => {
     expect(screen.getByText("Caixa e Equivalentes")).toBeInTheDocument();
     expect(screen.getAllByText("R$ 100,00").length).toBeGreaterThan(0);
     expect(screen.queryByText("Banco Conta Movimento")).not.toBeInTheDocument();
+  });
+
+  it("keeps result accounts out of the balance sheet and warns when it does not close", async () => {
+    mockSuccessfulApi({
+      ...accountsResponse,
+      accounts: [
+        {
+          ...accountsResponse.accounts[0],
+          account_code: "1",
+          account_name: "Ativo",
+          account_nature: "01",
+          base_value: "100.00",
+          considered_value: "100.00",
+        },
+        {
+          ...accountsResponse.accounts[0],
+          account_code: "2",
+          account_name: "Passivo",
+          account_nature: "02",
+          base_value: "90.00",
+          considered_value: "90.00",
+        },
+        {
+          ...accountsResponse.accounts[0],
+          account_code: "3",
+          account_name: "Resultado do exercicio",
+          account_nature: "04",
+          base_value: "999.00",
+          considered_value: "999.00",
+        },
+      ],
+    });
+
+    render(<App />);
+
+    expect((await screen.findAllByText("Ativo")).length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Passivo").length).toBeGreaterThan(0);
+    expect(screen.queryByText("Resultado do Exercicio")).not.toBeInTheDocument();
+    expect(screen.getByText("Balanço não fecha.")).toBeInTheDocument();
+    expect(screen.getByText(/R\$ 10,00/)).toBeInTheDocument();
+  });
+
+  it("shows J100 and I050 consistency warnings returned by the balance API", async () => {
+    mockSuccessfulApi({
+      ...accountsResponse,
+      consistency_warnings: [
+        {
+          warning_code: "J100_SEM_I050",
+          account_code: "9.9",
+          account_name: "Conta J100 sem I050",
+          message: "Linha do J100 sem conta correspondente no I050.",
+        },
+      ],
+    });
+
+    render(<App />);
+
+    expect(await screen.findByText("Consistência J100 x I050")).toBeInTheDocument();
+    expect(screen.getByText("1 apontamento")).toBeInTheDocument();
+    expect(screen.getByText("9.9")).toBeInTheDocument();
+    expect(screen.getByText("Conta J100 sem I050")).toBeInTheDocument();
+    expect(screen.getByText("Linha do J100 sem conta correspondente no I050.")).toBeInTheDocument();
   });
 
   it("renders the empty state when the API returns no accounts", async () => {

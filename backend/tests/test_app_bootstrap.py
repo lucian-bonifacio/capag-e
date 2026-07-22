@@ -17,5 +17,6 @@ def test_openapi_contains_current_api_contracts() -> None:
         "/api/v1/analyses/{analysis_id}/exercises/{year}/declared",
         "/api/v1/analyses/{analysis_id}/exercises/{year}/declared/run",
         "/api/v1/analyses/{analysis_id}/exercises/{year}/declared/accounts",
+        "/api/v1/analyses/{analysis_id}/exercises/{year}/declared/balance/accounts",
         "/api/v1/analyses/{analysis_id}/exercises/{year}/declared/export.xlsx",
     }

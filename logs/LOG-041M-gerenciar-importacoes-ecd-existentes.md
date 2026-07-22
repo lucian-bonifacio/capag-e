@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-041M-gerenciar-importacoes-ecd-existentes.md`
 - SPEC: `specs/SPEC-002-modulo-1-camada-declarada.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -65,7 +65,7 @@
 
 ## Homologação
 
-- Status: aguardando_homologacao
-- Data: 2026-07-07
-- Decisão do usuário:
+- Status: aprovada
+- Data: 2026-07-21
+- Decisao do usuario: aprovacao em grupo das TASKs executadas e homologadas nesta data.
 - Observação: Aguardando homologação do usuário.

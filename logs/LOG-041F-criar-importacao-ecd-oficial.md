@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-041F-criar-importacao-ecd-oficial.md`
 - SPEC: `specs/SPEC-002-modulo-1-camada-declarada.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -59,7 +59,7 @@
 
 ## Homologacao
 
-- Status: aguardando_homologacao
-- Data: 2026-07-07
-- Decisao do usuario: ajuste e revalidacao solicitados durante homologacao assistida.
+- Status: aprovada
+- Data: 2026-07-21
+- Decisao do usuario: aprovacao em grupo das TASKs executadas e homologadas nesta data.
 - Observacao: Importacao real aprovada para os dois arquivos de referencia autorizados; permanece aguardando homologacao do grupo.

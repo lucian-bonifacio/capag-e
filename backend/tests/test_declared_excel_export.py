@@ -115,6 +115,7 @@ def _account(
         account_code=account_code,
         account_name="Conta de teste",
         account_type="A",
+        account_nature="01",
         account_level=3,
         parent_account_code="1",
         account_order=10,

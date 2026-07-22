@@ -165,6 +165,46 @@ def list_declared_layer_accounts(
 
 
 @router.get(
+    "/balance/accounts",
+    response_model=DeclaredAccountsResponse,
+    responses={
+        404: {"model": ApiErrorResponse},
+        503: {"model": ApiErrorResponse},
+    },
+)
+def list_declared_balance_accounts(
+    analysis_id: str,
+    year: int,
+    reader: DeclaredSnapshotReader = Depends(get_declared_snapshot_reader),
+) -> DeclaredAccountsResponse:
+    try:
+        accounts = reader.list_balance_accounts(analysis_id=analysis_id, year=year)
+        consistency_warnings = reader.list_balance_consistency_warnings(
+            analysis_id=analysis_id,
+            year=year,
+        )
+    except DeclaredSnapshotsNotFound as exc:
+        raise _http_error(
+            status.HTTP_404_NOT_FOUND,
+            "DECLARED_SNAPSHOT_NOT_FOUND",
+            str(exc),
+        ) from exc
+    except DeclaredSnapshotsUnavailable as exc:
+        raise _http_error(
+            status.HTTP_503_SERVICE_UNAVAILABLE,
+            "DECLARED_SNAPSHOT_READER_UNAVAILABLE",
+            str(exc),
+        ) from exc
+
+    return DeclaredAccountsResponse(
+        analysis_id=analysis_id,
+        year=year,
+        accounts=accounts,
+        consistency_warnings=consistency_warnings,
+    )
+
+
+@router.get(
     "/export.xlsx",
     responses={
         200: {

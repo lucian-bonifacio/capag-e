@@ -7,6 +7,7 @@ from openpyxl import load_workbook
 from app.api.declared import get_declared_snapshot_reader
 from app.application.declared_service import (
     DeclaredAccountSnapshotView,
+    DeclaredBalanceConsistencyWarning,
     DeclaredLayerSummary,
     DeclaredSnapshotsNotFound,
 )
@@ -43,6 +44,7 @@ class FakeDeclaredSnapshotReader:
                 account_code="1725",
                 account_name="EMPRESTIMO - SICOOB CREDICITRUS - C",
                 account_type="A",
+                account_nature="02",
                 account_level=5,
                 parent_account_code="2.01.01.07",
                 account_order=20,
@@ -64,6 +66,7 @@ class FakeDeclaredSnapshotReader:
                 account_code="9999",
                 account_name="Conta sem metodologia exata",
                 account_type="A",
+                account_nature="01",
                 account_level=3,
                 parent_account_code="9.99",
                 account_order=30,
@@ -83,6 +86,29 @@ class FakeDeclaredSnapshotReader:
             ),
         ]
 
+    def list_balance_accounts(
+        self,
+        *,
+        analysis_id: str,
+        year: int,
+    ) -> list[DeclaredAccountSnapshotView]:
+        return self.list_accounts(analysis_id=analysis_id, year=year)
+
+    def list_balance_consistency_warnings(
+        self,
+        *,
+        analysis_id: str,
+        year: int,
+    ) -> list[DeclaredBalanceConsistencyWarning]:
+        return [
+            DeclaredBalanceConsistencyWarning(
+                warning_code="J100_SEM_I050",
+                account_code="9.9",
+                account_name="Conta J100 sem I050",
+                message="Linha do J100 sem conta correspondente no I050.",
+            )
+        ]
+
 
 def test_declared_accounts_endpoint_serializes_decimal_values_as_strings() -> None:
     app.dependency_overrides[get_declared_snapshot_reader] = FakeDeclaredSnapshotReader
@@ -98,12 +124,38 @@ def test_declared_accounts_endpoint_serializes_decimal_values_as_strings() -> No
     assert payload["accounts"][0]["base_value"] == "100000.00"
     assert payload["accounts"][0]["considered_value"] == "0.00"
     assert payload["accounts"][0]["account_type"] == "A"
+    assert payload["accounts"][0]["account_nature"] == "02"
     assert payload["accounts"][0]["account_level"] == 5
     assert payload["accounts"][0]["parent_account_code"] == "2.01.01.07"
     assert payload["accounts"][0]["account_order"] == 20
     assert payload["accounts"][0]["final_status"] == "MAPEADO"
     assert payload["accounts"][1]["final_status"] == "NAO_MAPEADO_METODOLOGICAMENTE"
     assert payload["accounts"][1]["recommended_action"] == "revisar_metodologia"
+
+
+def test_declared_balance_accounts_endpoint_uses_declared_account_contract() -> None:
+    app.dependency_overrides[get_declared_snapshot_reader] = FakeDeclaredSnapshotReader
+    client = TestClient(app)
+
+    response = client.get(
+        "/api/v1/analyses/analysis-1/exercises/2024/declared/balance/accounts"
+    )
+
+    app.dependency_overrides.clear()
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["analysis_id"] == "analysis-1"
+    assert payload["year"] == 2024
+    assert payload["accounts"][0]["account_nature"] == "02"
+    assert payload["accounts"][0]["base_value"] == "100000.00"
+    assert payload["consistency_warnings"] == [
+        {
+            "warning_code": "J100_SEM_I050",
+            "account_code": "9.9",
+            "account_name": "Conta J100 sem I050",
+            "message": "Linha do J100 sem conta correspondente no I050.",
+        }
+    ]
 
 
 def test_declared_summary_endpoint_returns_status_counts() -> None:
@@ -170,6 +222,7 @@ def test_declared_openapi_contains_declared_contracts() -> None:
 
     assert "/api/v1/analyses/{analysis_id}/exercises/{year}/declared" in paths
     assert "/api/v1/analyses/{analysis_id}/exercises/{year}/declared/accounts" in paths
+    assert "/api/v1/analyses/{analysis_id}/exercises/{year}/declared/balance/accounts" in paths
     assert "/api/v1/analyses/{analysis_id}/exercises/{year}/declared/export.xlsx" in paths
     accounts_operation = paths[
         "/api/v1/analyses/{analysis_id}/exercises/{year}/declared/accounts"

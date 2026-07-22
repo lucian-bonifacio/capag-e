@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-041G-executar-camada-declarada-ecd-importada.md`
 - SPEC: `specs/SPEC-002-modulo-1-camada-declarada.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -45,7 +45,7 @@
 
 ## Homologacao
 
-- Status: aguardando_homologacao
-- Data: 2026-07-06
-- Decisao do usuario:
+- Status: aprovada
+- Data: 2026-07-21
+- Decisao do usuario: aprovacao em grupo das TASKs executadas e homologadas nesta data.
 - Observacao: Executada dentro do grupo autorizado `TASK-041A` ate `TASK-041J`.

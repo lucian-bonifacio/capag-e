@@ -1,4 +1,5 @@
 from pathlib import Path
+from decimal import Decimal
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
@@ -6,7 +7,7 @@ from sqlalchemy.orm import Session
 from app.application import EcdImportIdentifiers, persist_parsed_ecd, run_declared_layer
 from app.application.declared_service import SqlAlchemyDeclaredSnapshotReader
 from app.engine.methodology_matcher import MethodologyRule, OfficialReferenceAccount, RuleStatus
-from app.io import parse_ecd_file
+from app.io import parse_ecd_file, parse_ecd_text
 from app.repositories import Base
 
 
@@ -37,10 +38,77 @@ def test_run_declared_layer_creates_snapshots_from_imported_ecd() -> None:
     assert result.status_counts == {"MAPEADO": 1}
     assert accounts[0].account_code == "1725"
     assert accounts[0].account_type == "A"
+    assert accounts[0].account_nature == "01"
     assert accounts[0].account_level == 4
     assert accounts[0].parent_account_code == "1700"
     assert accounts[0].account_order is not None
     assert accounts[0].final_status == "MAPEADO"
+
+
+def test_balance_accounts_use_j100_values_and_i050_hierarchy() -> None:
+    engine = create_engine("sqlite:///:memory:")
+    Base.metadata.create_all(engine)
+
+    with Session(engine) as session:
+        persist_parsed_ecd(
+            session,
+            parsed_ecd=parse_ecd_text(
+                "\n".join(
+                    [
+                        "|0000|ECD_2024|01012024|31122024|EMPRESA SINTETICA|00000000000100|",
+                        "|I050|01012024|01|S|1|1||ATIVO|",
+                        "|I155|1|0,00|D|0,00|999,00|999,00|D|",
+                        "|I050|01012024|01|S|2|1.1|1|ATIVO CIRCULANTE|",
+                        "|I155|1.1|0,00|D|0,00|999,00|999,00|D|",
+                        "|I050|01012024|01|S|2|1.2|1|ATIVO NAO CIRCULANTE|",
+                        "|I155|1.2|0,00|D|0,00|10,00|10,00|D|",
+                        "|I050|01012024|02|S|1|2||PASSIVO|",
+                        "|I155|2|0,00|C|0,00|90,00|90,00|C|",
+                        "|J100|1|ATIVO|999,00|D|",
+                        "|J100|2|PASSIVO|999,00|C|",
+                        "|J100|1|ATIVO|100,00|D|",
+                        "|J100|1.1|ATIVO CIRCULANTE|100,00|D|",
+                        "|J100|2|PASSIVO|100,00|C|",
+                        "|J100|9.9|CONTA J100 SEM I050|1,00|D|",
+                    ]
+                )
+            ),
+            identifiers=_identifiers(analysis_id="analysis-j100", fixture_name="j100.ecd"),
+        )
+        run_declared_layer(
+            session,
+            analysis_id="analysis-j100",
+            year=2024,
+            official_references=[],
+            methodology_rules=[],
+        )
+        reader = SqlAlchemyDeclaredSnapshotReader(session)
+        declared_accounts = reader.list_accounts(analysis_id="analysis-j100", year=2024)
+        balance_accounts = reader.list_balance_accounts(analysis_id="analysis-j100", year=2024)
+        consistency_warnings = reader.list_balance_consistency_warnings(
+            analysis_id="analysis-j100",
+            year=2024,
+        )
+
+    declared_by_code = {account.account_code: account for account in declared_accounts}
+    balance_by_code = {account.account_code: account for account in balance_accounts}
+
+    assert declared_by_code["1.1"].base_value == Decimal("999.00")
+    assert len(balance_accounts) == 4
+    assert balance_by_code["1.1"].base_value == Decimal("100.00")
+    assert balance_by_code["1.1"].account_nature == "01"
+    assert balance_by_code["1.1"].account_type == "S"
+    assert balance_by_code["1.1"].account_level == 2
+    assert balance_by_code["1.1"].parent_account_code == "1"
+    assert balance_by_code["2"].base_value == Decimal("100.00")
+    assert balance_by_code["2"].account_nature == "02"
+    assert {
+        (warning.warning_code, warning.account_code)
+        for warning in consistency_warnings
+    } == {
+        ("I050_PATRIMONIAL_SEM_J100", "1.2"),
+        ("J100_SEM_I050", "9.9"),
+    }
 
 
 def test_run_declared_layer_maps_missing_i051_to_specific_status() -> None:

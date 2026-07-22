@@ -21,6 +21,7 @@ const declaredAccounts = {
       account_code: "1",
       account_name: "Ativo",
       account_type: "S",
+      account_nature: "01",
       account_level: 1,
       parent_account_code: null,
       account_order: 1,
@@ -46,6 +47,7 @@ const declaredAccounts = {
       account_code: "1.1",
       account_name: "Ativo Circulante",
       account_type: "S",
+      account_nature: "01",
       account_level: 2,
       parent_account_code: "1",
       account_order: 2,
@@ -71,6 +73,7 @@ const declaredAccounts = {
       account_code: "1725",
       account_name: "Emprestimo - Sicoob",
       account_type: "A",
+      account_nature: "01",
       account_level: 3,
       parent_account_code: "1.1",
       account_order: 3,
@@ -96,6 +99,7 @@ const declaredAccounts = {
       account_code: "3001",
       account_name: "Conta sem regra",
       account_type: "A",
+      account_nature: "01",
       account_level: 3,
       parent_account_code: "1.1",
       account_order: 4,
@@ -121,6 +125,7 @@ const declaredAccounts = {
       account_code: "4001",
       account_name: "Codigo fora da base",
       account_type: "A",
+      account_nature: "01",
       account_level: 3,
       parent_account_code: "1.1",
       account_order: 5,
@@ -155,7 +160,7 @@ test("exibe loading e sucesso da rota declarada sem alterar status da API", asyn
     await route.fulfill({ json: declaredSummary });
   });
 
-  await page.route("**/api/v1/analyses/7/exercises/2024/declared/accounts", async (route) => {
+  await page.route("**/api/v1/analyses/7/exercises/2024/declared/balance/accounts", async (route) => {
     await accountsReady;
     await route.fulfill({ json: declaredAccounts });
   });
@@ -180,7 +185,7 @@ test("exibe erro quando a API declarada falha", async ({ page }) => {
     await route.fulfill({ status: 503, json: { detail: "indisponivel" } });
   });
 
-  await page.route("**/api/v1/analyses/7/exercises/2024/declared/accounts", async (route) => {
+  await page.route("**/api/v1/analyses/7/exercises/2024/declared/balance/accounts", async (route) => {
     await route.fulfill({ json: declaredAccounts });
   });
 
@@ -197,7 +202,7 @@ test("exibe estado vazio quando a API nao retorna contas", async ({ page }) => {
     await route.fulfill({ json: { ...declaredSummary, total_accounts: 0, status_counts: {} } });
   });
 
-  await page.route("**/api/v1/analyses/7/exercises/2024/declared/accounts", async (route) => {
+  await page.route("**/api/v1/analyses/7/exercises/2024/declared/balance/accounts", async (route) => {
     await route.fulfill({ json: { ...declaredAccounts, accounts: [] } });
   });
 
@@ -214,7 +219,7 @@ test("usa a hierarquia I050 sem repetir grupo sintetico como microgrupo", async 
     await route.fulfill({ json: declaredSummary });
   });
 
-  await page.route("**/api/v1/analyses/7/exercises/2024/declared/accounts", async (route) => {
+  await page.route("**/api/v1/analyses/7/exercises/2024/declared/balance/accounts", async (route) => {
     await route.fulfill({
       json: {
         ...declaredAccounts,
@@ -272,6 +277,80 @@ test("usa a hierarquia I050 sem repetir grupo sintetico como microgrupo", async 
   await expect(page.getByText("Banco Conta Movimento")).toHaveCount(0);
 });
 
+test("mantem contas de resultado fora do balanco e alerta quando nao fecha", async ({ page }) => {
+  await page.route("**/api/v1/analyses/7/exercises/2024/declared", async (route) => {
+    await route.fulfill({ json: declaredSummary });
+  });
+
+  await page.route("**/api/v1/analyses/7/exercises/2024/declared/balance/accounts", async (route) => {
+    await route.fulfill({
+      json: {
+        ...declaredAccounts,
+        accounts: [
+          {
+            ...declaredAccounts.accounts[0],
+            account_code: "1",
+            account_name: "Ativo",
+            account_nature: "01",
+            base_value: "100.00",
+            considered_value: "100.00",
+          },
+          {
+            ...declaredAccounts.accounts[0],
+            account_code: "2",
+            account_name: "Passivo",
+            account_nature: "02",
+            base_value: "90.00",
+            considered_value: "90.00",
+          },
+          {
+            ...declaredAccounts.accounts[0],
+            account_code: "3",
+            account_name: "Resultado do exercicio",
+            account_nature: "04",
+            base_value: "999.00",
+            considered_value: "999.00",
+          },
+        ],
+      },
+    });
+  });
+
+  await page.goto("/analises/7/exercicios/2024/declarada");
+
+  await expect(page.getByText("Resultado do Exercicio")).toHaveCount(0);
+  await expect(page.getByText("Balanço não fecha.")).toBeVisible();
+  await expect(page.getByText(/R\$ 10,00/)).toBeVisible();
+});
+
+test("exibe apontamentos de consistencia entre J100 e I050", async ({ page }) => {
+  await page.route("**/api/v1/analyses/7/exercises/2024/declared", async (route) => {
+    await route.fulfill({ json: declaredSummary });
+  });
+
+  await page.route("**/api/v1/analyses/7/exercises/2024/declared/balance/accounts", async (route) => {
+    await route.fulfill({
+      json: {
+        ...declaredAccounts,
+        consistency_warnings: [
+          {
+            warning_code: "J100_SEM_I050",
+            account_code: "9.9",
+            account_name: "Conta J100 sem I050",
+            message: "Linha do J100 sem conta correspondente no I050.",
+          },
+        ],
+      },
+    });
+  });
+
+  await page.goto("/analises/7/exercicios/2024/declarada");
+
+  await expect(page.getByText("Consistência J100 x I050")).toBeVisible();
+  await expect(page.getByText("1 apontamento")).toBeVisible();
+  await expect(page.getByText("Conta J100 sem I050")).toBeVisible();
+});
+
 test("importa ECD, executa camada declarada e navega para analise real", async ({ page }) => {
   await page.route("**/api/v1/ecd/imports", async (route) => {
     await route.fulfill({ json: { imports: [] } });
@@ -306,7 +385,7 @@ test("importa ECD, executa camada declarada e navega para analise real", async (
     await route.fulfill({ json: { ...declaredSummary, analysis_id: "analysis-real" } });
   });
 
-  await page.route("**/api/v1/analyses/analysis-real/exercises/2024/declared/accounts", async (route) => {
+  await page.route("**/api/v1/analyses/analysis-real/exercises/2024/declared/balance/accounts", async (route) => {
     await route.fulfill({ json: { ...declaredAccounts, analysis_id: "analysis-real" } });
   });
 

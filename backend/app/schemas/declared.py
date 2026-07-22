@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from pydantic import BaseModel, ConfigDict, field_serializer
+from pydantic import BaseModel, ConfigDict, Field, field_serializer
 
 
 class DeclaredAccountResponse(BaseModel):
@@ -11,6 +11,7 @@ class DeclaredAccountResponse(BaseModel):
     account_code: str
     account_name: str
     account_type: str | None
+    account_nature: str | None
     account_level: int | None
     parent_account_code: str | None
     account_order: int | None
@@ -37,6 +38,18 @@ class DeclaredAccountsResponse(BaseModel):
     analysis_id: str
     year: int
     accounts: list[DeclaredAccountResponse]
+    consistency_warnings: list["DeclaredBalanceConsistencyWarningResponse"] = Field(
+        default_factory=list
+    )
+
+
+class DeclaredBalanceConsistencyWarningResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    warning_code: str
+    account_code: str
+    account_name: str
+    message: str
 
 
 class DeclaredLayerSummaryResponse(BaseModel):

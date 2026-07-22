@@ -10,6 +10,7 @@ export type DeclaredAccount = {
   account_code: string;
   account_name: string;
   account_type: string | null;
+  account_nature: string | null;
   account_level: number | null;
   parent_account_code: string | null;
   account_order: number | null;
@@ -32,10 +33,18 @@ export type DeclaredAccount = {
   methodology_version_id: string;
 };
 
+export type DeclaredBalanceConsistencyWarning = {
+  warning_code: string;
+  account_code: string;
+  account_name: string;
+  message: string;
+};
+
 export type DeclaredAccountsResponse = {
   analysis_id: string;
   year: number;
   accounts: DeclaredAccount[];
+  consistency_warnings?: DeclaredBalanceConsistencyWarning[];
 };
 
 export type EcdImportResponse = {
@@ -135,6 +144,15 @@ export function fetchDeclaredAccounts(
 ): Promise<DeclaredAccountsResponse> {
   return fetchJson<DeclaredAccountsResponse>(
     `/api/v1/analyses/${analysisId}/exercises/${year}/declared/accounts`,
+  );
+}
+
+export function fetchDeclaredBalanceAccounts(
+  analysisId: string,
+  year: string,
+): Promise<DeclaredAccountsResponse> {
+  return fetchJson<DeclaredAccountsResponse>(
+    `/api/v1/analyses/${analysisId}/exercises/${year}/declared/balance/accounts`,
   );
 }
 

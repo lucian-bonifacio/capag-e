@@ -2,7 +2,11 @@ import { useMemo, useState } from "react";
 import { Activity, ClipboardCheck, Columns, List, Search, Upload } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
-import type { DeclaredAccount, DeclaredLayerSummary } from "../api/declared";
+import type {
+  DeclaredAccount,
+  DeclaredBalanceConsistencyWarning,
+  DeclaredLayerSummary,
+} from "../api/declared";
 import { StatCard } from "../components/dashboard/StatCard";
 import { SegmentedControl } from "../components/dashboard/SegmentedControl";
 import { BalanceGroup } from "../components/dashboard/BalanceGroup";
@@ -16,6 +20,7 @@ type BalanceDashboardPageProps = {
   year: string;
   summary?: DeclaredLayerSummary;
   accounts?: DeclaredAccount[];
+  consistencyWarnings?: DeclaredBalanceConsistencyWarning[];
   isLoading: boolean;
   isError: boolean;
   onRetry: () => void;
@@ -37,7 +42,7 @@ type DashboardGroup = {
   title: string;
   root: DeclaredAccount;
   rows: DashboardRow[];
-  side: "assets" | "origins" | "other";
+  side: "asset" | "liabilityEquity";
 };
 
 function normalizeText(value: string): string {
@@ -187,18 +192,36 @@ function isBroadRoot(account: DeclaredAccount): boolean {
   );
 }
 
-function sideForNode(node: AccountNode): DashboardGroup["side"] {
+function isEquityResultNode(node: AccountNode): boolean {
+  return node.account.account_nature === "04";
+}
+
+function isBalanceSheetNode(node: AccountNode): boolean {
+  return !isEquityResultNode(node);
+}
+
+function sideForNode(node: AccountNode): DashboardGroup["side"] | null {
   let current: AccountNode | null = node;
 
   while (current?.parent) {
     current = current.parent;
   }
 
+  const rootNature = current?.account.account_nature ?? node.account.account_nature;
+
+  if (rootNature === "01") {
+    return "asset";
+  }
+
+  if (rootNature === "02" || rootNature === "03") {
+    return "liabilityEquity";
+  }
+
   const rootName = normalizeText(current?.account.account_name ?? node.account.account_name);
   const nodeName = normalizeText(node.account.account_name);
 
   if (rootName.includes("ATIVO") || nodeName.startsWith("ATIVO")) {
-    return "assets";
+    return "asset";
   }
 
   if (
@@ -207,10 +230,10 @@ function sideForNode(node: AccountNode): DashboardGroup["side"] {
     nodeName.startsWith("PASSIVO") ||
     nodeName.startsWith("PATRIMONIO")
   ) {
-    return "origins";
+    return "liabilityEquity";
   }
 
-  return "other";
+  return null;
 }
 
 function buildDashboardGroups(accounts: DeclaredAccount[]): DashboardGroup[] {
@@ -223,20 +246,30 @@ function buildDashboardGroups(accounts: DeclaredAccount[]): DashboardGroup[] {
     return [root];
   });
 
-  return groupNodes.map((node) => {
+  return groupNodes.flatMap((node) => {
+    if (!isBalanceSheetNode(node)) {
+      return [];
+    }
+
+    const side = sideForNode(node);
+
+    if (side === null) {
+      return [];
+    }
+
     const presentationRows = collectPresentationRows(node);
     const rows =
       presentationRows.length > 0
         ? presentationRows
         : [{ account: node.account, amount: presentationAmount(node) }];
 
-    return {
+    return [{
       id: node.account.account_code,
       root: node.account,
       rows,
-      side: sideForNode(node),
+      side,
       title: node.account.account_name,
-    };
+    }];
   });
 }
 
@@ -275,6 +308,7 @@ export function BalanceDashboardPage({
   year,
   summary,
   accounts = [],
+  consistencyWarnings = [],
   isLoading,
   isError,
   onRetry,
@@ -288,17 +322,18 @@ export function BalanceDashboardPage({
   };
 
   const grouped = useMemo(() => buildDashboardGroups(accounts), [accounts]);
-  const assetGroups = grouped.filter((group) => group.side === "assets");
-  const originGroups = grouped.filter((group) => group.side === "origins");
-  const otherGroups = grouped.filter((group) => group.side === "other");
-  const totalAplicacoes = assetGroups.reduce(
+  const assetGroups = grouped.filter((group) => group.side === "asset");
+  const liabilityEquityGroups = grouped.filter((group) => group.side === "liabilityEquity");
+  const totalAssets = assetGroups.reduce(
     (acc, group) => acc + groupTotal(group, includedAccounts),
     0n,
   );
-  const totalOrigens = originGroups.reduce(
+  const totalLiabilityEquity = liabilityEquityGroups.reduce(
     (acc, group) => acc + groupTotal(group, includedAccounts),
     0n,
   );
+  const balanceDifference = totalAssets - totalLiabilityEquity;
+  const visibleConsistencyWarnings = consistencyWarnings.slice(0, 6);
 
   const renderAccountRows = (rows: DashboardRow[], totalGroup: bigint) => {
     return rows.map(({ account: acc, amount }) => {
@@ -471,25 +506,22 @@ export function BalanceDashboardPage({
             <div className="balance-columns">
               <div className="balance-column">
                 <div className="column-header">
-                  <span className="eyebrow">Aplicações</span>
-                  <span className="column-total tnum">{formatCurrency(totalAplicacoes)}</span>
+                  <span className="eyebrow">Ativo</span>
+                  <span className="column-total tnum">{formatCurrency(totalAssets)}</span>
                 </div>
-                <h3 className="column-title">Ativos</h3>
+                <h3 className="column-title">Ativo</h3>
                 {assetGroups.map((group) => (
-                  <div key={group.id}>{renderGroup(group, totalAplicacoes)}</div>
+                  <div key={group.id}>{renderGroup(group, totalAssets)}</div>
                 ))}
               </div>
               <div className="balance-column">
                 <div className="column-header">
-                  <span className="eyebrow">Origens</span>
-                  <span className="column-total tnum">{formatCurrency(totalOrigens)}</span>
+                  <span className="eyebrow">Passivo e patrimônio líquido</span>
+                  <span className="column-total tnum">{formatCurrency(totalLiabilityEquity)}</span>
                 </div>
-                <h3 className="column-title">Passivos e PL</h3>
-                {originGroups.map((group) => (
-                  <div key={group.id}>{renderGroup(group, totalOrigens)}</div>
-                ))}
-                {otherGroups.map((group) => (
-                  <div key={group.id}>{renderGroup(group, totalOrigens)}</div>
+                <h3 className="column-title">Passivo e PL</h3>
+                {liabilityEquityGroups.map((group) => (
+                  <div key={group.id}>{renderGroup(group, totalLiabilityEquity)}</div>
                 ))}
               </div>
             </div>
@@ -497,26 +529,62 @@ export function BalanceDashboardPage({
             <BalanceLedger>
               <div className="ledger-section">
                 <div className="column-header">
-                  <span className="eyebrow">Aplicações · Ativos</span>
-                  <span className="column-total tnum">{formatCurrency(totalAplicacoes)}</span>
+                  <span className="eyebrow">Ativo</span>
+                  <span className="column-total tnum">{formatCurrency(totalAssets)}</span>
                 </div>
                 {assetGroups.map((group) => (
-                  <div key={group.id}>{renderGroup(group, totalAplicacoes)}</div>
+                  <div key={group.id}>{renderGroup(group, totalAssets)}</div>
                 ))}
               </div>
               <div className="ledger-section" style={{ marginTop: "var(--space-8)" }}>
                 <div className="column-header">
-                  <span className="eyebrow">Origens · Passivos e Patrimônio Líquido</span>
-                  <span className="column-total tnum">{formatCurrency(totalOrigens)}</span>
+                  <span className="eyebrow">Passivo e patrimônio líquido</span>
+                  <span className="column-total tnum">{formatCurrency(totalLiabilityEquity)}</span>
                 </div>
-                {originGroups.map((group) => (
-                  <div key={group.id}>{renderGroup(group, totalOrigens)}</div>
-                ))}
-                {otherGroups.map((group) => (
-                  <div key={group.id}>{renderGroup(group, totalOrigens)}</div>
+                {liabilityEquityGroups.map((group) => (
+                  <div key={group.id}>{renderGroup(group, totalLiabilityEquity)}</div>
                 ))}
               </div>
             </BalanceLedger>
+          )}
+
+          {balanceDifference !== 0n && (
+            <div className="balance-alert" role="status">
+              <strong>Balanço não fecha.</strong>
+              <span>
+                Diferença entre Ativo e Passivo + Patrimônio Líquido:{" "}
+                <span className="tnum">{formatCurrency(balanceDifference)}</span>.
+              </span>
+            </div>
+          )}
+
+          {consistencyWarnings.length > 0 && (
+            <div className="balance-consistency-panel" role="status">
+              <div className="balance-consistency-header">
+                <strong>Consistência J100 x I050</strong>
+                <span className="status-badge" data-variant="warning">
+                  {consistencyWarnings.length}{" "}
+                  {consistencyWarnings.length === 1 ? "apontamento" : "apontamentos"}
+                </span>
+              </div>
+              <ul className="balance-consistency-list">
+                {visibleConsistencyWarnings.map((warning) => (
+                  <li key={`${warning.warning_code}-${warning.account_code}`}>
+                    <span className="tnum">{warning.account_code}</span>
+                    <span>{warning.account_name}</span>
+                    <small>{warning.message}</small>
+                  </li>
+                ))}
+              </ul>
+              {consistencyWarnings.length > visibleConsistencyWarnings.length && (
+                <span className="balance-consistency-more">
+                  +{consistencyWarnings.length - visibleConsistencyWarnings.length}{" "}
+                  {consistencyWarnings.length - visibleConsistencyWarnings.length === 1
+                    ? "apontamento"
+                    : "apontamentos"}
+                </span>
+              )}
+            </div>
           )}
         </section>
       </main>
