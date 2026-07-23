@@ -62,6 +62,51 @@ def test_declared_run_endpoint_creates_snapshots_for_imported_analysis() -> None
     assert response.json()["snapshots_created"] == 1
 
 
+def test_declared_run_endpoint_returns_configuration_error_without_official_table() -> None:
+    engine = create_engine(
+        "sqlite:///:memory:",
+        connect_args={"check_same_thread": False},
+        poolclass=StaticPool,
+    )
+    Base.metadata.create_all(engine)
+    SessionForTest = sessionmaker(bind=engine)
+    with SessionForTest() as session:
+        persist_parsed_ecd(
+            session,
+            parsed_ecd=parse_ecd_file(FIXTURES_DIR / "valid_declared.ecd"),
+            identifiers=EcdImportIdentifiers(
+                company_id="company-api-run-empty-official",
+                ecd_file_id="ecd-api-run-empty-official",
+                analysis_id="analysis-api-run-empty-official",
+                methodology_version_id="metodologia-2024.1",
+                original_filename="valid_declared.ecd",
+                content_hash="sha256:api-run-empty-official",
+            ),
+        )
+
+    def override_session():
+        session = SessionForTest()
+        try:
+            yield session
+        finally:
+            session.close()
+
+    app.dependency_overrides[get_declared_run_session] = override_session
+    app.dependency_overrides[get_official_references] = lambda: []
+    app.dependency_overrides[get_methodology_rules] = lambda: [_rule()]
+    client = TestClient(app)
+
+    response = client.post(
+        "/api/v1/analyses/analysis-api-run-empty-official/exercises/2024/declared/run"
+    )
+
+    app.dependency_overrides.clear()
+    assert response.status_code == 503
+    assert response.json()["detail"]["error_code"] == (
+        "OFFICIAL_REFERENCE_CONFIGURATION_UNAVAILABLE"
+    )
+
+
 def _official() -> OfficialReferenceAccount:
     return OfficialReferenceAccount(
         reference_code="2.01.01.07.01",

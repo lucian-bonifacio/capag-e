@@ -35,11 +35,11 @@ FIXTURES_DIR = Path(__file__).parent / "fixtures" / "ecd"
             ["2.01.01.07.01"],
             [("2.01.01.07.01", RuleStatus.ACTIVE)],
         ),
-        ("missing_i051.ecd", "SEM_VINCULO_REFERENCIAL", [], []),
+        ("missing_i051.ecd", "SEM_VINCULO_REFERENCIAL", ["2.01.01.07.01"], []),
         (
             "official_reference_missing.ecd",
             "COD_CTA_REF_NAO_ENCONTRADO_NA_TABELA_OFICIAL",
-            [],
+            ["2.01.01.07.01"],
             [("9.99.99.99.99", RuleStatus.ACTIVE)],
         ),
         (

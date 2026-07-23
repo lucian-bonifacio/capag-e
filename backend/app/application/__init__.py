@@ -12,6 +12,7 @@ from app.application.ecd_import_service import (
     remove_ecd_import,
 )
 from app.application.declared_run_service import (
+    DeclaredOfficialReferenceConfigurationError,
     DeclaredRunFailed,
     DeclaredRunNotFound,
     DeclaredRunResult,
@@ -20,6 +21,7 @@ from app.application.declared_run_service import (
 
 __all__ = [
     "DeclaredRunFailed",
+    "DeclaredOfficialReferenceConfigurationError",
     "DeclaredRunNotFound",
     "DeclaredRunResult",
     "EcdImportIdentifiers",

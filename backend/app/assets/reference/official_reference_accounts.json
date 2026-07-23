@@ -1,0 +1,64 @@
+{
+  "asset_type": "official_reference_accounts",
+  "schema_version": "0.1.0",
+  "methodology_version_id": "metodologia-2024.1",
+  "description": "Plano referencial oficial governado inicial para validacao da camada declarada. Cobertura propositalmente minima; codigos ausentes devem gerar pendencia por conta.",
+  "required_fields": [
+    "reference_code",
+    "official_description",
+    "parent_reference_code",
+    "level",
+    "nature",
+    "valid_from",
+    "valid_to",
+    "layout",
+    "entity_type",
+    "source",
+    "status",
+    "methodology_version_id"
+  ],
+  "records": [
+    {
+      "reference_code": "2.01.01.07.01",
+      "official_description": "Emprestimos e financiamentos",
+      "parent_reference_code": "2.01.01.07",
+      "level": 5,
+      "nature": "PASSIVO",
+      "valid_from": 2020,
+      "valid_to": null,
+      "layout": "ECD_2024",
+      "entity_type": "PJ_GERAL",
+      "source": "asset_governado_inicial",
+      "status": "ATIVA",
+      "methodology_version_id": "metodologia-2024.1"
+    },
+    {
+      "reference_code": "1.01.02.03.04",
+      "official_description": "Tributos a recuperar",
+      "parent_reference_code": "1.01.02.03",
+      "level": 5,
+      "nature": "ATIVO",
+      "valid_from": 2020,
+      "valid_to": null,
+      "layout": "ECD_2024",
+      "entity_type": "PJ_GERAL",
+      "source": "asset_governado_inicial",
+      "status": "ATIVA",
+      "methodology_version_id": "metodologia-2024.1"
+    },
+    {
+      "reference_code": "2.99.99.99.99",
+      "official_description": "Codigo sintetico para regra bloqueada",
+      "parent_reference_code": "2.99.99.99",
+      "level": 5,
+      "nature": "PASSIVO",
+      "valid_from": 2020,
+      "valid_to": null,
+      "layout": "ECD_2024",
+      "entity_type": "PJ_GERAL",
+      "source": "asset_governado_inicial",
+      "status": "ATIVA",
+      "methodology_version_id": "metodologia-2024.1"
+    }
+  ]
+}

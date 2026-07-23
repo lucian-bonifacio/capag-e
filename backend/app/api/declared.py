@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter, Depends, HTTPException, Response, status
 
+from app.assets.reference import OfficialReferenceAssetError, load_official_reference_accounts
 from app.application.declared_service import (
     DeclaredSnapshotReader,
     DeclaredSnapshotsNotFound,
@@ -9,6 +10,7 @@ from app.application.declared_service import (
     SqlAlchemyDeclaredSnapshotReader,
 )
 from app.application.declared_run_service import (
+    DeclaredOfficialReferenceConfigurationError,
     DeclaredRunFailed,
     DeclaredRunNotFound,
     run_declared_layer,
@@ -46,7 +48,14 @@ def get_declared_run_session():
 
 
 def get_official_references() -> list[OfficialReferenceAccount]:
-    return []
+    try:
+        return load_official_reference_accounts()
+    except OfficialReferenceAssetError as exc:
+        raise _http_error(
+            status.HTTP_503_SERVICE_UNAVAILABLE,
+            "OFFICIAL_REFERENCE_CONFIGURATION_UNAVAILABLE",
+            str(exc),
+        ) from exc
 
 
 def get_methodology_rules() -> list[MethodologyRule]:
@@ -80,6 +89,12 @@ def run_declared_layer_endpoint(
         raise _http_error(
             status.HTTP_404_NOT_FOUND,
             "DECLARED_RUN_NOT_FOUND",
+            str(exc),
+        ) from exc
+    except DeclaredOfficialReferenceConfigurationError as exc:
+        raise _http_error(
+            status.HTTP_503_SERVICE_UNAVAILABLE,
+            "OFFICIAL_REFERENCE_CONFIGURATION_UNAVAILABLE",
             str(exc),
         ) from exc
     except DeclaredRunFailed as exc:

@@ -1,10 +1,12 @@
 from pathlib import Path
 from decimal import Decimal
 
+import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
 from app.application import EcdImportIdentifiers, persist_parsed_ecd, run_declared_layer
+from app.application.declared_run_service import DeclaredOfficialReferenceConfigurationError
 from app.application.declared_service import SqlAlchemyDeclaredSnapshotReader
 from app.engine.methodology_matcher import MethodologyRule, OfficialReferenceAccount, RuleStatus
 from app.io import parse_ecd_file, parse_ecd_text
@@ -79,7 +81,7 @@ def test_balance_accounts_use_j100_values_and_i050_hierarchy() -> None:
             session,
             analysis_id="analysis-j100",
             year=2024,
-            official_references=[],
+            official_references=[_official("9.99.99.99.99")],
             methodology_rules=[],
         )
         reader = SqlAlchemyDeclaredSnapshotReader(session)
@@ -112,7 +114,11 @@ def test_balance_accounts_use_j100_values_and_i050_hierarchy() -> None:
 
 
 def test_run_declared_layer_maps_missing_i051_to_specific_status() -> None:
-    result = _run_fixture("missing_i051.ecd", "analysis-sem-i051")
+    result = _run_fixture(
+        "missing_i051.ecd",
+        "analysis-sem-i051",
+        official_references=[_official("2.01.01.07.01")],
+    )
 
     assert result.status_counts == {"SEM_VINCULO_REFERENCIAL": 1}
 
@@ -121,6 +127,7 @@ def test_run_declared_layer_maps_missing_official_reference_to_specific_status()
     result = _run_fixture(
         "official_reference_missing.ecd",
         "analysis-ref-ausente",
+        official_references=[_official("2.01.01.07.01")],
         methodology_rules=[_rule("9.99.99.99.99")],
     )
 
@@ -157,6 +164,32 @@ def test_run_declared_layer_does_not_classify_dangerous_prefix_rule() -> None:
     )
 
     assert result.status_counts == {"NAO_MAPEADO_METODOLOGICAMENTE": 1}
+
+
+def test_run_declared_layer_blocks_when_official_reference_table_is_empty() -> None:
+    engine = create_engine("sqlite:///:memory:")
+    Base.metadata.create_all(engine)
+    with Session(engine) as session:
+        persist_parsed_ecd(
+            session,
+            parsed_ecd=parse_ecd_file(FIXTURES_DIR / "valid_declared.ecd"),
+            identifiers=_identifiers(
+                analysis_id="analysis-empty-official",
+                fixture_name="valid_declared.ecd",
+            ),
+        )
+
+        with pytest.raises(
+            DeclaredOfficialReferenceConfigurationError,
+            match="Official reference table is required",
+        ):
+            run_declared_layer(
+                session,
+                analysis_id="analysis-empty-official",
+                year=2024,
+                official_references=[],
+                methodology_rules=[_rule("2.01.01.07.01")],
+            )
 
 
 def _run_fixture(

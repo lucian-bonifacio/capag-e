@@ -27,6 +27,7 @@ Este documento e um indice de rastreabilidade. Ele nao substitui as SPECs, nao a
 | `SPEC-007-modulo-6-motor-roa-plra.md` | Modulo 6 - Motor ROA + PLRA | suficiente_para_task | Suficiente para TASKs do motor ROA + PLRA. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-001`; contrato CAPAG-E quando houver integracao. | Camada declarada, evidencias e contrato CAPAG-E. | Nao ha bloqueio para TASKs do Modulo 6; resultados finais dependem de componentes e bloqueios do contrato CAPAG-E. | `TASK-067` a `TASK-072`. |
 | `SPEC-008-modulo-7-gerador-laudo-capag-e.md` | Modulo 7 - Gerador de Laudo CAPAG-E | suficiente_para_task | Suficiente para TASKs do laudo CAPAG-E. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-001`; contrato CAPAG-E e evidencias quando aplicavel. | Resultados calculados, evidencias, bloqueios, snapshots e versao metodologica. | Nao ha bloqueio para TASKs do Modulo 7; permanece bloqueado recalcular motores, esconder limitacoes ou ignorar evidencias criticas pendentes. | `TASK-073` a `TASK-078`. |
 | `SPEC-009-modulo-8-governanca-metodologia.md` | Modulo 8 - Governanca de Metodologia | suficiente_para_task | Suficiente para TASKs de governanca metodologica. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-001`; documentos metodologicos governados quando incorporados. | Assets metodologicos, `MethodologyVersion`, validacoes e rastreabilidade entre documentos, codigo, testes e laudo. | Nao ha bloqueio para TASKs do Modulo 8; permanece bloqueado tratar `docs/reference/` como fonte normativa direta sem governanca. | `TASK-079` a `TASK-084`. |
+| `SPEC-010-governanca-plano-referencial-oficial.md` | Governanca Do Plano Referencial Oficial | suficiente_para_task | Suficiente para TASKs documentais, pesquisa de fonte, contrato de carga, validacao de asset, desenho tecnico e continuidade governada ate banco/CRUD, respeitados os gates internos. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-001`; `SPEC-002`; `SPEC-009`; `TASK-086`. | Camada declarada, asset oficial inicial e governanca metodologica. | Fonte oficial ainda nao aprovada; bloqueia apenas TASKs executivas que dependam de fonte, contrato, versionamento ou auditoria ainda nao aprovados. | `TASK-088` a `TASK-093`. |
 
 ## Detalhamento Por SPEC
 
@@ -110,3 +111,12 @@ Este documento e um indice de rastreabilidade. Ele nao substitui as SPECs, nao a
 - Dependencias: assets metodologicos, `MethodologyVersion`, validacoes e rastreabilidade.
 - Bloqueios: `docs/reference/` nao pode ser tratado como fonte normativa direta sem governanca.
 - TASKs derivadas: `TASK-079` a `TASK-084`.
+
+### SPEC-010 - Governanca Do Plano Referencial Oficial
+
+- Arquivo: `SPEC-010-governanca-plano-referencial-oficial.md`
+- Status documental: `suficiente_para_task`
+- Suficiencia: TASKs documentais, pesquisa de fonte oficial, proposta de contrato de carga, validacoes automaticas de asset, desenho tecnico e continuidade governada ate banco/CRUD, respeitados os gates internos.
+- Dependencias: camada declarada, asset oficial inicial e governanca metodologica.
+- Bloqueios: fonte oficial ainda nao aprovada; ficam bloqueadas apenas TASKs executivas que dependam de fonte, contrato, versionamento ou auditoria ainda nao aprovados.
+- TASKs derivadas: `TASK-088` a `TASK-093`.

@@ -35,6 +35,10 @@ class DeclaredRunFailed(RuntimeError):
     pass
 
 
+class DeclaredOfficialReferenceConfigurationError(RuntimeError):
+    pass
+
+
 @dataclass(frozen=True)
 class DeclaredRunResult:
     analysis_id: str
@@ -53,6 +57,8 @@ def run_declared_layer(
     methodology_rules: list[MethodologyRule],
     purpose: str = "FCO",
 ) -> DeclaredRunResult:
+    _ensure_official_references_available(official_references)
+
     try:
         analysis = session.get(AnalysisModel, analysis_id)
         if analysis is None:
@@ -161,6 +167,15 @@ def run_declared_layer(
     except SQLAlchemyError as exc:
         session.rollback()
         raise DeclaredRunFailed("Declared layer run failed.") from exc
+
+
+def _ensure_official_references_available(
+    official_references: list[OfficialReferenceAccount],
+) -> None:
+    if len(official_references) == 0:
+        raise DeclaredOfficialReferenceConfigurationError(
+            "Official reference table is required to run declared layer."
+        )
 
 
 def _considered_value(base_value: Decimal, final_status: MatchFinalStatus) -> Decimal:
