@@ -25,11 +25,11 @@ Regras:
 
 ## Próxima Tarefa
 
-ID: TASK-085A
-Título: Ajustar governanca de homologacao
+ID: TASK-086
+Título: Tabela oficial referencial obrigatoria
 Status: pendente
-Task: `tasks/TASK-085A-ajustar-governanca-homologacao.md`
-Log: `logs/LOG-085A-ajustar-governanca-homologacao.md`
+Task: `tasks/TASK-086-tabela-oficial-referencial-obrigatoria.md`
+Log: `logs/LOG-086-tabela-oficial-referencial-obrigatoria.md`
 
 ## Lista De Tarefas
 
@@ -348,8 +348,8 @@ Log: `logs/LOG-085A-ajustar-governanca-homologacao.md`
     - Task: `tasks/TASK-085-refinar-apresentacao-leitura-declarada.md`
     - Log: `logs/LOG-085-refinar-apresentacao-leitura-declarada.md`
 
-64. [ ] Ajustar governanca de homologacao
-    - Status: pendente
+64. [x] Ajustar governanca de homologacao
+    - Status: concluido
     - Task: `tasks/TASK-085A-ajustar-governanca-homologacao.md`
     - Log: `logs/LOG-085A-ajustar-governanca-homologacao.md`
 

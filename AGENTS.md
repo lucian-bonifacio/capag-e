@@ -114,13 +114,29 @@ Se uma TASK do grupo falhar, bloquear ou exigir decisão expressa do usuário:
 - Ao concluir TASK com UI ou fluxo interativo, registre no log quais validações foram executadas: testes unitários/frontend, build, Playwright via Docker Compose quando existir, e inspeção MCP Playwright quando usada.
 - Se Playwright ainda não estiver configurado para o fluxo da TASK, registre a limitação no log em vez de omitir validação visual.
 
-Após homologação:
+### Processo De Homologação
+
+Após envio de TASK ou grupo para homologação:
 
 - se o usuário aprovar uma TASK individual, use `execution-log` para registrar aprovação e `roadmap-manager` para marcar `concluido` e recalcular a próxima tarefa;
-- se o usuário aprovar um grupo, use `execution-log` para registrar aprovação das TASKs aprovadas e `roadmap-manager` para marcar essas TASKs como `concluido` e recalcular a próxima tarefa;
-- se o usuário reprovar parcialmente um grupo ou pedir ajuste em uma TASK do grupo, use `scope-resolution` para classificar o ajuste, mantenha como `concluido` apenas as TASKs explicitamente aprovadas e mantenha a TASK afetada em estado governado compatível com a decisão;
-- se o usuário pedir ajuste em TASK individual, use `scope-resolution`;
-- não marque TASK como `concluido` sem homologação do usuário.
+- se o usuário homologar um grupo, use `execution-log` para registrar aprovação nos logs das TASKs do grupo e `roadmap-manager` para marcar como `concluido` as TASKs do grupo;
+- se o usuário não aprovar diretamente, pedir ajuste, levantar dúvida, reprovar ou apontar problema, use `scope-resolution` antes de alterar status, criar TASK ou executar ajuste;
+- se, durante homologação de TASK individual, `scope-resolution` recomendar `nova_task` e o usuário autorizar a criação dessa nova TASK, registre a TASK em homologação como aprovada e marque `concluido` no mesmo passo. A autorização para criar a nova TASK formaliza que o novo ponto será tratado fora da TASK atual;
+- se, durante homologação de grupo, o usuário não homologar diretamente, entre em flow de homologação do grupo, conforme a subseção `Flow De Homologação De Grupo`;
+- não marque TASK como `concluido`, salvo por homologação do usuário ou pela autorização de nova TASK que, neste processo, homologa a TASK individual em análise.
+
+#### Flow De Homologação De Grupo
+
+O flow de homologação de grupo é uma interação contínua entre usuário e agente para ajustar o grupo recém-executado sem criar novas TASKs por padrão.
+
+Durante esse flow:
+
+1. mantenha o grupo em `aguardando_homologacao`;
+2. execute ajustes relacionados às TASKs do grupo sem criar nova TASK, desde que não violem gates de exceção nem ampliem escopo de forma relevante;
+3. registre cada rodada de ajuste, validação e decisão nos logs das TASKs afetadas;
+4. se uma nova sessão iniciar durante o flow, retome o contexto lendo `ROADMAP.md`, as TASKs do grupo e os logs das TASKs afetadas;
+5. se o pedido exigir nova SPEC, nova regra governada, mudança fora do grupo, contrato de API, alteração prudencial, alteração visual governada ou ampliação relevante de escopo, pare o flow e use `scope-resolution`;
+6. encerre o flow somente quando o usuário homologar o grupo ou quando o item anterior determinar a saída do flow.
 
 Quando não houver homologação, ajuste, bloqueio ou decisão governada pendente, retome o fluxo normal:
 
