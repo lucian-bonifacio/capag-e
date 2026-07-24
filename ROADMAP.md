@@ -25,11 +25,11 @@ Regras:
 
 ## Próxima Tarefa
 
-ID: TASK-087
-Título: Tratar contas sem vinculo referencial
+ID: TASK-049
+Título: Modelar contrato de domínio CAPAG-E
 Status: pendente
-Task: `tasks/TASK-087-tratar-contas-sem-vinculo-referencial.md`
-Log: `logs/LOG-087-tratar-contas-sem-vinculo-referencial.md`
+Task: `tasks/TASK-049-modelar-contrato-dominio-capag-e.md`
+Log: `logs/LOG-049-modelar-contrato-dominio-capag-e.md`
 
 ## Lista De Tarefas
 
@@ -358,8 +358,8 @@ Log: `logs/LOG-087-tratar-contas-sem-vinculo-referencial.md`
     - Task: `tasks/TASK-086-tabela-oficial-referencial-obrigatoria.md`
     - Log: `logs/LOG-086-tabela-oficial-referencial-obrigatoria.md`
 
-66. [ ] Tratar contas sem vinculo referencial
-    - Status: pendente
+66. [x] Tratar contas sem vinculo referencial
+    - Status: concluido
     - Task: `tasks/TASK-087-tratar-contas-sem-vinculo-referencial.md`
     - Log: `logs/LOG-087-tratar-contas-sem-vinculo-referencial.md`
 
