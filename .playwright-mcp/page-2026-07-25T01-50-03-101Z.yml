@@ -1,0 +1,33 @@
+- generic [ref=f1e3]:
+  - complementary "Navegacao principal" [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - generic [ref=f1e6]: C
+      - generic [ref=f1e7]: CAPAG Analytics
+    - navigation [ref=f1e8]:
+      - link "Dashboard" [ref=f1e9] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "Balanço Patrimonial" [ref=f1e16] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "PLRA" [ref=f1e22] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/plra
+      - link "Indicadores CAPAG" [ref=f1e26] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/resultado
+      - link "Auditoria 1" [ref=f1e30] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/auditoria
+        - generic [ref=f1e35]: Auditoria
+        - generic [ref=f1e36]: "1"
+      - link "Importar ECD" [ref=f1e37] [cursor=pointer]:
+        - /url: /importar-ecd
+    - generic [ref=f1e42]:
+      - generic [ref=f1e43]: RA
+      - generic [ref=f1e44]:
+        - strong [ref=f1e45]: Rafael Auditor
+        - generic [ref=f1e46]: Analista contábil
+  - generic [ref=f1e47]:
+    - banner [ref=f1e48]:
+      - generic [ref=f1e49]:
+        - heading "Patrimônio Líquido Realizável Ajustado" [level=1] [ref=f1e50]
+        - paragraph [ref=f1e51]: Análise analysis-bc7478b47f261603 · Exercício 2024
+      - button "Calcular PLRA" [ref=f1e52] [cursor=pointer]
+    - main [ref=f1e58]:
+      - region "Carregando PLRA" [ref=f1e59]

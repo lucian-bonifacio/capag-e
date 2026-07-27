@@ -1,7 +1,24 @@
 {
   "asset_type": "official_reference_accounts",
-  "schema_version": "0.1.0",
+  "schema_version": "1.0.0",
+  "official_version_id": null,
+  "base_status": "rascunho",
+  "approval_status": "pendente",
   "methodology_version_id": null,
+  "source_document_name": null,
+  "source_document_hash": null,
+  "source_document_date": null,
+  "source_url_or_reference": null,
+  "source_publisher": null,
+  "source_system": null,
+  "source_layout": null,
+  "source_calendar_year": null,
+  "declaration_layout": null,
+  "entity_type": null,
+  "source_sheets": [],
+  "source_record_count": 0,
+  "asset_record_count": 0,
+  "coverage_status": "nao_avaliada",
   "description": "Safe empty template for official reference accounts. Do not use as a complete official reference plan.",
   "required_fields": [
     "reference_code",
@@ -15,8 +32,14 @@
     "entity_type",
     "source",
     "status",
-    "methodology_version_id"
+    "methodology_version_id",
+    "source_sheet",
+    "source_type",
+    "source_nature_code",
+    "source_valid_from",
+    "source_valid_to",
+    "official_guidance",
+    "validation_notes"
   ],
   "records": []
 }
-

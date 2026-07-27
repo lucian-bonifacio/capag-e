@@ -7,6 +7,7 @@
 ## Dependencias
 
 - `TASK-051-persistir-assessment-capag-e.md`
+- `TASK-096-persistir-snapshots-plra.md`
 - `TASK-055-modelar-evidencias-materialidade.md`
 - `TASK-056-modelar-avaliacao-ativos.md`
 
@@ -24,7 +25,7 @@ Persistir evidências, avaliações de ativos, bloqueios e ressalvas, integrando
 
 - Criar modelos persistentes e migrations.
 - Persistir status de evidência e avaliação.
-- Integrar bloqueios ao contrato CAPAG-E.
+- Integrar avaliacoes e bloqueios aos snapshots PLRA e ao contrato CAPAG-E.
 - Preservar versão metodológica.
 
 ## Fora De Escopo
@@ -38,7 +39,7 @@ Persistir evidências, avaliações de ativos, bloqueios e ressalvas, integrando
 
 1. Criar modelos de persistência.
 2. Criar migrations.
-3. Integrar bloqueios com assessment.
+3. Integrar avaliacoes e bloqueios com PLRA e assessment.
 4. Criar testes de persistência e propagação de status.
 
 ## Arquivos Ou Areas Provaveis
@@ -51,7 +52,7 @@ Persistir evidências, avaliações de ativos, bloqueios e ressalvas, integrando
 
 - Evidências críticas pendentes bloqueiam ou ressalvam conforme regra.
 - Avaliações de ativos preservam status.
-- Contrato CAPAG-E recebe bloqueios sem recalcular evidência.
+- PLRA e contrato CAPAG-E recebem bloqueios sem recalcular evidencia fora dos motores.
 
 ## Validacao Esperada
 
@@ -64,4 +65,4 @@ Persistir evidências, avaliações de ativos, bloqueios e ressalvas, integrando
 
 ## Bloqueios Pendentes
 
-Bloqueada até modelos de evidência, ativos e assessment existirem.
+Bloqueada ate modelos de evidencia, ativos, snapshots PLRA e assessment existirem.

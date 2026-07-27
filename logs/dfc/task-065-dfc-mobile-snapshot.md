@@ -1,0 +1,81 @@
+- generic [ref=f4e3] [box=0,0,390,11302]:
+  - complementary "Navegacao principal" [ref=f4e4] [box=0,0,390,328]:
+    - generic [ref=f4e5] [box=0,0,390,60]:
+      - generic [ref=f4e6] [box=24,18,24,24]: C
+      - generic [ref=f4e7] [box=60,18,123,23]: CAPAG Analytics
+    - navigation [ref=f4e8] [box=0,60,390,196]:
+      - link "Dashboard" [ref=f4e9] [cursor=pointer] [box=16,76,177,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "Balanço Patrimonial" [ref=f4e16] [cursor=pointer] [box=197,76,177,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "PLRA" [ref=f4e22] [cursor=pointer] [box=16,118,177,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/plra
+      - link "DFC / FCA" [ref=f4e26] [cursor=pointer] [box=197,118,177,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/dfc
+      - link "Evidências" [ref=f4e31] [cursor=pointer] [box=16,160,177,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/evidencias
+      - link "Indicadores CAPAG" [ref=f4e37] [cursor=pointer] [box=197,160,177,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/resultado
+      - link "Auditoria 1" [ref=f4e41] [cursor=pointer] [box=16,202,177,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/auditoria
+        - generic [ref=f4e46] [box=58,211,93,20]: Auditoria
+        - generic [ref=f4e47] [box=163,211,18,21]: "1"
+      - link "Importar ECD" [ref=f4e48] [cursor=pointer] [box=197,202,177,38]:
+        - /url: /importar-ecd
+    - generic [ref=f4e53] [box=0,256,390,71]:
+      - generic [ref=f4e54] [box=16,276,32,32]: RA
+      - generic [ref=f4e55] [box=60,273,93,38]:
+        - strong [ref=f4e56] [box=60,273,93,20]: Rafael Auditor
+        - generic [ref=f4e57] [box=60,293,93,18]: Analista contábil
+  - generic [ref=f4e58] [box=0,328,390,10975]:
+    - banner [ref=f4e59] [box=0,328,390,137]:
+      - generic [ref=f4e60] [box=16,344,340,50]:
+        - heading "DFC direta e FCA" [level=1] [ref=f4e61] [box=16,344,340,26]
+        - paragraph [ref=f4e62] [box=16,374,340,20]: Análise analysis-bc7478b47f261603 · Exercício 2024
+      - button "Recalcular" [ref=f4e72] [cursor=pointer] [box=16,409,123,38]
+    - main [ref=f4e69] [box=0,464,390,10838]:
+      - generic [ref=f4e73] [box=16,480,358,338]:
+        - generic [ref=f4e74] [box=41,505,308,107]:
+          - generic [ref=f4e75] [box=41,505,87,18]: FCA apurado
+          - strong [ref=f4e76] [box=41,535,239,43]: R$ 92.988,06
+          - generic [ref=f4e77] [box=41,591,168,22]: Bloqueado por evidência
+        - generic [ref=f4e78] [box=41,633,308,161]:
+          - generic [ref=f4e79] [box=41,633,308,43]
+          - generic [ref=f4e82] [box=41,692,308,43]
+          - generic [ref=f4e85] [box=41,751,308,43]
+      - region "Resumo por atividade" [ref=f4e88] [box=16,835,358,480]:
+        - article [ref=f4e89] [box=16,835,358,108]:
+          - generic [ref=f4e90] [box=37,856,316,20]: Operacional
+          - strong [ref=f4e91] [box=37,887,316,34]: R$ 235.884,83
+        - article [ref=f4e92] [box=16,959,358,108]:
+          - generic [ref=f4e93] [box=37,980,316,20]: Investimento
+          - strong [ref=f4e94] [box=37,1011,316,34]: "-R$ 28.448,78"
+        - article [ref=f4e95] [box=16,1083,358,108]:
+          - generic [ref=f4e96] [box=37,1104,316,20]: Financiamento
+          - strong [ref=f4e97] [box=37,1135,316,34]: "-R$ 114.447,99"
+        - article [ref=f4e98] [box=16,1207,358,108]:
+          - generic [ref=f4e99] [box=37,1228,316,20]: Ajustes validados
+          - strong [ref=f4e100] [box=37,1259,316,34]: R$ 0,00
+      - generic [ref=f4e101] [box=16,1331,358,657]:
+        - generic [ref=f4e102] [box=37,1348,316,23]:
+          - heading "Pendências da DFC" [level=2] [ref=f4e105] [box=63,1348,142,23]
+          - generic [ref=f4e106] [box=322,1350,31,18]: "1143"
+        - list [ref=f4e107] [box=37,1382,316,588]:
+          - listitem [ref=f4e108] [box=37,1382,316,67]
+          - listitem [ref=f4e111] [box=37,1457,316,67]
+          - listitem [ref=f4e114] [box=37,1531,316,67]
+          - listitem [ref=f4e117] [box=37,1606,316,67]
+          - listitem [ref=f4e120] [box=37,1680,316,67]
+          - listitem [ref=f4e123] [box=37,1755,316,67]
+          - listitem [ref=f4e126] [box=37,1829,316,67]
+          - listitem [ref=f4e129] [box=37,1904,316,67]
+      - generic [ref=f4e132] [box=16,2003,358,9283]:
+        - generic [ref=f4e133] [box=17,2004,356,278]:
+          - generic [ref=f4e134] [box=37,2020,316,51]
+          - generic [ref=f4e137] [box=37,2087,316,178]
+        - table [ref=f4e149] [box=17,2282,1120,8952]:
+          - rowgroup [ref=f4e150] [box=17,2282,1120,43]
+          - rowgroup [ref=f4e159] [box=17,2324,1120,8909]
+        - generic [ref=f4e2143] [box=17,11233,356,52]:
+          - generic [ref=f4e2144] [box=37,11250,86,18]: Página 1 de 43
+          - generic [ref=f4e2145] [box=281,11242,72,34]

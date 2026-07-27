@@ -186,15 +186,23 @@ def _split_ecd_line(source_line: str) -> list[str]:
 
 def _parse_header(fields: list[str], line_number: int, source_line: str) -> ParsedEcdHeader:
     _require_fields(fields, 6, line_number)
+    period_start = _parse_date(fields[2], line_number)
+    period_end = _parse_date(fields[3], line_number)
     return ParsedEcdHeader(
         line_number=line_number,
         source_line=source_line,
-        layout=fields[1],
-        period_start=_parse_date(fields[2], line_number),
-        period_end=_parse_date(fields[3], line_number),
+        layout=_normalize_layout(fields[1], period_end),
+        period_start=period_start,
+        period_end=period_end,
         legal_name=fields[4],
         tax_id=fields[5],
     )
+
+
+def _normalize_layout(raw_layout: str, period_end: date) -> str:
+    if raw_layout.strip() == "LECD" and period_end.year >= 2020:
+        return "ECD_9"
+    return raw_layout.strip()
 
 
 def _parse_i050(fields: list[str], line_number: int, source_line: str) -> ParsedI050Account:

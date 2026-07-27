@@ -7,6 +7,7 @@
 ## Dependencias
 
 - `TASK-055-modelar-evidencias-materialidade.md`
+- `TASK-095-implementar-motor-plra.md`
 
 ## Objetivo
 
@@ -63,4 +64,4 @@ Modelar `AssetValuationAssessment`, valor contábil, deságio default, valor de 
 
 ## Bloqueios Pendentes
 
-Bloqueada até evidências e materialidade existirem.
+Bloqueada ate evidencias, materialidade e contrato do motor PLRA existirem.

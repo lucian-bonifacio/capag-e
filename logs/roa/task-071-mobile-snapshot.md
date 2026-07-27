@@ -1,0 +1,73 @@
+- generic [ref=f6e3] [box=0,0,390,9087]:
+  - complementary "Navegacao principal" [ref=f6e4] [box=0,0,390,370]:
+    - generic [ref=f6e5] [box=0,0,390,60]:
+      - generic [ref=f6e6] [box=24,18,24,24]: C
+      - generic [ref=f6e7] [box=60,18,123,23]: CAPAG Analytics
+    - navigation [ref=f6e8] [box=0,60,390,238]:
+      - link "Dashboard" [ref=f6e9] [cursor=pointer] [box=16,76,177,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "Balanço Patrimonial" [ref=f6e16] [cursor=pointer] [box=197,76,177,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "PLRA" [ref=f6e22] [cursor=pointer] [box=16,118,177,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/plra
+      - link "DFC / FCA" [ref=f6e26] [cursor=pointer] [box=197,118,177,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/dfc
+      - link "ROA" [ref=f6e31] [cursor=pointer] [box=16,160,177,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/roa
+      - link "Evidências" [ref=f6e36] [cursor=pointer] [box=197,160,177,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/evidencias
+      - link "Indicadores CAPAG" [ref=f6e42] [cursor=pointer] [box=16,202,177,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/resultado
+      - link "Auditoria 1" [ref=f6e46] [cursor=pointer] [box=197,202,177,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/auditoria
+        - generic [ref=f6e51] [box=239,211,93,20]: Auditoria
+        - generic [ref=f6e52] [box=344,211,18,21]: "1"
+      - link "Importar ECD" [ref=f6e53] [cursor=pointer] [box=16,244,177,38]:
+        - /url: /importar-ecd
+    - generic [ref=f6e58] [box=0,298,390,71]:
+      - generic [ref=f6e59] [box=16,318,32,32]: RA
+      - generic [ref=f6e60] [box=60,315,93,38]:
+        - strong [ref=f6e61] [box=60,315,93,20]: Rafael Auditor
+        - generic [ref=f6e62] [box=60,335,93,18]: Analista contábil
+  - generic [ref=f6e63] [box=0,370,390,8718]:
+    - banner [ref=f6e64] [box=0,370,390,137]:
+      - generic [ref=f6e65] [box=16,386,340,50]:
+        - heading "ROA e CAPAG-E" [level=1] [ref=f6e66] [box=16,386,340,26]
+        - paragraph [ref=f6e67] [box=16,416,340,20]: Análise analysis-bc7478b47f261603 · Exercício 2024
+      - button "Recalcular" [ref=f6e77] [cursor=pointer] [box=16,451,123,38]
+    - main [ref=f6e74] [box=0,506,390,8581]:
+      - generic [ref=f6e78] [box=16,522,358,338]:
+        - generic [ref=f6e79] [box=41,547,308,107]
+        - generic [ref=f6e83] [box=41,675,308,161]
+      - generic [ref=f6e93] [box=16,877,358,271]:
+        - generic [ref=f6e94] [box=37,898,316,52]
+        - generic [ref=f6e98] [box=37,966,316,161]
+      - region "Componentes do ROA" [ref=f6e108] [box=16,1164,358,2484]:
+        - article [ref=f6e109] [box=16,1164,358,123]
+        - article [ref=f6e113] [box=16,1302,358,123]
+        - article [ref=f6e117] [box=16,1441,358,123]
+        - article [ref=f6e121] [box=16,1580,358,123]
+        - article [ref=f6e125] [box=16,1719,358,123]
+        - article [ref=f6e129] [box=16,1858,358,123]
+        - article [ref=f6e133] [box=16,1997,358,123]
+        - article [ref=f6e137] [box=16,2136,358,123]
+        - article [ref=f6e141] [box=16,2275,358,123]
+        - article [ref=f6e145] [box=16,2414,358,123]
+        - article [ref=f6e149] [box=16,2552,358,123]
+        - article [ref=f6e153] [box=16,2691,358,123]
+        - article [ref=f6e157] [box=16,2830,358,123]
+        - article [ref=f6e161] [box=16,2969,358,123]
+        - article [ref=f6e165] [box=16,3108,358,123]
+        - article [ref=f6e169] [box=16,3247,358,123]
+        - article [ref=f6e173] [box=16,3386,358,123]
+        - article [ref=f6e177] [box=16,3525,358,123]
+      - generic [ref=f6e181] [box=16,3664,358,433]:
+        - generic [ref=f6e182] [box=37,3681,316,23]
+        - list [ref=f6e187] [box=37,3715,316,365]
+      - region "Alertas e limitações" [ref=f6e203] [box=16,4113,358,126]:
+        - paragraph [ref=f6e204] [box=37,4130,316,42]: Conta 3.1.1.3.1.1.03.01 possui ressalva de evidencia ROA.
+        - paragraph [ref=f6e205] [box=37,4180,316,42]: Conferencia J150 indisponivel; ROA calculado a partir de I155 e codigo referencial.
+      - generic [ref=f6e206] [box=16,4255,358,4817]:
+        - generic [ref=f6e207] [box=17,4256,356,278]
+        - table [ref=f6e223] [box=17,4533,1180,4485]
+        - generic [ref=f6e985] [box=17,9018,356,52]

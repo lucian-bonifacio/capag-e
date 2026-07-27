@@ -28,6 +28,7 @@ Este documento e um indice de rastreabilidade. Ele nao substitui as SPECs, nao a
 | `SPEC-008-modulo-7-gerador-laudo-capag-e.md` | Modulo 7 - Gerador de Laudo CAPAG-E | suficiente_para_task | Suficiente para TASKs do laudo CAPAG-E. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-001`; contrato CAPAG-E e evidencias quando aplicavel. | Resultados calculados, evidencias, bloqueios, snapshots e versao metodologica. | Nao ha bloqueio para TASKs do Modulo 7; permanece bloqueado recalcular motores, esconder limitacoes ou ignorar evidencias criticas pendentes. | `TASK-073` a `TASK-078`. |
 | `SPEC-009-modulo-8-governanca-metodologia.md` | Modulo 8 - Governanca de Metodologia | suficiente_para_task | Suficiente para TASKs de governanca metodologica. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-001`; documentos metodologicos governados quando incorporados. | Assets metodologicos, `MethodologyVersion`, validacoes e rastreabilidade entre documentos, codigo, testes e laudo. | Nao ha bloqueio para TASKs do Modulo 8; permanece bloqueado tratar `docs/reference/` como fonte normativa direta sem governanca. | `TASK-079` a `TASK-084`. |
 | `SPEC-010-governanca-plano-referencial-oficial.md` | Governanca Do Plano Referencial Oficial | suficiente_para_task | Suficiente para TASKs documentais, pesquisa de fonte, contrato de carga, validacao de asset, desenho tecnico e continuidade governada ate banco/CRUD, respeitados os gates internos. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-001`; `SPEC-002`; `SPEC-009`; `TASK-086`. | Camada declarada, asset oficial inicial e governanca metodologica. | Fonte oficial ainda nao aprovada; bloqueia apenas TASKs executivas que dependam de fonte, contrato, versionamento ou auditoria ainda nao aprovados. | `TASK-088` a `TASK-093`. |
+| `SPEC-011-modulo-1b-motor-plra.md` | Modulo 1B - Motor PLRA | suficiente_para_task | Suficiente para TASKs do motor patrimonial PLRA. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-002`; `SPEC-004`; `SPEC-005`; `SPEC-010`; manual PLR aprovado pelo usuario. | Camada declarada, plano referencial completo, contrato CAPAG-E e evidencias para overrides. | Nao ha decisao metodologica pendente; cobertura final depende dos assets referenciais e metodologicos aprovados. | `TASK-094` a `TASK-099`. |
 
 ## Detalhamento Por SPEC
 
@@ -120,3 +121,12 @@ Este documento e um indice de rastreabilidade. Ele nao substitui as SPECs, nao a
 - Dependencias: camada declarada, asset oficial inicial e governanca metodologica.
 - Bloqueios: fonte oficial ainda nao aprovada; ficam bloqueadas apenas TASKs executivas que dependam de fonte, contrato, versionamento ou auditoria ainda nao aprovados.
 - TASKs derivadas: `TASK-088` a `TASK-093`.
+
+### SPEC-011 - Modulo 1B: Motor PLRA
+
+- Arquivo: `SPEC-011-modulo-1b-motor-plra.md`
+- Status documental: `suficiente_para_task`
+- Suficiencia: TASKs do motor patrimonial PLRA.
+- Dependencias: camada declarada, plano referencial completo, contrato CAPAG-E e evidencias quando houver override.
+- Bloqueios: a cobertura final depende dos assets referenciais e metodologicos aprovados; codigos ausentes permanecem auditaveis sem inferencia.
+- TASKs derivadas: `TASK-094` a `TASK-099`.

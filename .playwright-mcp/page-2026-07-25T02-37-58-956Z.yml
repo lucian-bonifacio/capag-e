@@ -1,0 +1,100 @@
+- generic [ref=f2e3]:
+  - complementary "Navegacao principal" [ref=f2e4]:
+    - generic [ref=f2e5]:
+      - generic [ref=f2e6]: C
+      - generic [ref=f2e7]: CAPAG Analytics
+    - navigation [ref=f2e8]:
+      - link "Dashboard" [ref=f2e9] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "Balanço Patrimonial" [ref=f2e16] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "PLRA" [ref=f2e22] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/plra
+      - link "Evidências" [ref=f2e26] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/evidencias
+      - link "Indicadores CAPAG" [ref=f2e32] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/resultado
+      - link "Auditoria 1" [ref=f2e36] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/auditoria
+        - generic [ref=f2e41]: Auditoria
+        - generic [ref=f2e42]: "1"
+      - link "Importar ECD" [ref=f2e43] [cursor=pointer]:
+        - /url: /importar-ecd
+    - generic [ref=f2e48]:
+      - generic [ref=f2e49]: RA
+      - generic [ref=f2e50]:
+        - strong [ref=f2e51]: Rafael Auditor
+        - generic [ref=f2e52]: Analista contábil
+  - generic [ref=f2e53]:
+    - banner [ref=f2e54]:
+      - generic [ref=f2e55]:
+        - heading "Evidências e avaliação de ativos" [level=1] [ref=f2e56]
+        - paragraph [ref=f2e57]: Análise analysis-bc7478b47f261603 · Exercício 2024
+      - button "Nova evidência" [ref=f2e58] [cursor=pointer]
+    - main [ref=f2e60]:
+      - region "Resumo documental" [ref=f2e61]:
+        - generic [ref=f2e62]:
+          - generic [ref=f2e67]: Evidências
+          - strong [ref=f2e68]: "1"
+        - generic [ref=f2e69]:
+          - generic [ref=f2e72]: Bloqueios
+          - strong [ref=f2e73]: "0"
+        - generic [ref=f2e74]:
+          - generic [ref=f2e77]: Ressalvas
+          - strong [ref=f2e78]: "0"
+        - generic [ref=f2e79]:
+          - generic [ref=f2e82]: Ativos bloqueados
+          - strong [ref=f2e83]: "0"
+      - tablist [ref=f2e84]:
+        - tab "Evidências 0" [selected] [ref=f2e85] [cursor=pointer]:
+          - text: Evidências
+          - generic [ref=f2e86]: "0"
+        - tab "Avaliação de ativos 0" [ref=f2e87] [cursor=pointer]:
+          - text: Avaliação de ativos
+          - generic [ref=f2e88]: "0"
+      - generic [ref=f2e91]:
+        - generic [ref=f2e92]:
+          - generic [ref=f2e93]:
+            - text: Componente
+            - combobox "Componente" [ref=f2e94]:
+              - option "Todos" [selected]
+              - option "PLRA"
+              - option "FCA"
+              - option "ROA"
+              - option "CAPAG-E"
+          - generic [ref=f2e95]:
+            - text: Status
+            - combobox "Status" [ref=f2e96]:
+              - option "Todos" [selected]
+              - option "Não exigida"
+              - option "Pendente"
+              - option "Informada"
+              - option "Validada"
+              - option "Dispensada"
+              - option "Rejeitada"
+        - table [ref=f2e141]:
+          - rowgroup [ref=f2e142]:
+            - row [ref=f2e143]:
+              - columnheader "Escopo" [ref=f2e144]
+              - columnheader "Componente" [ref=f2e145]
+              - columnheader "Impacto" [ref=f2e146]
+              - columnheader "Materialidade" [ref=f2e147]
+              - columnheader "Status" [ref=f2e148]
+              - columnheader "Decisão" [ref=f2e149]
+              - columnheader "Ações" [ref=f2e150]
+          - rowgroup [ref=f2e151]:
+            - row [ref=f2e152]:
+              - cell "1725 validacao_documental · account" [ref=f2e153]:
+                - strong [ref=f2e154]: "1725"
+                - generic [ref=f2e155]: validacao_documental · account
+              - cell "PLRA" [ref=f2e156]
+              - cell "R$ 0,00 0%" [ref=f2e157]:
+                - strong [ref=f2e158]: R$ 0,00
+                - generic [ref=f2e159]: 0%
+              - cell "Baixa Política default" [ref=f2e160]:
+                - strong [ref=f2e161]: Baixa
+                - generic [ref=f2e162]: Política default
+              - cell "Validada" [ref=f2e163]
+              - cell [ref=f2e165]
+              - cell [ref=f2e170]:
+                - button "Revisar 1725" [ref=f2e171] [cursor=pointer]

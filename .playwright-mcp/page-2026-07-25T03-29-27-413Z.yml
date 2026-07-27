@@ -1,0 +1,37 @@
+- generic [ref=f4e3]:
+  - complementary "Navegacao principal" [ref=f4e4]:
+    - generic [ref=f4e5]:
+      - generic [ref=f4e6]: C
+      - generic [ref=f4e7]: CAPAG Analytics
+    - navigation [ref=f4e8]:
+      - link "Dashboard" [ref=f4e9] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "Balanço Patrimonial" [ref=f4e16] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "PLRA" [ref=f4e22] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/plra
+      - link "DFC / FCA" [ref=f4e26] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/dfc
+      - link "Evidências" [ref=f4e31] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/evidencias
+      - link "Indicadores CAPAG" [ref=f4e37] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/resultado
+      - link "Auditoria 1" [ref=f4e41] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/auditoria
+        - generic [ref=f4e46]: Auditoria
+        - generic [ref=f4e47]: "1"
+      - link "Importar ECD" [ref=f4e48] [cursor=pointer]:
+        - /url: /importar-ecd
+    - generic [ref=f4e53]:
+      - generic [ref=f4e54]: RA
+      - generic [ref=f4e55]:
+        - strong [ref=f4e56]: Rafael Auditor
+        - generic [ref=f4e57]: Analista contábil
+  - generic [ref=f4e58]:
+    - banner [ref=f4e59]:
+      - generic [ref=f4e60]:
+        - heading "DFC direta e FCA" [level=1] [ref=f4e61]
+        - paragraph [ref=f4e62]: Análise analysis-bc7478b47f261603 · Exercício 2024
+      - button "Calcular DFC" [ref=f4e63] [cursor=pointer]
+    - main [ref=f4e69]:
+      - region "Carregando DFC" [ref=f4e70]

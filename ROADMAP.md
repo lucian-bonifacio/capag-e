@@ -25,11 +25,11 @@ Regras:
 
 ## Próxima Tarefa
 
-ID: TASK-049
-Título: Modelar contrato de domínio CAPAG-E
+ID: TASK-073
+Título: Modelar domínio do laudo CAPAG-E
 Status: pendente
-Task: `tasks/TASK-049-modelar-contrato-dominio-capag-e.md`
-Log: `logs/LOG-049-modelar-contrato-dominio-capag-e.md`
+Task: `tasks/TASK-073-modelar-dominio-laudo-capag-e.md`
+Log: `logs/LOG-073-modelar-dominio-laudo-capag-e.md`
 
 ## Lista De Tarefas
 
@@ -364,32 +364,32 @@ Log: `logs/LOG-049-modelar-contrato-dominio-capag-e.md`
     - Log: `logs/LOG-087-tratar-contas-sem-vinculo-referencial.md`
 
 67. [ ] Modelar contrato de domínio CAPAG-E
-    - Status: pendente
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-049-modelar-contrato-dominio-capag-e.md`
     - Log: `logs/LOG-049-modelar-contrato-dominio-capag-e.md`
 
 68. [ ] Implementar motor do contrato CAPAG-E
-    - Status: pendente
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-050-implementar-motor-contrato-capag-e.md`
     - Log: `logs/LOG-050-implementar-motor-contrato-capag-e.md`
 
 69. [ ] Persistir assessment CAPAG-E
-    - Status: pendente
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-051-persistir-assessment-capag-e.md`
     - Log: `logs/LOG-051-persistir-assessment-capag-e.md`
 
 70. [ ] Criar API CAPAG assessment
-    - Status: pendente
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-052-criar-api-capag-assessment.md`
     - Log: `logs/LOG-052-criar-api-capag-assessment.md`
 
 71. [ ] Criar UI de resultado CAPAG-E
-    - Status: pendente
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-053-criar-ui-resultado-capag-e.md`
     - Log: `logs/LOG-053-criar-ui-resultado-capag-e.md`
 
 72. [ ] Exportação e testes do contrato CAPAG-E
-    - Status: pendente
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-054-exportacao-e-testes-contrato-capag-e.md`
     - Log: `logs/LOG-054-exportacao-e-testes-contrato-capag-e.md`
 
@@ -399,22 +399,22 @@ Log: `logs/LOG-049-modelar-contrato-dominio-capag-e.md`
     - Log: `logs/LOG-054A-planejar-refinamentos-visuais.md`
 
 74. [ ] Pesquisar fonte oficial do plano referencial
-    - Status: pendente
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-088-pesquisar-fonte-oficial-plano-referencial.md`
     - Log: `logs/LOG-088-pesquisar-fonte-oficial-plano-referencial.md`
 
 75. [ ] Definir contrato de carga do plano referencial
-    - Status: pendente
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-089-definir-contrato-carga-plano-referencial.md`
     - Log: `logs/LOG-089-definir-contrato-carga-plano-referencial.md`
 
 76. [ ] Ampliar validacoes do asset referencial
-    - Status: pendente
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-090-ampliar-validacoes-asset-plano-referencial.md`
     - Log: `logs/LOG-090-ampliar-validacoes-asset-plano-referencial.md`
 
 77. [ ] Preparar asset completo do plano referencial
-    - Status: pendente
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-091-preparar-asset-completo-plano-referencial.md`
     - Log: `logs/LOG-091-preparar-asset-completo-plano-referencial.md`
 
@@ -428,187 +428,217 @@ Log: `logs/LOG-049-modelar-contrato-dominio-capag-e.md`
     - Task: `tasks/TASK-093-desenhar-crud-controlado-plano-referencial.md`
     - Log: `logs/LOG-093-desenhar-crud-controlado-plano-referencial.md`
 
-80. [ ] Normalização e razão comportamental
+80. [ ] Estruturar metodologia PLRA
+    - Status: aguardando_homologacao
+    - Task: `tasks/TASK-094-estruturar-metodologia-plra.md`
+    - Log: `logs/LOG-094-estruturar-metodologia-plra.md`
+
+81. [ ] Implementar motor PLRA
+    - Status: aguardando_homologacao
+    - Task: `tasks/TASK-095-implementar-motor-plra.md`
+    - Log: `logs/LOG-095-implementar-motor-plra.md`
+
+82. [ ] Persistir snapshots PLRA
+    - Status: aguardando_homologacao
+    - Task: `tasks/TASK-096-persistir-snapshots-plra.md`
+    - Log: `logs/LOG-096-persistir-snapshots-plra.md`
+
+83. [ ] Criar API e integracao PLRA CAPAG-E
+    - Status: aguardando_homologacao
+    - Task: `tasks/TASK-097-criar-api-integracao-plra-capag-e.md`
+    - Log: `logs/LOG-097-criar-api-integracao-plra-capag-e.md`
+
+84. [ ] Criar UI PLRA
+    - Status: aguardando_homologacao
+    - Task: `tasks/TASK-098-criar-ui-plra.md`
+    - Log: `logs/LOG-098-criar-ui-plra.md`
+
+85. [ ] Exportacao e testes PLRA
+    - Status: aguardando_homologacao
+    - Task: `tasks/TASK-099-exportacao-testes-plra.md`
+    - Log: `logs/LOG-099-exportacao-testes-plra.md`
+
+86. [ ] Normalização e razão comportamental
     - Status: pendente
     - Task: `tasks/TASK-042-normalizacao-razao-comportamental.md`
     - Log: `logs/LOG-042-normalizacao-razao-comportamental.md`
 
-81. [ ] Gerar perfil comportamental por conta
+87. [ ] Gerar perfil comportamental por conta
     - Status: pendente
     - Task: `tasks/TASK-043-gerar-perfil-comportamental-conta.md`
     - Log: `logs/LOG-043-gerar-perfil-comportamental-conta.md`
 
-82. [ ] Classificação, score e salvaguardas reclassificadas
+88. [ ] Classificação, score e salvaguardas reclassificadas
     - Status: pendente
     - Task: `tasks/TASK-044-classificacao-score-salvaguardas-reclassificada.md`
     - Log: `logs/LOG-044-classificacao-score-salvaguardas-reclassificada.md`
 
-83. [ ] Cenário reclassificado e revisão humana
+89. [ ] Cenário reclassificado e revisão humana
     - Status: pendente
     - Task: `tasks/TASK-045-cenario-reclassificado-revisao-humana.md`
     - Log: `logs/LOG-045-cenario-reclassificado-revisao-humana.md`
 
-84. [ ] Criar API da camada reclassificada
+90. [ ] Criar API da camada reclassificada
     - Status: pendente
     - Task: `tasks/TASK-046-criar-api-camada-reclassificada.md`
     - Log: `logs/LOG-046-criar-api-camada-reclassificada.md`
 
-85. [ ] Criar UI de revisão reclassificada
+91. [ ] Criar UI de revisão reclassificada
     - Status: pendente
     - Task: `tasks/TASK-047-criar-ui-revisao-reclassificada.md`
     - Log: `logs/LOG-047-criar-ui-revisao-reclassificada.md`
 
-86. [ ] Exportação e testes da camada reclassificada
+92. [ ] Exportação e testes da camada reclassificada
     - Status: pendente
     - Task: `tasks/TASK-048-exportacao-e-testes-reclassificada.md`
     - Log: `logs/LOG-048-exportacao-e-testes-reclassificada.md`
 
-87. [ ] Modelar evidências e materialidade
-    - Status: pendente
+93. [ ] Modelar evidências e materialidade
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-055-modelar-evidencias-materialidade.md`
     - Log: `logs/LOG-055-modelar-evidencias-materialidade.md`
 
-88. [ ] Modelar avaliação de ativos
-    - Status: pendente
+94. [ ] Modelar avaliação de ativos
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-056-modelar-avaliacao-ativos.md`
     - Log: `logs/LOG-056-modelar-avaliacao-ativos.md`
 
-89. [ ] Persistir e integrar bloqueios de evidências
-    - Status: pendente
+95. [ ] Persistir e integrar bloqueios de evidências
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-057-persistir-e-integrar-bloqueios-evidencias.md`
     - Log: `logs/LOG-057-persistir-e-integrar-bloqueios-evidencias.md`
 
-90. [ ] Criar API de evidências e ativos
-    - Status: pendente
+96. [ ] Criar API de evidências e ativos
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-058-criar-api-evidencias-ativos.md`
     - Log: `logs/LOG-058-criar-api-evidencias-ativos.md`
 
-91. [ ] Criar UI de evidências e ativos
-    - Status: pendente
+97. [ ] Criar UI de evidências e ativos
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-059-criar-ui-evidencias-ativos.md`
     - Log: `logs/LOG-059-criar-ui-evidencias-ativos.md`
 
-92. [ ] Exportação e testes de evidências e ativos
-    - Status: pendente
+98. [ ] Exportação e testes de evidências e ativos
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-060-exportacao-e-testes-evidencias-ativos.md`
     - Log: `logs/LOG-060-exportacao-e-testes-evidencias-ativos.md`
 
-93. [ ] Estruturar metodologia DFC e disponibilidades
-    - Status: pendente
+99. [ ] Estruturar metodologia DFC e disponibilidades
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-061-estruturar-metodologia-dfc-disponibilidades.md`
     - Log: `logs/LOG-061-estruturar-metodologia-dfc-disponibilidades.md`
 
-94. [ ] Implementar motor DFC direta
-    - Status: pendente
+100. [ ] Implementar motor DFC direta
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-062-implementar-motor-dfc-direta.md`
     - Log: `logs/LOG-062-implementar-motor-dfc-direta.md`
 
-95. [ ] Calcular FCA, pendências e evidências
-    - Status: pendente
+101. [ ] Calcular FCA, pendências e evidências
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-063-calcular-fca-pendencias-evidencias.md`
     - Log: `logs/LOG-063-calcular-fca-pendencias-evidencias.md`
 
-96. [ ] Criar API DFC/FCA
-    - Status: pendente
+102. [ ] Criar API DFC/FCA
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-064-criar-api-dfc-fca.md`
     - Log: `logs/LOG-064-criar-api-dfc-fca.md`
 
-97. [ ] Criar UI DFC/FCA
-    - Status: pendente
+103. [ ] Criar UI DFC/FCA
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-065-criar-ui-dfc-fca.md`
     - Log: `logs/LOG-065-criar-ui-dfc-fca.md`
 
-98. [ ] Exportação e testes DFC/FCA
-    - Status: pendente
+104. [ ] Exportação e testes DFC/FCA
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-066-exportacao-e-testes-dfc-fca.md`
     - Log: `logs/LOG-066-exportacao-e-testes-dfc-fca.md`
 
-99. [ ] Estruturar assets ROA
-    - Status: pendente
+105. [ ] Estruturar assets ROA
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-067-estruturar-assets-roa.md`
     - Log: `logs/LOG-067-estruturar-assets-roa.md`
 
-100. [ ] Implementar motor ROA
-    - Status: pendente
+106. [ ] Implementar motor ROA
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-068-implementar-motor-roa.md`
     - Log: `logs/LOG-068-implementar-motor-roa.md`
 
-101. [ ] Integrar pressões e evidências ROA
-    - Status: pendente
+107. [ ] Integrar pressões e evidências ROA
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-069-integrar-pressoes-evidencias-roa.md`
     - Log: `logs/LOG-069-integrar-pressoes-evidencias-roa.md`
 
-102. [ ] Integrar ROA + PLRA ao CAPAG-E
-    - Status: pendente
+108. [ ] Integrar ROA + PLRA ao CAPAG-E
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-070-integrar-roa-plra-capag-e.md`
     - Log: `logs/LOG-070-integrar-roa-plra-capag-e.md`
 
-103. [ ] Criar API e UI ROA
-    - Status: pendente
+109. [ ] Criar API e UI ROA
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-071-criar-api-ui-roa.md`
     - Log: `logs/LOG-071-criar-api-ui-roa.md`
 
-104. [ ] Exportação e testes ROA + PLRA
-    - Status: pendente
+110. [ ] Exportação e testes ROA + PLRA
+    - Status: aguardando_homologacao
     - Task: `tasks/TASK-072-exportacao-e-testes-roa-plra.md`
     - Log: `logs/LOG-072-exportacao-e-testes-roa-plra.md`
 
-105. [ ] Modelar domínio do laudo CAPAG-E
+111. [ ] Modelar domínio do laudo CAPAG-E
     - Status: pendente
     - Task: `tasks/TASK-073-modelar-dominio-laudo-capag-e.md`
     - Log: `logs/LOG-073-modelar-dominio-laudo-capag-e.md`
 
-106. [ ] Validar status do laudo
+112. [ ] Validar status do laudo
     - Status: pendente
     - Task: `tasks/TASK-074-validar-status-laudo.md`
     - Log: `logs/LOG-074-validar-status-laudo.md`
 
-107. [ ] Gerar Excel de laudo estruturado
+113. [ ] Gerar Excel de laudo estruturado
     - Status: pendente
     - Task: `tasks/TASK-075-gerar-excel-laudo-estruturado.md`
     - Log: `logs/LOG-075-gerar-excel-laudo-estruturado.md`
 
-108. [ ] Criar API de laudo CAPAG-E
+114. [ ] Criar API de laudo CAPAG-E
     - Status: pendente
     - Task: `tasks/TASK-076-criar-api-laudo-capag-e.md`
     - Log: `logs/LOG-076-criar-api-laudo-capag-e.md`
 
-109. [ ] Criar UI de laudo CAPAG-E
+115. [ ] Criar UI de laudo CAPAG-E
     - Status: pendente
     - Task: `tasks/TASK-077-criar-ui-laudo-capag-e.md`
     - Log: `logs/LOG-077-criar-ui-laudo-capag-e.md`
 
-110. [ ] Testes do laudo CAPAG-E
+116. [ ] Testes do laudo CAPAG-E
     - Status: pendente
     - Task: `tasks/TASK-078-testes-laudo-capag-e.md`
     - Log: `logs/LOG-078-testes-laudo-capag-e.md`
 
-111. [ ] Criar matriz de rastreabilidade metodológica
+117. [ ] Criar matriz de rastreabilidade metodológica
     - Status: pendente
     - Task: `tasks/TASK-079-criar-matriz-rastreabilidade-metodologica.md`
     - Log: `logs/LOG-079-criar-matriz-rastreabilidade-metodologica.md`
 
-112. [ ] Modelar MethodologyVersion e assets governados
+118. [ ] Modelar MethodologyVersion e assets governados
     - Status: pendente
     - Task: `tasks/TASK-080-modelar-methodology-version-assets.md`
     - Log: `logs/LOG-080-modelar-methodology-version-assets.md`
 
-113. [ ] Validações e cobertura metodológica
+119. [ ] Validações e cobertura metodológica
     - Status: pendente
     - Task: `tasks/TASK-081-validacoes-cobertura-metodologica.md`
     - Log: `logs/LOG-081-validacoes-cobertura-metodologica.md`
 
-114. [ ] Criar changelog metodológico
+120. [ ] Criar changelog metodológico
     - Status: pendente
     - Task: `tasks/TASK-082-criar-changelog-metodologico.md`
     - Log: `logs/LOG-082-criar-changelog-metodologico.md`
 
-115. [ ] Criar UI de governança metodológica
+121. [ ] Criar UI de governança metodológica
     - Status: pendente
     - Task: `tasks/TASK-083-criar-ui-governanca-metodologica.md`
     - Log: `logs/LOG-083-criar-ui-governanca-metodologica.md`
 
-116. [ ] Testes de governança e documentos operacionais finais
+122. [ ] Testes de governança e documentos operacionais finais
     - Status: pendente
     - Task: `tasks/TASK-084-testes-governanca-e-documentos-operacionais-finais.md`
     - Log: `logs/LOG-084-testes-governanca-e-documentos-operacionais-finais.md`

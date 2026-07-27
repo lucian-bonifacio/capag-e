@@ -1,0 +1,226 @@
+- generic [ref=f6e3] [box=0,0,1440,6139]:
+  - complementary "Navegacao principal" [ref=f6e4] [box=0,0,240,6139]:
+    - generic [ref=f6e5] [box=0,0,239,60]:
+      - generic [ref=f6e6] [box=24,18,24,24]: C
+      - generic [ref=f6e7] [box=60,18,123,23]: CAPAG Analytics
+    - navigation [ref=f6e8] [box=0,60,239,406]:
+      - link "Dashboard" [ref=f6e9] [cursor=pointer] [box=16,76,207,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "Balanço Patrimonial" [ref=f6e16] [cursor=pointer] [box=16,118,207,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "PLRA" [ref=f6e22] [cursor=pointer] [box=16,160,207,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/plra
+      - link "DFC / FCA" [ref=f6e26] [cursor=pointer] [box=16,202,207,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/dfc
+      - link "ROA" [ref=f6e31] [cursor=pointer] [box=16,244,207,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/roa
+      - link "Evidências" [ref=f6e36] [cursor=pointer] [box=16,286,207,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/evidencias
+      - link "Indicadores CAPAG" [ref=f6e42] [cursor=pointer] [box=16,328,207,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/resultado
+      - link "Auditoria 1" [ref=f6e46] [cursor=pointer] [box=16,370,207,38]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/auditoria
+        - generic [ref=f6e51] [box=58,379,123,20]: Auditoria
+        - generic [ref=f6e52] [box=193,379,18,21]: "1"
+      - link "Importar ECD" [ref=f6e53] [cursor=pointer] [box=16,412,207,38]:
+        - /url: /importar-ecd
+    - generic [ref=f6e58] [box=0,6069,239,71]:
+      - generic [ref=f6e59] [box=16,6088,32,32]: RA
+      - generic [ref=f6e60] [box=60,6086,93,38]:
+        - strong [ref=f6e61] [box=60,6086,93,20]: Rafael Auditor
+        - generic [ref=f6e62] [box=60,6105,93,18]: Analista contábil
+  - generic [ref=f6e63] [box=240,0,1200,6139]:
+    - banner [ref=f6e64] [box=240,0,1200,60]:
+      - generic [ref=f6e65] [box=272,5,340,50]:
+        - heading "ROA e CAPAG-E" [level=1] [ref=f6e66] [box=272,5,340,26]
+        - paragraph [ref=f6e67] [box=272,35,340,20]: Análise analysis-bc7478b47f261603 · Exercício 2024
+      - button "Recalcular" [ref=f6e77] [cursor=pointer] [box=1285,11,123,38]
+    - main [ref=f6e74] [box=240,60,1200,6079]:
+      - generic [ref=f6e78] [box=272,92,1136,157]:
+        - generic [ref=f6e79] [box=297,117,422,107]:
+          - generic [ref=f6e80] [box=297,117,63,18]: ROA final
+          - strong [ref=f6e81] [box=297,147,262,43]: R$ 122.781,16
+          - generic [ref=f6e82] [box=297,202,173,22]: Bloqueado por pendência
+        - generic [ref=f6e83] [box=751,117,632,107]:
+          - generic [ref=f6e84] [box=751,117,200,107]:
+            - term [ref=f6e85] [box=751,117,200,18]: ROA preliminar
+            - definition [ref=f6e86] [box=751,139,200,21]: R$ 122.781,16
+          - generic [ref=f6e87] [box=967,117,200,107]:
+            - term [ref=f6e88] [box=967,117,200,18]: Contas auditáveis
+            - definition [ref=f6e89] [box=967,139,200,21]: "43"
+          - generic [ref=f6e90] [box=1183,117,200,107]:
+            - term [ref=f6e91] [box=1183,117,200,18]: Pendências
+            - definition [ref=f6e92] [box=1183,139,200,21]: "5"
+      - generic [ref=f6e93] [box=272,265,1136,153]:
+        - generic [ref=f6e94] [box=293,286,1094,52]:
+          - generic [ref=f6e95] [box=293,286,209,52]:
+            - text: Integração CAPAG-E
+            - heading "CAPAG-E = PLRA + ROA" [level=2] [ref=f6e96] [box=293,311,209,27]
+          - generic [ref=f6e97] [box=1301,286,86,22]: bloqueado
+        - generic [ref=f6e98] [box=293,354,1094,43]:
+          - generic [ref=f6e99] [box=293,354,354,43]:
+            - term [ref=f6e100] [box=293,354,354,18]: PLRA
+            - definition [ref=f6e101] [box=293,376,354,21]: "-R$ 1.045.941,70"
+          - generic [ref=f6e102] [box=663,354,354,43]:
+            - term [ref=f6e103] [box=663,354,354,18]: ROA
+            - definition [ref=f6e104] [box=663,376,354,21]: R$ 122.781,16
+          - generic [ref=f6e105] [box=1033,354,354,43]:
+            - term [ref=f6e106] [box=1033,354,354,18]: CAPAG-E
+            - definition [ref=f6e107] [box=1033,376,354,21]: Sem resultado único
+      - region "Componentes do ROA" [ref=f6e108] [box=272,434,1136,720]:
+        - article [ref=f6e109] [box=272,434,272,123]:
+          - generic [ref=f6e110] [box=293,455,230,21]: Receita de vendas e serviços
+          - strong [ref=f6e111] [box=293,484,230,26]: R$ 5.659.097,92
+          - generic [ref=f6e112] [box=293,519,230,18]: 3 contas
+        - article [ref=f6e113] [box=560,434,272,123]:
+          - generic [ref=f6e114] [box=581,455,230,21]: Deduções comerciais
+          - strong [ref=f6e115] [box=581,484,230,26]: R$ 0,00
+          - generic [ref=f6e116] [box=581,519,230,18]: 0 contas
+        - article [ref=f6e117] [box=848,434,272,123]:
+          - generic [ref=f6e118] [box=869,455,230,21]: Tributos sobre receita
+          - strong [ref=f6e119] [box=869,484,230,26]: "-R$ 707.249,70"
+          - generic [ref=f6e120] [box=869,519,230,18]: 5 contas
+        - article [ref=f6e121] [box=1136,434,272,123]:
+          - generic [ref=f6e122] [box=1157,455,230,21]: Custos de bens e serviços
+          - strong [ref=f6e123] [box=1157,484,230,26]: "-R$ 3.774.336,63"
+          - generic [ref=f6e124] [box=1157,519,230,18]: 9 contas
+        - article [ref=f6e125] [box=272,573,272,144]:
+          - generic [ref=f6e126] [box=293,594,230,42]: Despesas operacionais recorrentes
+          - strong [ref=f6e127] [box=293,644,230,26]: "-R$ 995.787,46"
+          - generic [ref=f6e128] [box=293,678,230,18]: 15 contas
+        - article [ref=f6e129] [box=560,573,272,144]:
+          - generic [ref=f6e130] [box=581,594,230,21]: Receitas financeiras
+          - strong [ref=f6e131] [box=581,623,230,26]: R$ 2.654,21
+          - generic [ref=f6e132] [box=581,657,230,18]: 1 conta
+        - article [ref=f6e133] [box=848,573,272,144]:
+          - generic [ref=f6e134] [box=869,594,230,21]: Despesas financeiras
+          - strong [ref=f6e135] [box=869,623,230,26]: "-R$ 61.597,18"
+          - generic [ref=f6e136] [box=869,657,230,18]: 4 contas
+        - article [ref=f6e137] [box=1136,573,272,144]:
+          - generic [ref=f6e138] [box=1157,594,230,21]: Receitas não operacionais
+          - strong [ref=f6e139] [box=1157,623,230,26]: R$ 0,00
+          - generic [ref=f6e140] [box=1157,657,230,18]: 0 contas
+        - article [ref=f6e141] [box=272,733,272,144]:
+          - generic [ref=f6e142] [box=293,754,230,21]: Despesas não operacionais
+          - strong [ref=f6e143] [box=293,783,230,26]: R$ 0,00
+          - generic [ref=f6e144] [box=293,817,230,18]: 0 contas
+        - article [ref=f6e145] [box=560,733,272,144]:
+          - generic [ref=f6e146] [box=581,754,230,21]: Participações excluídas do ROA
+          - strong [ref=f6e147] [box=581,783,230,26]: R$ 0,00
+          - generic [ref=f6e148] [box=581,817,230,18]: 0 contas
+        - article [ref=f6e149] [box=848,733,272,144]:
+          - generic [ref=f6e150] [box=869,754,230,42]: Tributos sobre o lucro excluídos do ROA
+          - strong [ref=f6e151] [box=869,804,230,26]: R$ 0,00
+          - generic [ref=f6e152] [box=869,838,230,18]: 0 contas
+        - article [ref=f6e153] [box=1136,733,272,144]:
+          - generic [ref=f6e154] [box=1157,754,230,21]: Fornecedores vencidos
+          - strong [ref=f6e155] [box=1157,783,230,26]: R$ 0,00
+          - generic [ref=f6e156] [box=1157,817,230,18]: 0 contas
+        - article [ref=f6e157] [box=272,893,272,123]:
+          - generic [ref=f6e158] [box=293,914,230,21]: Parcelamentos
+          - strong [ref=f6e159] [box=293,943,230,26]: R$ 0,00
+          - generic [ref=f6e160] [box=293,977,230,18]: 0 contas
+        - article [ref=f6e161] [box=560,893,272,123]:
+          - generic [ref=f6e162] [box=581,914,230,21]: Contingências
+          - strong [ref=f6e163] [box=581,943,230,26]: R$ 0,00
+          - generic [ref=f6e164] [box=581,977,230,18]: 0 contas
+        - article [ref=f6e165] [box=848,893,272,123]:
+          - generic [ref=f6e166] [box=869,914,230,21]: Dívida fiscal
+          - strong [ref=f6e167] [box=869,943,230,26]: R$ 0,00
+          - generic [ref=f6e168] [box=869,977,230,18]: 0 contas
+        - article [ref=f6e169] [box=1136,893,272,123]:
+          - generic [ref=f6e170] [box=1157,914,230,21]: Dívida trabalhista
+          - strong [ref=f6e171] [box=1157,943,230,26]: R$ 0,00
+          - generic [ref=f6e172] [box=1157,977,230,18]: 0 contas
+        - article [ref=f6e173] [box=272,1032,272,123]:
+          - generic [ref=f6e174] [box=293,1053,230,21]: Mútuos
+          - strong [ref=f6e175] [box=293,1082,230,26]: R$ 0,00
+          - generic [ref=f6e176] [box=293,1116,230,18]: 0 contas
+        - article [ref=f6e177] [box=560,1032,272,123]:
+          - generic [ref=f6e178] [box=581,1053,230,21]: Intercompany
+          - strong [ref=f6e179] [box=581,1082,230,26]: R$ 0,00
+          - generic [ref=f6e180] [box=581,1116,230,18]: 0 contas
+      - generic [ref=f6e181] [box=272,1171,1136,198]:
+        - generic [ref=f6e182] [box=293,1188,1094,23]:
+          - heading "Pendências do ROA" [level=2] [ref=f6e185] [box=319,1188,143,23]
+          - generic [ref=f6e186] [box=1379,1190,8,18]: "5"
+        - list [ref=f6e187] [box=293,1222,1094,130]:
+          - listitem [ref=f6e188] [box=293,1222,1094,20]:
+            - strong [ref=f6e189] [box=293,1222,180,20]: CONTA_ROA_CONDICIONAL
+            - generic [ref=f6e190] [box=481,1222,451,20]: Conta condicional exige revisao antes do ROA final. Conta 3.1.1.3.1.1.01.09.
+          - listitem [ref=f6e191] [box=293,1250,1094,20]:
+            - strong [ref=f6e192] [box=293,1250,180,20]: CONTA_ROA_CONDICIONAL
+            - generic [ref=f6e193] [box=481,1250,453,20]: Conta condicional exige revisao antes do ROA final. Conta 3.1.1.3.1.1.06.45.
+          - listitem [ref=f6e194] [box=293,1277,1094,20]:
+            - strong [ref=f6e195] [box=293,1277,180,20]: CONTA_ROA_CONDICIONAL
+            - generic [ref=f6e196] [box=481,1277,449,20]: Conta condicional exige revisao antes do ROA final. Conta 3.1.1.3.1.1.06.13.
+          - listitem [ref=f6e197] [box=293,1305,1094,20]:
+            - strong [ref=f6e198] [box=293,1305,180,20]: CONTA_ROA_CONDICIONAL
+            - generic [ref=f6e199] [box=481,1305,453,20]: Conta condicional exige revisao antes do ROA final. Conta 3.1.1.3.1.1.06.24.
+          - listitem [ref=f6e200] [box=293,1332,1094,20]:
+            - strong [ref=f6e201] [box=293,1332,247,20]: EVIDENCIA_ROA_MATERIAL_AUSENTE
+            - generic [ref=f6e202] [box=548,1332,471,20]: Despesa ou pressao material sem evidencia vinculada. Conta 3.1.1.3.1.1.03.01.
+      - region "Alertas e limitações" [ref=f6e203] [box=272,1385,1136,84]:
+        - paragraph [ref=f6e204] [box=293,1402,1094,21]: Conta 3.1.1.3.1.1.03.01 possui ressalva de evidencia ROA.
+        - paragraph [ref=f6e205] [box=293,1431,1094,21]: Conferencia J150 indisponivel; ROA calculado a partir de I155 e codigo referencial.
+      - generic [ref=f6e206] [box=272,1485,1136,4623]:
+        - generic [ref=f6e207] [box=273,1486,1134,84]:
+          - generic [ref=f6e208] [box=293,1502,177,51]:
+            - heading "Contas de resultado" [level=2] [ref=f6e209] [box=293,1502,177,27]
+            - paragraph [ref=f6e210] [box=293,1533,177,20]: 43 de 43 contas
+          - generic [ref=f6e211] [box=492,1508,895,44]:
+            - generic [ref=f6e212] [box=492,1508,318,44]
+            - generic [ref=f6e218] [box=819,1511,275,38]
+            - generic [ref=f6e220] [box=1102,1511,285,38]
+        - table [ref=f6e223] [box=273,1569,1180,4485]:
+          - rowgroup [ref=f6e224] [box=273,1569,1180,61]:
+            - row "Conta Referencial Bloco e componente Status e evidência Movimento base Efeito no ROA Ações" [ref=f6e225] [box=273,1569,1180,61]
+          - rowgroup [ref=f6e233] [box=273,1630,1180,4424]:
+            - 'row "VENDA DE PRODUTOS A PRAZO 3.1.1.1.1.1.10.02 Linha 2019 3.01.01.01.01.04 Receita da Venda de Produtos de Fabricação Própria no Mercado Interno Receita bruta Receita de vendas e serviços Incluído Tipo: documento_fiscal_receita R$ 3.074.397,34 R$ 3.074.397,34" [ref=f6e234] [box=273,1630,1180,108]'
+            - 'row "VENDA DE PRODUTOS A VISTA 3.1.1.1.1.1.10.01 Linha 1445 3.01.01.01.01.04 Receita da Venda de Produtos de Fabricação Própria no Mercado Interno Receita bruta Receita de vendas e serviços Incluído Tipo: documento_fiscal_receita R$ 2.318.949,18 R$ 2.318.949,18" [ref=f6e251] [box=273,1738,1180,108]'
+            - 'row "SERVIÇOS PRESTADOS 3.1.1.1.1.1.30.15 Linha 1446 3.01.01.01.01.06 Receita da Prestação de Serviços no Mercado Interno Receita bruta Receita de vendas e serviços Incluído Tipo: documento_fiscal_receita R$ 265.751,40 R$ 265.751,40" [ref=f6e268] [box=273,1846,1180,89]'
+            - 'row "(-) IPI S/ VENDAS 3.1.1.1.1.3.20.01 Linha 1447 3.01.01.01.02.09 (-) Demais Impostos e Contribuições Incidentes sobre Vendas e Serviços Tributos sobre receita Tributos sobre receita Incluído Tipo: apuracao_tributos_receita R$ 2.560,00 -R$ 2.560,00" [ref=f6e285] [box=273,1934,1180,89]'
+            - 'row "COFINS 3.1.1.1.1.3.20.12 Linha 1451 3.01.01.01.02.04 (-) COFINS Sobre Receita Bruta Tributos sobre receita Tributos sobre receita Incluído Tipo: apuracao_tributos_receita R$ 197.952,01 -R$ 197.952,01" [ref=f6e302] [box=273,2023,1180,89]'
+            - 'row "ICMS S/VENDAS 3.1.1.1.1.3.20.04 Linha 1449 3.01.01.01.02.03 (-) ICMS Tributos sobre receita Tributos sobre receita Incluído Tipo: apuracao_tributos_receita R$ 455.375,46 -R$ 455.375,46" [ref=f6e319] [box=273,2111,1180,89]'
+            - 'row "ISSQN 3.1.1.1.1.3.20.02 Linha 1448 3.01.01.01.02.06 (-) ISS Tributos sobre receita Tributos sobre receita Incluído Tipo: apuracao_tributos_receita R$ 8.386,16 -R$ 8.386,16" [ref=f6e336] [box=273,2200,1180,89]'
+            - 'row "PIS S/ FATURAMENTO 3.1.1.1.1.3.20.08 Linha 1450 3.01.01.01.02.05 (-) PIS/PASEP Sobre Receita Bruta Tributos sobre receita Tributos sobre receita Incluído Tipo: apuracao_tributos_receita R$ 42.976,07 -R$ 42.976,07" [ref=f6e353] [box=273,2288,1180,89]'
+            - 'row "(-) COFINS S/ COMPRAS - MP 3.1.1.1.3.1.01.37 Linha 1457 3.01.01.03.01.01 (-) Custo dos Produtos de Fabricação Própria Vendidos Custos operacionais Custos de bens e serviços Incluído Tipo: memoria_custos_operacionais R$ 9.143,21 R$ 9.143,21" [ref=f6e370] [box=273,2377,1180,108]'
+            - 'row "(-) ESTOQUE FINAL DE MP 3.1.1.1.3.1.01.40 Linha 1617 3.01.01.03.01.01 (-) Custo dos Produtos de Fabricação Própria Vendidos Custos operacionais Custos de bens e serviços Incluído Tipo: memoria_custos_operacionais R$ 5.275.604,79 R$ 5.275.604,79" [ref=f6e387] [box=273,2485,1180,108]'
+            - 'row "(-) ICMS S/ COMPRAS - MP 3.1.1.1.3.1.01.30 Linha 1455 3.01.01.03.01.01 (-) Custo dos Produtos de Fabricação Própria Vendidos Custos operacionais Custos de bens e serviços Incluído Tipo: memoria_custos_operacionais R$ 267.499,51 R$ 267.499,51" [ref=f6e404] [box=273,2593,1180,108]'
+            - 'row "(-) PIS S/ COMPRAS - MP 3.1.1.1.3.1.01.36 Linha 1456 3.01.01.03.01.01 (-) Custo dos Produtos de Fabricação Própria Vendidos Custos operacionais Custos de bens e serviços Incluído Tipo: memoria_custos_operacionais R$ 1.985,03 R$ 1.985,03" [ref=f6e421] [box=273,2701,1180,108]'
+            - 'row "(+) COMPRA DE MATERIA PRIMA 3.1.1.1.3.1.01.05 Linha 1453 3.01.01.03.01.01 (-) Custo dos Produtos de Fabricação Própria Vendidos Custos operacionais Custos de bens e serviços Incluído Tipo: memoria_custos_operacionais R$ 2.883.155,12 -R$ 2.883.155,12" [ref=f6e438] [box=273,2809,1180,108]'
+            - 'row "(+) ESTOQUE INICIAL 3.1.1.1.3.1.01.01 Linha 1452 3.01.01.03.01.01 (-) Custo dos Produtos de Fabricação Própria Vendidos Custos operacionais Custos de bens e serviços Incluído Tipo: memoria_custos_operacionais R$ 6.413.381,43 -R$ 6.413.381,43" [ref=f6e455] [box=273,2917,1180,91]'
+            - 'row "(+) FRETES S/ COMPRAS DE MP 3.1.1.1.3.1.01.15 Linha 1454 3.01.01.03.01.01 (-) Custo dos Produtos de Fabricação Própria Vendidos Custos operacionais Custos de bens e serviços Incluído Tipo: memoria_custos_operacionais R$ 22.513,17 -R$ 22.513,17" [ref=f6e472] [box=273,3008,1180,108]'
+            - 'row "(+) IMPORTAÇÃO DE MATERIA PRIMA 3.1.1.1.3.1.01.21 Linha 1954 3.01.01.03.01.01 (-) Custo dos Produtos de Fabricação Própria Vendidos Custos operacionais Custos de bens e serviços Incluído Tipo: memoria_custos_operacionais R$ 13,59 R$ 13,59" [ref=f6e489] [box=273,3116,1180,108]'
+            - 'row "COMBUSTIVEIS E LUBRIF 3.1.1.1.3.1.20.15 Linha 1458 3.01.01.03.01.01 (-) Custo dos Produtos de Fabricação Própria Vendidos Custos operacionais Custos de bens e serviços Incluído Tipo: memoria_custos_operacionais R$ 9.533,04 -R$ 9.533,04" [ref=f6e506] [box=273,3224,1180,108]'
+            - 'row "FEIRAS E EXPOSICOES 3.1.1.3.1.1.01.09 Linha 1459 3.01.01.09.01.99 (-) Outras Despesas Operacionais Despesas operacionais Despesas operacionais recorrentes Revisar Tipo: documento_suporte_despesa R$ 13.410,00 R$ 0,00 Decidir conta 3.1.1.3.1.1.01.09" [ref=f6e523] [box=273,3332,1180,104]'
+            - 'row "13 SALARIO 3.1.1.3.1.1.03.09 Linha 2185 3.01.01.07.01.02 (-) Ordenados, Salários, Gratificações e Outras Remunerações a Empregados Despesas operacionais Despesas operacionais recorrentes Incluído Tipo: documento_suporte_despesa R$ 37.778,68 -R$ 37.778,68" [ref=f6e545] [box=273,3436,1180,104]'
+            - 'row "CONVENIO MEDICO 3.1.1.3.1.1.03.18 Linha 1624 3.01.01.07.01.33 (-) Assistência Médica, Odontológica e Farmacêutica a Empregados Despesas operacionais Despesas operacionais recorrentes Incluído Tipo: documento_suporte_despesa R$ 21.593,23 -R$ 21.593,23" [ref=f6e562] [box=273,3540,1180,104]'
+            - 'row "FERIAS 3.1.1.3.1.1.03.06 Linha 1463 3.01.01.07.01.02 (-) Ordenados, Salários, Gratificações e Outras Remunerações a Empregados Despesas operacionais Despesas operacionais recorrentes Incluído Tipo: documento_suporte_despesa R$ 46.041,47 -R$ 46.041,47" [ref=f6e579] [box=273,3644,1180,104]'
+            - 'row "FGTS 3.1.1.3.1.1.03.04 Linha 1461 3.01.01.07.01.06 (-) Encargos Sociais - FGTS Despesas operacionais Despesas operacionais recorrentes Incluído Tipo: documento_suporte_despesa R$ 42.826,69 -R$ 42.826,69" [ref=f6e596] [box=273,3748,1180,104]'
+            - 'row "INSS 3.1.1.3.1.1.03.05 Linha 1462 3.01.01.07.01.05 (-) Encargos Sociais - Previdência Social Despesas operacionais Despesas operacionais recorrentes Incluído Tipo: documento_suporte_despesa R$ 145.298,66 -R$ 145.298,66" [ref=f6e613] [box=273,3852,1180,104]'
+            - 'row "RESCISOES DE CONTRATO 3.1.1.3.1.1.03.12 Linha 1709 3.01.01.07.01.02 (-) Ordenados, Salários, Gratificações e Outras Remunerações a Empregados Despesas operacionais Despesas operacionais recorrentes Incluído Tipo: documento_suporte_despesa R$ 5.203,84 R$ 5.203,84" [ref=f6e630] [box=273,3956,1180,108]'
+            - 'row "SALARIOS 3.1.1.3.1.1.03.01 Linha 1460 3.01.01.07.01.02 (-) Ordenados, Salários, Gratificações e Outras Remunerações a Empregados Despesas operacionais Despesas operacionais recorrentes Incluído Tipo: documento_suporte_despesa R$ 437.640,72 -R$ 437.640,72" [ref=f6e647] [box=273,4064,1180,104]'
+            - 'row "AGUA E ENERGIA ELETRICA 3.1.1.3.1.1.06.12 Linha 1467 3.01.01.07.01.36 (-) Despesas com Energia Elétrica Despesas operacionais Despesas operacionais recorrentes Incluído Tipo: documento_suporte_despesa R$ 26.727,20 -R$ 26.727,20" [ref=f6e664] [box=273,4168,1180,108]'
+            - 'row "ALUGUEIS E LEASING 3.1.1.3.1.1.06.06 Linha 1465 3.01.01.07.01.18 (-) Aluguéis Despesas operacionais Despesas operacionais recorrentes Incluído Tipo: documento_suporte_despesa R$ 108.000,00 -R$ 108.000,00" [ref=f6e681] [box=273,4276,1180,104]'
+            - 'row "ASSOCIACOES E MENSALIDADES 3.1.1.3.1.1.06.45 Linha 1470 3.01.01.09.01.99 (-) Outras Despesas Operacionais Despesas operacionais Despesas operacionais recorrentes Revisar Tipo: documento_suporte_despesa R$ 4.481,90 R$ 0,00 Decidir conta 3.1.1.3.1.1.06.45" [ref=f6e698] [box=273,4380,1180,108]'
+            - 'row "DESP COM ALIMENT DE SÓCIOS 3.1.1.3.1.1.06.13 Linha 1468 3.01.01.09.01.99 (-) Outras Despesas Operacionais Despesas operacionais Despesas operacionais recorrentes Revisar Tipo: documento_suporte_despesa R$ 719,60 R$ 0,00 Decidir conta 3.1.1.3.1.1.06.13" [ref=f6e720] [box=273,4488,1180,108]'
+            - 'row "HONORARIOS PROFISSIONAIS 3.1.1.3.1.1.06.03 Linha 1464 3.01.01.07.01.04 (-) Outros Serviços Prestados por Pessoa Física ou Jurídica Despesas operacionais Despesas operacionais recorrentes Incluído Tipo: documento_suporte_despesa R$ 32.364,30 -R$ 32.364,30" [ref=f6e742] [box=273,4596,1180,108]'
+            - 'row "IMPOSTOS E TAXAS DIVERSOS 3.1.1.3.1.1.06.33 Linha 1631 3.01.01.07.01.16 (-) Demais Impostos, Taxas e Contribuições, exceto IR e CSLL Despesas operacionais Despesas operacionais recorrentes Incluído Tipo: documento_suporte_despesa R$ 47.625,98 -R$ 47.625,98" [ref=f6e759] [box=273,4704,1180,108]'
+            - 'row "MATERIAL DE EXPEDIENTE 3.1.1.3.1.1.06.24 Linha 1630 3.01.01.09.01.99 (-) Outras Despesas Operacionais Despesas operacionais Despesas operacionais recorrentes Revisar Tipo: documento_suporte_despesa R$ 161,50 R$ 0,00 Decidir conta 3.1.1.3.1.1.06.24" [ref=f6e776] [box=273,4812,1180,108]'
+            - 'row "PREMIOS DE SEGUROS 3.1.1.3.1.1.06.42 Linha 1469 3.01.01.07.01.40 (-) Despesas com Seguros Despesas operacionais Despesas operacionais recorrentes Incluído Tipo: documento_suporte_despesa R$ 4.559,07 -R$ 4.559,07" [ref=f6e798] [box=273,4920,1180,104]'
+            - 'row "SERVICOS DE TERCEIROS 3.1.1.3.1.1.06.54 Linha 1471 3.01.01.07.01.04 (-) Outros Serviços Prestados por Pessoa Física ou Jurídica Despesas operacionais Despesas operacionais recorrentes Incluído Tipo: documento_suporte_despesa R$ 32.585,53 -R$ 32.585,53" [ref=f6e815] [box=273,5024,1180,108]'
+            - 'row "TELEFONE 3.1.1.3.1.1.06.09 Linha 1466 3.01.01.07.01.38 (-) Despesas com Telefone e Internet Despesas operacionais Despesas operacionais recorrentes Incluído Tipo: documento_suporte_despesa R$ 11.949,77 -R$ 11.949,77" [ref=f6e832] [box=273,5132,1180,104]'
+            - 'row "GANHOS APLIC. FINANC. 3.1.1.5.1.1.01.15 Linha 1472 3.01.01.05.01.05 Outras Receitas Financeiras Resultado financeiro Receitas financeiras Incluído Tipo: extrato_ou_contrato_financeiro R$ 2.654,21 R$ 2.654,21" [ref=f6e849] [box=273,5236,1180,108]'
+            - 'row "DESPESAS BANCARIAS 3.1.1.5.1.3.01.01 Linha 1473 3.01.01.09.01.08 (-) Outras Despesas Financeiras Resultado financeiro Despesas financeiras Incluído Tipo: extrato_ou_contrato_financeiro R$ 25.954,62 -R$ 25.954,62" [ref=f6e866] [box=273,5344,1180,91]'
+            - 'row "IOF 3.1.1.5.1.3.01.13 Linha 1553 3.01.01.09.01.08 (-) Outras Despesas Financeiras Resultado financeiro Despesas financeiras Incluído Tipo: extrato_ou_contrato_financeiro R$ 1.032,67 -R$ 1.032,67" [ref=f6e883] [box=273,5435,1180,91]'
+            - 'row "JUROS E ENC S/ EMREST E FINANC OBT 3.1.1.5.1.3.01.10 Linha 1637 3.01.01.09.01.08 (-) Outras Despesas Financeiras Resultado financeiro Despesas financeiras Incluído Tipo: extrato_ou_contrato_financeiro R$ 9.065,87 -R$ 9.065,87" [ref=f6e900] [box=273,5526,1180,108]'
+            - 'row "MULTAS PAGAS P/DEB EM ATRAZO 3.1.1.5.1.3.01.06 Linha 1803 3.01.01.09.01.08 (-) Outras Despesas Financeiras Resultado financeiro Despesas financeiras Incluído Tipo: extrato_ou_contrato_financeiro R$ 25.544,02 -R$ 25.544,02" [ref=f6e917] [box=273,5634,1180,108]'
+            - 'row "DEPRECIACOES 3.1.1.5.5.1.01.01 Linha 1474 3.01.01.07.01.23 (-) Encargos de Depreciação Despesas operacionais Despesas operacionais recorrentes Incluído Tipo: documento_suporte_despesa R$ 6.000,00 -R$ 6.000,00" [ref=f6e934] [box=273,5742,1180,104]'
+            - 'row "PROVISAO P/CSLL 3.2.1.1.1.1.01.02 Linha 1641 3.02.01.01.01.01 (-) Provisão para Contribuição Social sobre o Lucro Líquido (Atividade Geral) Resultado não operacional Tributos sobre o lucro excluídos do ROA Excluído Tipo: apuracao_irpj_csll R$ 9.795,21 R$ 0,00" [ref=f6e951] [box=273,5846,1180,104]'
+            - 'row "PROVISAO P/IRPJ 3.2.1.1.1.1.01.01 Linha 1640 3.02.01.01.01.12 (-) Provisão para Imposto de Renda - Pessoa Jurídica - Lucros Diferidos (Atividade Geral e Rural) Resultado não operacional Tributos sobre o lucro excluídos do ROA Excluído Tipo: apuracao_irpj_csll R$ 16.325,35 R$ 0,00" [ref=f6e968] [box=273,5950,1180,104]'
+        - generic [ref=f6e985] [box=273,6054,1134,52]:
+          - generic [ref=f6e986] [box=293,6071,78,18]: Página 1 de 1
+          - generic [ref=f6e987] [box=1315,6063,72,34]:
+            - button "Página anterior" [disabled] [ref=f6e988] [box=1315,6063,34,34]
+            - button "Próxima página" [disabled] [ref=f6e991] [box=1353,6063,34,34]

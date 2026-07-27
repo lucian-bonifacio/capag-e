@@ -1,0 +1,90 @@
+- generic [ref=f3e3]:
+  - complementary "Navegacao principal" [ref=f3e4]:
+    - generic [ref=f3e5]:
+      - generic [ref=f3e6]: C
+      - generic [ref=f3e7]: CAPAG Analytics
+    - navigation [ref=f3e8]:
+      - link "Dashboard" [ref=f3e9] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "Balanço Patrimonial" [ref=f3e16] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "PLRA" [ref=f3e22] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/plra
+      - link "Evidências" [ref=f3e26] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/evidencias
+      - link "Indicadores CAPAG" [ref=f3e32] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/resultado
+      - link "Auditoria 1" [ref=f3e36] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/auditoria
+        - generic [ref=f3e41]: Auditoria
+        - generic [ref=f3e42]: "1"
+      - link "Importar ECD" [ref=f3e43] [cursor=pointer]:
+        - /url: /importar-ecd
+    - generic [ref=f3e48]:
+      - generic [ref=f3e49]: RA
+      - generic [ref=f3e50]:
+        - strong [ref=f3e51]: Rafael Auditor
+        - generic [ref=f3e52]: Analista contábil
+  - generic [ref=f3e53]:
+    - banner [ref=f3e54]:
+      - generic [ref=f3e55]:
+        - heading "Patrimônio Líquido Realizável Ajustado" [level=1] [ref=f3e56]
+        - paragraph [ref=f3e57]: Análise analysis-bc7478b47f261603 · Exercício 2024
+      - generic [ref=f3e58]:
+        - link "Exportar Excel" [ref=f3e79] [cursor=pointer]:
+          - /url: /api/v1/analyses/analysis-bc7478b47f261603/exercises/2024/plra/export.xlsx
+        - button "Recalcular" [ref=f3e83] [cursor=pointer]
+    - main [ref=f3e65]:
+      - generic [ref=f3e84]:
+        - generic [ref=f3e85]:
+          - paragraph [ref=f3e86]: PLRA
+          - strong [ref=f3e87]: "-R$ 1.045.941,70"
+          - generic [ref=f3e88]: Calculado
+        - generic [ref=f3e89]:
+          - generic [ref=f3e90]:
+            - term [ref=f3e91]: Fórmula
+            - definition [ref=f3e92]: PLR bruto = ativos incluidos - passivos economicos exigiveis; PLRA = ativos ajustados - passivos economicos exigiveis
+          - generic [ref=f3e93]:
+            - term [ref=f3e94]: Versão metodológica
+            - definition [ref=f3e95]: metodologia-2024.1
+          - generic [ref=f3e96]:
+            - term [ref=f3e97]: Conferência J100
+            - definition [ref=f3e98]: disponivel_para_conferencia
+      - region "Resumo PLRA" [ref=f3e99]:
+        - article [ref=f3e100]:
+          - generic [ref=f3e101]: Ativos brutos
+          - strong [ref=f3e102]: R$ 5.893.021,59
+        - article [ref=f3e103]:
+          - generic [ref=f3e104]: Ativos ajustados
+          - strong [ref=f3e105]: R$ 3.373.938,37
+        - article [ref=f3e106]:
+          - generic [ref=f3e107]: Passivos exigíveis
+          - strong [ref=f3e108]: R$ 4.419.880,07
+        - article [ref=f3e109]:
+          - generic [ref=f3e110]: PLR bruto
+          - strong [ref=f3e111]: R$ 1.473.141,52
+      - generic [ref=f3e112]:
+        - generic [ref=f3e113]:
+          - heading "Memória por conta" [level=2] [ref=f3e119]
+          - paragraph [ref=f3e120]: Valores contábeis, política default, avaliações e tratamento final.
+        - button "Abrir auditoria" [ref=f3e121] [cursor=pointer]
+      - generic [ref=f3e126]:
+        - generic [ref=f3e127]:
+          - generic [ref=f3e128]:
+            - heading "Bloqueios" [level=2] [ref=f3e132]
+            - generic [ref=f3e133]: "0"
+          - paragraph [ref=f3e134]: Sem registros.
+        - generic [ref=f3e135]:
+          - generic [ref=f3e136]:
+            - heading "Pendências e limitações" [level=2] [ref=f3e139]
+            - generic [ref=f3e140]: "0"
+          - paragraph [ref=f3e141]: Sem registros.
+        - generic [ref=f3e142]:
+          - generic [ref=f3e143]:
+            - heading "Avisos" [level=2] [ref=f3e146]
+            - generic [ref=f3e147]: "1"
+          - list [ref=f3e148]:
+            - listitem [ref=f3e149]: 1 conta(s) sem vinculo I051 foram auditadas e excluidas.
+      - generic [ref=f3e155]:
+        - text: Snapshot calculado em
+        - time [ref=f3e156]: 24/07/2026, 23:39

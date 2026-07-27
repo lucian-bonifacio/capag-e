@@ -1,0 +1,39 @@
+- generic [ref=f6e3]:
+  - complementary "Navegacao principal" [ref=f6e4]:
+    - generic [ref=f6e5]:
+      - generic [ref=f6e6]: C
+      - generic [ref=f6e7]: CAPAG Analytics
+    - navigation [ref=f6e8]:
+      - link "Dashboard" [ref=f6e9] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "Balanço Patrimonial" [ref=f6e16] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "PLRA" [ref=f6e22] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/plra
+      - link "DFC / FCA" [ref=f6e26] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/dfc
+      - link "ROA" [ref=f6e31] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/roa
+      - link "Evidências" [ref=f6e36] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/evidencias
+      - link "Indicadores CAPAG" [ref=f6e42] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/resultado
+      - link "Auditoria 1" [ref=f6e46] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/auditoria
+        - generic [ref=f6e51]: Auditoria
+        - generic [ref=f6e52]: "1"
+      - link "Importar ECD" [ref=f6e53] [cursor=pointer]:
+        - /url: /importar-ecd
+    - generic [ref=f6e58]:
+      - generic [ref=f6e59]: RA
+      - generic [ref=f6e60]:
+        - strong [ref=f6e61]: Rafael Auditor
+        - generic [ref=f6e62]: Analista contábil
+  - generic [ref=f6e63]:
+    - banner [ref=f6e64]:
+      - generic [ref=f6e65]:
+        - heading "ROA e CAPAG-E" [level=1] [ref=f6e66]
+        - paragraph [ref=f6e67]: Análise analysis-bc7478b47f261603 · Exercício 2024
+      - button "Calcular ROA" [ref=f6e68] [cursor=pointer]
+    - main [ref=f6e74]:
+      - region "Carregando ROA" [ref=f6e75]

@@ -1,0 +1,36 @@
+- generic [ref=e3]:
+  - complementary "Navegacao principal" [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: C
+      - generic [ref=e7]: CAPAG Analytics
+    - navigation [ref=e8]:
+      - link "Dashboard" [ref=e9] [cursor=pointer]:
+        - /url: /analises/visual-check/exercicios/2024/declarada
+      - link "Balanço Patrimonial" [ref=e16] [cursor=pointer]:
+        - /url: /analises/visual-check/exercicios/2024/declarada
+      - link "PLRA" [ref=e22] [cursor=pointer]:
+        - /url: /analises/visual-check/exercicios/2024/plra
+      - link "Indicadores CAPAG" [ref=e26] [cursor=pointer]:
+        - /url: /analises/visual-check/exercicios/2024/resultado
+      - link "Auditoria 1" [ref=e30] [cursor=pointer]:
+        - /url: /analises/visual-check/exercicios/2024/auditoria
+        - generic [ref=e35]: Auditoria
+        - generic [ref=e36]: "1"
+      - link "Importar ECD" [ref=e37] [cursor=pointer]:
+        - /url: /importar-ecd
+    - generic [ref=e42]:
+      - generic [ref=e43]: RA
+      - generic [ref=e44]:
+        - strong [ref=e45]: Rafael Auditor
+        - generic [ref=e46]: Analista contábil
+  - generic [ref=e47]:
+    - banner [ref=e48]:
+      - generic [ref=e49]:
+        - heading "Patrimônio Líquido Realizável Ajustado" [level=1] [ref=e50]
+        - paragraph [ref=e51]: Análise visual-check · Exercício 2024
+      - button "Calcular PLRA" [ref=e52] [cursor=pointer]
+    - main [ref=e58]:
+      - generic [ref=e62]:
+        - heading "PLRA não calculado" [level=2] [ref=e63]
+        - paragraph [ref=e64]: Não há snapshot persistido para este exercício.
+        - button "Calcular PLRA" [ref=e65] [cursor=pointer]

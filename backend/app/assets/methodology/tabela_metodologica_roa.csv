@@ -1,0 +1,34 @@
+codigo_referencial,modo_correspondencia,grupo_metodologico,macrogrupo,bloco_roa,sinal_natural,tratamento,regra_principal,componente_roa,exige_revisao,motivo_condicional,methodology_version_id
+3.01.01.01.01,prefixo,receita_bruta,RECEITA_OPERACIONAL,receita_bruta,credito,incluir_automaticamente,somar,receita_vendas_servicos,false,,metodologia-2024.1
+3.01.01.01.02.03,exato,tributos_receita,TRIBUTOS_SOBRE_RECEITA,tributos_receita,debito,incluir_automaticamente,subtrair,tributos_sobre_receita,false,,metodologia-2024.1
+3.01.01.01.02.04,exato,tributos_receita,TRIBUTOS_SOBRE_RECEITA,tributos_receita,debito,incluir_automaticamente,subtrair,tributos_sobre_receita,false,,metodologia-2024.1
+3.01.01.01.02.05,exato,tributos_receita,TRIBUTOS_SOBRE_RECEITA,tributos_receita,debito,incluir_automaticamente,subtrair,tributos_sobre_receita,false,,metodologia-2024.1
+3.01.01.01.02.06,exato,tributos_receita,TRIBUTOS_SOBRE_RECEITA,tributos_receita,debito,incluir_automaticamente,subtrair,tributos_sobre_receita,false,,metodologia-2024.1
+3.01.01.01.02.09,exato,tributos_receita,TRIBUTOS_SOBRE_RECEITA,tributos_receita,debito,incluir_automaticamente,subtrair,tributos_sobre_receita,false,,metodologia-2024.1
+3.01.01.01.02,prefixo,deducoes_receita,DEDUCOES_RECEITA,deducoes_receita,debito,incluir_automaticamente,subtrair,deducoes_comerciais,false,,metodologia-2024.1
+3.01.01.03,prefixo,custos_operacionais,CUSTOS_OPERACIONAIS,custos_operacionais,debito,incluir_automaticamente,subtrair,custos_bens_servicos,false,,metodologia-2024.1
+3.01.01.05.01.05,exato,receitas_financeiras,RESULTADO_FINANCEIRO,resultado_financeiro,credito,incluir_automaticamente,somar,receitas_financeiras,false,,metodologia-2024.1
+3.01.01.05,prefixo,outras_receitas,RESULTADO_NAO_OPERACIONAL,resultado_nao_operacional,credito,condicional,somar,receitas_nao_operacionais,true,Reclassificar receitas não recorrentes ou financeiras não cobertas por regra exata.,metodologia-2024.1
+3.01.01.07,prefixo,despesas_operacionais,DESPESAS_OPERACIONAIS,despesas_operacionais,debito,incluir_automaticamente,subtrair,despesas_operacionais_recorrentes,false,,metodologia-2024.1
+3.01.01.09.01.08,exato,despesas_financeiras,RESULTADO_FINANCEIRO,resultado_financeiro,debito,incluir_automaticamente,subtrair,despesas_financeiras,false,,metodologia-2024.1
+3.01.01.09,prefixo,outras_despesas,DESPESAS_OPERACIONAIS,despesas_operacionais,debito,condicional,subtrair,despesas_operacionais_recorrentes,true,Confirmar pertinência operacional e recorrência.,metodologia-2024.1
+3.01.01.11.01.01,exato,receitas_nao_operacionais,RESULTADO_NAO_OPERACIONAL,resultado_nao_operacional,credito,incluir_automaticamente,somar,receitas_nao_operacionais,false,,metodologia-2024.1
+3.01.01.11.01.02,exato,receitas_nao_operacionais,RESULTADO_NAO_OPERACIONAL,resultado_nao_operacional,credito,incluir_automaticamente,somar,receitas_nao_operacionais,false,,metodologia-2024.1
+3.01.01.11.01.03,exato,receitas_nao_operacionais,RESULTADO_NAO_OPERACIONAL,resultado_nao_operacional,credito,incluir_automaticamente,somar,receitas_nao_operacionais,false,,metodologia-2024.1
+3.01.01.11.01.07,exato,receitas_nao_operacionais,RESULTADO_NAO_OPERACIONAL,resultado_nao_operacional,credito,incluir_automaticamente,somar,receitas_nao_operacionais,false,,metodologia-2024.1
+3.01.01.11.01.04,exato,despesas_nao_operacionais,RESULTADO_NAO_OPERACIONAL,resultado_nao_operacional,debito,incluir_automaticamente,subtrair,despesas_nao_operacionais,false,,metodologia-2024.1
+3.01.01.11.01.05,exato,despesas_nao_operacionais,RESULTADO_NAO_OPERACIONAL,resultado_nao_operacional,debito,incluir_automaticamente,subtrair,despesas_nao_operacionais,false,,metodologia-2024.1
+3.01.01.11.01.06,exato,despesas_nao_operacionais,RESULTADO_NAO_OPERACIONAL,resultado_nao_operacional,debito,incluir_automaticamente,subtrair,despesas_nao_operacionais,false,,metodologia-2024.1
+3.01.01.11.01.08,exato,despesas_nao_operacionais,RESULTADO_NAO_OPERACIONAL,resultado_nao_operacional,debito,incluir_automaticamente,subtrair,despesas_nao_operacionais,false,,metodologia-2024.1
+3.01.01.11,prefixo,resultado_nao_operacional,RESULTADO_NAO_OPERACIONAL,resultado_nao_operacional,variavel,condicional,aplicar_sinal_contabil,despesas_nao_operacionais,true,Classificar natureza credora ou devedora e recorrência.,metodologia-2024.1
+3.01.05,prefixo,participacoes,PARTICIPACOES,resultado_nao_operacional,debito,excluir_automaticamente,excluir,participacoes_excluidas,false,,metodologia-2024.1
+3.02,prefixo,tributos_lucro,TRIBUTOS_SOBRE_LUCRO,resultado_nao_operacional,debito,excluir_automaticamente,excluir,tributos_lucro_excluidos,false,,metodologia-2024.1
+3.11.01.01.01,prefixo,receita_bruta_rural,RECEITA_OPERACIONAL_RURAL,receita_bruta,credito,incluir_automaticamente,somar,receita_vendas_servicos,false,,metodologia-2024.1
+3.11.01.01.02,prefixo,deducoes_receita_rural,DEDUCOES_RECEITA_RURAL,deducoes_receita,debito,incluir_automaticamente,subtrair,deducoes_comerciais,false,,metodologia-2024.1
+3.11.01.03,prefixo,custos_operacionais_rurais,CUSTOS_OPERACIONAIS_RURAIS,custos_operacionais,debito,incluir_automaticamente,subtrair,custos_bens_servicos,false,,metodologia-2024.1
+3.11.01.05,prefixo,outras_receitas_rurais,RESULTADO_NAO_OPERACIONAL_RURAL,resultado_nao_operacional,credito,condicional,somar,receitas_nao_operacionais,true,Reclassificar receitas rurais não recorrentes ou financeiras.,metodologia-2024.1
+3.11.01.07,prefixo,despesas_operacionais_rurais,DESPESAS_OPERACIONAIS_RURAIS,despesas_operacionais,debito,incluir_automaticamente,subtrair,despesas_operacionais_recorrentes,false,,metodologia-2024.1
+3.11.01.09,prefixo,outras_despesas_rurais,DESPESAS_OPERACIONAIS_RURAIS,despesas_operacionais,debito,condicional,subtrair,despesas_operacionais_recorrentes,true,Confirmar pertinência operacional e recorrência.,metodologia-2024.1
+3.11.01.11,prefixo,resultado_nao_operacional_rural,RESULTADO_NAO_OPERACIONAL_RURAL,resultado_nao_operacional,variavel,condicional,aplicar_sinal_contabil,despesas_nao_operacionais,true,Classificar natureza credora ou devedora e recorrência.,metodologia-2024.1
+3.11.05,prefixo,participacoes_rurais,PARTICIPACOES_RURAIS,resultado_nao_operacional,debito,excluir_automaticamente,excluir,participacoes_excluidas,false,,metodologia-2024.1
+3.12,prefixo,tributos_lucro_rural,TRIBUTOS_SOBRE_LUCRO_RURAL,resultado_nao_operacional,debito,excluir_automaticamente,excluir,tributos_lucro_excluidos,false,,metodologia-2024.1

@@ -1,0 +1,340 @@
+- generic [ref=f61e1]:
+  - navigation "Toolbar"
+  - generic [ref=f61e2]:
+    - navigation "Links para acesso rápido" [ref=f61e3]:
+      - link "Ir para o conteúdo" [ref=f61e4] [cursor=pointer]:
+        - /url: "#view"
+      - link "Ir para a navegação" [ref=f61e5] [cursor=pointer]:
+        - /url: "#navigation"
+      - link "Ir para a busca" [ref=f61e6] [cursor=pointer]:
+        - /url: "#header-search-widget"
+      - link "Ir para o rodapé" [ref=f61e7] [cursor=pointer]:
+        - /url: "#footer"
+    - complementary [ref=f61e8]:
+      - generic [ref=f61e9] [cursor=pointer]:
+        - img "Conteúdo acessível em Libras usando o VLibras Widget com opções dos Avatares Ícaro, Hosana ou Guga." [ref=f61e10]
+        - img "Conteúdo acessível em Libras usando o VLibras Widget com opções dos Avatares Ícaro, Hosana ou Guga." [ref=f61e11]
+    - banner [ref=f61e12]:
+      - generic [ref=f61e13]:
+        - text:      Entrar com gov.br
+        - generic [ref=f61e64]:
+          - generic [ref=f61e65]:
+            - button "abrir menu de navegação" [ref=f61e67] [cursor=pointer]:
+              - generic [ref=f61e68]: 
+            - link "Sistema Público de Escrituração Digital" [ref=f61e70] [cursor=pointer]:
+              - /url: /sped/
+          - generic [ref=f61e71]:
+            - combobox "Termo da busca" [ref=f61e72]:
+              - search [ref=f61e73]:
+                - textbox "Termo da busca" [ref=f61e74]:
+                  - /placeholder: O que você procura?
+                - button "Iniciar busca por voz" [ref=f61e75] [cursor=pointer]:
+                  - generic [ref=f61e76]: 
+                - button "Pesquisar" [ref=f61e77] [cursor=pointer]:
+                  - generic [ref=f61e78]: 
+              - text:        
+            - text:  
+    - navigation "Menu principal de navegação" [ref=f61e79]
+    - navigation "Trilha de navegação" [ref=f61e81]:
+      - list [ref=f61e82]:
+        - listitem [ref=f61e83]:
+          - link "" [ref=f61e84] [cursor=pointer]:
+            - /url: /sped/pt-br
+        - text:  
+        - listitem [ref=f61e86]:
+          - generic [ref=f61e87]: 
+          - link "Assuntos" [ref=f61e88] [cursor=pointer]:
+            - /url: /sped/pt-br/assuntos
+        - listitem [ref=f61e89]:
+          - generic [ref=f61e90]: 
+          - link "Escriturações Digitais" [ref=f61e91] [cursor=pointer]:
+            - /url: /sped/pt-br/assuntos/escrituracoes-digitais
+        - listitem [ref=f61e92]:
+          - generic [ref=f61e93]: 
+          - generic [ref=f61e94]: Escrituração Contábil Fiscal - ECF
+    - main [ref=f61e97]:
+      - generic [ref=f61e99]:
+        - heading "Escrituração Contábil Fiscal - ECF" [level=1] [ref=f61e100]
+        - paragraph [ref=f61e101]:
+          - text: A Escrituração Contábil Fiscal - ECF é um módulo do Sistema Público de Escrituração Digital - Sped, regulamentado por meio da
+          - link "Instrução Normativa nº 2004, de 18 de janeiro de 2021" [ref=f61e102] [cursor=pointer]:
+            - /url: https://normasinternet2.receita.fazenda.gov.br/#/consulta/externa/114966
+          - text: ", onde são apresentadas informações fiscais e operacionais das empresas, que subsidiam a apuração do Imposto de Renda da Pessoa Jurídica - IRPJ e a Contribuição Social sobre o Lucro Líquido - CSLL."
+        - paragraph [ref=f61e103]: A escrituração atualizou o formato de preenchimento das fichas de informações econômicas e de informações gerais dos obrigados, e permitiu que empresas obrigadas a entrega da Escrituração Contábil Digital - ECD utilizassem os saldos e contas desse documento fiscal para o preenchimento inicial da ECF. Além disso, desde o ano-calendário 2015 é possível recuperar os saldos finais da ECF anterior, para serem registrados na versão atual da escrituração eletrônica.
+        - paragraph [ref=f61e104]:
+          - text: Em alinhamento às disposições que regem a escrituração fiscal, o
+          - link "Decreto nº 9.580, de 22 de novembro de 2018" [ref=f61e105] [cursor=pointer]:
+            - /url: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/decreto/d9580.htm
+          - text: e a
+          - link "Lei nº 12.973, de 13 de maio de 2014" [ref=f61e106] [cursor=pointer]:
+            - /url: https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l12973.htm
+          - text: determinam que a pessoa jurídica sujeita à tributação com base no lucro real deve manter escrituração em observância às leis comerciais e fiscais, a ser entregue em meio digital por meio do Sped. Nesse sentido, a
+          - link "Instrução Normativa RFB nº 1.700, de 14 de março de 2017" [ref=f61e107] [cursor=pointer]:
+            - /url: https://normasinternet2.receita.fazenda.gov.br/#/consulta/externa/81268
+          - text: indicou que a ECF pode ser utilizada para preenchimento e o controle, por meio de validações, das partes A e B do Livro Eletrônico de Apuração do Lucro Real - e-Lalur e do Livro Eletrônico de Apuração da Base de Cálculo da CSLL - e-Lacs. Todos os saldos informados nesses livros também são controlados e, no caso da parte B, efetua-se o batimento de saldos de um ano para outro.
+        - heading "comunicados em destaque" [level=3] [ref=f61e108]
+        - generic [ref=f61e111]:
+          - button "Voltar página" [ref=f61e113] [cursor=pointer]:
+            - generic [ref=f61e114]: 
+            - generic [ref=f61e115]: Filtrar
+          - 'heading "Resultados da pesquisa: 3" [level=2] [ref=f61e238]'
+          - generic [ref=f61e241]:
+            - generic [ref=f61e243]:
+              - link "Leia mais sobre ECF - Outras Exclusões sem Relacionamento" [ref=f61e244] [cursor=pointer]:
+                - /url: /sped/pt-br/assuntos/comunicados/ecf/ecf-outras-exclusoes-sem-relacionamento
+                - text: ECF - Outras Exclusões sem Relacionamento
+              - generic [ref=f61e245]: Criado há 25 dias
+            - generic [ref=f61e248]:
+              - link "Leia mais sobre Publicação da Versão 12.2.1 do Programa da ECF" [ref=f61e249] [cursor=pointer]:
+                - /url: /sped/pt-br/assuntos/comunicados/ecf/copy3_of_publicacao-da-versao-12-1-7-do-programa-da-ecf
+                - text: Publicação da Versão 12.2.1 do Programa da ECF
+              - generic [ref=f61e250]: Versão 12.2.1 do Programa da ECF válida para o ano-calendário 2025, situações especiais de 2026 e para os anos anteriores.
+              - generic [ref=f61e251]:
+                - generic [ref=f61e252]: Criado há um mês
+                - generic [ref=f61e254]: Modificado há 8 horas
+            - generic [ref=f61e256]:
+              - link "Leia mais sobre Publicação da Versão 12.1.7 do Programa da ECF" [ref=f61e257] [cursor=pointer]:
+                - /url: /sped/pt-br/assuntos/comunicados/ecf/publicacao-da-versao-12-1-7-do-programa-da-ecf
+                - text: Publicação da Versão 12.1.7 do Programa da ECF
+              - generic [ref=f61e258]: Versão 12.1.7 do Programa da ECF válida para o ano-calendário 2025, situações especiais de 2026 e para os anos anteriores.
+              - generic [ref=f61e259]:
+                - generic [ref=f61e260]: Criado há um mês
+                - generic [ref=f61e262]: Modificado há um mês
+        - heading "SERVIÇOS RELACIONADOS" [level=3] [ref=f61e122]
+        - generic [ref=f61e268]:
+          - link " Entregar Escrituração Contábil Fiscal (ECF)" [ref=f61e269] [cursor=pointer]:
+            - /url: https://www.gov.br/pt-br/servicos/entregar-escrituracao-contabil-fiscal
+            - generic [ref=f61e270]: 
+            - generic [ref=f61e272]: Entregar Escrituração Contábil Fiscal (ECF)
+            - text: 
+            - button "Exibir descrição" [ref=f61e275]
+          - link "Entregar Escrituração Contábil Fiscal (ECF) Envie as informações relacionadas à contabilidade fiscal da entidade à Receita Federal." [ref=f61e279] [cursor=pointer]:
+            - /url: https://www.gov.br/pt-br/servicos/entregar-escrituracao-contabil-fiscal
+            - button "Exibir descrição" [ref=f61e281]
+            - generic [ref=f61e285]:
+              - generic [ref=f61e286]: Entregar Escrituração Contábil Fiscal (ECF)
+              - generic [ref=f61e287]: Envie as informações relacionadas à contabilidade fiscal da entidade à Receita Federal.
+        - heading "MAIS INFORMAÇÕES" [level=3] [ref=f61e124]
+        - generic [ref=f61e127]:
+          - navigation [ref=f61e128]:
+            - tablist [ref=f61e129]:
+              - tab "Manuais e Documentos Técnicos" [selected] [ref=f61e130] [cursor=pointer]
+              - tab "Perguntas Frequentes" [ref=f61e131] [cursor=pointer]
+              - tab "Fale Conosco" [ref=f61e132] [cursor=pointer]
+              - tab "Validador ECF" [ref=f61e133] [cursor=pointer]
+          - generic [ref=f61e288]:
+            - tabpanel "Manuais e Documentos Técnicos" [ref=f61e289]:
+              - generic [ref=f61e292]:
+                - 'link "Manual da ECF Leiaute 12 - Versão em PDF (Atualização: 23/07/2026) Manual de Orientação do Leiaute 12 da ECF - Ano-calendário 2025 e situações especiais do ano-calendário 2026 - Anexo ao ADE Cofis nº 2/2026. Criado há um mês Modificado há um dia" [ref=f61e293] [cursor=pointer]':
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/manual_ecf_leiaute_12_20_05_2026_ac_2025_sit_esp_2026.pdf/@@display-file/file
+                  - generic [ref=f61e294]:
+                    - generic [ref=f61e295]: "Manual da ECF Leiaute 12 - Versão em PDF (Atualização: 23/07/2026)"
+                    - generic [ref=f61e296]: Manual de Orientação do Leiaute 12 da ECF - Ano-calendário 2025 e situações especiais do ano-calendário 2026 - Anexo ao ADE Cofis nº 2/2026.
+                    - generic [ref=f61e297]:
+                      - generic [ref=f61e298]: Criado há um mês
+                      - generic [ref=f61e300]: Modificado há um dia
+                - 'link "Manual da ECF Leiaute 12 - Versão em Word (Atualização: 23/07/2026) Manual de Orientação do Leiaute 12 da ECF - Ano-calendário 2025 e situações especiais do ano-calendário 2026 - Anexo ao ADE Cofis nº 2/2026. Criado há um mês Modificado há um dia" [ref=f61e301] [cursor=pointer]':
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/manual_ecf_leiaute_12_20_05_2026_ac_2025_sit_esp_2026.docx/@@display-file/file
+                  - generic [ref=f61e302]:
+                    - generic [ref=f61e303]: "Manual da ECF Leiaute 12 - Versão em Word (Atualização: 23/07/2026)"
+                    - generic [ref=f61e304]: Manual de Orientação do Leiaute 12 da ECF - Ano-calendário 2025 e situações especiais do ano-calendário 2026 - Anexo ao ADE Cofis nº 2/2026.
+                    - generic [ref=f61e305]:
+                      - generic [ref=f61e306]: Criado há um mês
+                      - generic [ref=f61e308]: Modificado há um dia
+                - 'link "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 12 (Atualização: 23/07/2026) Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 12. Criado há 3 meses Modificado há um dia" [ref=f61e309] [cursor=pointer]':
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/tabelas-dinamicas-e-planos-de-contas-referenciais-leiaute-12-atualizacao-28-05-2026
+                  - generic [ref=f61e310]:
+                    - generic [ref=f61e311]: "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 12 (Atualização: 23/07/2026)"
+                    - generic [ref=f61e312]: Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 12.
+                    - generic [ref=f61e313]:
+                      - generic [ref=f61e314]: Criado há 3 meses
+                      - generic [ref=f61e316]: Modificado há um dia
+                - 'link "Manual da ECF Leiaute 11 - Versão em .pdf - (Atualização: 29/09/2025) Manual de Orientação do Leiaute 11 da ECF - Ano-calendário 2024 e situações especiais do ano-calendário 2025 - Anexo ao ADE Cofis nº 38/2024 Criado há 4 meses Modificado há 2 meses" [ref=f61e317] [cursor=pointer]':
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/manual_ecf_leiaute_11_29_09_2025.pdf/@@display-file/file
+                  - generic [ref=f61e318]:
+                    - generic [ref=f61e319]: "Manual da ECF Leiaute 11 - Versão em .pdf - (Atualização: 29/09/2025)"
+                    - generic [ref=f61e320]: Manual de Orientação do Leiaute 11 da ECF - Ano-calendário 2024 e situações especiais do ano-calendário 2025 - Anexo ao ADE Cofis nº 38/2024
+                    - generic [ref=f61e321]:
+                      - generic [ref=f61e322]: Criado há 4 meses
+                      - generic [ref=f61e324]: Modificado há 2 meses
+                - 'link "Manual da ECF Leiaute 10 - Versão em .pdf - (Atualização: 01/04/2024) Manual de Orientação do Leiaute 10 da ECF - Ano-calendário 2023 e situações especiais do ano-calendário 2024 - Anexo ao ADE Cofis nº 59/2023 Criado há 4 meses Modificado há 2 meses" [ref=f61e325] [cursor=pointer]':
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/manual_ecf_leiaute_10_21_12_2023.pdf/@@display-file/file
+                  - generic [ref=f61e326]:
+                    - generic [ref=f61e327]: "Manual da ECF Leiaute 10 - Versão em .pdf - (Atualização: 01/04/2024)"
+                    - generic [ref=f61e328]: Manual de Orientação do Leiaute 10 da ECF - Ano-calendário 2023 e situações especiais do ano-calendário 2024 - Anexo ao ADE Cofis nº 59/2023
+                    - generic [ref=f61e329]:
+                      - generic [ref=f61e330]: Criado há 4 meses
+                      - generic [ref=f61e332]: Modificado há 2 meses
+                - link "Manual da ECF Leiaute 9 - Versão em .pdf Manual de Orientação do Leiaute 9 da ECF - Ano-calendário 2022 e situações especiais do ano-calendário 2023 - Anexo ao ADE Cofis nº 133/2022 Criado há 4 meses Modificado há 2 meses" [ref=f61e333] [cursor=pointer]:
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/manual_ecf_leiaute_9_12_12_2022.pdf/@@display-file/file
+                  - generic [ref=f61e334]:
+                    - generic [ref=f61e335]: Manual da ECF Leiaute 9 - Versão em .pdf
+                    - generic [ref=f61e336]: Manual de Orientação do Leiaute 9 da ECF - Ano-calendário 2022 e situações especiais do ano-calendário 2023 - Anexo ao ADE Cofis nº 133/2022
+                    - generic [ref=f61e337]:
+                      - generic [ref=f61e338]: Criado há 4 meses
+                      - generic [ref=f61e340]: Modificado há 2 meses
+                - link "Manual da ECF Leiaute 8 - Versão em .pdf Manual de Orientação do Leiaute 8 da ECF - Ano-calendário 2021 e situações especiais do ano-calendário 2022 - Anexo ao ADE Cofis nº 001/2022 Criado há 4 meses Modificado há 2 meses" [ref=f61e341] [cursor=pointer]:
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/manual_de_orientacao_da_ecf_janeiro_2022.pdf/@@display-file/file
+                  - generic [ref=f61e342]:
+                    - generic [ref=f61e343]: Manual da ECF Leiaute 8 - Versão em .pdf
+                    - generic [ref=f61e344]: Manual de Orientação do Leiaute 8 da ECF - Ano-calendário 2021 e situações especiais do ano-calendário 2022 - Anexo ao ADE Cofis nº 001/2022
+                    - generic [ref=f61e345]:
+                      - generic [ref=f61e346]: Criado há 4 meses
+                      - generic [ref=f61e348]: Modificado há 2 meses
+                - 'link "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 12 (Atualização: 29/01/2026) Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 12 Criado há 4 meses Modificado há 2 meses" [ref=f61e349] [cursor=pointer]':
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/tabelas_dinamicas_ecf_leiaute_12_29_01_2026_ac_2025_sit_esp_2026.xlsx/@@display-file/file
+                  - generic [ref=f61e350]:
+                    - generic [ref=f61e351]: "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 12 (Atualização: 29/01/2026)"
+                    - generic [ref=f61e352]: Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 12
+                    - generic [ref=f61e353]:
+                      - generic [ref=f61e354]: Criado há 4 meses
+                      - generic [ref=f61e356]: Modificado há 2 meses
+                - 'link "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 11 (Atualização: 09/11/2025) Tabelas Dinâmicas e Planos de Contas Referenciais do Leiaute 11 Criado há 4 meses Modificado há 2 meses" [active] [ref=f61e357] [cursor=pointer]':
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/tabelas_dinamicas_ecf_leiaute_11_09_11_2025_ac_2024_sit_esp_2025.xlsx/@@display-file/file
+                  - generic [ref=f61e358]:
+                    - generic [ref=f61e359]: "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 11 (Atualização: 09/11/2025)"
+                    - generic [ref=f61e360]: Tabelas Dinâmicas e Planos de Contas Referenciais do Leiaute 11
+                    - generic [ref=f61e361]:
+                      - generic [ref=f61e362]: Criado há 4 meses
+                      - generic [ref=f61e364]: Modificado há 2 meses
+                - 'link "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 10 (Atualização: 15/01/2024) Tabelas Dinâmicas e Planos de Contas Referenciais do Leiaute 10 Criado há 4 meses Modificado há 2 meses" [ref=f61e365] [cursor=pointer]':
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/tabelas_dinamicas_ecf_leiaute_10_ac_2023_sit_esp_2024.xlsx/@@display-file/file
+                  - generic [ref=f61e366]:
+                    - generic [ref=f61e367]: "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 10 (Atualização: 15/01/2024)"
+                    - generic [ref=f61e368]: Tabelas Dinâmicas e Planos de Contas Referenciais do Leiaute 10
+                    - generic [ref=f61e369]:
+                      - generic [ref=f61e370]: Criado há 4 meses
+                      - generic [ref=f61e372]: Modificado há 2 meses
+                - 'link "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 9 (Atualização: 12/04/2023) Tabelas Dinâmicas e Planos de Contas Referenciais do Leiaute 9 Criado há 4 meses Modificado há 2 meses" [ref=f61e373] [cursor=pointer]':
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/tabelas_dinamicas_ecf_leiaute_9_ac2022_sit_esp_2023.xlsx/@@display-file/file
+                  - generic [ref=f61e374]:
+                    - generic [ref=f61e375]: "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 9 (Atualização: 12/04/2023)"
+                    - generic [ref=f61e376]: Tabelas Dinâmicas e Planos de Contas Referenciais do Leiaute 9
+                    - generic [ref=f61e377]:
+                      - generic [ref=f61e378]: Criado há 4 meses
+                      - generic [ref=f61e380]: Modificado há 2 meses
+                - 'link "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 8 (Atualização: 26/07/2022) Tabelas Dinâmicas e Planos de Contas Referenciais do Leiaute 8 Criado há 4 meses Modificado há 2 meses" [ref=f61e381] [cursor=pointer]':
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/tabelas_dinamicas_ecf_leiaute_8_ac2021_sit_esp_2022.xlsx/@@display-file/file
+                  - generic [ref=f61e382]:
+                    - generic [ref=f61e383]: "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 8 (Atualização: 26/07/2022)"
+                    - generic [ref=f61e384]: Tabelas Dinâmicas e Planos de Contas Referenciais do Leiaute 8
+                    - generic [ref=f61e385]:
+                      - generic [ref=f61e386]: Criado há 4 meses
+                      - generic [ref=f61e388]: Modificado há 2 meses
+                - 'link "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 7 (Atualização: 03/02/2021) Criado há um mês Modificado há um mês" [ref=f61e389] [cursor=pointer]':
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/tabelas-leiaute-7/@@display-file/file
+                  - generic [ref=f61e390]:
+                    - generic [ref=f61e391]: "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 7 (Atualização: 03/02/2021)"
+                    - generic [ref=f61e392]:
+                      - generic [ref=f61e393]: Criado há um mês
+                      - generic [ref=f61e395]: Modificado há um mês
+                - 'link "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 6 (Atualização: 26/06/2020) Criado há um mês" [ref=f61e396] [cursor=pointer]':
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/tabelas-leiaute-6/@@display-file/file
+                  - generic [ref=f61e397]:
+                    - generic [ref=f61e398]: "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 6 (Atualização: 26/06/2020)"
+                    - generic [ref=f61e399]: Criado há um mês
+                - 'link "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 5 (Atualização: 10/09/2019) Criado há um mês" [ref=f61e401] [cursor=pointer]':
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/tabelas-leiaute-5/@@display-file/file
+                  - generic [ref=f61e402]:
+                    - generic [ref=f61e403]: "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 5 (Atualização: 10/09/2019)"
+                    - generic [ref=f61e404]: Criado há um mês
+                - 'link "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 4 (Atualização: 29/06/2018) Criado há um mês" [ref=f61e406] [cursor=pointer]':
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/tabelas-leiaute-4/@@display-file/file
+                  - generic [ref=f61e407]:
+                    - generic [ref=f61e408]: "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 4 (Atualização: 29/06/2018)"
+                    - generic [ref=f61e409]: Criado há um mês
+                - 'link "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 3 (Atualização: 19/06/2017) Criado há um mês Modificado há um mês" [ref=f61e411] [cursor=pointer]':
+                  - /url: /sped/pt-br/assuntos/escrituracoes-digitais/ecf/manuais-e-documentos-tecnicos/tabelas-leiaute-3/@@display-file/file
+                  - generic [ref=f61e412]:
+                    - generic [ref=f61e413]: "Tabelas Dinâmicas e Planos de Contas Referenciais - Leiaute 3 (Atualização: 19/06/2017)"
+                    - generic [ref=f61e414]:
+                      - generic [ref=f61e415]: Criado há um mês
+                      - generic [ref=f61e417]: Modificado há um mês
+            - text:   
+    - alert [ref=f61e136]
+    - generic [ref=f61e137]:
+      - region [ref=f61e138]:
+        - heading "Links de compartilhamento em redes sociais" [level=2] [ref=f61e139]
+        - generic [ref=f61e142]:
+          - generic [ref=f61e143]: "Compartilhe:"
+          - generic [ref=f61e144]:
+            - link "Compartilhe no Whatsapp" [ref=f61e145] [cursor=pointer]:
+              - /url: https://api.whatsapp.com/send?text=https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf
+              - generic [ref=f61e146]: 
+            - link "Compartilhe no X" [ref=f61e147] [cursor=pointer]:
+              - /url: https://twitter.com/share?url=https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf
+              - generic [ref=f61e148]: 
+            - link "Compartilhe no Facebook" [ref=f61e149] [cursor=pointer]:
+              - /url: http://www.facebook.com/sharer.php?u=https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf
+              - generic [ref=f61e150]: 
+            - link "Compartilhe no Linkedin" [ref=f61e151] [cursor=pointer]:
+              - /url: https://linkedin.com/shareArticle/?url=https://www.gov.br/sped/pt-br/assuntos/escrituracoes-digitais/ecf
+              - generic [ref=f61e152]: 
+            - button "" [ref=f61e154] [cursor=pointer]
+      - contentinfo [ref=f61e157]:
+        - generic [ref=f61e158]:
+          - img "Portal Gov.br" [ref=f61e160]
+          - navigation "Mapa do site" [ref=f61e168]:
+            - generic [ref=f61e170]:
+              - generic [ref=f61e171]:
+                - link "Serviços" [ref=f61e173] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos
+                - generic [ref=f61e175]:
+                  - link "Centrais de Conteúdo" [ref=f61e176] [cursor=pointer]:
+                    - /url: /sped/pt-br/centrais-de-conteudo
+                  - text: 
+                  - generic [ref=f61e178]:
+                    - link "Downloads" [ref=f61e179] [cursor=pointer]:
+                      - /url: /sped/pt-br/centrais-de-conteudo/downloads
+                    - link "Estatísticas Sped" [ref=f61e181] [cursor=pointer]:
+                      - /url: /sped/pt-br/centrais-de-conteudo/estatisticas-sped
+                    - link "Vídeos" [ref=f61e183] [cursor=pointer]:
+                      - /url: /sped/pt-br/centrais-de-conteudo/videos
+                    - link "Apresentações" [ref=f61e185] [cursor=pointer]:
+                      - /url: /sped/pt-br/centrais-de-conteudo/apresentacoes
+              - generic [ref=f61e187]:
+                - generic [ref=f61e188]:
+                  - link "Assuntos" [ref=f61e189] [cursor=pointer]:
+                    - /url: /sped/pt-br/assuntos
+                  - text: 
+                  - generic [ref=f61e191]:
+                    - link "Comunicados" [ref=f61e192] [cursor=pointer]:
+                      - /url: /sped/pt-br/assuntos/comunicados
+                    - link "Notícias do Sped" [ref=f61e194] [cursor=pointer]:
+                      - /url: /sped/pt-br/assuntos/noticias-do-sped
+                    - link "Documentos Fiscais" [ref=f61e196] [cursor=pointer]:
+                      - /url: /sped/pt-br/assuntos/documentos-fiscais
+                    - link "Escriturações Digitais" [ref=f61e198] [cursor=pointer]:
+                      - /url: /sped/pt-br/assuntos/escrituracoes-digitais
+                    - link "Sobre o Sped" [ref=f61e200] [cursor=pointer]:
+                      - /url: /sped/pt-br/assuntos/modernizacao-da-relacao-fisco-contribuinte
+                - link "Composição" [ref=f61e203] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/composicao
+              - link "Acesso à Informação" [ref=f61e207] [cursor=pointer]:
+                - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao
+              - link "Canais de Atendimento" [ref=f61e211] [cursor=pointer]:
+                - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento
+          - button "Redefinir Cookies" [ref=f61e214] [cursor=pointer]:
+            - generic [ref=f61e215]: 
+          - link [ref=f61e220] [cursor=pointer]:
+            - /url: https://www.gov.br/acessoainformacao
+            - img "Acesso à informação" [ref=f61e221]
+        - generic [ref=f61e225]:
+          - text: Todo o conteúdo deste site está publicado sob a licença
+          - link "Creative Commons Atribuição-SemDerivações 3.0 Não Adaptada" [ref=f61e226] [cursor=pointer]:
+            - /url: https://creativecommons.org/licenses/by-nd/3.0/deed.pt_BR
+        - button "" [ref=f61e419] [cursor=pointer]
+      - generic [ref=f61e228]:
+        - paragraph [ref=f61e229]:
+          - text: Para melhorar a sua experiência na plataforma e prover serviços personalizados, utilizamos cookies.
+          - strong [ref=f61e230]: Ao aceitar, você terá acesso a todas as funcionalidades do site. Se clicar em "Rejeitar Cookies", os cookies que não forem estritamente necessários serão desativados.
+          - text: Para escolher quais quer autorizar, clique em "Gerenciar cookies". Saiba mais em nossa
+          - link "Declaração de Cookies" [ref=f61e231] [cursor=pointer]:
+            - /url: https://www.gov.br/pt-br/termos-de-uso
+          - text: .
+        - generic [ref=f61e232]:
+          - button "Gerenciar cookies" [ref=f61e233] [cursor=pointer]:
+            - generic [ref=f61e234]: 
+          - button "Rejeitar cookies" [ref=f61e236] [cursor=pointer]
+          - button "Aceitar cookies" [ref=f61e237] [cursor=pointer]
+  - complementary "Sidebar"

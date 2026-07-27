@@ -1,0 +1,85 @@
+- generic [ref=f1e3]:
+  - complementary "Navegacao principal" [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - generic [ref=f1e6]: C
+      - generic [ref=f1e7]: CAPAG Analytics
+    - navigation [ref=f1e8]:
+      - link "Dashboard" [ref=f1e9] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "Balanço Patrimonial" [ref=f1e16] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/declarada
+      - link "PLRA" [ref=f1e22] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/plra
+      - link "Indicadores CAPAG" [ref=f1e26] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/resultado
+      - link "Auditoria 1" [ref=f1e30] [cursor=pointer]:
+        - /url: /analises/analysis-bc7478b47f261603/exercicios/2024/auditoria
+        - generic [ref=f1e35]: Auditoria
+        - generic [ref=f1e36]: "1"
+      - link "Importar ECD" [ref=f1e37] [cursor=pointer]:
+        - /url: /importar-ecd
+    - generic [ref=f1e42]:
+      - generic [ref=f1e43]: RA
+      - generic [ref=f1e44]:
+        - strong [ref=f1e45]: Rafael Auditor
+        - generic [ref=f1e46]: Analista contábil
+  - generic [ref=f1e47]:
+    - banner [ref=f1e48]:
+      - generic [ref=f1e49]:
+        - heading "Patrimônio Líquido Realizável Ajustado" [level=1] [ref=f1e50]
+        - paragraph [ref=f1e51]: Análise analysis-bc7478b47f261603 · Exercício 2024
+      - button "Recalcular" [ref=f1e72] [cursor=pointer]
+    - main [ref=f1e58]:
+      - generic [ref=f1e73]:
+        - generic [ref=f1e74]:
+          - paragraph [ref=f1e75]: PLRA
+          - strong [ref=f1e76]: "-R$ 1.045.941,70"
+          - generic [ref=f1e77]: Calculado
+        - generic [ref=f1e78]:
+          - generic [ref=f1e79]:
+            - term [ref=f1e80]: Fórmula
+            - definition [ref=f1e81]: PLR bruto = ativos incluidos - passivos economicos exigiveis; PLRA = ativos ajustados - passivos economicos exigiveis
+          - generic [ref=f1e82]:
+            - term [ref=f1e83]: Versão metodológica
+            - definition [ref=f1e84]: metodologia-2024.1
+          - generic [ref=f1e85]:
+            - term [ref=f1e86]: Conferência J100
+            - definition [ref=f1e87]: disponivel_para_conferencia
+      - region "Resumo PLRA" [ref=f1e88]:
+        - article [ref=f1e89]:
+          - generic [ref=f1e90]: Ativos brutos
+          - strong [ref=f1e91]: R$ 5.893.021,59
+        - article [ref=f1e92]:
+          - generic [ref=f1e93]: Ativos ajustados
+          - strong [ref=f1e94]: R$ 3.373.938,37
+        - article [ref=f1e95]:
+          - generic [ref=f1e96]: Passivos exigíveis
+          - strong [ref=f1e97]: R$ 4.419.880,07
+        - article [ref=f1e98]:
+          - generic [ref=f1e99]: PLR bruto
+          - strong [ref=f1e100]: R$ 1.473.141,52
+      - generic [ref=f1e101]:
+        - generic [ref=f1e102]:
+          - heading "Memória por conta" [level=2] [ref=f1e108]
+          - paragraph [ref=f1e109]: Valores contábeis, política default, avaliações e tratamento final.
+        - button "Abrir auditoria" [ref=f1e110] [cursor=pointer]
+      - generic [ref=f1e115]:
+        - generic [ref=f1e116]:
+          - generic [ref=f1e117]:
+            - heading "Bloqueios" [level=2] [ref=f1e121]
+            - generic [ref=f1e122]: "0"
+          - paragraph [ref=f1e123]: Sem registros.
+        - generic [ref=f1e124]:
+          - generic [ref=f1e125]:
+            - heading "Pendências e limitações" [level=2] [ref=f1e128]
+            - generic [ref=f1e129]: "0"
+          - paragraph [ref=f1e130]: Sem registros.
+        - generic [ref=f1e131]:
+          - generic [ref=f1e132]:
+            - heading "Avisos" [level=2] [ref=f1e135]
+            - generic [ref=f1e136]: "1"
+          - list [ref=f1e137]:
+            - listitem [ref=f1e138]: 1 conta(s) sem vinculo I051 foram auditadas e excluidas.
+      - generic [ref=f1e144]:
+        - text: Snapshot calculado em
+        - time [ref=f1e145]: 24/07/2026, 22:50

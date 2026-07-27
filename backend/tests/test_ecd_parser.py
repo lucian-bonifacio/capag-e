@@ -23,6 +23,14 @@ def test_parser_extracts_minimum_declared_records_from_valid_fixture() -> None:
     assert parsed.j100_rows[0].source_line.startswith("|J100|")
 
 
+def test_parser_normalizes_official_lecd_marker_to_applicable_layout() -> None:
+    parsed = parse_ecd_text(
+        "|0000|LECD|01012024|31122024|EMPRESA REAL|00000000000100|"
+    )
+
+    assert parsed.header.layout == "ECD_9"
+
+
 def test_parser_preserves_missing_i051_as_absence_of_reference_link() -> None:
     parsed = parse_ecd_file(FIXTURES_DIR / "missing_i051.ecd")
 

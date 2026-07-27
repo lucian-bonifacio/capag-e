@@ -1,11 +1,22 @@
 from pathlib import Path
 import json
 
+from scripts.import_official_reference import build_payload
+
 
 ASSETS_ROOT = Path(__file__).resolve().parents[1] / "app" / "assets"
 REFERENCE_TEMPLATE = ASSETS_ROOT / "reference" / "official_reference_accounts.template.json"
 REFERENCE_ASSET = ASSETS_ROOT / "reference" / "official_reference_accounts.json"
+REFERENCE_SOURCE = (
+    ASSETS_ROOT
+    / "reference"
+    / "sources"
+    / "Tabelas-Dinamicas-ECF-Leiaute-11-AC-2024.xlsx"
+)
 METHODOLOGY_TEMPLATE = ASSETS_ROOT / "methodology" / "internal_methodology_rules.template.json"
+DFC_METHODOLOGY_ASSET = ASSETS_ROOT / "methodology" / "dfc_methodology.json"
+ROA_RULES_ASSET = ASSETS_ROOT / "methodology" / "tabela_metodologica_roa.csv"
+ROA_COMPONENTS_ASSET = ASSETS_ROOT / "methodology" / "componentes_roa.csv"
 TEMPORARY_NAMES = {
     ".DS_Store",
     "Thumbs.db",
@@ -28,6 +39,9 @@ def test_declared_layer_assets_are_separated() -> None:
     assert REFERENCE_ASSET.is_file()
     assert REFERENCE_TEMPLATE.is_file()
     assert METHODOLOGY_TEMPLATE.is_file()
+    assert DFC_METHODOLOGY_ASSET.is_file()
+    assert ROA_RULES_ASSET.is_file()
+    assert ROA_COMPONENTS_ASSET.is_file()
 
 
 def test_assets_tree_has_no_temporary_files() -> None:
@@ -63,6 +77,13 @@ def test_official_reference_template_is_empty_and_documents_required_fields() ->
         "source",
         "status",
         "methodology_version_id",
+        "source_sheet",
+        "source_type",
+        "source_nature_code",
+        "source_valid_from",
+        "source_valid_to",
+        "official_guidance",
+        "validation_notes",
     }
 
 
@@ -70,10 +91,24 @@ def test_official_reference_asset_is_governed_and_non_empty() -> None:
     payload = json.loads(REFERENCE_ASSET.read_text(encoding="utf-8"))
 
     assert payload["asset_type"] == "official_reference_accounts"
+    assert payload["schema_version"] == "1.0.0"
     assert payload["methodology_version_id"] == "metodologia-2024.1"
-    assert len(payload["records"]) > 0
+    assert payload["base_status"] == "publicada"
+    assert payload["approval_status"] == "aprovada"
+    assert payload["source_document_hash"] == (
+        "0c66a19ce859cdc7a1eee137896243100cbaa26239ffa8ed3044762f3e359397"
+    )
+    assert payload["source_record_count"] == 1109
+    assert payload["asset_record_count"] == 1109
+    assert len(payload["records"]) == 1109
     for record in payload["records"]:
         assert set(payload["required_fields"]).issubset(record)
+
+
+def test_official_reference_asset_is_reproducible_from_approved_source() -> None:
+    checked_in_payload = json.loads(REFERENCE_ASSET.read_text(encoding="utf-8"))
+
+    assert build_payload(REFERENCE_SOURCE) == checked_in_payload
 
 
 def test_internal_methodology_template_is_empty_and_documents_required_fields() -> None:
