@@ -21,6 +21,9 @@
 - Data: 24/07/2026
 - Ação: implementação da rota técnica do PLRA.
 - Resumo: criada tela para calcular, consultar e auditar snapshots; exibe resultado, fórmula, versão, defaults, pendências, limitações, bloqueios e memória por conta sem recompor valores no frontend.
+- Data: 27/07/2026
+- Ação: ajuste solicitado em homologação.
+- Resumo: removido fallback inválido de `analysisId` no menu lateral; a navegação de análise passa a usar a importação ECD real mais recente e volta para `Importar ECD` quando não houver análise disponível.
 
 ## Arquivos Alterados
 
@@ -28,7 +31,9 @@
 - `frontend/src/routes/PlraPage.tsx`
 - `frontend/src/routes/PlraPage.css`
 - `frontend/src/App.tsx`
+- `frontend/src/routes/ImportEcdPage.tsx`
 - `frontend/src/test/plra.test.tsx`
+- `frontend/src/test/runner.test.tsx`
 - `logs/evidence/task-098-plra-audit-desktop.png`
 
 ## Validações
@@ -39,14 +44,16 @@
   - Resultado: estados vazio e sucesso, comando de cálculo, auditoria e responsividade inspecionados em `1440x1000` e `390x844`.
 - Jornada integrada com `docs/reference/ecd-example/ECD 2024 DATAPACK.txt`:
   - Resultado: PLRA `-1045941.70`, status `calculado`, 191 linhas de auditoria e origem `Política interna default` visível.
+- Comando: `docker compose --profile test run --rm frontend-tests`
+  - Resultado: 30 testes frontend aprovados e build Vite concluído após ajuste de navegação.
 
 ## Pendências Ou Bloqueios
 
-- Teste E2E reproduzível via Docker Compose permanece no escopo da TASK-099.
+- Consolidação das páginas PLRA, DFC/FCA, ROA, evidências e CAPAG-E em um dashboard único deve ser planejada como TASK futura se confirmada pelo usuário.
 
 ## Homologação
 
 - Status: aguardando_homologacao
-- Data: 24/07/2026
-- Decisão do usuário: homologação consolidada ao final do grupo autorizado.
-- Observação: execução contínua segue para a TASK-099.
+- Data: 27/07/2026
+- Decisão do usuário: ajuste de navegação autorizado durante homologação.
+- Observação: grupo permanece aguardando homologação; ajuste corrige abertura direta do Balanço Patrimonial e demais páginas de análise a partir da importação ECD real.

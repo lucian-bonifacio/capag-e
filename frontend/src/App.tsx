@@ -13,6 +13,7 @@ import {
 import {
   fetchDeclaredAccounts,
   fetchDeclaredBalanceAccounts,
+  fetchEcdImports,
   fetchDeclaredSummary,
 } from "./api/declared";
 import {
@@ -427,8 +428,14 @@ function GovernedShell() {
   const analysisRouteMatch = location.pathname.match(
     /^\/analises\/([^/]+)\/exercicios\/([^/]+)/,
   );
-  const currentAnalysisId = analysisRouteMatch?.[1] ?? "bc7478b47f261603";
-  const currentYear = analysisRouteMatch?.[2] ?? "2024";
+  const importsQuery = useQuery({
+    queryKey: ["ecd-imports"],
+    queryFn: fetchEcdImports,
+  });
+  const latestImport = importsQuery.data?.imports?.[0];
+  const currentAnalysisId = analysisRouteMatch?.[1] ?? latestImport?.analysis_id;
+  const currentYear =
+    analysisRouteMatch?.[2] ?? (latestImport ? String(latestImport.year) : undefined);
 
   return (
     <div className="app-shell">
@@ -440,10 +447,12 @@ function GovernedShell() {
         <nav className="app-nav">
           {navItems.map((item) => {
             const Icon = item.icon;
-            const path = item.path.includes(":analysisId") 
-              ? item.path
-                  .replace(":analysisId", currentAnalysisId)
-                  .replace(":year", currentYear)
+            const path = item.path.includes(":analysisId")
+              ? currentAnalysisId && currentYear
+                ? item.path
+                    .replace(":analysisId", currentAnalysisId)
+                    .replace(":year", currentYear)
+                : "/importar-ecd"
               : item.path;
 
             return (

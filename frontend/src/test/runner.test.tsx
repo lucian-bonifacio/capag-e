@@ -374,6 +374,62 @@ describe("ecd import route", () => {
     vi.unstubAllGlobals();
   });
 
+  it("routes analysis navigation to the latest imported ECD", async () => {
+    const existingImport = {
+      analysis_id: "analysis-existing",
+      company_id: "company-existing",
+      ecd_file_id: "ecd-existing",
+      original_filename: "valid.ecd",
+      content_hash: "sha256:abc",
+      layout: "ECD_2024",
+      period_start: "2024-01-01",
+      period_end: "2024-12-31",
+      imported_at: "2026-07-07T10:00:00Z",
+      year: 2024,
+      methodology_version_id: "metodologia-2024.1",
+      status: "concluido",
+    };
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() =>
+        Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve({ imports: [existingImport] }),
+        } as Response),
+      ),
+    );
+
+    render(<App />);
+
+    await waitFor(() => {
+      expect(screen.getByRole("link", { name: "Balanço Patrimonial" })).toHaveAttribute(
+        "href",
+        "/analises/analysis-existing/exercicios/2024/declarada",
+      );
+    });
+  });
+
+  it("keeps analysis navigation on the import route when no ECD exists", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() =>
+        Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve({ imports: [] }),
+        } as Response),
+      ),
+    );
+
+    render(<App />);
+
+    await waitFor(() => {
+      expect(screen.getByRole("link", { name: "Balanço Patrimonial" })).toHaveAttribute(
+        "href",
+        "/importar-ecd",
+      );
+    });
+  });
+
   it("imports an ECD, runs declared layer and opens the returned analysis", async () => {
     const fetchMock = vi.fn((url: string, init?: RequestInit) => {
       if (url === "/api/v1/ecd/imports" && !init?.method) {

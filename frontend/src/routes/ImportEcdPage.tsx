@@ -1,4 +1,5 @@
 import { AlertTriangle, CheckCircle2, FileInput, Loader2, Play, Trash2, Upload } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
 import { type FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -53,6 +54,7 @@ function statusVariant(step: ImportStep): "neutral" | "warning" | "success" | "d
 
 export function ImportEcdPage() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [file, setFile] = useState<File | null>(null);
   const [step, setStep] = useState<ImportStep>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -76,6 +78,7 @@ export function ImportEcdPage() {
       setImportsError(null);
       const response = await fetchEcdImports();
       setExistingImports(response.imports);
+      queryClient.setQueryData(["ecd-imports"], response);
     } catch (error) {
       setImportsError(
         error instanceof Error ? error.message : "Nao foi possivel carregar importacoes existentes.",
