@@ -28,11 +28,14 @@ Regras:
 Ao iniciar a próxima sessão:
 
 1. Ler integralmente o
+   `logs/LOG-ESPECIAL-homologacao-ui-balanco-spec-012.md`.
+2. Ler, se necessário, o
    `logs/LOG-ESPECIAL-retomada-homologacao-spec-012.md`.
-2. Informar ao usuário que o Log Especial foi consultado.
-3. Iniciar o processo de homologação consolidada das `TASK-101` a `TASK-108`.
-4. Não iniciar nova TASK antes da conclusão ou interrupção governada dessa
-   homologação.
+3. Informar ao usuário que os Logs Especiais foram consultados.
+4. Continuar a tomada de decisão sobre a UI/UX do Balanço Patrimonial da
+   `SPEC-012`, começando pelo tratamento de cada `balance_status`.
+5. Não iniciar nova TASK nem implementar ajuste de UI antes da conclusão ou
+   autorização expressa dessa decisão governada.
 
 ## Lista De Tarefas
 
