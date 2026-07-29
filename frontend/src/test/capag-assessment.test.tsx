@@ -23,6 +23,7 @@ const partialAssessment: CapagAssessment = {
   limitations: ["FCA parcial: somente FCO disponível."],
   blocking_issues: [],
   methodology_version_id: "metodologia-2024.1",
+  balance_status: "VALIDO",
 };
 
 

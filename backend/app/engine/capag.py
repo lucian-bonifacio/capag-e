@@ -9,6 +9,7 @@ from app.domain import (
     ComponentStatus,
 )
 from app.domain.capag import CENT
+from app.domain.declared_balance import DeclaredBalanceStatus
 
 
 FORMULAS = {
@@ -36,11 +37,13 @@ def calculate_capag_e_assessment(
     limitations: tuple[str, ...] | list[str] = (),
     blocking_issues: tuple[str, ...] | list[str] = (),
     methodology_version_id: str,
+    balance_status: DeclaredBalanceStatus | str = DeclaredBalanceStatus.VALIDO,
 ) -> CapagEAssessment:
     resolved_method = CapagEMethod(method)
     resolved_plra_status = ComponentStatus(plra_status)
     resolved_fca_status = ComponentStatus(fca_status)
     resolved_roa_status = ComponentStatus(roa_status)
+    resolved_balance_status = DeclaredBalanceStatus(balance_status)
 
     _require_optional_decimal("plra_value", plra_value)
     _require_optional_decimal("fca_value", fca_value)
@@ -50,6 +53,11 @@ def calculate_capag_e_assessment(
     resolved_limitations = list(limitations)
     resolved_warnings = list(warnings)
     resolved_blocking_issues = list(blocking_issues)
+    if resolved_balance_status != DeclaredBalanceStatus.VALIDO:
+        resolved_limitations.append(
+            "CAPAG-E final indisponivel: "
+            f"balanco declarado com status {resolved_balance_status.value}."
+        )
 
     if fco_value is not None:
         if fca_value is not None or resolved_fca_status != ComponentStatus.NOT_CALCULATED:
@@ -86,11 +94,13 @@ def calculate_capag_e_assessment(
             limitations=resolved_limitations,
             blocking_issues=resolved_blocking_issues,
             methodology_version_id=methodology_version_id,
+            balance_status=resolved_balance_status,
         )
 
     plra_block = _plra_block(
         value=plra_value,
         status=resolved_plra_status,
+        balance_status=resolved_balance_status,
     )
     if plra_block is not None:
         final_status, reason, issue = plra_block
@@ -112,6 +122,7 @@ def calculate_capag_e_assessment(
             limitations=resolved_limitations,
             blocking_issues=resolved_blocking_issues,
             methodology_version_id=methodology_version_id,
+            balance_status=resolved_balance_status,
         )
 
     if resolved_method == CapagEMethod.COMPARATIVO_FCA_ROA:
@@ -127,6 +138,7 @@ def calculate_capag_e_assessment(
             limitations=resolved_limitations,
             blocking_issues=resolved_blocking_issues,
             methodology_version_id=methodology_version_id,
+            balance_status=resolved_balance_status,
         )
 
     selected_name = "FCA" if resolved_method == CapagEMethod.FCA_PLRA else "ROA"
@@ -162,6 +174,7 @@ def calculate_capag_e_assessment(
         limitations=resolved_limitations,
         blocking_issues=resolved_blocking_issues,
         methodology_version_id=methodology_version_id,
+        balance_status=resolved_balance_status,
     )
 
 
@@ -213,6 +226,7 @@ def _calculate_comparison(
     limitations: list[str],
     blocking_issues: list[str],
     methodology_version_id: str,
+    balance_status: DeclaredBalanceStatus,
 ) -> CapagEAssessment:
     if (
         fca_status == ComponentStatus.METHODOLOGY_ERROR
@@ -263,6 +277,7 @@ def _calculate_comparison(
         limitations=limitations,
         blocking_issues=blocking_issues,
         methodology_version_id=methodology_version_id,
+        balance_status=balance_status,
     )
 
 
@@ -282,7 +297,14 @@ def _plra_block(
     *,
     value: Decimal | None,
     status: ComponentStatus,
+    balance_status: DeclaredBalanceStatus,
 ) -> tuple[CapagEStatus, str, str] | None:
+    if balance_status != DeclaredBalanceStatus.VALIDO:
+        return (
+            CapagEStatus.BLOCKED,
+            "Balanco declarado nao valido para resultado final.",
+            f"BALANCO_DECLARADO_NAO_VALIDO:{balance_status.value}",
+        )
     if status == ComponentStatus.METHODOLOGY_ERROR:
         return (
             CapagEStatus.METHODOLOGY_ERROR,
@@ -316,6 +338,7 @@ def _assessment(
     limitations: list[str],
     blocking_issues: list[str],
     methodology_version_id: str,
+    balance_status: DeclaredBalanceStatus,
 ) -> CapagEAssessment:
     return CapagEAssessment(
         exercise_year=exercise_year,
@@ -335,6 +358,7 @@ def _assessment(
         limitations=tuple(limitations),
         blocking_issues=tuple(blocking_issues),
         methodology_version_id=methodology_version_id,
+        balance_status=balance_status,
     )
 
 

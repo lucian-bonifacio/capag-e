@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-091-preparar-asset-completo-plano-referencial.md`
 - SPEC: `specs/SPEC-010-governanca-plano-referencial-oficial.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -52,8 +52,7 @@
 
 ## Homologacao
 
-- Status: aguardando_homologacao
-- Data: 2026-07-24
-- Decisao do usuario: execucao continua e homologacao consolidada ao final.
-- Observacao: asset publicado para continuidade tecnica do grupo.
-
+- Status: aprovada
+- Data: 2026-07-29
+- Decisao do usuario: todas as TASKs pendentes foram homologadas.
+- Observacao: entrega homologada conforme o escopo e as fontes vigentes. A compatibilidade com a nova camada declarada sera revisada, quando aplicavel, nas `TASK-101` a `TASK-108`; ajustes transversais de status e resultado final concentram-se nas `TASK-107` e `TASK-108`.

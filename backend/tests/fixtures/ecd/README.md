@@ -12,5 +12,10 @@ Arquivos:
 - `methodology_missing.ecd`: codigo oficial sem regra metodologica exata.
 - `blocked_rule.ecd`: codigo com regra metodologica bloqueada.
 - `dangerous_prefix.ecd`: conta `1725` com `2.01.01.07.01`, que nao pode virar fornecedor por prefixo `2.01.01.*`.
+- `balance_declared_valid.ecd`: balanço `J100` válido, com `COD_AGL` diferente de `COD_CTA` e saldos inicial e final distintos.
+- `balance_declared_divergent.ecd`: estrutura válida com diferença exata de `0,01` na conciliação.
+- `balance_declared_required_absent.ecd`: Bloco J obrigatório sem `J100`.
+- `balance_declared_invalid_structure.ecd`: totalizador e lados do `J100` estruturalmente inválidos.
+- `balance_declared_not_required.ecd`: encerramento `I030` fora do período, sem obrigação do Bloco J.
 
 Os CNPJs, nomes, codigos e valores sao ficticios.

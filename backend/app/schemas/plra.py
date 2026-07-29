@@ -28,7 +28,7 @@ class PlraCalculationResponse(BaseModel):
     warnings: list[str]
     limitations: list[str]
     blocking_issues: list[str]
-    j100_reconciliation_status: str
+    balance_status: str
     methodology_version_id: str
     calculated_at: datetime
 
@@ -50,7 +50,7 @@ class PlraCalculationResponse(BaseModel):
             warnings=list(calculation.warnings),
             limitations=list(calculation.limitations),
             blocking_issues=list(calculation.blocking_issues),
-            j100_reconciliation_status=calculation.j100_reconciliation_status,
+            balance_status=calculation.balance_status.value,
             methodology_version_id=calculation.methodology_version_id,
             calculated_at=calculation.calculated_at,
         )

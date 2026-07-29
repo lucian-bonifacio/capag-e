@@ -41,6 +41,7 @@ class CapagAssessmentModel(Base):
         nullable=False,
         index=True,
     )
+    balance_status: Mapped[str] = mapped_column(String(40), nullable=False)
     snapshot_json: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
     invalidated_at: Mapped[datetime | None] = mapped_column(
         DateTime(timezone=True), nullable=True, index=True
@@ -70,6 +71,7 @@ class CapagAssessmentModel(Base):
             limitations=tuple(self.limitations_json),
             blocking_issues=tuple(self.blocking_issues_json),
             methodology_version_id=self.methodology_version_id,
+            balance_status=self.balance_status,
         )
 
 
@@ -102,6 +104,7 @@ def add_capag_assessment(
         limitations_json=list(assessment.limitations),
         blocking_issues_json=list(assessment.blocking_issues),
         methodology_version_id=assessment.methodology_version_id,
+        balance_status=assessment.balance_status.value,
         snapshot_json=assessment.to_snapshot(),
     )
     session.add(model)

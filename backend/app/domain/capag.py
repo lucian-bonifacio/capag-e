@@ -5,6 +5,8 @@ from decimal import Decimal
 from enum import StrEnum
 from typing import Any, TypeVar
 
+from app.domain.declared_balance import DeclaredBalanceStatus
+
 
 CENT = Decimal("0.01")
 
@@ -53,6 +55,7 @@ class CapagEAssessment:
     limitations: tuple[str, ...]
     blocking_issues: tuple[str, ...]
     methodology_version_id: str
+    balance_status: DeclaredBalanceStatus = DeclaredBalanceStatus.VALIDO
 
     def __post_init__(self) -> None:
         if isinstance(self.exercise_year, bool) or not isinstance(self.exercise_year, int):
@@ -75,6 +78,15 @@ class CapagEAssessment:
             self,
             "capag_e_status",
             _coerce_enum("capag_e_status", self.capag_e_status, CapagEStatus),
+        )
+        object.__setattr__(
+            self,
+            "balance_status",
+            _coerce_enum(
+                "balance_status",
+                self.balance_status,
+                DeclaredBalanceStatus,
+            ),
         )
 
         for field_name in ("plra_value", "fca_value", "roa_value", "capag_e_value"):
@@ -123,6 +135,7 @@ class CapagEAssessment:
             "limitations": list(self.limitations),
             "blocking_issues": list(self.blocking_issues),
             "methodology_version_id": self.methodology_version_id,
+            "balance_status": self.balance_status.value,
         }
 
 

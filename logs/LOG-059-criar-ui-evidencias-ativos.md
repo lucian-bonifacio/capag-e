@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-059-criar-ui-evidencias-ativos.md`
 - SPEC: `specs/SPEC-005-modulo-4-evidencias-justificativas-ativos.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -47,7 +47,7 @@
 
 ## Homologação
 
-- Status: aguardando_homologacao
-- Data: 24/07/2026
-- Decisão do usuário: homologação consolidada ao final do grupo autorizado.
-- Observação: execução contínua segue para a TASK-060.
+- Status: aprovada
+- Data: 2026-07-29
+- Decisão do usuário: todas as TASKs pendentes foram homologadas.
+- Observação: entrega homologada conforme o escopo e as fontes vigentes. A compatibilidade com a nova camada declarada será revisada, quando aplicável, nas `TASK-101` a `TASK-108`; ajustes transversais de status e resultado final concentram-se nas `TASK-107` e `TASK-108`.

@@ -28,6 +28,7 @@ CONTRACT_HEADERS = [
     "versao_metodologica",
     "motivo_indisponibilidade",
     "base_calculo",
+    "status_balanco_declarado",
     "sem_recalculo",
 ]
 
@@ -58,6 +59,7 @@ def build_capag_assessment_workbook(
             assessment.methodology_version_id,
             assessment.unavailable_reason,
             assessment.calculation_basis,
+            assessment.balance_status.value,
             "true",
         ]
     )

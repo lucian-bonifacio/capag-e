@@ -139,9 +139,12 @@ def test_declared_layer_end_to_end_contract_for_governed_ecd_fixtures(
             f"/api/v1/analyses/{imported['analysis_id']}/exercises/{imported['year']}/declared/balance/accounts"
         )
         assert balance_accounts_response.status_code == 200
-        balance_accounts = balance_accounts_response.json()["accounts"]
-        assert balance_accounts[0]["account_type"] is not None
-        assert "account_nature" in balance_accounts[0]
+        balance_payload = balance_accounts_response.json()
+        assert "accounts" not in balance_payload
+        assert balance_payload["balance_status"] == "ESTRUTURA_INVALIDA"
+        assert balance_payload["is_blocking"] is True
+        assert balance_payload["rows"] == []
+        assert balance_payload["limitations"] == ["I010_AUSENTE_OU_AMBIGUO"]
 
         excel_response = client.get(
             f"/api/v1/analyses/{imported['analysis_id']}/exercises/{imported['year']}/declared/export.xlsx"

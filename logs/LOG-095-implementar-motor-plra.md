@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-095-implementar-motor-plra.md`
 - SPEC: `specs/SPEC-011-modulo-1b-motor-plra.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -43,8 +43,7 @@
 
 ## Homologacao
 
-- Status: aguardando_homologacao
-- Data: 2026-07-24
-- Decisao do usuario: execucao continua e homologacao consolidada ao final.
-- Observacao: motor pronto para orquestracao persistente.
-
+- Status: aprovada
+- Data: 2026-07-29
+- Decisao do usuario: todas as TASKs pendentes foram homologadas.
+- Observacao: entrega homologada conforme o escopo e as fontes vigentes. A compatibilidade com a nova camada declarada sera revisada, quando aplicavel, nas `TASK-101` a `TASK-108`; ajustes transversais de status e resultado final concentram-se nas `TASK-107` e `TASK-108`.

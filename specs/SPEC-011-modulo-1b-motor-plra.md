@@ -20,6 +20,7 @@ Fontes principais obrigatorias:
 - `specs/SPEC-004-modulo-3-contrato-capag-e-plra-fca-roa.md`
 - `specs/SPEC-005-modulo-4-evidencias-justificativas-ativos.md`
 - `specs/SPEC-010-governanca-plano-referencial-oficial.md`
+- `specs/SPEC-012-modulo-1c-balanco-patrimonial-declarado.md`
 
 Fonte metodologica interna autorizada e aprovada pelo usuario:
 
@@ -73,7 +74,9 @@ Esta SPEC nao cobre:
 - Formula-base: `PLR = Ativos Realizaveis - Passivos Economicos Exigiveis`.
 - Formula final: `PLRA = Ativos Realizaveis Ajustados - Passivos Economicos Exigiveis`.
 - O motor usa saldos finais anuais do `I155`, vinculados a `I050` e `I051`.
-- O `J100` serve somente para conferencia, consistencia e auditoria.
+- O `J100` nao e fonte analitica primaria; o estado do Balanco Patrimonial
+  declarado definido na `SPEC-012` serve para conferencia, consistencia,
+  auditoria e elegibilidade da base anual final.
 - O motor nao soma simultaneamente conta pai e conta filha.
 - Apenas codigo referencial exato e regra metodologica ativa podem classificar automaticamente.
 - Conta sem `I051` permanece fora do calculo automatico e na auditoria, sem inferencia.
@@ -104,7 +107,8 @@ Entradas obrigatorias:
 - `I051`: vinculo declaratorio exato com `COD_CTA_REF`;
 - `I150`: periodo anual encerrado;
 - `I155`: saldo final e indicador de natureza;
-- `J100`: conferencia, sem uso como fonte primaria.
+- `J100`: conferencia e elegibilidade conforme `SPEC-012`, sem uso como fonte
+  analitica primaria.
 
 O exercicio deve usar o periodo anual encerrado em `31/12`. Periodos mensais, trimestrais ou intermediarios nao podem ser somados.
 
@@ -234,7 +238,7 @@ Campos minimos:
 - `warnings`;
 - `limitations`;
 - `blocking_issues`;
-- `j100_reconciliation_status`;
+- `balance_status`;
 - `methodology_version_id`;
 - `calculated_at`.
 
@@ -280,9 +284,13 @@ Regras:
 11. Consolidar passivos economicos exigiveis.
 12. Calcular `PLRA`.
 13. Aplicar bloqueios de pendencia/evidencia.
-14. Reconciliar com `J100` apenas como controle.
+14. Consumir a conciliacao `I050 + I052 + I155 -> J100` e o estado do balanco
+    produzidos conforme `SPEC-012`.
 15. Persistir snapshot atomico e auditoria.
 16. Invalidar `CapagEAssessment` dependente quando o snapshot mudar.
+
+Resultado intermediario pode ser calculado para diagnostico, mas `PLRA` final
+exige `balance_status = VALIDO`.
 
 ### 8.10 Integracao Com Evidencias E Avaliacao
 
@@ -392,6 +400,7 @@ Serializar memoria e resultado sem recalculo.
 - Conta pai e filha nao sao somadas conjuntamente.
 - `I051` ausente nao gera codigo inferido.
 - `J100` nao e fonte primaria.
+- Balanco anual com estado diferente de `VALIDO` nao produz `PLRA` final.
 - Defaults aprovados sao aplicados automaticamente.
 - Default aplicado nao bloqueia sozinho o componente.
 - Avaliacao validada prevalece sobre default.
@@ -415,7 +424,8 @@ Testes obrigatorios:
 - passivos automaticos e condicionais;
 - avaliacao validada substituindo default;
 - bloqueio por evidencia critica;
-- reconciliacao informativa com `J100`;
+- consumo da conciliacao e do estado do balanco produzidos pela `SPEC-012`;
+- bloqueio de `PLRA` final quando `balance_status` for diferente de `VALIDO`;
 - persistencia e recuperacao de snapshot;
 - invalidacao de assessment dependente;
 - contratos API;

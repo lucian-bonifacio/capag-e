@@ -1,0 +1,472 @@
+- generic [ref=f24e1]:
+  - navigation "Acesso rápido":
+    - link "Ir para o Conteúdo 1" [ref=f24e2] [cursor=pointer]:
+      - /url: "#wrapper"
+      - generic [ref=f24e3]: Ir para o
+      - text: Conteúdo
+      - generic [ref=f24e4]: "1"
+    - link "Ir para a Página Inicial 2" [ref=f24e5] [cursor=pointer]:
+      - /url: /
+      - generic [ref=f24e6]: Ir para a
+      - text: Página Inicial
+      - generic [ref=f24e7]: "2"
+    - link "Ir para o menu de Navegação 3" [ref=f24e8] [cursor=pointer]:
+      - /url: "#main-navigation"
+      - generic [ref=f24e9]: Ir para o menu de
+      - text: Navegação
+      - generic [ref=f24e10]: "3"
+    - link "Ir para a Busca 4" [ref=f24e11] [cursor=pointer]:
+      - /url: "#govbr-busca-input"
+      - generic [ref=f24e12]: Ir para a
+      - text: Busca
+      - generic [ref=f24e13]: "4"
+    - link "Ir para o Mapa do site 5" [ref=f24e14] [cursor=pointer]:
+      - /url: "#portal-footer"
+      - generic [ref=f24e15]: Ir para o
+      - text: Mapa do site
+      - generic [ref=f24e16]: "5"
+  - banner [ref=f24e17]:
+    - generic [ref=f24e20]:
+      - generic [ref=f24e23]:
+        - button "Abrir preferências de cookies" [ref=f24e26] [cursor=pointer]:
+          - generic [ref=f24e27]: 
+        - button "Ativar ou desativar o modo de alto contraste" [ref=f24e31] [cursor=pointer]:
+          - generic [ref=f24e32]: 
+      - banner [ref=f24e35]:
+        - generic [ref=f24e37]:
+          - generic [ref=f24e38]:
+            - link [ref=f24e39] [cursor=pointer]:
+              - /url: https://www.gov.br/pt-br
+              - img "Logomarca gov.br" [ref=f24e40]
+            - link "Ministério da Fazenda" [ref=f24e42] [cursor=pointer]:
+              - /url: https://www.gov.br/fazenda
+          - generic [ref=f24e43]:
+            - generic [ref=f24e44]:
+              - text: 
+              - list [ref=f24e45]:
+                - listitem [ref=f24e46]:
+                  - button "Institucional" [ref=f24e47] [cursor=pointer]:
+                    - generic [ref=f24e49]: 
+                - listitem [ref=f24e50]:
+                  - link "Acessibilidade" [ref=f24e51] [cursor=pointer]:
+                    - /url: https://www.gov.br/governodigital/pt-br/acessibilidade-digital
+                - listitem [ref=f24e52]:
+                  - link "Participe" [ref=f24e53] [cursor=pointer]:
+                    - /url: https://www.gov.br/pt-br/participacao-social
+            - button "Abrir menu de seleção serviços" [ref=f24e58] [cursor=pointer]:
+              - generic [ref=f24e62]: Atalhos gov.br
+            - button "Entrar com gov.br" [ref=f24e66] [cursor=pointer]:
+              - generic [ref=f24e67]: 
+    - generic [ref=f24e70]:
+      - generic [ref=f24e71]:
+        - link "Abrir menu principal de navegação" [ref=f24e72] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f24e74]: 
+          - text: 
+        - link "Receita Federal" [ref=f24e76] [cursor=pointer]:
+          - /url: https://www.gov.br/receitafederal/pt-br
+      - text:        
+      - generic [ref=f24e77]:
+        - combobox [ref=f24e79]:
+          - search [ref=f24e80]:
+            - button "" [ref=f24e82] [cursor=pointer]
+            - searchbox "O que você procura?" [ref=f24e84]: ReceitanetBX
+            - button "Pesquisar por voz" [ref=f24e85] [cursor=pointer]:
+              - generic [ref=f24e86]: 
+        - text:   
+    - text:                                                   
+  - navigation "Histórico de navegação (Breadcrumbs)" [ref=f24e88]:
+    - generic [ref=f24e89]:
+      - generic [ref=f24e90]: ">Você está aqui:"
+      - link "Página Inicial" [ref=f24e92] [cursor=pointer]:
+        - /url: https://www.gov.br/receitafederal/pt-br
+        - generic [ref=f24e93]: 
+      - generic [ref=f24e95]: "> Busca"
+  - heading "Busca" [level=1] [ref=f24e96]
+  - generic [ref=f24e97]:
+    - main [ref=f24e99]:
+      - generic [ref=f24e100]:
+        - text: 
+        - generic [ref=f24e105]:
+          - heading "ReceitanetBX" [level=2] [ref=f24e338]
+          - generic [ref=f24e107]:
+            - generic [ref=f24e108]: 10 Resultados em
+            - generic [ref=f24e109]:
+              - generic [ref=f24e111] [cursor=pointer]:
+                - text: todo o
+                - strong [ref=f24e112]: GOV.BR
+              - strong [ref=f24e115] [cursor=pointer]: Receita Federal
+          - generic [ref=f24e116]:
+            - generic [ref=f24e341] [cursor=pointer]:
+              - text: Todos
+              - generic [ref=f24e342]: (10)
+            - text:  
+          - list [ref=f24e346]:
+            - listitem [ref=f24e347]:
+              - generic [ref=f24e349]:
+                - link "EFD - Contribuições" [ref=f24e351] [cursor=pointer]:
+                  - /url: /receitafederal/pt-br/canais_atendimento/fale-conosco/empresa/sped/efd-contribuicoes/efd-contribuicoes
+                - generic [ref=f24e352]: 29/04/2024
+            - listitem [ref=f24e355]:
+              - generic [ref=f24e357]:
+                - link "PE - DERAT-SP - Nº 02-2020 - UASG 170312 - Serviços Internet Banda Larga" [ref=f24e359] [cursor=pointer]:
+                  - /url: /receitafederal/pt-br/acesso-a-informacao/licitacoes-e-contratos/licitacoes/rfb/unidades-federativas-uf/sp/derat-spo-uasg-170312/2020/pe-derat-sp-no-02-2020-uasg-170312-servicos-internet-banda-larga/edital-pregao-banda-larga-2020-rev2.pdf/view
+                - generic [ref=f24e360]: 20/10/2023
+            - listitem [ref=f24e363]:
+              - generic [ref=f24e365]:
+                - link "Perguntas e Respostas - ReceitanetBX" [ref=f24e367] [cursor=pointer]:
+                  - /url: /receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx/perguntas-e-respostas-receitanetbx
+                - generic [ref=f24e368]: 25/09/2020
+            - listitem [ref=f24e371]:
+              - generic [ref=f24e373]:
+                - link "Receitanet" [ref=f24e375] [cursor=pointer]:
+                  - /url: /receitafederal/pt-br/centrais-de-conteudo/download/receitanet/receitanet-old
+                - generic [ref=f24e376]: 14/07/2022
+            - listitem [ref=f24e379]:
+              - generic [ref=f24e381]:
+                - link "Orientações às Mensagens de Erro do ReceitanetBX" [ref=f24e383] [cursor=pointer]:
+                  - /url: /receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx/orientacoes-as-mensagens-de-erro-do-receitanetbx
+                - generic [ref=f24e384]: 25/09/2020
+            - listitem [ref=f24e387]:
+              - generic [ref=f24e389]:
+                - link "ReceitanetBX" [active] [ref=f24e391] [cursor=pointer]:
+                  - /url: /receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx/receitanetbx
+                - generic [ref=f24e392]: 25/09/2020
+            - listitem [ref=f24e395]:
+              - generic [ref=f24e397]:
+                - link "Download do Programa ReceitanetBX - Windows" [ref=f24e399] [cursor=pointer]:
+                  - /url: /receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx/download-do-programa-receitanetbx-windows
+                - generic [ref=f24e400]: 25/03/2026
+            - listitem [ref=f24e403]:
+              - generic [ref=f24e405]:
+                - link "Download do Programa ReceitanetBX - Linux" [ref=f24e407] [cursor=pointer]:
+                  - /url: /receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx/download-do-programa-receitanetbx-linux
+                - generic [ref=f24e408]: 25/03/2026
+            - listitem [ref=f24e411]:
+              - generic [ref=f24e413]:
+                - link "ReceitanetBX-Serviço" [ref=f24e415] [cursor=pointer]:
+                  - /url: /receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx/download-do-programa-receitanetbx-servico
+                - generic [ref=f24e416]: 25/03/2026
+            - listitem [ref=f24e419]:
+              - generic [ref=f24e421]:
+                - link "Perguntas Frequentes - 7.6.pdf" [ref=f24e423] [cursor=pointer]:
+                  - /url: /receitafederal/pt-br/assuntos/empresas-e-negocios/sped/efd-icms-ipi/perguntas-frequentes/perguntas-frequentes-7-6.pdf/view
+                - generic [ref=f24e424]:
+                  - generic [ref=f24e425]: 14/10/2025 -
+                  - text: "Perguntas Frequentes – EFD ICMS IPI - Versão 7.6 - Atualização: 30/07/25"
+    - contentinfo [ref=f24e117]:
+      - generic [ref=f24e118]:
+        - list [ref=f24e120]:
+          - listitem [ref=f24e121]:
+            - link "Serviços" [ref=f24e122] [cursor=pointer]:
+              - /url: https://www.gov.br/receitafederal/pt-br/servicos
+            - list [ref=f24e123]:
+              - listitem [ref=f24e124]:
+                - link "Serviços de A a Z" [ref=f24e125] [cursor=pointer]:
+                  - /url: https://www.gov.br/pt-br/orgaos/secretaria-especial-da-receita-federal-do-brasil
+              - listitem [ref=f24e126]:
+                - link "Auditorias Fiscais" [ref=f24e127] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/auditorias-fiscais
+              - listitem [ref=f24e128]:
+                - link "Cadastros" [ref=f24e129] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/cadastro
+              - listitem [ref=f24e130]:
+                - link "Certidões e Atestados" [ref=f24e131] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/certidoes
+              - listitem [ref=f24e132]:
+                - link "Comércio Exterior" [ref=f24e133] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/comercio-exterior
+              - listitem [ref=f24e134]:
+                - link "Comunicações Eletrônicas" [ref=f24e135] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/comunicacoes-eletronicas
+              - listitem [ref=f24e136]:
+                - link "Declarações e Escriturações" [ref=f24e137] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/declaracoes-e-escrituracoes
+              - listitem [ref=f24e138]:
+                - link "Defesas e Recursos" [ref=f24e139] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/defesas-e-recursos
+              - listitem [ref=f24e140]:
+                - link "Interpretação e Programas" [ref=f24e141] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/interpretacao
+              - listitem [ref=f24e142]:
+                - link "Isenções e Regimes Especiais" [ref=f24e143] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/beneficios-fiscais
+              - listitem [ref=f24e144]:
+                - link "Processos Digitais" [ref=f24e145] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/processos-digitais
+              - listitem [ref=f24e146]:
+                - link "Autorizações de Acesso (Procurações)" [ref=f24e147] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/procuracoes
+              - listitem [ref=f24e148]:
+                - link "Regularização de Impostos" [ref=f24e149] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/regularizacao-de-impostos
+              - listitem [ref=f24e150]:
+                - link "Restituições e Compensações" [ref=f24e151] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/restituicoes-e-compensacoes
+              - listitem [ref=f24e152]:
+                - link "Conveniados e Parceiros" [ref=f24e153] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/conveniados-e-parceiros
+              - listitem [ref=f24e154]:
+                - link "Reforma Tributária" [ref=f24e155] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/reforma-tributaria
+          - listitem [ref=f24e156]:
+            - link "Assuntos" [ref=f24e157] [cursor=pointer]:
+              - /url: https://www.gov.br/receitafederal/pt-br/assuntos
+            - list [ref=f24e158]:
+              - listitem [ref=f24e159]:
+                - link "Notícias" [ref=f24e160] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/noticias
+              - listitem [ref=f24e161]:
+                - link "Agenda Tributária" [ref=f24e162] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/agenda-tributaria
+              - listitem [ref=f24e163]:
+                - link "Taxas de Juros" [ref=f24e164] [cursor=pointer]:
+                  - /url: /receitafederal/pt-br/assuntos/orientacao-tributaria/pagamentos-e-parcelamentos
+              - listitem [ref=f24e165]:
+                - link "Aduana e Comércio Exterior" [ref=f24e166] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior
+              - listitem [ref=f24e167]:
+                - link "Meu CPF" [ref=f24e168] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/meu-cpf
+              - listitem [ref=f24e169]:
+                - link "Meu Imposto de Renda" [ref=f24e170] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/meu-imposto-de-renda
+              - listitem [ref=f24e171]:
+                - link "Minhas Empresas e Negócios" [ref=f24e172] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/empresas-e-negocios
+              - listitem [ref=f24e173]:
+                - link "Construção Civil" [ref=f24e174] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/construcao-civil
+              - listitem [ref=f24e175]:
+                - link "Leilão e Doação" [ref=f24e176] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/leilao
+              - listitem [ref=f24e177]:
+                - link "Orientações sobre Processos Digitais" [ref=f24e178] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/processos-digitais
+              - listitem [ref=f24e179]:
+                - link "Transação Tributária" [ref=f24e180] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/transacao-tributaria
+              - listitem [ref=f24e181]:
+                - link "Mais Orientações Tributárias" [ref=f24e182] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria
+          - listitem [ref=f24e183]:
+            - link "Acesso à Informação" [ref=f24e184] [cursor=pointer]:
+              - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao
+            - list [ref=f24e185]:
+              - listitem [ref=f24e186]:
+                - link "Institucional" [ref=f24e187] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/institucional
+              - listitem [ref=f24e188]:
+                - link "Ações e Programas" [ref=f24e189] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas
+              - listitem [ref=f24e190]:
+                - link "Participação Social" [ref=f24e191] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/participacao-social
+              - listitem [ref=f24e192]:
+                - link "Auditorias" [ref=f24e193] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/auditorias
+              - listitem [ref=f24e194]:
+                - link "Convênios e Transferências" [ref=f24e195] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/convenios-e-transferencias
+              - listitem [ref=f24e196]:
+                - link "Receitas e Despesas" [ref=f24e197] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/receitas-e-despesas
+              - listitem [ref=f24e198]:
+                - link "Licitações e Contratos" [ref=f24e199] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/licitacoes-e-contratos
+              - listitem [ref=f24e200]:
+                - link "Servidores" [ref=f24e201] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/servidores
+              - listitem [ref=f24e202]:
+                - link "Serviço de Informação ao Cidadão (SIC)" [ref=f24e203] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/servico-de-informacao-ao-cidadao
+              - listitem [ref=f24e204]:
+                - link "Perguntas Frequentes" [ref=f24e205] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes
+              - listitem [ref=f24e206]:
+                - link "Dados Abertos" [ref=f24e207] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/dados-abertos
+              - listitem [ref=f24e208]:
+                - link "Sanções Administrativas" [ref=f24e209] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/sancoes-administrativas
+              - listitem [ref=f24e210]:
+                - link "Privacidade e Proteção de Dados" [ref=f24e211] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/lgpd
+              - listitem [ref=f24e212]:
+                - link "Legislação e Jurisprudência" [ref=f24e213] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/legislacao
+              - listitem [ref=f24e214]:
+                - link "Processos Seletivos" [ref=f24e215] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/processos-seletivos
+          - listitem [ref=f24e216]:
+            - link "Canais de Atendimento" [ref=f24e217] [cursor=pointer]:
+              - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento
+            - list [ref=f24e218]:
+              - listitem [ref=f24e219]:
+                - link "Digital" [ref=f24e220] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/digital
+              - listitem [ref=f24e221]:
+                - link "Portal e-CAC" [ref=f24e222] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/atendimento-virtual
+              - listitem [ref=f24e223]:
+                - link "Presencial" [ref=f24e224] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/atendimento-presencial
+              - listitem [ref=f24e225]:
+                - link "E-mail" [ref=f24e226] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/atendimento-email
+              - listitem [ref=f24e227]:
+                - link "Online (Chat)" [ref=f24e228] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/chat
+              - listitem [ref=f24e229]:
+                - link "Fale Conosco" [ref=f24e230] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/fale-conosco
+              - listitem [ref=f24e231]:
+                - link "Conveniados" [ref=f24e232] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/conveniados
+              - listitem [ref=f24e233]:
+                - link "Alfândegas" [ref=f24e234] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior/atendimento/alfandegas-da-receita-federal-atendimento-especifico-ou-especializado
+              - listitem [ref=f24e235]:
+                - link "Imprensa" [ref=f24e236] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/imprensa
+              - listitem [ref=f24e237]:
+                - link "Ouvidoria" [ref=f24e238] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/ouvidoria
+          - listitem [ref=f24e239]:
+            - link "Centrais de Conteúdo" [ref=f24e240] [cursor=pointer]:
+              - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo
+            - list [ref=f24e241]:
+              - listitem [ref=f24e242]:
+                - link "Atas e Pautas" [ref=f24e243] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/atas-e-pautas
+              - listitem [ref=f24e244]:
+                - link "Editais" [ref=f24e245] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/editais
+              - listitem [ref=f24e246]:
+                - link "Formulários" [ref=f24e247] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/formularios
+              - listitem [ref=f24e248]:
+                - link "Programas e Aplicativos" [ref=f24e249] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/download
+              - listitem [ref=f24e250]:
+                - link "Publicações" [ref=f24e251] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes
+              - listitem [ref=f24e252]:
+                - link "Redes Sociais" [ref=f24e253] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/redes-sociais
+          - listitem [ref=f24e254]:
+            - link "Composição" [ref=f24e255] [cursor=pointer]:
+              - /url: https://www.gov.br/receitafederal/pt-br/composicao
+          - listitem [ref=f24e256]:
+            - link "Portais Relacionados" [ref=f24e257] [cursor=pointer]:
+              - /url: https://www.gov.br/receitafederal/pt-br/portais
+            - list [ref=f24e258]:
+              - listitem [ref=f24e259]:
+                - link "Empresas e Negócios" [ref=f24e260] [cursor=pointer]:
+                  - /url: https://www.gov.br/empresas-e-negocios
+              - listitem [ref=f24e261]:
+                - link "ENAT" [ref=f24e262] [cursor=pointer]:
+                  - /url: http://www.enat.receita.economia.gov.br/pt-br
+              - listitem [ref=f24e263]:
+                - link "eSocial" [ref=f24e264] [cursor=pointer]:
+                  - /url: https://www.gov.br/esocial
+              - listitem [ref=f24e265]:
+                - link "ITR Orientações para celebração de convênios" [ref=f24e266] [cursor=pointer]:
+                  - /url: http://www.enat.receita.economia.gov.br/pt-br/area_nacional/areas_interesse/portal-itr-1
+              - listitem [ref=f24e267]:
+                - link "Nota Fiscal de Serviço Eletrônica (NFS-e)" [ref=f24e268] [cursor=pointer]:
+                  - /url: https://www.gov.br/nfse/pt-br
+              - listitem [ref=f24e269]:
+                - link "Nota Fiscal Eletrônica" [ref=f24e270] [cursor=pointer]:
+                  - /url: http://www.nfe.fazenda.gov.br
+              - listitem [ref=f24e271]:
+                - link "Nota Fiscal Eletrônica do Ouro (NF-e Ouro)" [ref=f24e272] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/nfeouro
+              - listitem [ref=f24e273]:
+                - link "Portal CNIR" [ref=f24e274] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/cadastros/portal-cnir
+              - listitem [ref=f24e275]:
+                - link "Procuradoria da Fazenda (PGFN)" [ref=f24e276] [cursor=pointer]:
+                  - /url: https://www.gov.br/pgfn
+              - listitem [ref=f24e277]:
+                - link "Registrato" [ref=f24e278] [cursor=pointer]:
+                  - /url: https://www.bcb.gov.br/cidadaniafinanceira/registrato
+              - listitem [ref=f24e279]:
+                - link "Simples Nacional" [ref=f24e280] [cursor=pointer]:
+                  - /url: https://www8.receita.fazenda.gov.br/SimplesNacional/
+              - listitem [ref=f24e281]:
+                - link "Sinter" [ref=f24e282] [cursor=pointer]:
+                  - /url: https://cadastroimobiliario.economia.gov.br
+              - listitem [ref=f24e283]:
+                - link "Siscomex" [ref=f24e284] [cursor=pointer]:
+                  - /url: http://siscomex.gov.br
+              - listitem [ref=f24e285]:
+                - link "Sped" [ref=f24e286] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/portais/sped
+        - generic: 
+        - generic [ref=f24e287]:
+          - generic [ref=f24e288]:
+            - generic [ref=f24e289]: Redes sociais
+            - list [ref=f24e290]:
+              - listitem [ref=f24e291]:
+                - text: 
+                - link "Facebook" [ref=f24e292] [cursor=pointer]:
+                  - /url: https://www.facebook.com/receitafederaloficial
+              - listitem [ref=f24e293]:
+                - text: 
+                - link "Instagram" [ref=f24e294] [cursor=pointer]:
+                  - /url: https://www.instagram.com/receita_federal
+              - listitem [ref=f24e295]:
+                - text: 
+                - link "Linkedin" [ref=f24e296] [cursor=pointer]:
+                  - /url: https://linkedin.com/company/receita-federal
+              - listitem [ref=f24e297]:
+                - text: 
+                - link "Twitter" [ref=f24e298] [cursor=pointer]:
+                  - /url: https://www.twitter.com/ReceitaFederal
+              - listitem [ref=f24e299]:
+                - text: 
+                - link "YouTube" [ref=f24e300] [cursor=pointer]:
+                  - /url: https://www.youtube.com/TVReceitaFederal
+          - link "Acesse o portal sobre o acesso à informação" [ref=f24e303] [cursor=pointer]:
+            - /url: https://www.gov.br/acessoainformacao/pt-br
+            - img [ref=f24e304]:
+              - generic [ref=f24e308]: Acesso àInformação
+      - generic [ref=f24e310]:
+        - text: Todo o conteúdo deste site está publicado sob a licença
+        - link "Creative Commons Atribuição-SemDerivações 3.0 Não Adaptada" [ref=f24e311] [cursor=pointer]:
+          - /url: https://creativecommons.org/licenses/by-nd/3.0/deed.pt_BR
+        - text: .
+    - navigation "Voltar ao topo da página" [ref=f24e312]:
+      - link " Voltar ao topo da página" [ref=f24e313] [cursor=pointer]:
+        - /url: "#wrapper"
+        - generic [ref=f24e314]: 
+        - generic [ref=f24e315]: Voltar ao topo da página
+  - generic [ref=f24e319]:
+    - generic [ref=f24e320]:
+      - text:  
+      - generic [ref=f24e321]:
+        - generic [ref=f24e322]:
+          - text: Para melhorar a sua experiência na plataforma e prover serviços personalizados, utilizamos cookies.
+          - strong [ref=f24e323]: Ao aceitar, você terá acesso a todas as funcionalidades do site. Se clicar em "Rejeitar Cookies", os cookies que não forem estritamente necessários serão desativados.
+          - text: Para escolher quais quer autorizar, clique em "Gerenciar cookies". Saiba mais em nossa
+          - link "Declaração de Cookies" [ref=f24e324] [cursor=pointer]:
+            - /url: https://www.gov.br/pt-br/termos-de-uso
+          - text: .
+        - text: Desativado  Ativado  Desativado  Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  • • • • • • Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado 
+    - generic [ref=f24e325]:
+      - button "Gerenciar cookies" [ref=f24e326] [cursor=pointer]:  Gerenciar cookies
+      - button "Rejeitar cookies" [ref=f24e327] [cursor=pointer]
+      - button "Aceitar cookies" [ref=f24e328] [cursor=pointer]
+  - text:   
+  - generic [ref=f24e330] [cursor=pointer]:
+    - img "Conteúdo acessível em Libras usando o VLibras Widget com opções dos Avatares Ícaro, Hosana ou Guga." [ref=f24e331]
+    - img "Conteúdo acessível em Libras usando o VLibras Widget com opções dos Avatares Ícaro, Hosana ou Guga." [ref=f24e332]
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic [ref=f24e333]:
+            - img "Chatbot" [ref=f24e334] [cursor=pointer]
+            - img "Fechar" [ref=f24e335] [cursor=pointer]
+          - text: Escreva uma mensagem

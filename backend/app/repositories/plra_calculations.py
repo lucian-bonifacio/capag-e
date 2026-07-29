@@ -42,9 +42,7 @@ class PlraCalculationModel(Base):
     warnings_json: Mapped[list[str]] = mapped_column(JSON, nullable=False)
     limitations_json: Mapped[list[str]] = mapped_column(JSON, nullable=False)
     blocking_issues_json: Mapped[list[str]] = mapped_column(JSON, nullable=False)
-    j100_reconciliation_status: Mapped[str] = mapped_column(
-        String(80), nullable=False
-    )
+    balance_status: Mapped[str] = mapped_column(String(40), nullable=False)
     methodology_version_id: Mapped[str] = mapped_column(
         String(120), nullable=False, index=True
     )
@@ -76,7 +74,7 @@ class PlraCalculationModel(Base):
             warnings=tuple(self.warnings_json),
             limitations=tuple(self.limitations_json),
             blocking_issues=tuple(self.blocking_issues_json),
-            j100_reconciliation_status=self.j100_reconciliation_status,
+            balance_status=self.balance_status,
             methodology_version_id=self.methodology_version_id,
             calculated_at=_ensure_timezone(self.calculated_at),
         )
@@ -145,7 +143,7 @@ def add_plra_calculation(
         warnings_json=list(calculation.warnings),
         limitations_json=list(calculation.limitations),
         blocking_issues_json=list(calculation.blocking_issues),
-        j100_reconciliation_status=calculation.j100_reconciliation_status,
+        balance_status=calculation.balance_status.value,
         methodology_version_id=calculation.methodology_version_id,
         snapshot_json=calculation.to_snapshot(),
         calculated_at=calculation.calculated_at,

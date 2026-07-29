@@ -371,8 +371,8 @@ export function PlraPage({
                   <dd className="tnum">{calculation.methodology_version_id}</dd>
                 </div>
                 <div>
-                  <dt>Conferência J100</dt>
-                  <dd>{calculation.j100_reconciliation_status}</dd>
+                  <dt>Estado do balanço declarado</dt>
+                  <dd>{calculation.balance_status}</dd>
                 </div>
               </dl>
             </section>

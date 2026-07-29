@@ -2,351 +2,211 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { App } from "../App";
-import type { DeclaredAccountsResponse } from "../api/declared";
+import type { DeclaredBalanceResponse } from "../api/declared";
 
-const summaryResponse = {
+const balanceResponse: DeclaredBalanceResponse = {
   analysis_id: "7",
   year: 2024,
-  total_accounts: 5,
-  methodology_version_id: "metodologia-2024.1",
-  status_counts: {
-    MAPEADO: 1,
-    COD_CTA_REF_NAO_ENCONTRADO_NA_TABELA_OFICIAL: 1,
-    NAO_MAPEADO_METODOLOGICAMENTE: 1,
-    SEM_VINCULO_REFERENCIAL: 1,
-  },
-};
-
-const accountsResponse: DeclaredAccountsResponse = {
-  analysis_id: "7",
-  year: 2024,
-  accounts: [
+  balance_status: "VALIDO",
+  is_blocking: false,
+  j005_period_start: "2024-01-01",
+  j005_period_end: "2024-12-31",
+  assets_final_amount: "800.00",
+  liabilities_and_equity_final_amount: "800.00",
+  difference: "0.00",
+  limitations: [],
+  rows: [
     {
-      account_code: "1",
-      account_name: "Ativo",
-      account_type: "S",
-      account_nature: "01",
-      account_level: 1,
-      parent_account_code: null,
-      account_order: 1,
-      declared_reference_code: null,
-      official_description: null,
-      official_reference_status: null,
-      methodology_rule_applied: null,
-      methodology_rule_status: null,
-      purpose: null,
-      plra_category: null,
-      fco_category: null,
-      capag_category: null,
-      flow_nature: null,
-      treatment: null,
-      base_value: "100510.00",
-      considered_value: "100510.00",
-      final_status: "SEM_VINCULO_REFERENCIAL",
-      observation: "Conta estrutural sem vinculo.",
-      recommended_action: "revisar_vinculo_referencial",
-      methodology_version_id: "metodologia-2024.1",
+      aggregation_code: "ATIVO",
+      aggregation_code_type: "T",
+      aggregation_level: 1,
+      parent_aggregation_code: null,
+      balance_group: "A",
+      description: "Ativo",
+      initial_amount: "100.00",
+      initial_debit_credit_indicator: "D",
+      final_amount: "800.00",
+      final_debit_credit_indicator: "D",
+      explanatory_note_reference: null,
+      line_number: 30,
+      structural_status: "VALIDA",
+      reconciliation_status: null,
+      reconciled_amount: null,
+      difference: null,
+      component_count: 0,
+      children: [
+        {
+          aggregation_code: "AGL-CAIXA",
+          aggregation_code_type: "D",
+          aggregation_level: 2,
+          parent_aggregation_code: "ATIVO",
+          balance_group: "A",
+          description: "Banco conta movimento",
+          initial_amount: "100.00",
+          initial_debit_credit_indicator: "D",
+          final_amount: "800.00",
+          final_debit_credit_indicator: "D",
+          explanatory_note_reference: "N1",
+          line_number: 31,
+          structural_status: "VALIDA",
+          reconciliation_status: "CONCILIADA",
+          reconciled_amount: "800.00",
+          difference: "0.00",
+          component_count: 1,
+          children: [],
+        },
+      ],
     },
     {
-      account_code: "1.1",
-      account_name: "Ativo Circulante",
-      account_type: "S",
-      account_nature: "01",
-      account_level: 2,
-      parent_account_code: "1",
-      account_order: 2,
-      declared_reference_code: null,
-      official_description: null,
-      official_reference_status: null,
-      methodology_rule_applied: null,
-      methodology_rule_status: null,
-      purpose: null,
-      plra_category: null,
-      fco_category: null,
-      capag_category: null,
-      flow_nature: null,
-      treatment: null,
-      base_value: "100510.00",
-      considered_value: "100510.00",
-      final_status: "SEM_VINCULO_REFERENCIAL",
-      observation: "Conta estrutural sem vinculo.",
-      recommended_action: "revisar_vinculo_referencial",
-      methodology_version_id: "metodologia-2024.1",
-    },
-    {
-      account_code: "1725",
-      account_name: "Emprestimo - Sicoob",
-      account_type: "A",
-      account_nature: "01",
-      account_level: 3,
-      parent_account_code: "1.1",
-      account_order: 3,
-      declared_reference_code: "2.01.01.07.01",
-      official_description: "Emprestimos e financiamentos",
-      official_reference_status: "ATIVA",
-      methodology_rule_applied: "2.01.01.07.01",
-      methodology_rule_status: "ATIVA",
-      purpose: "FCO",
-      plra_category: null,
-      fco_category: "FINANCIAMENTO",
-      capag_category: null,
-      flow_nature: "FINANCIAMENTO",
-      treatment: "excluir_operacional",
-      base_value: "100000.00",
-      considered_value: "0.00",
-      final_status: "MAPEADO",
-      observation: null,
-      recommended_action: null,
-      methodology_version_id: "metodologia-2024.1",
-    },
-    {
-      account_code: "3001",
-      account_name: "Conta sem regra",
-      account_type: "A",
-      account_nature: "01",
-      account_level: 3,
-      parent_account_code: "1.1",
-      account_order: 4,
-      declared_reference_code: "9.99.99",
-      official_description: null,
-      official_reference_status: "ATIVA",
-      methodology_rule_applied: null,
-      methodology_rule_status: null,
-      purpose: "AUDITORIA",
-      plra_category: null,
-      fco_category: null,
-      capag_category: null,
-      flow_nature: null,
-      treatment: null,
-      base_value: "10.00",
-      considered_value: "10.00",
-      final_status: "NAO_MAPEADO_METODOLOGICAMENTE",
-      observation: "Sem regra metodologica exata.",
-      recommended_action: "revisar_metodologia",
-      methodology_version_id: "metodologia-2024.1",
-    },
-    {
-      account_code: "4001",
-      account_name: "Codigo fora da base",
-      account_type: "A",
-      account_nature: "01",
-      account_level: 3,
-      parent_account_code: "1.1",
-      account_order: 5,
-      declared_reference_code: "8.88.88",
-      official_description: null,
-      official_reference_status: null,
-      methodology_rule_applied: null,
-      methodology_rule_status: null,
-      purpose: "AUDITORIA",
-      plra_category: null,
-      fco_category: null,
-      capag_category: null,
-      flow_nature: null,
-      treatment: null,
-      base_value: "500.00",
-      considered_value: "500.00",
-      final_status: "COD_CTA_REF_NAO_ENCONTRADO_NA_TABELA_OFICIAL",
-      observation: "Codigo referencial ausente no plano oficial.",
-      recommended_action: "revisar_base_oficial",
-      methodology_version_id: "metodologia-2024.1",
+      aggregation_code: "PASSIVO",
+      aggregation_code_type: "T",
+      aggregation_level: 1,
+      parent_aggregation_code: null,
+      balance_group: "P",
+      description: "Passivo e patrimônio líquido",
+      initial_amount: "100.00",
+      initial_debit_credit_indicator: "C",
+      final_amount: "800.00",
+      final_debit_credit_indicator: "C",
+      explanatory_note_reference: null,
+      line_number: 32,
+      structural_status: "VALIDA",
+      reconciliation_status: null,
+      reconciled_amount: null,
+      difference: null,
+      component_count: 0,
+      children: [
+        {
+          aggregation_code: "AGL-CAPITAL",
+          aggregation_code_type: "D",
+          aggregation_level: 2,
+          parent_aggregation_code: "PASSIVO",
+          balance_group: "P",
+          description: "Capital social",
+          initial_amount: "100.00",
+          initial_debit_credit_indicator: "C",
+          final_amount: "800.00",
+          final_debit_credit_indicator: "C",
+          explanatory_note_reference: null,
+          line_number: 33,
+          structural_status: "VALIDA",
+          reconciliation_status: "CONCILIADA",
+          reconciled_amount: "-800.00",
+          difference: "0.00",
+          component_count: 1,
+          children: [],
+        },
+      ],
     },
   ],
 };
 
-function mockSuccessfulApi(accounts = accountsResponse) {
-  const fetchMock = vi.fn((url: string) => {
-    const body = url.endsWith("/accounts") ? accounts : summaryResponse;
+const componentsResponse = {
+  analysis_id: "7",
+  year: 2024,
+  aggregation_code: "AGL-CAIXA",
+  rows: [
+    {
+      account_code: "1.01.01.001",
+      account_name: "Banco conta movimento",
+      cost_center_code: "CC01",
+      final_amount: "800.00",
+      final_debit_credit_indicator: "D",
+      signed_final_amount: "800.00",
+      i052_line_number: 5,
+      i155_line_number: 9,
+    },
+  ],
+};
 
+function mockBalanceApi(balance = balanceResponse) {
+  const fetchMock = vi.fn((url: string) => {
+    const body = url.includes("/components") ? componentsResponse : balance;
     return Promise.resolve({
       ok: true,
       json: () => Promise.resolve(body),
     } as Response);
   });
-
   vi.stubGlobal("fetch", fetchMock);
   return fetchMock;
 }
 
-describe("declared layer route", () => {
+describe("declared balance route", () => {
   beforeEach(() => {
-    window.history.pushState(
-      {},
-      "",
-      "/analises/7/exercicios/2024/declarada",
-    );
+    window.history.pushState({}, "", "/analises/7/exercicios/2024/declarada");
   });
 
   afterEach(() => {
     vi.unstubAllGlobals();
   });
 
-  it("renders the balance dashboard returned by the declared accounts API", async () => {
-    const fetchMock = mockSuccessfulApi();
+  it("renders the J100 tree and values exactly as returned by the API", async () => {
+    const fetchMock = mockBalanceApi();
 
     render(<App />);
 
-    expect(screen.getByText("CAPAG Analytics")).toBeInTheDocument();
     expect(
       await screen.findByRole("heading", { name: "Balanço Patrimonial" }),
     ).toBeInTheDocument();
-    expect((await screen.findAllByText("Emprestimo - Sicoob")).length).toBeGreaterThan(0);
-    expect(screen.getByText("Conta sem Regra")).toBeInTheDocument();
-    expect(screen.getAllByText("R$ 100.000,00")[0]).toHaveClass("tnum");
-    expect(screen.getAllByText("1725")[0]).toHaveClass("tnum");
-
-    expect(fetchMock).toHaveBeenCalledWith(
-      "/api/v1/analyses/7/exercises/2024/declared",
-      undefined,
-    );
+    expect(await screen.findByText("Válido")).toBeInTheDocument();
+    expect(screen.getByText("Banco conta movimento")).toBeInTheDocument();
+    expect(screen.getByText("Capital social")).toBeInTheDocument();
+    expect(screen.getAllByText("R$ 800,00")[0]).toHaveClass("tnum");
+    expect(screen.getAllByText(/Saldo inicial: R\$ 100,00/)[0]).toHaveClass("tnum");
+    expect(screen.getAllByText("Conciliada")).toHaveLength(2);
+    expect(screen.queryByRole("checkbox")).not.toBeInTheDocument();
+    expect(screen.getByText("Visão declarada · sem ajustes")).toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledWith(
       "/api/v1/analyses/7/exercises/2024/declared/balance/accounts",
       undefined,
     );
   });
 
-  it("keeps declared accounts accessible from the balance dashboard", async () => {
-    mockSuccessfulApi();
+  it("loads I050 I052 and I155 components only when requested", async () => {
+    const fetchMock = mockBalanceApi();
 
     render(<App />);
+    const componentButtons = await screen.findAllByRole("button", {
+      name: "Ver componentes (1)",
+    });
+    fireEvent.click(componentButtons[0]);
 
-    expect(await screen.findByText("Codigo Fora da Base")).toBeInTheDocument();
-    expect(screen.getAllByText("4001").length).toBeGreaterThan(0);
-    expect(screen.getByRole("link", { name: "Auditoria" })).toHaveAttribute(
-      "href",
-      "/analises/7/exercicios/2024/auditoria",
+    expect(
+      await screen.findByRole("dialog", {
+        name: "Componentes — Banco conta movimento",
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("CC01")).toHaveClass("tnum");
+    expect(screen.getByText("1.01.01.001")).toHaveClass("tnum");
+    expect(screen.getByText(/I052 linha 5/)).toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/v1/analyses/7/exercises/2024/declared/balance/accounts/AGL-CAIXA/components",
+      undefined,
     );
   });
 
-  it("uses the ECD hierarchy without repeating the synthetic group as a child row", async () => {
-    mockSuccessfulApi({
-      ...accountsResponse,
-      accounts: [
-        {
-          ...accountsResponse.accounts[0],
-          account_code: "1",
-          account_name: "Ativo",
-          account_level: 1,
-          parent_account_code: null,
-          account_order: 1,
-        },
-        {
-          ...accountsResponse.accounts[1],
-          account_code: "1.1",
-          account_name: "Ativo Circulante",
-          account_level: 2,
-          parent_account_code: "1",
-          account_order: 2,
-          base_value: "100.00",
-          considered_value: "100.00",
-        },
-        {
-          ...accountsResponse.accounts[2],
-          account_code: "1.1.1",
-          account_name: "Caixa e equivalentes",
-          account_level: 3,
-          parent_account_code: "1.1",
-          account_order: 3,
-          account_type: "S",
-          base_value: "0.00",
-          considered_value: "0.00",
-        },
-        {
-          ...accountsResponse.accounts[2],
-          account_code: "1.1.1.01",
-          account_name: "Banco conta movimento",
-          account_level: 4,
-          parent_account_code: "1.1.1",
-          account_order: 4,
-          account_type: "A",
-          base_value: "100.00",
-          considered_value: "100.00",
-        },
-      ],
+  it("shows an objective empty state and backend limitations", async () => {
+    mockBalanceApi({
+      ...balanceResponse,
+      balance_status: "OBRIGATORIO_AUSENTE",
+      is_blocking: true,
+      assets_final_amount: null,
+      liabilities_and_equity_final_amount: null,
+      difference: null,
+      rows: [],
+      limitations: ["J100_OBRIGATORIO_AUSENTE"],
     });
 
     render(<App />);
 
-    expect(await screen.findByText("Ativo Circulante")).toBeInTheDocument();
-    expect(screen.getAllByText("Ativo Circulante")).toHaveLength(1);
-    expect(screen.getByText("Caixa e Equivalentes")).toBeInTheDocument();
-    expect(screen.getAllByText("R$ 100,00").length).toBeGreaterThan(0);
-    expect(screen.queryByText("Banco Conta Movimento")).not.toBeInTheDocument();
-  });
-
-  it("keeps result accounts out of the balance sheet and warns when it does not close", async () => {
-    mockSuccessfulApi({
-      ...accountsResponse,
-      accounts: [
-        {
-          ...accountsResponse.accounts[0],
-          account_code: "1",
-          account_name: "Ativo",
-          account_nature: "01",
-          base_value: "100.00",
-          considered_value: "100.00",
-        },
-        {
-          ...accountsResponse.accounts[0],
-          account_code: "2",
-          account_name: "Passivo",
-          account_nature: "02",
-          base_value: "90.00",
-          considered_value: "90.00",
-        },
-        {
-          ...accountsResponse.accounts[0],
-          account_code: "3",
-          account_name: "Resultado do exercicio",
-          account_nature: "04",
-          base_value: "999.00",
-          considered_value: "999.00",
-        },
-      ],
-    });
-
-    render(<App />);
-
-    expect((await screen.findAllByText("Ativo")).length).toBeGreaterThan(0);
-    expect(screen.getAllByText("Passivo").length).toBeGreaterThan(0);
-    expect(screen.queryByText("Resultado do Exercicio")).not.toBeInTheDocument();
-    expect(screen.getByText("Balanço não fecha.")).toBeInTheDocument();
-    expect(screen.getByText(/R\$ 10,00/)).toBeInTheDocument();
-  });
-
-  it("shows J100 and I050 consistency warnings returned by the balance API", async () => {
-    mockSuccessfulApi({
-      ...accountsResponse,
-      consistency_warnings: [
-        {
-          warning_code: "J100_SEM_I050",
-          account_code: "9.9",
-          account_name: "Conta J100 sem I050",
-          message: "Linha do J100 sem conta correspondente no I050.",
-        },
-      ],
-    });
-
-    render(<App />);
-
-    expect(await screen.findByText("Consistência J100 x I050")).toBeInTheDocument();
-    expect(screen.getByText("1 apontamento")).toBeInTheDocument();
-    expect(screen.getByText("9.9")).toBeInTheDocument();
-    expect(screen.getByText("Conta J100 sem I050")).toBeInTheDocument();
-    expect(screen.getByText("Linha do J100 sem conta correspondente no I050.")).toBeInTheDocument();
-  });
-
-  it("renders the empty state when the API returns no accounts", async () => {
-    mockSuccessfulApi({ ...accountsResponse, accounts: [] });
-
-    render(<App />);
-
+    expect(await screen.findByText("Balanço ausente")).toBeInTheDocument();
+    expect(screen.getByText("Balanço J100 obrigatório ausente.")).toBeInTheDocument();
     expect(
-      await screen.findByText("Sem contas declaradas para montar a hierarquia da ECD."),
+      screen.getByRole("heading", { name: "Balanço declarado indisponível" }),
     ).toBeInTheDocument();
   });
 
-  it("renders the error state when the API request fails", async () => {
+  it("renders the error state when the balance API fails", async () => {
     vi.stubGlobal(
       "fetch",
       vi.fn(() =>
@@ -360,7 +220,9 @@ describe("declared layer route", () => {
     render(<App />);
 
     expect(
-      await screen.findByRole("heading", { name: "Erro ao carregar balanço patrimonial" }),
+      await screen.findByRole("heading", {
+        name: "Erro ao carregar balanço patrimonial",
+      }),
     ).toBeInTheDocument();
   });
 });
@@ -388,6 +250,9 @@ describe("ecd import route", () => {
       year: 2024,
       methodology_version_id: "metodologia-2024.1",
       status: "concluido",
+      parser_version: "2.1.0",
+      balance_preparation_status: "PRONTA_PARA_CONCILIACAO",
+      reprocessed: false,
     };
     vi.stubGlobal(
       "fetch",
@@ -438,7 +303,6 @@ describe("ecd import route", () => {
           json: () => Promise.resolve({ imports: [] }),
         } as Response);
       }
-
       if (url === "/api/v1/ecd/import" && init?.method === "POST") {
         return Promise.resolve({
           ok: true,
@@ -450,10 +314,12 @@ describe("ecd import route", () => {
               year: 2024,
               methodology_version_id: "metodologia-2024.1",
               status: "nao_executado",
+              parser_version: "2.1.0",
+              balance_preparation_status: "PRONTA_PARA_CONCILIACAO",
+              reprocessed: false,
             }),
         } as Response);
       }
-
       if (
         url ===
           "/api/v1/analyses/analysis-real/exercises/2024/declared/run" &&
@@ -471,20 +337,12 @@ describe("ecd import route", () => {
             }),
         } as Response);
       }
-
-      if (url === "/api/v1/analyses/analysis-real/exercises/2024/declared") {
-        return Promise.resolve({
-          ok: true,
-          json: () => Promise.resolve({ ...summaryResponse, analysis_id: "analysis-real" }),
-        } as Response);
-      }
-
       return Promise.resolve({
         ok: true,
-        json: () => Promise.resolve({ ...accountsResponse, analysis_id: "analysis-real" }),
+        json: () =>
+          Promise.resolve({ ...balanceResponse, analysis_id: "analysis-real" }),
       } as Response);
     });
-
     vi.stubGlobal("fetch", fetchMock);
 
     render(<App />);
@@ -497,7 +355,6 @@ describe("ecd import route", () => {
 
     expect(await screen.findByText("Análise analysis-real criada para 2024.")).toBeInTheDocument();
     expect(await screen.findByText("2 snapshots; status concluido.")).toBeInTheDocument();
-
     await waitFor(() => {
       expect(screen.getByRole("button", { name: "Abrir análise" })).not.toBeDisabled();
     });
@@ -524,6 +381,9 @@ describe("ecd import route", () => {
       year: 2024,
       methodology_version_id: "metodologia-2024.1",
       status: "concluido",
+      parser_version: "2.1.0",
+      balance_preparation_status: "PRONTA_PARA_CONCILIACAO",
+      reprocessed: false,
     };
     const fetchMock = vi.fn((url: string, init?: RequestInit) => {
       if (url === "/api/v1/ecd/imports" && !init?.method) {
@@ -532,7 +392,6 @@ describe("ecd import route", () => {
           json: () => Promise.resolve({ imports: [existingImport] }),
         } as Response);
       }
-
       if (url === "/api/v1/ecd/import" && init?.method === "POST") {
         return Promise.resolve({
           ok: false,
@@ -547,20 +406,12 @@ describe("ecd import route", () => {
             }),
         } as Response);
       }
-
-      if (url === "/api/v1/analyses/analysis-existing/exercises/2024/declared") {
-        return Promise.resolve({
-          ok: true,
-          json: () => Promise.resolve({ ...summaryResponse, analysis_id: "analysis-existing" }),
-        } as Response);
-      }
-
       return Promise.resolve({
         ok: true,
-        json: () => Promise.resolve({ ...accountsResponse, analysis_id: "analysis-existing" }),
+        json: () =>
+          Promise.resolve({ ...balanceResponse, analysis_id: "analysis-existing" }),
       } as Response);
     });
-
     vi.stubGlobal("fetch", fetchMock);
 
     render(<App />);
@@ -573,9 +424,10 @@ describe("ecd import route", () => {
 
     expect(await screen.findByText("Este arquivo ECD ja foi importado.")).toBeInTheDocument();
     expect(await screen.findByText("analysis-existing")).toHaveClass("tnum");
-
     fireEvent.click(screen.getByRole("button", { name: "Abrir análise existente" }));
-    expect(await screen.findByRole("heading", { name: "Balanço Patrimonial" })).toBeInTheDocument();
+    expect(
+      await screen.findByRole("heading", { name: "Balanço Patrimonial" }),
+    ).toBeInTheDocument();
     expect(await screen.findByText("analysis-existing")).toHaveClass("tnum");
     expect(fetchMock).not.toHaveBeenCalledWith(
       "/api/v1/analyses/analysis-existing/exercises/2024/declared/run",

@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-098-criar-ui-plra.md`
 - SPEC: `specs/SPEC-011-modulo-1b-motor-plra.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -53,7 +53,7 @@
 
 ## Homologação
 
-- Status: aguardando_homologacao
-- Data: 27/07/2026
-- Decisão do usuário: ajuste de navegação autorizado durante homologação.
-- Observação: grupo permanece aguardando homologação; ajuste corrige abertura direta do Balanço Patrimonial e demais páginas de análise a partir da importação ECD real.
+- Status: aprovada
+- Data: 2026-07-29
+- Decisão do usuário: todas as TASKs pendentes foram homologadas.
+- Observação: entrega homologada conforme o escopo e as fontes vigentes. A compatibilidade com a nova camada declarada será revisada, quando aplicável, nas `TASK-101` a `TASK-108`; ajustes transversais de status e resultado final concentram-se nas `TASK-107` e `TASK-108`.

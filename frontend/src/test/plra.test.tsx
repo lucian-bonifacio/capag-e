@@ -20,7 +20,7 @@ const calculation: PlraCalculation = {
   warnings: [],
   limitations: [],
   blocking_issues: [],
-  j100_reconciliation_status: "disponivel_para_conferencia",
+  balance_status: "VALIDO",
   methodology_version_id: "metodologia-2024.1",
   calculated_at: "2026-07-24T20:31:00Z",
 };

@@ -36,9 +36,13 @@ def test_plra_api_runs_persists_and_exposes_audit_with_decimal_strings() -> None
     body = response.json()
     assert body["gross_economic_liabilities_value"] == "100000.00"
     assert body["plra_value"] == "-100000.00"
-    assert body["plra_status"] == "calculado"
+    assert body["plra_status"] == "parcial"
     assert body["methodology_version_id"] == "metodologia-2024.1"
-    assert body["j100_reconciliation_status"] == "disponivel_para_conferencia"
+    assert body["balance_status"] == "ESTRUTURA_INVALIDA"
+    assert (
+        "BALANCO_DECLARADO_NAO_VALIDO:ESTRUTURA_INVALIDA"
+        in body["blocking_issues"]
+    )
 
     stored = client.get(BASE_PATH)
     assert stored.status_code == 200
@@ -46,7 +50,7 @@ def test_plra_api_runs_persists_and_exposes_audit_with_decimal_strings() -> None
 
     audit = client.get(f"{BASE_PATH}/audit")
     assert audit.status_code == 200
-    assert audit.json()["plra_status"] == "calculado"
+    assert audit.json()["plra_status"] == "parcial"
     assert audit.json()["rows"][0]["base_value"] == "100000.00"
     assert audit.json()["rows"][0]["final_economic_value"] == "100000.00"
     assert audit.json()["rows"][0]["inclusion_status"] == "incluido_passivo"
@@ -178,10 +182,16 @@ def _client() -> TestClient:
                 ),
                 EcdJ100BalanceRowModel(
                     exercise_id=exercise.id,
-                    account_code="1725",
+                    aggregation_code="1725",
+                    aggregation_code_type="D",
+                    aggregation_level=1,
+                    parent_aggregation_code=None,
+                    balance_group="P",
                     description="Fornecedores nacionais",
-                    amount=Decimal("100000.00"),
-                    amount_indicator="C",
+                    initial_amount=Decimal("0.00"),
+                    initial_debit_credit_indicator="C",
+                    final_amount=Decimal("100000.00"),
+                    final_debit_credit_indicator="C",
                     line_number=5,
                     source_line="|J100|...|",
                 ),

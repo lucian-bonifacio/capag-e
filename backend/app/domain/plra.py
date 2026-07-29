@@ -7,6 +7,7 @@ from enum import StrEnum
 from typing import Any
 
 from app.domain.capag import CENT, ComponentStatus
+from app.domain.declared_balance import DeclaredBalanceStatus
 
 
 class PlraInclusionStatus(StrEnum):
@@ -154,9 +155,9 @@ class PlraCalculation:
     warnings: tuple[str, ...]
     limitations: tuple[str, ...]
     blocking_issues: tuple[str, ...]
-    j100_reconciliation_status: str
     methodology_version_id: str
     calculated_at: datetime
+    balance_status: DeclaredBalanceStatus = DeclaredBalanceStatus.VALIDO
 
     def __post_init__(self) -> None:
         for field in {
@@ -168,6 +169,11 @@ class PlraCalculation:
         }:
             object.__setattr__(self, field, _money(field, getattr(self, field)))
         object.__setattr__(self, "plra_status", ComponentStatus(self.plra_status))
+        object.__setattr__(
+            self,
+            "balance_status",
+            DeclaredBalanceStatus(self.balance_status),
+        )
         for field in {
             "account_rows",
             "pending_accounts",
@@ -199,7 +205,7 @@ class PlraCalculation:
             "warnings": list(self.warnings),
             "limitations": list(self.limitations),
             "blocking_issues": list(self.blocking_issues),
-            "j100_reconciliation_status": self.j100_reconciliation_status,
+            "balance_status": self.balance_status.value,
             "methodology_version_id": self.methodology_version_id,
             "calculated_at": self.calculated_at.isoformat(),
         }
@@ -215,4 +221,3 @@ def _money(field: str, value: object) -> Decimal:
 
 def _decimal_string(value: Decimal | None) -> str | None:
     return None if value is None else format(value, "f")
-

@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-049-modelar-contrato-dominio-capag-e.md`
 - SPEC: `specs/SPEC-004-modulo-3-contrato-capag-e-plra-fca-roa.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -38,7 +38,7 @@
 
 ## Homologação
 
-- Status: aguardando_homologacao
-- Data: 2026-07-24
-- Decisão do usuário: execução em grupo autorizada para `TASK-049` a `TASK-054`.
-- Observação: homologação será solicitada ao final do grupo.
+- Status: aprovada
+- Data: 2026-07-29
+- Decisão do usuário: todas as TASKs pendentes foram homologadas.
+- Observação: entrega homologada conforme o escopo e as fontes vigentes. A compatibilidade com a nova camada declarada será revisada, quando aplicável, nas `TASK-101` a `TASK-108`; ajustes transversais de status e resultado final concentram-se nas `TASK-107` e `TASK-108`.

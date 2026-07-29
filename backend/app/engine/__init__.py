@@ -11,6 +11,7 @@ from app.engine.evidence import (
     revise_adjustment_evidence,
 )
 from app.engine.dfc import build_dfc_audit_rows, calculate_dfc
+from app.engine.declared_balance import calculate_declared_balance
 from app.engine.plra import calculate_plra
 from app.engine.roa import (
     build_roa_audit_rows,
@@ -26,6 +27,7 @@ __all__ = [
     "build_roa_audit_rows",
     "build_roa_pressure_rows",
     "calculate_dfc",
+    "calculate_declared_balance",
     "calculate_capag_e_assessment",
     "calculate_default_materiality",
     "evaluate_evidence_disposition",

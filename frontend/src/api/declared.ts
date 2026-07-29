@@ -33,18 +33,76 @@ export type DeclaredAccount = {
   methodology_version_id: string;
 };
 
-export type DeclaredBalanceConsistencyWarning = {
-  warning_code: string;
-  account_code: string;
-  account_name: string;
-  message: string;
-};
-
 export type DeclaredAccountsResponse = {
   analysis_id: string;
   year: number;
   accounts: DeclaredAccount[];
-  consistency_warnings?: DeclaredBalanceConsistencyWarning[];
+};
+
+export type DeclaredBalanceStatus =
+  | "VALIDO"
+  | "DIVERGENTE"
+  | "OBRIGATORIO_AUSENTE"
+  | "ESTRUTURA_INVALIDA"
+  | "NAO_OBRIGATORIO";
+
+export type DeclaredBalanceLineStatus =
+  | "CONCILIADA"
+  | "DIVERGENTE"
+  | "SEM_I052"
+  | "SEM_SALDO_I155";
+
+export type DeclaredBalanceRow = {
+  aggregation_code: string;
+  aggregation_code_type: "T" | "D";
+  aggregation_level: number;
+  parent_aggregation_code: string | null;
+  balance_group: "A" | "P";
+  description: string;
+  initial_amount: string;
+  initial_debit_credit_indicator: string;
+  final_amount: string;
+  final_debit_credit_indicator: string;
+  explanatory_note_reference: string | null;
+  line_number: number;
+  structural_status: "VALIDA" | "INVALIDA";
+  reconciliation_status: DeclaredBalanceLineStatus | null;
+  reconciled_amount: string | null;
+  difference: string | null;
+  component_count: number;
+  children: DeclaredBalanceRow[];
+};
+
+export type DeclaredBalanceResponse = {
+  analysis_id: string;
+  year: number;
+  balance_status: DeclaredBalanceStatus;
+  is_blocking: boolean;
+  j005_period_start: string | null;
+  j005_period_end: string | null;
+  assets_final_amount: string | null;
+  liabilities_and_equity_final_amount: string | null;
+  difference: string | null;
+  rows: DeclaredBalanceRow[];
+  limitations: string[];
+};
+
+export type DeclaredBalanceComponent = {
+  account_code: string;
+  account_name: string;
+  cost_center_code: string | null;
+  final_amount: string | null;
+  final_debit_credit_indicator: string | null;
+  signed_final_amount: string | null;
+  i052_line_number: number;
+  i155_line_number: number | null;
+};
+
+export type DeclaredBalanceComponentsResponse = {
+  analysis_id: string;
+  year: number;
+  aggregation_code: string;
+  rows: DeclaredBalanceComponent[];
 };
 
 export type EcdImportResponse = {
@@ -54,6 +112,9 @@ export type EcdImportResponse = {
   year: number;
   methodology_version_id: string;
   status: string;
+  parser_version: string;
+  balance_preparation_status: string;
+  reprocessed: boolean;
 };
 
 export type ExistingEcdImport = EcdImportResponse & {
@@ -150,9 +211,19 @@ export function fetchDeclaredAccounts(
 export function fetchDeclaredBalanceAccounts(
   analysisId: string,
   year: string,
-): Promise<DeclaredAccountsResponse> {
-  return fetchJson<DeclaredAccountsResponse>(
+): Promise<DeclaredBalanceResponse> {
+  return fetchJson<DeclaredBalanceResponse>(
     `/api/v1/analyses/${analysisId}/exercises/${year}/declared/balance/accounts`,
+  );
+}
+
+export function fetchDeclaredBalanceComponents(
+  analysisId: string,
+  year: string,
+  aggregationCode: string,
+): Promise<DeclaredBalanceComponentsResponse> {
+  return fetchJson<DeclaredBalanceComponentsResponse>(
+    `/api/v1/analyses/${analysisId}/exercises/${year}/declared/balance/accounts/${encodeURIComponent(aggregationCode)}/components`,
   );
 }
 

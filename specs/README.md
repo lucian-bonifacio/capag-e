@@ -28,7 +28,8 @@ Este documento e um indice de rastreabilidade. Ele nao substitui as SPECs, nao a
 | `SPEC-008-modulo-7-gerador-laudo-capag-e.md` | Modulo 7 - Gerador de Laudo CAPAG-E | suficiente_para_task | Suficiente para TASKs do laudo CAPAG-E. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-001`; contrato CAPAG-E e evidencias quando aplicavel. | Resultados calculados, evidencias, bloqueios, snapshots e versao metodologica. | Nao ha bloqueio para TASKs do Modulo 7; permanece bloqueado recalcular motores, esconder limitacoes ou ignorar evidencias criticas pendentes. | `TASK-073` a `TASK-078`. |
 | `SPEC-009-modulo-8-governanca-metodologia.md` | Modulo 8 - Governanca de Metodologia | suficiente_para_task | Suficiente para TASKs de governanca metodologica. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-001`; documentos metodologicos governados quando incorporados. | Assets metodologicos, `MethodologyVersion`, validacoes e rastreabilidade entre documentos, codigo, testes e laudo. | Nao ha bloqueio para TASKs do Modulo 8; permanece bloqueado tratar `docs/reference/` como fonte normativa direta sem governanca. | `TASK-079` a `TASK-084`. |
 | `SPEC-010-governanca-plano-referencial-oficial.md` | Governanca Do Plano Referencial Oficial | suficiente_para_task | Suficiente para TASKs documentais, pesquisa de fonte, contrato de carga, validacao de asset, desenho tecnico e continuidade governada ate banco/CRUD, respeitados os gates internos. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-001`; `SPEC-002`; `SPEC-009`; `TASK-086`. | Camada declarada, asset oficial inicial e governanca metodologica. | Fonte oficial ainda nao aprovada; bloqueia apenas TASKs executivas que dependam de fonte, contrato, versionamento ou auditoria ainda nao aprovados. | `TASK-088` a `TASK-093`. |
-| `SPEC-011-modulo-1b-motor-plra.md` | Modulo 1B - Motor PLRA | suficiente_para_task | Suficiente para TASKs do motor patrimonial PLRA. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-002`; `SPEC-004`; `SPEC-005`; `SPEC-010`; manual PLR aprovado pelo usuario. | Camada declarada, plano referencial completo, contrato CAPAG-E e evidencias para overrides. | Nao ha decisao metodologica pendente; cobertura final depende dos assets referenciais e metodologicos aprovados. | `TASK-094` a `TASK-099`. |
+| `SPEC-011-modulo-1b-motor-plra.md` | Modulo 1B - Motor PLRA | suficiente_para_task | Suficiente para TASKs do motor patrimonial PLRA. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-002`; `SPEC-004`; `SPEC-005`; `SPEC-010`; `SPEC-012`; manual PLR aprovado pelo usuario. | Camada declarada, balanco declarado valido, plano referencial completo, contrato CAPAG-E e evidencias para overrides. | Nao ha decisao metodologica pendente; cobertura final depende dos assets referenciais e metodologicos aprovados. | `TASK-094` a `TASK-099`. |
+| `SPEC-012-modulo-1c-balanco-patrimonial-declarado.md` | Modulo 1C - Balanco Patrimonial Declarado | suficiente_para_task | Suficiente para TASKs de preservacao da ECD, parser, persistencia, conciliacao, API, frontend, bloqueios e reprocessamento do balanco declarado. | `docs/product/PRD.md`; `docs/architecture/architecture.md`; `SPEC-002`; `SPEC-011`; pesquisa oficial do balanco ECD. | Camada declarada, importacao ECD e motor PLRA para consumo do estado de elegibilidade. | Nenhuma decisao essencial pendente; importacoes anteriores exigem reenvio controlado por nao preservarem o arquivo original completo. | `TASK-101` a `TASK-108`. |
 
 ## Detalhamento Por SPEC
 
@@ -127,6 +128,15 @@ Este documento e um indice de rastreabilidade. Ele nao substitui as SPECs, nao a
 - Arquivo: `SPEC-011-modulo-1b-motor-plra.md`
 - Status documental: `suficiente_para_task`
 - Suficiencia: TASKs do motor patrimonial PLRA.
-- Dependencias: camada declarada, plano referencial completo, contrato CAPAG-E e evidencias quando houver override.
+- Dependencias: camada declarada, balanco declarado valido conforme `SPEC-012`, plano referencial completo, contrato CAPAG-E e evidencias quando houver override.
 - Bloqueios: a cobertura final depende dos assets referenciais e metodologicos aprovados; codigos ausentes permanecem auditaveis sem inferencia.
 - TASKs derivadas: `TASK-094` a `TASK-099`.
+
+### SPEC-012 - Modulo 1C: Balanco Patrimonial Declarado
+
+- Arquivo: `SPEC-012-modulo-1c-balanco-patrimonial-declarado.md`
+- Status documental: `suficiente_para_task`
+- Suficiencia: TASKs de preservacao da ECD original, parser, persistencia, construcao, conciliacao, API, frontend, bloqueios e reprocessamento.
+- Dependencias: camada declarada, importacao ECD e motor PLRA para consumo do estado de elegibilidade.
+- Bloqueios: importacoes anteriores precisam de reenvio controlado porque o arquivo original completo e os registros `I052/J005` nao foram preservados.
+- TASKs derivadas: `TASK-101` a `TASK-108`.

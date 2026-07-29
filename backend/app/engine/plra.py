@@ -5,6 +5,7 @@ from decimal import Decimal
 
 from app.assets.methodology import PlraPolicy, PlraRule
 from app.domain import ComponentStatus
+from app.domain.declared_balance import DeclaredBalanceStatus
 from app.domain.evidence import (
     AdjustmentEvidence,
     AssetValuationAssessment,
@@ -41,7 +42,7 @@ def calculate_plra(
     evidence_statuses: dict[str, str] | None = None,
     evidences: list[AdjustmentEvidence] | None = None,
     asset_valuations: list[AssetValuationAssessment] | None = None,
-    j100_available: bool = False,
+    balance_status: DeclaredBalanceStatus | str = DeclaredBalanceStatus.VALIDO,
     calculated_at: datetime | None = None,
 ) -> PlraCalculation:
     if methodology_version_id != policy.methodology_version_id:
@@ -269,11 +270,17 @@ def calculate_plra(
         uncovered_nonzero_count=uncovered_nonzero_count,
         synthetic_nonzero_count=synthetic_nonzero_count,
     )
-    j100_status = (
-        "disponivel_para_conferencia" if j100_available else "nao_disponivel"
-    )
-    if not j100_available:
-        warnings.append("J100 nao disponivel para conferencia informativa.")
+    resolved_balance_status = DeclaredBalanceStatus(balance_status)
+    if resolved_balance_status != DeclaredBalanceStatus.VALIDO:
+        limitations.append(
+            "Resultado PLRA mantido apenas para diagnostico: "
+            f"balanco declarado com status {resolved_balance_status.value}."
+        )
+        blocking_issues.append(
+            f"BALANCO_DECLARADO_NAO_VALIDO:{resolved_balance_status.value}"
+        )
+        if status == ComponentStatus.CALCULATED:
+            status = ComponentStatus.PARTIAL
 
     return PlraCalculation(
         analysis_id=analysis_id,
@@ -290,7 +297,7 @@ def calculate_plra(
         warnings=tuple(warnings),
         limitations=tuple(limitations),
         blocking_issues=tuple(blocking_issues),
-        j100_reconciliation_status=j100_status,
+        balance_status=resolved_balance_status,
         methodology_version_id=methodology_version_id,
         calculated_at=calculated_at or datetime.now(timezone.utc),
     )

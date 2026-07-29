@@ -224,6 +224,10 @@ export function CapagAssessmentPage({
                   <dt>Base de cálculo</dt>
                   <dd className="tnum">{assessment.calculation_basis}</dd>
                 </div>
+                <div>
+                  <dt>Estado do balanço declarado</dt>
+                  <dd>{assessment.balance_status}</dd>
+                </div>
               </dl>
             </section>
 

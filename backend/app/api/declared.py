@@ -15,12 +15,21 @@ from app.application.declared_run_service import (
     DeclaredRunNotFound,
     run_declared_layer,
 )
+from app.application.declared_balance_service import (
+    DeclaredBalanceNotFound,
+    DeclaredBalanceUnavailable,
+    get_declared_balance,
+)
 from app.db.session import SessionLocal
+from app.domain import DeclaredBalanceRow
 from app.engine.methodology_matcher import MethodologyRule, OfficialReferenceAccount
 from app.export import serialize_declared_layer_workbook
 from app.schemas.declared import (
     ApiErrorResponse,
     DeclaredAccountsResponse,
+    DeclaredBalanceComponentsResponse,
+    DeclaredBalanceResponse,
+    DeclaredBalanceRowResponse,
     DeclaredLayerSummaryResponse,
     DeclaredRunResponse,
 )
@@ -181,7 +190,7 @@ def list_declared_layer_accounts(
 
 @router.get(
     "/balance/accounts",
-    response_model=DeclaredAccountsResponse,
+    response_model=DeclaredBalanceResponse,
     responses={
         404: {"model": ApiErrorResponse},
         503: {"model": ApiErrorResponse},
@@ -190,32 +199,93 @@ def list_declared_layer_accounts(
 def list_declared_balance_accounts(
     analysis_id: str,
     year: int,
-    reader: DeclaredSnapshotReader = Depends(get_declared_snapshot_reader),
-) -> DeclaredAccountsResponse:
+    session=Depends(get_declared_run_session),
+) -> DeclaredBalanceResponse:
     try:
-        accounts = reader.list_balance_accounts(analysis_id=analysis_id, year=year)
-        consistency_warnings = reader.list_balance_consistency_warnings(
+        balance = get_declared_balance(
+            session,
             analysis_id=analysis_id,
             year=year,
         )
-    except DeclaredSnapshotsNotFound as exc:
+    except DeclaredBalanceNotFound as exc:
         raise _http_error(
             status.HTTP_404_NOT_FOUND,
-            "DECLARED_SNAPSHOT_NOT_FOUND",
+            "DECLARED_BALANCE_NOT_FOUND",
             str(exc),
         ) from exc
-    except DeclaredSnapshotsUnavailable as exc:
+    except DeclaredBalanceUnavailable as exc:
         raise _http_error(
             status.HTTP_503_SERVICE_UNAVAILABLE,
-            "DECLARED_SNAPSHOT_READER_UNAVAILABLE",
+            "DECLARED_BALANCE_UNAVAILABLE",
             str(exc),
         ) from exc
 
-    return DeclaredAccountsResponse(
+    return DeclaredBalanceResponse(
         analysis_id=analysis_id,
         year=year,
-        accounts=accounts,
-        consistency_warnings=consistency_warnings,
+        balance_status=balance.status,
+        is_blocking=balance.is_blocking,
+        j005_period_start=balance.j005_period_start,
+        j005_period_end=balance.j005_period_end,
+        assets_final_amount=balance.assets_final_amount,
+        liabilities_and_equity_final_amount=(
+            balance.liabilities_and_equity_final_amount
+        ),
+        difference=balance.difference,
+        rows=[
+            DeclaredBalanceRowResponse.model_validate(row, from_attributes=True)
+            for row in balance.rows
+        ],
+        limitations=list(balance.limitations),
+    )
+
+
+@router.get(
+    "/balance/accounts/{aggregation_code}/components",
+    response_model=DeclaredBalanceComponentsResponse,
+    responses={
+        404: {"model": ApiErrorResponse},
+        503: {"model": ApiErrorResponse},
+    },
+)
+def list_declared_balance_components(
+    analysis_id: str,
+    year: int,
+    aggregation_code: str,
+    session=Depends(get_declared_run_session),
+) -> DeclaredBalanceComponentsResponse:
+    try:
+        balance = get_declared_balance(
+            session,
+            analysis_id=analysis_id,
+            year=year,
+        )
+    except DeclaredBalanceNotFound as exc:
+        raise _http_error(
+            status.HTTP_404_NOT_FOUND,
+            "DECLARED_BALANCE_NOT_FOUND",
+            str(exc),
+        ) from exc
+    except DeclaredBalanceUnavailable as exc:
+        raise _http_error(
+            status.HTTP_503_SERVICE_UNAVAILABLE,
+            "DECLARED_BALANCE_UNAVAILABLE",
+            str(exc),
+        ) from exc
+
+    row = _find_balance_row(balance.rows, aggregation_code)
+    if row is None:
+        raise _http_error(
+            status.HTTP_404_NOT_FOUND,
+            "DECLARED_BALANCE_ROW_NOT_FOUND",
+            "Declared balance row not found.",
+        )
+
+    return DeclaredBalanceComponentsResponse(
+        analysis_id=analysis_id,
+        year=year,
+        aggregation_code=aggregation_code,
+        rows=list(row.components),
     )
 
 
@@ -270,3 +340,16 @@ def _http_error(status_code: int, error_code: str, message: str) -> HTTPExceptio
             "message": message,
         },
     )
+
+
+def _find_balance_row(
+    rows: tuple[DeclaredBalanceRow, ...],
+    aggregation_code: str,
+) -> DeclaredBalanceRow | None:
+    for row in rows:
+        if row.aggregation_code == aggregation_code:
+            return row
+        child = _find_balance_row(row.children, aggregation_code)
+        if child is not None:
+            return child
+    return None

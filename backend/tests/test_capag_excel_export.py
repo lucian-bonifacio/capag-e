@@ -41,6 +41,7 @@ def test_capag_excel_exports_partial_status_limitations_and_blocking_issues() ->
     assert "FCA parcial" in values["limitacoes_metodologicas"]
     assert values["warnings"] == "Valor sujeito a revisao."
     assert values["bloqueios"] == "EVIDENCIA_PENDENTE"
+    assert values["status_balanco_declarado"] == "VALIDO"
     assert values["sem_recalculo"] == "true"
     assert _has_no_formulas(workbook)
 

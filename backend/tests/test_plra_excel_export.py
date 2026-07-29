@@ -27,7 +27,7 @@ def test_plra_excel_exports_summary_memory_defaults_overrides_and_pending_data()
     assert summary["status_plra"] == "bloqueado_por_pendencia"
     assert summary["contas_pendentes"] == "conditional"
     assert summary["bloqueios"] == "PASSIVO_CONDICIONAL_SEM_DECISAO:conditional"
-    assert summary["conciliacao_j100"] == "disponivel_para_conferencia"
+    assert summary["status_balanco_declarado"] == "VALIDO"
     assert summary["versao_metodologica"] == "metodologia-2024.1"
     assert summary["sem_recalculo"] == "true"
 
@@ -129,7 +129,7 @@ def _calculation() -> PlraCalculation:
         warnings=("J100 apenas informativo.",),
         limitations=("Cobertura parcial.",),
         blocking_issues=("PASSIVO_CONDICIONAL_SEM_DECISAO:conditional",),
-        j100_reconciliation_status="disponivel_para_conferencia",
+        balance_status="VALIDO",
         methodology_version_id="metodologia-2024.1",
         calculated_at=datetime(2024, 12, 31, tzinfo=timezone.utc),
     )

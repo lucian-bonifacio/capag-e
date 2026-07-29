@@ -7,7 +7,12 @@ from sqlalchemy.orm import Session
 from sqlalchemy.pool import StaticPool
 
 from app.api.capag import get_capag_session
-from app.domain import ComponentStatus, PlraCalculation, ProcessingStatus
+from app.domain import (
+    ComponentStatus,
+    DeclaredBalanceStatus,
+    PlraCalculation,
+    ProcessingStatus,
+)
 from app.main import create_app
 from app.repositories import (
     AnalysisModel,
@@ -35,6 +40,7 @@ def test_capag_api_runs_persists_and_returns_canonical_decimal_strings() -> None
     assert response.json()["capag_e_status"] == "calculado"
     assert response.json()["methodology_formula"] == "CAPAG-E = PLRA + FCA"
     assert response.json()["methodology_version_id"] == "metodologia-2024.1"
+    assert response.json()["balance_status"] == "VALIDO"
 
     stored = client.get(
         "/api/v1/analyses/analysis-1/exercises/2024/capag-assessment"
@@ -125,6 +131,26 @@ def test_capag_api_propagates_plra_blocking_status_and_messages() -> None:
     assert "Avaliacao patrimonial pendente." in body["limitations"]
 
 
+def test_capag_api_blocks_final_result_from_non_valid_declared_balance() -> None:
+    response = _client(
+        balance_status=DeclaredBalanceStatus.DIVERGENTE,
+    ).post(
+        "/api/v1/analyses/analysis-1/exercises/2024/capag-assessment/run",
+        json={
+            "method": "fca_plra",
+            "fca_value": "120000.00",
+            "fca_status": "calculado",
+        },
+    )
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["balance_status"] == "DIVERGENTE"
+    assert body["capag_e_status"] == "bloqueado"
+    assert body["capag_e_value"] is None
+    assert "BALANCO_DECLARADO_NAO_VALIDO:DIVERGENTE" in body["blocking_issues"]
+
+
 def test_capag_openapi_exposes_governed_paths_and_string_values() -> None:
     schema = create_app().openapi()
     base_path = "/api/v1/analyses/{analysis_id}/exercises/{year}/capag-assessment"
@@ -139,6 +165,7 @@ def _client(
     *,
     include_plra: bool = True,
     plra_status: ComponentStatus = ComponentStatus.CALCULATED,
+    balance_status: DeclaredBalanceStatus = DeclaredBalanceStatus.VALIDO,
 ) -> TestClient:
     engine = create_engine(
         "sqlite+pysqlite:///:memory:",
@@ -180,7 +207,7 @@ def _client(
             add_plra_calculation(
                 session,
                 exercise_id=exercise.id,
-                calculation=_plra_calculation(plra_status),
+                calculation=_plra_calculation(plra_status, balance_status),
             )
         session.commit()
 
@@ -194,7 +221,10 @@ def _client(
     return TestClient(app)
 
 
-def _plra_calculation(status: ComponentStatus) -> PlraCalculation:
+def _plra_calculation(
+    status: ComponentStatus,
+    balance_status: DeclaredBalanceStatus,
+) -> PlraCalculation:
     blocked = status != ComponentStatus.CALCULATED
     return PlraCalculation(
         analysis_id="analysis-1",
@@ -213,7 +243,7 @@ def _plra_calculation(status: ComponentStatus) -> PlraCalculation:
         warnings=(),
         limitations=("Avaliacao patrimonial pendente.",) if blocked else (),
         blocking_issues=("EVIDENCIA_CRITICA_PENDENTE",) if blocked else (),
-        j100_reconciliation_status="disponivel_para_conferencia",
+        balance_status=balance_status,
         methodology_version_id="metodologia-2024.1",
         calculated_at=datetime.now(timezone.utc),
     )

@@ -3,7 +3,7 @@ from __future__ import annotations
 from hashlib import sha256
 from typing import Iterator
 
-from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile, status
+from fastapi import APIRouter, Depends, File, Form, HTTPException, Response, UploadFile, status
 from sqlalchemy.orm import Session
 
 from app.application import (
@@ -15,11 +15,12 @@ from app.application import (
     get_existing_ecd_import_by_hash,
     list_existing_ecd_imports,
     persist_parsed_ecd,
+    reprocess_existing_ecd,
     remove_ecd_import,
 )
 from app.db.session import SessionLocal
-from app.domain import ProcessingStatus
-from app.io import EcdParseError, parse_ecd_bytes
+from app.domain import EcdPreparationStatus, ProcessingStatus
+from app.io import ECD_PARSER_VERSION, EcdParseError, parse_ecd_bytes
 from app.schemas.imports import (
     EcdImportConflictResponse,
     EcdImportDeleteResponse,
@@ -54,6 +55,7 @@ def get_import_session() -> Iterator[Session]:
     },
 )
 async def import_ecd(
+    response: Response,
     file: UploadFile = File(...),
     methodology_version_id: str = Form("metodologia-2024.1"),
     session: Session = Depends(get_import_session),
@@ -66,7 +68,12 @@ async def import_ecd(
     content_hash = f"sha256:{digest}"
 
     existing_import = get_existing_ecd_import_by_hash(session, content_hash=content_hash)
-    if existing_import is not None:
+    is_reprocessing = (
+        existing_import is not None
+        and existing_import.preparation_status
+        == EcdPreparationStatus.REIMPORT_REQUIRED.value
+    )
+    if existing_import is not None and not is_reprocessing:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
             detail={
@@ -88,21 +95,32 @@ async def import_ecd(
             str(exc),
         ) from exc
 
-    identifiers = EcdImportIdentifiers(
-        company_id=f"company-{parsed.header.tax_id}",
-        ecd_file_id=f"ecd-{digest[:16]}",
-        analysis_id=f"analysis-{digest[:16]}",
-        methodology_version_id=methodology_version_id,
-        original_filename=filename,
-        content_hash=content_hash,
-    )
-
     try:
-        result = persist_parsed_ecd(
-            session,
-            parsed_ecd=parsed,
-            identifiers=identifiers,
-        )
+        if existing_import is not None:
+            result = reprocess_existing_ecd(
+                session,
+                parsed_ecd=parsed,
+                existing_import=existing_import,
+                original_content=content,
+                parser_version=ECD_PARSER_VERSION,
+            )
+            response.status_code = status.HTTP_200_OK
+        else:
+            identifiers = EcdImportIdentifiers(
+                company_id=f"company-{parsed.header.tax_id}",
+                ecd_file_id=f"ecd-{digest[:16]}",
+                analysis_id=f"analysis-{digest[:16]}",
+                methodology_version_id=methodology_version_id,
+                original_filename=filename,
+                content_hash=content_hash,
+            )
+            result = persist_parsed_ecd(
+                session,
+                parsed_ecd=parsed,
+                identifiers=identifiers,
+                original_content=content,
+                parser_version=ECD_PARSER_VERSION,
+            )
     except EcdPersistenceError as exc:
         raise _http_error(
             status.HTTP_400_BAD_REQUEST,
@@ -117,6 +135,9 @@ async def import_ecd(
         year=result.year,
         methodology_version_id=methodology_version_id,
         status=ProcessingStatus.NOT_RUN.value,
+        parser_version=ECD_PARSER_VERSION,
+        balance_preparation_status=EcdPreparationStatus.READY_FOR_RECONCILIATION.value,
+        reprocessed=existing_import is not None,
     )
 
 
@@ -212,4 +233,7 @@ def _existing_import_response(existing_import: ExistingEcdImport) -> ExistingEcd
         year=existing_import.year,
         methodology_version_id=existing_import.methodology_version_id,
         status=existing_import.status,
+        parser_version=existing_import.parser_version,
+        balance_preparation_status=existing_import.preparation_status,
+        reprocessed_at=existing_import.reprocessed_at,
     )

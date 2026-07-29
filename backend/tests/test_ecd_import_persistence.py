@@ -1,4 +1,5 @@
 from decimal import Decimal
+from hashlib import sha256
 from pathlib import Path
 
 import pytest
@@ -10,10 +11,18 @@ from app.io import parse_ecd_file
 from app.repositories import (
     AnalysisModel,
     Base,
+    EcdFileModel,
+    EcdI010BookkeepingModel,
+    EcdI030BookHeaderModel,
     EcdI050AccountModel,
     EcdI051ReferenceLinkModel,
+    EcdI052AggregationLinkModel,
+    EcdI150BalancePeriodModel,
     EcdI155BalanceModel,
     EcdI250EntryItemModel,
+    EcdJ005StatementModel,
+    EcdJ100BalanceRowModel,
+    EcdJ150PresenceModel,
 )
 
 
@@ -75,6 +84,52 @@ def test_persist_parsed_ecd_rolls_back_when_transaction_fails() -> None:
         stored_analyses = session.scalars(select(AnalysisModel)).all()
 
     assert len(stored_analyses) == 1
+
+
+def test_persist_parsed_ecd_preserves_original_bytes_and_balance_relationships() -> None:
+    engine = create_engine("sqlite:///:memory:")
+    Base.metadata.create_all(engine)
+    raw = (FIXTURES_DIR / "balance_declared_complete.ecd").read_bytes()
+    digest = sha256(raw).hexdigest()
+    parsed = parse_ecd_file(FIXTURES_DIR / "balance_declared_complete.ecd")
+
+    with Session(engine) as session:
+        persist_parsed_ecd(
+            session,
+            parsed_ecd=parsed,
+            identifiers=_identifiers(
+                content_hash=f"sha256:{digest}",
+            ),
+            original_content=raw,
+            parser_version="2.0.0",
+        )
+
+    with Session(engine) as session:
+        ecd_file = session.scalars(select(EcdFileModel)).one()
+        bookkeeping = session.scalars(select(EcdI010BookkeepingModel)).one()
+        book_header = session.scalars(select(EcdI030BookHeaderModel)).one()
+        link = session.scalars(select(EcdI052AggregationLinkModel)).one()
+        period = session.scalars(select(EcdI150BalancePeriodModel)).one()
+        balance = session.scalars(select(EcdI155BalanceModel)).one()
+        statement = session.scalars(select(EcdJ005StatementModel)).one()
+        j100_rows = session.scalars(
+            select(EcdJ100BalanceRowModel).order_by(EcdJ100BalanceRowModel.line_number)
+        ).all()
+        j150 = session.scalars(select(EcdJ150PresenceModel)).one()
+
+    assert ecd_file.original_content == raw
+    assert ecd_file.content_size == len(raw)
+    assert ecd_file.content_hash == f"sha256:{sha256(ecd_file.original_content).hexdigest()}"
+    assert ecd_file.parser_version == "2.0.0"
+    assert bookkeeping.exercise_id == book_header.exercise_id
+    assert link.account_id is not None
+    assert link.cost_center_code == "CC01"
+    assert balance.balance_period_id == period.id
+    assert balance.cost_center_code == "CC01"
+    assert j100_rows[1].statement_id == statement.id
+    assert j100_rows[1].initial_amount == Decimal("100.00")
+    assert j100_rows[1].final_amount == Decimal("800.00")
+    assert j150.statement_id == statement.id
 
 
 def _identifiers(

@@ -72,12 +72,6 @@ function createQueryClient() {
 function DeclaredLayerRoute() {
   const { analysisId = "", year = "" } = useParams();
 
-  const summaryQuery = useQuery({
-    queryKey: ["declared-summary", analysisId, year],
-    queryFn: () => fetchDeclaredSummary(analysisId, year),
-    enabled: analysisId.length > 0 && year.length > 0,
-  });
-
   const balanceAccountsQuery = useQuery({
     queryKey: ["declared-balance-accounts", analysisId, year],
     queryFn: () => fetchDeclaredBalanceAccounts(analysisId, year),
@@ -85,19 +79,16 @@ function DeclaredLayerRoute() {
   });
 
   const retry = () => {
-    void summaryQuery.refetch();
     void balanceAccountsQuery.refetch();
   };
 
   return (
     <BalanceDashboardPage
-      accounts={balanceAccountsQuery.data?.accounts}
       analysisId={analysisId}
-      consistencyWarnings={balanceAccountsQuery.data?.consistency_warnings}
-      isError={summaryQuery.isError || balanceAccountsQuery.isError}
-      isLoading={summaryQuery.isLoading || balanceAccountsQuery.isLoading}
+      balance={balanceAccountsQuery.data}
+      isError={balanceAccountsQuery.isError}
+      isLoading={balanceAccountsQuery.isLoading}
       onRetry={retry}
-      summary={summaryQuery.data}
       year={year}
     />
   );

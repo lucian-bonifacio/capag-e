@@ -192,6 +192,9 @@ Exemplos:
 
 Uso principal: incluir ou excluir conta dos calculos CAPAG.
 
+Contexto: revisao prudencial. O Balanço Patrimonial declarado nao usa
+switches, porque reproduz e confere a ECD sem decisao humana.
+
 Contrato:
 
 - componente controlado
@@ -324,7 +327,8 @@ Proibicoes:
 
 ## BalanceGroup
 
-Uso: macrogrupo colapsavel do Balanco Patrimonial em duas colunas.
+Uso: macrogrupo colapsavel da revisao prudencial do Balanco Patrimonial em
+duas colunas.
 
 Conteudo:
 
@@ -345,7 +349,7 @@ Layout:
 
 ## AccountRow
 
-Uso: uma conta contabil dentro de `BalanceGroup`.
+Uso: uma conta contabil dentro de `BalanceGroup` na revisao prudencial.
 
 Conteudo:
 
@@ -368,6 +372,29 @@ Proibicoes:
 - Nao chamar acao de auditoria de filtro.
 - Nao usar funil como icone de auditoria.
 - Nao esconder conta excluida.
+
+## DeclaredBalanceTree
+
+Uso: reproduzir a arvore oficial do `J100` na visao declarada.
+
+Contrato:
+
+- recebe as raizes e os filhos ja ordenados pela API;
+- nao reconstrói hierarquia;
+- nao soma valores;
+- separa Ativo e Passivo + Patrimonio Liquido pelo grupo recebido;
+- mostra saldo final como valor principal;
+- mostra saldo inicial como metadado secundario;
+- distingue totalizador `T` de detalhe `D`;
+- mostra estado de conciliacao somente em detalhes;
+- abre componentes `I050/I052/I155` sob demanda em `Dialog`.
+
+Proibicoes:
+
+- nao usar `Switch`;
+- nao permitir inclusao, exclusao ou ajuste;
+- nao comparar diretamente codigo de aglutinacao com codigo contabil;
+- nao transformar a arvore principal em tabela analitica.
 
 ## BalanceLedger
 

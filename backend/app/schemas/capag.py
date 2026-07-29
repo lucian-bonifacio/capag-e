@@ -71,6 +71,7 @@ class CapagAssessmentResponse(BaseModel):
     limitations: list[str]
     blocking_issues: list[str]
     methodology_version_id: str
+    balance_status: str
 
     @classmethod
     def from_domain(cls, assessment: CapagEAssessment) -> "CapagAssessmentResponse":
@@ -92,6 +93,7 @@ class CapagAssessmentResponse(BaseModel):
             limitations=list(assessment.limitations),
             blocking_issues=list(assessment.blocking_issues),
             methodology_version_id=assessment.methodology_version_id,
+            balance_status=assessment.balance_status.value,
         )
 
 

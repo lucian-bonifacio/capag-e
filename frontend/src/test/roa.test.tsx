@@ -109,6 +109,7 @@ const calculation: RoaCalculation = {
     limitations: [],
     blocking_issues: ["ROA_FINAL_INDISPONIVEL"],
     methodology_version_id: "metodologia-2024.1",
+    balance_status: "VALIDO",
   },
 };
 

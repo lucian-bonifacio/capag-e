@@ -12,6 +12,9 @@ class EcdImportResponse(BaseModel):
     year: int
     methodology_version_id: str
     status: str
+    parser_version: str
+    balance_preparation_status: str
+    reprocessed: bool
 
 
 class ExistingEcdImportResponse(BaseModel):
@@ -27,6 +30,9 @@ class ExistingEcdImportResponse(BaseModel):
     year: int
     methodology_version_id: str
     status: str
+    parser_version: str | None
+    balance_preparation_status: str
+    reprocessed_at: datetime | None
 
 
 class EcdImportConflictResponse(BaseModel):

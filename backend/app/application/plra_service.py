@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 
 from app.assets.methodology import PlraPolicy, load_plra_policy
 from app.assets.reference import load_official_reference_accounts
+from app.application.declared_balance_service import get_declared_balance
 from app.domain import MethodComponent, PlraAccountInput, PlraCalculation
 from app.engine import calculate_plra
 from app.engine.methodology_matcher import OfficialReferenceAccount
@@ -18,7 +19,6 @@ from app.repositories import (
     EcdI050AccountModel,
     EcdI051ReferenceLinkModel,
     EcdI155BalanceModel,
-    EcdJ100BalanceRowModel,
     ExerciseModel,
     PlraCalculationNotFound,
     add_plra_calculation,
@@ -66,13 +66,10 @@ def run_plra_calculation(
             layout=ecd_file.layout,
             official_references=references,
         )
-        j100_available = (
-            session.scalar(
-                select(EcdJ100BalanceRowModel.id)
-                .where(EcdJ100BalanceRowModel.exercise_id == exercise.id)
-                .limit(1)
-            )
-            is not None
+        balance = get_declared_balance(
+            session,
+            analysis_id=analysis_id,
+            year=year,
         )
         calculation = calculate_plra(
             analysis_id=analysis_id,
@@ -92,7 +89,7 @@ def run_plra_calculation(
                 session,
                 exercise_id=exercise.id,
             ),
-            j100_available=j100_available,
+            balance_status=balance.status,
         )
         invalidate_capag_assessments(session, exercise_id=exercise.id)
         add_plra_calculation(

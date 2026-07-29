@@ -256,6 +256,6 @@ def _plra(*, evidences=None, asset_valuations=None):
         methodology_version_id="metodologia-2024.1",
         evidences=evidences,
         asset_valuations=asset_valuations,
-        j100_available=True,
+        balance_status="VALIDO",
         calculated_at=datetime(2026, 7, 24, tzinfo=timezone.utc),
     )

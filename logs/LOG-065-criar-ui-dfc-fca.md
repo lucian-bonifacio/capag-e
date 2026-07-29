@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-065-criar-ui-dfc-fca.md`
 - SPEC: `specs/SPEC-006-modulo-5-dfc-direta-fca.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -46,7 +46,7 @@
 
 ## Homologação
 
-- Status: aguardando_homologacao
-- Data: 24/07/2026
-- Decisão do usuário: homologação consolidada ao final do grupo autorizado.
-- Observação: execução contínua segue para a TASK-066.
+- Status: aprovada
+- Data: 2026-07-29
+- Decisão do usuário: todas as TASKs pendentes foram homologadas.
+- Observação: entrega homologada conforme o escopo e as fontes vigentes. A compatibilidade com a nova camada declarada será revisada, quando aplicável, nas `TASK-101` a `TASK-108`; ajustes transversais de status e resultado final concentram-se nas `TASK-107` e `TASK-108`.

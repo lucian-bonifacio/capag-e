@@ -2,7 +2,12 @@ from decimal import Decimal
 
 import pytest
 
-from app.domain import CapagEMethod, CapagEStatus, ComponentStatus
+from app.domain import (
+    CapagEMethod,
+    CapagEStatus,
+    ComponentStatus,
+    DeclaredBalanceStatus,
+)
 from app.engine import calculate_capag_e_assessment, map_plr_ajustado_to_plra
 
 
@@ -118,6 +123,34 @@ def test_engine_rejects_float_before_calculation() -> None:
             fca_value=Decimal("120000.00"),
             fca_status=ComponentStatus.CALCULATED,
         )
+
+
+@pytest.mark.parametrize(
+    ("balance_status", "expected_status", "expected_value"),
+    [
+        (DeclaredBalanceStatus.VALIDO, CapagEStatus.CALCULATED, Decimal("620000.00")),
+        (DeclaredBalanceStatus.DIVERGENTE, CapagEStatus.BLOCKED, None),
+        (DeclaredBalanceStatus.OBRIGATORIO_AUSENTE, CapagEStatus.BLOCKED, None),
+        (DeclaredBalanceStatus.ESTRUTURA_INVALIDA, CapagEStatus.BLOCKED, None),
+        (DeclaredBalanceStatus.NAO_OBRIGATORIO, CapagEStatus.BLOCKED, None),
+    ],
+)
+def test_balance_status_controls_capag_finality(
+    balance_status: DeclaredBalanceStatus,
+    expected_status: CapagEStatus,
+    expected_value: Decimal | None,
+) -> None:
+    assessment = _calculate(
+        method=CapagEMethod.FCA_PLRA,
+        fca_value=Decimal("120000.00"),
+        fca_status=ComponentStatus.CALCULATED,
+        balance_status=balance_status,
+    )
+
+    assert assessment.balance_status == balance_status
+    assert assessment.capag_e_status == expected_status
+    assert assessment.capag_e_value == expected_value
+    assert assessment.fca_value == Decimal("120000.00")
 
 
 def _calculate(**overrides: object):

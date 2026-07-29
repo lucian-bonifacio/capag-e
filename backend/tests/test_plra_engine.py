@@ -3,7 +3,14 @@ from datetime import datetime, timezone
 from decimal import Decimal
 
 from app.assets.methodology import PlraPolicy, PlraRule, load_plra_policy
-from app.domain import ComponentStatus, PlraAccountInput, PlraInclusionStatus
+import pytest
+
+from app.domain import (
+    ComponentStatus,
+    DeclaredBalanceStatus,
+    PlraAccountInput,
+    PlraInclusionStatus,
+)
 from app.engine import calculate_plra
 
 
@@ -23,7 +30,7 @@ def test_calculate_plra_golden_case_with_defaults_and_liabilities() -> None:
         ],
         policy=load_plra_policy(),
         methodology_version_id="metodologia-2024.1",
-        j100_available=True,
+        balance_status="VALIDO",
         calculated_at=NOW,
     )
 
@@ -177,6 +184,45 @@ def test_credit_balance_reduces_asset_and_debit_balance_reduces_liability() -> N
     assert result.adjusted_assets_value == Decimal("-4.00")
     assert result.gross_economic_liabilities_value == Decimal("-5.00")
     assert result.plra_value == Decimal("1.00")
+
+
+@pytest.mark.parametrize(
+    ("balance_status", "expected_status"),
+    [
+        (DeclaredBalanceStatus.VALIDO, ComponentStatus.CALCULATED),
+        (DeclaredBalanceStatus.DIVERGENTE, ComponentStatus.PARTIAL),
+        (DeclaredBalanceStatus.OBRIGATORIO_AUSENTE, ComponentStatus.PARTIAL),
+        (DeclaredBalanceStatus.ESTRUTURA_INVALIDA, ComponentStatus.PARTIAL),
+        (DeclaredBalanceStatus.NAO_OBRIGATORIO, ComponentStatus.PARTIAL),
+    ],
+)
+def test_balance_status_controls_finality_without_changing_intermediate_values(
+    balance_status: DeclaredBalanceStatus,
+    expected_status: ComponentStatus,
+) -> None:
+    result = calculate_plra(
+        analysis_id="analysis",
+        exercise_year=2024,
+        accounts=[_account("cash", "1.01.01.01.01", "ATIVO", "100", "D")],
+        policy=load_plra_policy(),
+        methodology_version_id="metodologia-2024.1",
+        balance_status=balance_status,
+        calculated_at=NOW,
+    )
+
+    assert result.plra_value == Decimal("100.00")
+    assert result.balance_status == balance_status
+    assert result.plra_status == expected_status
+    if balance_status == DeclaredBalanceStatus.VALIDO:
+        assert not any(
+            issue.startswith("BALANCO_DECLARADO_NAO_VALIDO")
+            for issue in result.blocking_issues
+        )
+    else:
+        assert (
+            f"BALANCO_DECLARADO_NAO_VALIDO:{balance_status.value}"
+            in result.blocking_issues
+        )
 
 
 def _account(

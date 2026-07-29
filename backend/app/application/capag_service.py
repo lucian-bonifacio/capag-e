@@ -100,6 +100,7 @@ def calculate_roa_plra_assessment(
             fca_blocking_issues,
         ),
         methodology_version_id=roa.methodology_version_id,
+        balance_status=plra.balance_status,
     )
 
 
@@ -145,6 +146,7 @@ def run_capag_assessment(
                 plra.blocking_issues, run_input.blocking_issues
             ),
             methodology_version_id=methodology_version_id,
+            balance_status=plra.balance_status,
         )
         add_capag_assessment(
             session,

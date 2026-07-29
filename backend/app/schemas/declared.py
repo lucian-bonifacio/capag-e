@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 
-from pydantic import BaseModel, ConfigDict, Field, field_serializer
+from pydantic import BaseModel, ConfigDict, field_serializer
 
 
 class DeclaredAccountResponse(BaseModel):
@@ -38,18 +39,84 @@ class DeclaredAccountsResponse(BaseModel):
     analysis_id: str
     year: int
     accounts: list[DeclaredAccountResponse]
-    consistency_warnings: list["DeclaredBalanceConsistencyWarningResponse"] = Field(
-        default_factory=list
-    )
 
 
-class DeclaredBalanceConsistencyWarningResponse(BaseModel):
+class DeclaredBalanceRowResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
-    warning_code: str
+    aggregation_code: str
+    aggregation_code_type: str
+    aggregation_level: int
+    parent_aggregation_code: str | None
+    balance_group: str
+    description: str
+    initial_amount: Decimal
+    initial_debit_credit_indicator: str
+    final_amount: Decimal
+    final_debit_credit_indicator: str
+    explanatory_note_reference: str | None
+    line_number: int
+    structural_status: str
+    reconciliation_status: str | None
+    reconciled_amount: Decimal | None
+    difference: Decimal | None
+    component_count: int
+    children: list["DeclaredBalanceRowResponse"]
+
+    @field_serializer(
+        "initial_amount",
+        "final_amount",
+        "reconciled_amount",
+        "difference",
+    )
+    def serialize_money(self, value: Decimal | None) -> str | None:
+        return format(value, "f") if value is not None else None
+
+
+class DeclaredBalanceResponse(BaseModel):
+    analysis_id: str
+    year: int
+    balance_status: str
+    is_blocking: bool
+    j005_period_start: date | None
+    j005_period_end: date | None
+    assets_final_amount: Decimal | None
+    liabilities_and_equity_final_amount: Decimal | None
+    difference: Decimal | None
+    rows: list[DeclaredBalanceRowResponse]
+    limitations: list[str]
+
+    @field_serializer(
+        "assets_final_amount",
+        "liabilities_and_equity_final_amount",
+        "difference",
+    )
+    def serialize_money(self, value: Decimal | None) -> str | None:
+        return format(value, "f") if value is not None else None
+
+
+class DeclaredBalanceComponentResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     account_code: str
     account_name: str
-    message: str
+    cost_center_code: str | None
+    final_amount: Decimal | None
+    final_debit_credit_indicator: str | None
+    signed_final_amount: Decimal | None
+    i052_line_number: int
+    i155_line_number: int | None
+
+    @field_serializer("final_amount", "signed_final_amount")
+    def serialize_money(self, value: Decimal | None) -> str | None:
+        return format(value, "f") if value is not None else None
+
+
+class DeclaredBalanceComponentsResponse(BaseModel):
+    analysis_id: str
+    year: int
+    aggregation_code: str
+    rows: list[DeclaredBalanceComponentResponse]
 
 
 class DeclaredLayerSummaryResponse(BaseModel):

@@ -9,6 +9,7 @@ from app.application.ecd_import_service import (
     get_existing_ecd_import_by_hash,
     list_existing_ecd_imports,
     persist_parsed_ecd,
+    reprocess_existing_ecd,
     remove_ecd_import,
 )
 from app.application.declared_run_service import (
@@ -17,6 +18,11 @@ from app.application.declared_run_service import (
     DeclaredRunNotFound,
     DeclaredRunResult,
     run_declared_layer,
+)
+from app.application.declared_balance_service import (
+    DeclaredBalanceNotFound,
+    DeclaredBalanceUnavailable,
+    get_declared_balance,
 )
 from app.application.plra_service import (
     PlraContextNotFound,
@@ -55,6 +61,8 @@ __all__ = [
     "DeclaredOfficialReferenceConfigurationError",
     "DeclaredRunNotFound",
     "DeclaredRunResult",
+    "DeclaredBalanceNotFound",
+    "DeclaredBalanceUnavailable",
     "DfcContextNotFound",
     "DfcRunUnavailable",
     "EcdImportIdentifiers",
@@ -67,10 +75,12 @@ __all__ = [
     "PersistedEcdImport",
     "RemovedEcdImport",
     "get_existing_ecd_import_by_hash",
+    "get_declared_balance",
     "get_asset_valuations",
     "get_evidences",
     "list_existing_ecd_imports",
     "persist_parsed_ecd",
+    "reprocess_existing_ecd",
     "remove_ecd_import",
     "run_declared_layer",
     "create_evidence",

@@ -61,40 +61,51 @@ Proibicoes:
 
 ## Balanco Patrimonial
 
-Objetivo: revisar contas, alternar inclusao/exclusao e abrir auditoria.
+O Balanco Patrimonial possui dois contextos que nao devem ser misturados.
 
-Visualizacoes:
+### Visao Declarada
 
-1. `Duas colunas`
-   - Ativos a esquerda.
-   - Passivos e Patrimonio Liquido a direita.
-   - Grupos colapsaveis com `BalanceGroup`.
-   - Contas com `AccountRow`.
+Objetivo: reproduzir o `J100`, mostrar a consistencia interna da ECD e abrir
+os componentes da conciliacao.
 
-2. `Livro-razao`
-   - Coluna unica.
-   - Colunas alinhadas: Conta, %, Valor, Incluir, Auditar.
-   - Macrogrupos em uppercase.
-   - Contas recuadas.
+Estrutura:
 
-Controle:
+- estado geral e eventual bloqueio no topo;
+- periodo `J005`, totais dos lados e diferenca recebidos da API;
+- Ativo a esquerda;
+- Passivo e Patrimonio Liquido a direita;
+- arvore recebida da API com totalizadores e detalhes distintos;
+- saldo final como valor principal e saldo inicial como informacao secundaria;
+- estado de conciliacao apenas nas linhas de detalhe;
+- componentes `I050/I052/I155` em `Dialog`.
 
-- Usar `SegmentedControl` para alternar visualizacao.
-- Labels: `Duas colunas` e `Livro-razao`.
-- Icones: colunas e linhas, estilo Lucide.
+Regras:
 
-Regras de conta:
-
-- Cada conta deve ter switch de inclusao/exclusao.
-- Conta excluida permanece visivel, com opacidade e tachado.
-- Cada conta deve ter acao de auditoria.
-- Grupos podem ter auditoria de grupo.
+- usar `DeclaredBalanceTree`;
+- preservar ordem, hierarquia, valores e estados recebidos;
+- usar `.tnum` em codigos e valores;
+- em larguras menores, empilhar os dois lados.
 
 Proibicoes:
 
-- Nao representar o Balanco Patrimonial principal como tabela central.
-- Nao esconder contas excluidas.
-- Nao chamar auditoria de filtro.
+- nao usar switches;
+- nao somar valores;
+- nao reconstruir hierarquia;
+- nao decidir obrigatoriedade ou conciliacao;
+- nao oferecer ajustes prudenciais.
+
+### Revisao Prudencial
+
+Objetivo: permitir decisoes explicitas de inclusao e exclusao em calculos
+CAPAG, fora da visao declarada.
+
+Regras:
+
+- usar `BalanceGroup`, `AccountRow` e `Switch`;
+- conta excluida permanece visivel, com opacidade e tachado;
+- cada conta pode abrir auditoria;
+- rotular a tela como revisao prudencial, sem apresentá-la como transcricao da
+  ECD.
 
 ## Auditoria
 

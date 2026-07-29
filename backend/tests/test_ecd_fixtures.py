@@ -13,6 +13,14 @@ EXPECTED_FIXTURES = {
     "dangerous_prefix.ecd",
 }
 
+BALANCE_STATE_FIXTURES = {
+    "balance_declared_valid.ecd",
+    "balance_declared_divergent.ecd",
+    "balance_declared_required_absent.ecd",
+    "balance_declared_invalid_structure.ecd",
+    "balance_declared_not_required.ecd",
+}
+
 
 def test_ecd_fixtures_are_present_and_documented_as_synthetic() -> None:
     readme = (FIXTURES_DIR / "README.md").read_text(encoding="utf-8")
@@ -20,6 +28,9 @@ def test_ecd_fixtures_are_present_and_documented_as_synthetic() -> None:
     assert "sinteticas" in readme
     assert "nao versionar ECD real" in readme
     assert EXPECTED_FIXTURES.issubset({path.name for path in FIXTURES_DIR.glob("*.ecd")})
+    assert BALANCE_STATE_FIXTURES.issubset(
+        {path.name for path in FIXTURES_DIR.glob("*.ecd")}
+    )
 
 
 def test_ecd_fixtures_contain_required_minimum_records() -> None:

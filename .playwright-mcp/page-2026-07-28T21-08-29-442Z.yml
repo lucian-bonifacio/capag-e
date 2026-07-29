@@ -1,0 +1,742 @@
+- generic [ref=f2e1]:
+  - navigation "Acesso rápido":
+    - link "Ir para o Conteúdo 1" [ref=f2e2] [cursor=pointer]:
+      - /url: "#wrapper"
+      - generic [ref=f2e3]: Ir para o
+      - text: Conteúdo
+      - generic [ref=f2e4]: "1"
+    - link "Ir para a Página Inicial 2" [ref=f2e5] [cursor=pointer]:
+      - /url: /
+      - generic [ref=f2e6]: Ir para a
+      - text: Página Inicial
+      - generic [ref=f2e7]: "2"
+    - link "Ir para o menu de Navegação 3" [ref=f2e8] [cursor=pointer]:
+      - /url: "#main-navigation"
+      - generic [ref=f2e9]: Ir para o menu de
+      - text: Navegação
+      - generic [ref=f2e10]: "3"
+    - link "Ir para a Busca 4" [ref=f2e11] [cursor=pointer]:
+      - /url: "#govbr-busca-input"
+      - generic [ref=f2e12]: Ir para a
+      - text: Busca
+      - generic [ref=f2e13]: "4"
+    - link "Ir para o Mapa do site 5" [ref=f2e14] [cursor=pointer]:
+      - /url: "#portal-footer"
+      - generic [ref=f2e15]: Ir para o
+      - text: Mapa do site
+      - generic [ref=f2e16]: "5"
+  - banner [ref=f2e17]:
+    - generic [ref=f2e20]:
+      - generic [ref=f2e23]:
+        - button "Abrir preferências de cookies" [ref=f2e26] [cursor=pointer]:
+          - generic [ref=f2e27]: 
+        - button "Ativar ou desativar o modo de alto contraste" [ref=f2e31] [cursor=pointer]:
+          - generic [ref=f2e32]: 
+      - banner [ref=f2e35]:
+        - generic [ref=f2e37]:
+          - generic [ref=f2e38]:
+            - link [ref=f2e39] [cursor=pointer]:
+              - /url: https://www.gov.br/pt-br
+              - img "Logomarca gov.br" [ref=f2e40]
+            - link "Ministério da Fazenda" [ref=f2e42] [cursor=pointer]:
+              - /url: https://www.gov.br/fazenda
+          - generic [ref=f2e43]:
+            - generic [ref=f2e44]:
+              - text: 
+              - list [ref=f2e45]:
+                - listitem [ref=f2e46]:
+                  - button "Institucional" [ref=f2e47] [cursor=pointer]:
+                    - generic [ref=f2e49]: 
+                - listitem [ref=f2e50]:
+                  - link "Acessibilidade" [ref=f2e51] [cursor=pointer]:
+                    - /url: https://www.gov.br/governodigital/pt-br/acessibilidade-digital
+                - listitem [ref=f2e52]:
+                  - link "Participe" [ref=f2e53] [cursor=pointer]:
+                    - /url: https://www.gov.br/pt-br/participacao-social
+            - button "Abrir menu de seleção serviços" [ref=f2e58] [cursor=pointer]:
+              - generic [ref=f2e62]: Atalhos gov.br
+            - button "Entrar com gov.br" [ref=f2e66] [cursor=pointer]:
+              - generic [ref=f2e67]: 
+    - generic [ref=f2e70]:
+      - generic [ref=f2e71]:
+        - link "Abrir menu principal de navegação" [ref=f2e72] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f2e74]: 
+          - text: 
+        - link "Receita Federal" [ref=f2e76] [cursor=pointer]:
+          - /url: https://www.gov.br/receitafederal/pt-br
+      - text:        
+      - generic [ref=f2e77]:
+        - combobox [ref=f2e79]:
+          - search [ref=f2e80]:
+            - button "" [ref=f2e82] [cursor=pointer]
+            - searchbox "O que você procura?" [ref=f2e84]
+            - button "Pesquisar por voz" [ref=f2e85] [cursor=pointer]:
+              - generic [ref=f2e86]: 
+        - text:   
+    - text:                                                   
+  - navigation "Histórico de navegação (Breadcrumbs)" [ref=f2e88]:
+    - generic [ref=f2e89]:
+      - generic [ref=f2e90]: ">Você está aqui:"
+      - link "Página Inicial" [ref=f2e92] [cursor=pointer]:
+        - /url: https://www.gov.br/receitafederal/pt-br
+        - generic [ref=f2e93]: 
+      - generic [ref=f2e95]:
+        - text: ">"
+        - link "Centrais de Conteúdo" [ref=f2e96] [cursor=pointer]:
+          - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo
+      - generic [ref=f2e97]:
+        - text: ">"
+        - link "Programas e Aplicativos" [ref=f2e98] [cursor=pointer]:
+          - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/download
+      - generic [ref=f2e99]:
+        - text: ">"
+        - link "ReceitanetBX" [ref=f2e100] [cursor=pointer]:
+          - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx
+      - generic [ref=f2e101]: "> Perguntas e Respostas - ReceitanetBX"
+  - generic [ref=f2e102]:
+    - main [ref=f2e104]:
+      - generic [ref=f2e105]:
+        - text: 
+        - generic [ref=f2e106]:
+          - heading "Perguntas e Respostas - ReceitanetBX" [level=1] [ref=f2e107]
+          - generic [ref=f2e108]:
+            - generic [ref=f2e109]:
+              - generic [ref=f2e110]: "Compartilhe:"
+              - link "Compartilhe por Facebook" [ref=f2e111] [cursor=pointer]:
+                - /url: http://www.facebook.com/sharer.php?u=https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx/perguntas-e-respostas-receitanetbx
+                - generic [ref=f2e112]: 
+              - link "Compartilhe por Twitter" [ref=f2e114] [cursor=pointer]:
+                - /url: https://twitter.com/share?text=Perguntas%20e%20Respostas%20-%20ReceitanetBX&url=https://www.gov.br/receitafederal/resolveuid/cad865eab8064475b00a506507cd81a7
+                - generic [ref=f2e115]: 
+              - link "Compartilhe por LinkedIn" [ref=f2e117] [cursor=pointer]:
+                - /url: https://www.linkedin.com/shareArticle?mini=true&url=https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx/perguntas-e-respostas-receitanetbx&title=Perguntas%20e%20Respostas%20-%20ReceitanetBX
+                - generic [ref=f2e118]: 
+              - link "Compartilhe por WhatsApp" [ref=f2e120] [cursor=pointer]:
+                - /url: https://api.whatsapp.com/send?text=https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx/perguntas-e-respostas-receitanetbx
+                - generic [ref=f2e121]: 
+              - link "link para Copiar para área de transferência" [ref=f2e123] [cursor=pointer]:
+                - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx/perguntas-e-respostas-receitanetbx
+                - generic [ref=f2e124]: 
+            - generic [ref=f2e126]:
+              - generic [ref=f2e127]: Publicado em 25/05/2015 12h03
+              - generic [ref=f2e128]: Atualizado em 25/09/2020 17h30
+          - generic [ref=f2e130]:
+            - table [ref=f2e131]:
+              - rowgroup [ref=f2e132]:
+                - row [ref=f2e133]:
+                  - cell [ref=f2e134]:
+                    - paragraph [ref=f2e135]: Perguntas
+                  - cell "Nº" [ref=f2e136]
+                - row [ref=f2e137]:
+                  - cell [ref=f2e138]:
+                    - link "O que é o ReceitanetBX?" [ref=f2e139] [cursor=pointer]:
+                      - /url: "#One"
+                  - cell [ref=f2e140]:
+                    - paragraph [ref=f2e141]: "1"
+                - row [ref=f2e142]:
+                  - cell [ref=f2e143]:
+                    - link "Quais os benefícios do serviço ReceitanetBX?" [ref=f2e144] [cursor=pointer]:
+                      - /url: "#Two"
+                  - cell "2" [ref=f2e145]
+                - row [ref=f2e146]:
+                  - cell [ref=f2e147]:
+                    - link "Como obtenho o ReceitanetBX?" [ref=f2e148] [cursor=pointer]:
+                      - /url: "#Three"
+                  - cell "3" [ref=f2e149]
+                - row [ref=f2e150]:
+                  - cell [ref=f2e151]:
+                    - link "O que pode ser baixado com o ReceitanetBX?" [ref=f2e152] [cursor=pointer]:
+                      - /url: "#Four"
+                  - cell "4" [ref=f2e153]
+                - row [ref=f2e154]:
+                  - cell [ref=f2e155]:
+                    - link "Quais os requisitos para Utilização do ReceitanetBX?" [ref=f2e156] [cursor=pointer]:
+                      - /url: "#Five"
+                  - cell "5" [ref=f2e157]
+                - row [ref=f2e158]:
+                  - cell [ref=f2e159]:
+                    - link "Qual a relação entre o ReceitanetBX e os provedores de acesso?" [ref=f2e160] [cursor=pointer]:
+                      - /url: "#Six"
+                  - cell "6" [ref=f2e161]
+                - row [ref=f2e162]:
+                  - cell [ref=f2e163]:
+                    - link "Em que horário o Serviço ReceitanetBX está disponível?" [ref=f2e164] [cursor=pointer]:
+                      - /url: "#Seven"
+                  - cell "7" [ref=f2e165]
+                - row [ref=f2e166]:
+                  - cell [ref=f2e167]:
+                    - link "Qual a Configuração mínima para executar o programa ReceitanetBX?" [ref=f2e168] [cursor=pointer]:
+                      - /url: "#Eight"
+                  - cell "8" [ref=f2e169]
+                - row [ref=f2e170]:
+                  - cell [ref=f2e171]:
+                    - link "Quais as plataformas suportadas para utilização de Certificados Digitais no ReceitanetBX?" [ref=f2e172] [cursor=pointer]:
+                      - /url: "#Nine"
+                  - cell "9" [ref=f2e173]
+                - row [ref=f2e174]:
+                  - cell [ref=f2e175]:
+                    - link "O que fazer pois nenhum certificado é listado ao iniciar o sistema?" [ref=f2e176] [cursor=pointer]:
+                      - /url: "#Ten"
+                  - cell "10" [ref=f2e177]
+                - row [ref=f2e178]:
+                  - cell [ref=f2e179]:
+                    - link "O que fazer pois não consegui instalar o programa ReceitanetBX?" [ref=f2e180] [cursor=pointer]:
+                      - /url: "#Eleven"
+                  - cell "11" [ref=f2e181]
+                - row [ref=f2e182]:
+                  - cell [ref=f2e183]:
+                    - link "O que fazer pois não consegui executar o programa ReceitanetBX?" [ref=f2e184] [cursor=pointer]:
+                      - /url: "#nao_executar"
+                  - cell "12" [ref=f2e185]
+                - row [ref=f2e186]:
+                  - cell [ref=f2e187]:
+                    - link "O que fazer pois a mensagem do ReceitanetBX informa que a versão do programa utilizada está danificada e devo reinstalá-la?" [ref=f2e188] [cursor=pointer]:
+                      - /url: "#13"
+                  - cell "13" [ref=f2e189]
+                - row [ref=f2e190]:
+                  - cell [ref=f2e191]:
+                    - link "Qual a configuração do proxy e firewall para comunicação pelo ReceitanetBX?" [ref=f2e192] [cursor=pointer]:
+                      - /url: "#Fourteen"
+                  - cell "14" [ref=f2e193]
+                - row [ref=f2e194]:
+                  - cell [ref=f2e195]:
+                    - link "O que fazer pois a mensagem do ReceitanetBX é \" Nenhum dos servidores respondeu ao pedido de conexão\" ?" [ref=f2e196] [cursor=pointer]:
+                      - /url: "#Fifteen"
+                  - cell "15" [ref=f2e197]
+                - row [ref=f2e198]:
+                  - cell [ref=f2e199]:
+                    - link "O que fazer pois ocorreu falha na comunicação?" [ref=f2e200] [cursor=pointer]:
+                      - /url: "#Sixteen"
+                  - cell "16" [ref=f2e201]
+                - row [ref=f2e202]:
+                  - cell [ref=f2e203]:
+                    - link "O que fazer pois estou com dificuldades na comunicação através de provedores de acesso?" [ref=f2e204] [cursor=pointer]:
+                      - /url: "#Seventeen"
+                  - cell "17" [ref=f2e205]
+            - heading [level=1] [ref=f2e206]
+            - paragraph [ref=f2e207]:
+              - generic [ref=f2e208]: 1 - O que é o ReceitanetBX?
+            - paragraph [ref=f2e209]: "R: ReceitanetBX é um sistema capaz de transmitir arquivos da base da Secretaria da Receita Federal do Brasil para contribuintes, representantes legais de empresas, procuradores autorizados por procuração eletrônica, servidores da Receita Federal ou entidades conveniadas."
+            - paragraph [ref=f2e210]:
+              - generic [ref=f2e211]: 2 - Quais os benefícios do serviço ReceitanetBX?
+            - paragraph [ref=f2e212]: "R: O serviço ReceitanetBX proporciona segurança, facilidade e praticidade de uso, além da redução dos custos, e atendimento mais eficiente, com recebimento de arquivos diretamente da Base de Dados da RFB."
+            - paragraph [ref=f2e213]:
+              - generic [ref=f2e214]: 3 -
+              - link "Como obtenho o ReceitanetBX?" [ref=f2e215] [cursor=pointer]:
+                - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx/receitanetbx
+            - paragraph [ref=f2e216]:
+              - generic [ref=f2e217]: 4 - O que pode ser baixado com o ReceitanetBX?
+            - paragraph [ref=f2e218]: "R: A versão atual do ReceitanetBX permite baixar arquivos dos seguintes sistemas:"
+            - paragraph [ref=f2e219]: Escrituração Contábil Digital (SPED-ECD)
+            - paragraph [ref=f2e220]: Escrituração Fiscal Digital (SPED-EFD) e das Notas Fiscais Eletrônicas
+            - paragraph [ref=f2e221]: Escrituração Fiscal Digital das Contribuições (SPED - Contribuições)
+            - paragraph [ref=f2e222]: Controle Fiscal Contábil de Transição (SPED - FCont)
+            - paragraph [ref=f2e223]:
+              - generic [ref=f2e224]: 5 - Quais os requisitos para Utilização do ReceitanetBX?
+            - paragraph [ref=f2e225]: "R: Para utilização do ReceitanetBX é necessário:"
+            - paragraph [ref=f2e226]: 1. Software ReceitanetBX - Verifique se você está com a última versão do ReceitanetBX disponível na página da RFB.
+            - paragraph [ref=f2e227]: 2. Acesso a Internet - Através do seu computador você deverá ser capaz de acessar a Internet. Isto pode ser feito através de modems ou através de redes locais da sua empresa ou instituição desde que esta esteja conectada à Internet.
+            - paragraph [ref=f2e228]:
+              - generic [ref=f2e229]: 6 - Qual a relação entre o ReceitanetBX e os provedores de acesso?
+            - paragraph [ref=f2e230]: "R: O programa ReceitanetBX realiza automaticamente a localização dos servidores da RFB ao estabelecer conexão."
+            - paragraph [ref=f2e231]: O provedor de acesso que o contribuinte, por ventura, utilize para se conectar a Internet fornece apenas o meio físico para comunicar com os servidores da RFB.
+            - paragraph [ref=f2e232]:
+              - generic [ref=f2e233]: 7 - Em que horário o Serviço ReceitanetBX está disponível?
+            - paragraph [ref=f2e234]: "R: O serviço ReceitanetBX está disponível durante 24 horas por dia."
+            - paragraph [ref=f2e235]:
+              - generic [ref=f2e236]: 8 - Qual a Configuração mínima para executar o programa ReceitanetBX?
+            - paragraph [ref=f2e237]: "R: A configuração mínima é:"
+            - paragraph [ref=f2e238]: a) Microcomputador PC ou compatível, processador 1 GHz ou superior;
+            - paragraph [ref=f2e239]: b) 512 MB de memória RAM;
+            - paragraph [ref=f2e240]: c) Espaço disponível em disco de 100 MB;
+            - paragraph [ref=f2e241]: d) Sistema operacional Windows 2000 ou superior;
+            - paragraph [ref=f2e242]: e) Máquina Virtual Java Sun JRE 1.6 32 bits, 1.6 64 bits update 38 ou outra superior;
+            - paragraph [ref=f2e243]: f) Navegador de Internet (Browser);
+            - paragraph [ref=f2e244]: g) Resolução de tela de pelo menos 1024x768;
+            - paragraph [ref=f2e245]: h) Mouse.
+            - paragraph [ref=f2e246]:
+              - generic [ref=f2e247]: 9 - Quais as plataformas suportadas para utilização de Certificados Digitais no ReceitanetBX?
+            - paragraph [ref=f2e248]:
+              - text: "R: A utilização de certificados digitais para acessar o ReceitanetBX somente funcionará corretamente caso esteja instalada em seu computador a Máquina Virtual Java© da Sun Microsystems (1.6 32 bits, 1.6 64 bits update 38 ou outra superior), que é um programa que pode ser obtido na página"
+              - link "http://www.java.com/pt_BR/" [ref=f2e249] [cursor=pointer]:
+                - /url: http://www.java.com/pt_BR/
+              - text: .
+            - paragraph [ref=f2e250]:
+              - generic [ref=f2e251]: 10 - O que fazer pois nenhum certificado é listado ao iniciar o sistema?
+            - paragraph [ref=f2e252]: "R: Verificar se o ReceitanetBX está sendo executado com a máquina virtual Java da Sun Microsystems versão 1.6 32 bits, 1.6 64 bits update 38 ou outra superior."
+            - paragraph [ref=f2e253]:
+              - generic [ref=f2e254]: 11 - O que fazer pois não consegui instalar o programa ReceitanetBX?
+            - paragraph [ref=f2e255]: "R: Se não foi possível instalar o programa ReceitanetBX verifique se:"
+            - paragraph [ref=f2e256]: 1. seu computador utiliza o sistema operacional Windows 2000 ou superior;
+            - paragraph [ref=f2e257]: 2. o programa de instalação do ReceitanetBX obtido é a última versão disponível na página da RFB;
+            - paragraph [ref=f2e258]: 3. há espaço em disco rígido suficiente no computador;
+            - paragraph [ref=f2e259]: 4. o disco rígido não está com problemas de arquivos sobrepostos e referências perdidas;
+            - paragraph [ref=f2e260]: 5. a instalação do Windows não está com problemas;
+            - paragraph [ref=f2e261]: 6. o computador foi reinicializado após a instalação do ReceitanetBX
+            - paragraph [ref=f2e262]:
+              - generic [ref=f2e263]: 12 - O que fazer pois não consegui executar o programa ReceitanetBX?
+            - paragraph [ref=f2e264]: "R: O ReceitanetBX poderá exibir mensagem indicando que a cópia está danificada. Isto normalmente se deve a:"
+            - paragraph [ref=f2e265]: 1. haver setores sobrepostos no seu disco. Neste caso os arquivos usados pelo ReceitanetBX ficaram inconsistentes após a instalação. Utilize o Scandisk ou ChkDsk para detectar e, se possível, corrigir este tipo de problema;
+            - paragraph [ref=f2e266]: 2. seu computador estar contaminado com algum tipo de vírus, especialmente aqueles que alteram o conteúdo de arquivos. Utilize sempre programas anti-vírus para detectar possível contaminação, bem como, evitá-las. Mantenha a lista de vírus que seu programa trata sempre atualizada.
+            - paragraph [ref=f2e267]:
+              - generic [ref=f2e268]: 13 - O que fazer pois a mensagem do ReceitanetBX informa que a versão do programa utilizada está danificada e devo reinstalá-la?
+            - paragraph [ref=f2e269]: "R: O ReceitanetBX poderá exibir mensagem indicando que a cópia está danificada. Isto normalmente se deve a:"
+            - paragraph [ref=f2e270]: 1. haver setores sobrepostos no seu disco. Neste caso os arquivos usados pelo ReceitanetBX ficaram inconsistentes após a instalação. Utilize o Scandisk ou ChkDsk para detectar e, se possível, corrigir este tipo de problema;
+            - paragraph [ref=f2e271]: 2. seu computador está contaminado com algum tipo de vírus, especialmente aqueles que alteram o conteúdo de arquivos. Utilize sempre programas anti-vírus para detectar possível contaminação, bem como, evitá-las. Mantenha a lista de vírus que seu programa trata sempre atualizada.
+            - paragraph [ref=f2e272]:
+              - generic [ref=f2e273]: 14 - Qual a configuração do proxy e firewall para comunicação pelo ReceitanetBX?
+            - paragraph [ref=f2e274]: "R: O esquema de troca de pacotes utilizados pelo novo módulo agregado à aplicação está mostrado abaixo, para que os administradores de segurança das Intranets possam configurar seus ambientes, se assim o desejarem, visando a liberação dos referidos pacotes e consequentemente o funcionamento da aplicação."
+            - table [ref=f2e275]:
+              - rowgroup [ref=f2e276]:
+                - row [ref=f2e277]:
+                  - cell "Origem" [ref=f2e278]:
+                    - paragraph [ref=f2e279]:
+                      - generic [ref=f2e280]: Origem
+                  - cell "Cliente" [ref=f2e281]:
+                    - paragraph [ref=f2e282]:
+                      - generic [ref=f2e283]: Cliente
+                - row [ref=f2e284]:
+                  - cell [ref=f2e285]:
+                    - paragraph [ref=f2e286]: Destino
+                  - cell [ref=f2e287]:
+                    - paragraph [ref=f2e288]: Servidor
+                - row [ref=f2e289]:
+                  - cell [ref=f2e290]:
+                    - paragraph [ref=f2e291]: Função
+                  - cell [ref=f2e292]:
+                    - paragraph [ref=f2e293]: Pedido de Conexão
+                - row [ref=f2e294]:
+                  - cell [ref=f2e295]:
+                    - paragraph [ref=f2e296]: Protocolo
+                  - cell [ref=f2e297]:
+                    - paragraph [ref=f2e298]: TCP
+                - row [ref=f2e299]:
+                  - cell [ref=f2e300]:
+                    - paragraph [ref=f2e301]: Porta de Origem
+                  - cell [ref=f2e302]:
+                    - paragraph [ref=f2e303]: N (Aleatória)
+                - row [ref=f2e304]:
+                  - cell [ref=f2e305]:
+                    - paragraph [ref=f2e306]: Porta de Destino
+                  - cell [ref=f2e307]:
+                    - paragraph [ref=f2e308]: "3443"
+                - row [ref=f2e309]:
+                  - cell "Endereço IP" [ref=f2e310]
+                  - cell "200.198.239.x" [ref=f2e312]
+            - table [ref=f2e314]:
+              - rowgroup [ref=f2e315]:
+                - row [ref=f2e316]:
+                  - cell "Origem" [ref=f2e317]:
+                    - paragraph [ref=f2e318]:
+                      - generic [ref=f2e319]: Origem
+                  - cell "Servidor" [ref=f2e320]:
+                    - paragraph [ref=f2e321]:
+                      - generic [ref=f2e322]: Servidor
+                - row [ref=f2e323]:
+                  - cell [ref=f2e324]:
+                    - paragraph [ref=f2e325]: Destino
+                  - cell [ref=f2e326]:
+                    - paragraph [ref=f2e327]: Cliente
+                - row [ref=f2e328]:
+                  - cell [ref=f2e329]:
+                    - paragraph [ref=f2e330]: Função
+                  - cell [ref=f2e331]:
+                    - paragraph [ref=f2e332]: Resposta de conexão
+                - row [ref=f2e333]:
+                  - cell [ref=f2e334]:
+                    - paragraph [ref=f2e335]: Protocolo
+                  - cell [ref=f2e336]:
+                    - paragraph [ref=f2e337]: TCP
+                - row [ref=f2e338]:
+                  - cell [ref=f2e339]:
+                    - paragraph [ref=f2e340]: Porta de Origem
+                  - cell [ref=f2e341]:
+                    - paragraph [ref=f2e342]: "3443"
+                - row [ref=f2e343]:
+                  - cell [ref=f2e344]:
+                    - paragraph [ref=f2e345]: Porta de Destino
+                  - cell [ref=f2e346]:
+                    - paragraph [ref=f2e347]: N (Porta de origem do pacote 1)
+                - row [ref=f2e348]:
+                  - cell "Endereço IP" [ref=f2e349]
+                  - cell "200.198.239.x" [ref=f2e351]
+            - paragraph [ref=f2e353]: "As redes que estiverem utilizando o produto Proxy Server da Microsoft, com o sistema de segurança ativado, deverão proceder da seguinte forma para que a aplicação possa rodar dentro da rede interna (Intranet):"
+            - paragraph [ref=f2e354]: 1. Criar um novo protocolo (ReceitanetBX)
+            - paragraph [ref=f2e355]: "2. Gerar as seguintes regras de segurança para o novo protocolo (ReceitanetBX) na tela de definição de protocolos:"
+            - paragraph [ref=f2e356]: Permitir conexão inicial na porta 3443, tipo TCP com direção externa.
+            - paragraph [ref=f2e357]: "PORT: 3443"
+            - paragraph [ref=f2e358]: "TYPE: TCP"
+            - paragraph [ref=f2e359]: "DIRECTION: OUTBOUND"
+            - paragraph [ref=f2e360]: Permitir conexões subsequentes para qualquer porta com direção interna.
+            - paragraph [ref=f2e361]: "PORT: 0"
+            - paragraph [ref=f2e362]: "TYPE: TCP"
+            - paragraph [ref=f2e363]: "DIRECTION: INBOUND"
+            - paragraph [ref=f2e364]:
+              - generic [ref=f2e365]: 15 - O que fazer pois a mensagem do ReceitanetBX é " Nenhum dos servidores respondeu ao pedido de conexão..." ?
+            - paragraph [ref=f2e366]: "R: Verificar se a configuração Proxy/Firewall de sua rede está de acordo com o necessário para permitir a comunicação com os servidores da RFB. Nas configurações de Proxy devem ser liberados todos os pacotes da porta 3443 para as faixas de IP's e 200.198.239.x tanto para entrada quanto para saída (veja item 13)."
+            - paragraph [ref=f2e367]: "Se o problema persistir, faça um download da versão mais atualizada do ReceitanetBX e tente novamente. Certifique-se de que foram satisfeitas as seguintes condições:"
+            - paragraph [ref=f2e368]: 1. Acesso a Internet está estabelecido.
+            - paragraph [ref=f2e369]: Se você se conecta à Internet através de provedor ou rede local verifique se é possível acessar alguma homepage usando o browser (por exemplo www.brasil.gov.br). Se você não consegue acessar nenhum servidor na Internet (inclusive os servidores da RFB), entre em contato com seu provedor de acesso ou suporte da rede local.
+            - paragraph [ref=f2e370]: "2. Verifique se a dificuldade de comunicação não é causada pelos seguintes fatores:"
+            - paragraph [ref=f2e371]: 1. Se seu acesso a Internet é feito através de servidores Proxy ou Firewall, certifique-se junto ao administrador de rede que estes estão configurados de tal forma a permitir o uso do ReceitanetBX.
+            - paragraph [ref=f2e372]: 2. O uso de aceleradores para acesso a Internet (como o caso do Netsonic), podem implicar em falha de comunicação. Caso esteja ocorrendo falhas, tente novamente, desabilitando o acelerador antes de se conectar a Internet.
+            - paragraph [ref=f2e373]: "3. O sistema comunicação é desenvolvido para trabalhar sobre a infra-estrutura:"
+            - paragraph [ref=f2e374]: a. plataforma Microsoft Windows;
+            - paragraph [ref=f2e375]: b. TCP/IP Microsoft (instalado pelo próprio sistema operacional);
+            - paragraph [ref=f2e376]: c. acesso direto Internet (seja através de provedor de acesso ou rede local).
+            - paragraph [ref=f2e377]: Esteja alerta para a possibilidade de outros programas afetarem a forma como o acesso a Internet é disponibilizado para o ReceitanetBX.
+            - paragraph [ref=f2e378]: 4. Restrições impostas por alguns provedores de acesso.
+            - paragraph [ref=f2e379]:
+              - generic [ref=f2e380]: 16 - O que fazer pois ocorreu falha na comunicação?
+            - paragraph [ref=f2e381]: "R: Na comunicação pode ocorrer falhas por vários motivos. Além de certificar-se estar satisfazendo os critérios estabelecidos no documento Conexão a RFB, atente para os fatos abaixo:"
+            - paragraph [ref=f2e382]: 1. Se seu acesso a Internet é feito através de servidores Proxy ou Firewall, certifique-se junto ao administrador de rede que estes estão configurados de tal forma a permitir o uso do ReceitanetBX.
+            - paragraph [ref=f2e383]: 2. O uso de aceleradores para acesso a Internet (como o caso do Netsonic), podem implicar em falha de comunicação. Caso esteja ocorrendo falhas, tente novamente, desabilitando o acelerador antes de se conectar a Internet.
+            - paragraph [ref=f2e384]: "3. O sistema de comunicação é desenvolvido para trabalhar sobre a infra-estrutura:"
+            - paragraph [ref=f2e385]: a. plataforma Microsoft Windows;
+            - paragraph [ref=f2e386]: b. TCP/IP Microsoft (instalado pelo próprio sistema operacional);
+            - paragraph [ref=f2e387]: c. acesso direto Internet (seja através de provedor de acesso ou rede local).
+            - paragraph [ref=f2e388]: Esteja alerta para a possibilidade de outros programas afetarem a forma como o acesso a Internet é disponibilizado para o ReceitanetBX.
+            - paragraph [ref=f2e389]: 4. Restrições impostas por alguns provedores de acesso.
+            - paragraph [ref=f2e390]:
+              - generic [ref=f2e391]: 17 - O que fazer pois estou com dificuldades na comunicação através de provedores de acesso?
+            - paragraph [ref=f2e392]: "R: Alguns provedores de acesso (ex. IG) exigem que o usuário informe endereço de e-mail e senha antes de acessar qualquer site. Isto é exigido através de redirecionamento feito quando do acesso a qualquer site via navegador. Tal fato, impacta na comunicação do ReceitanetBX com os servidores da RFB."
+            - paragraph [ref=f2e393]: "Aqueles que tiverem dificuldades como descrito acima, deverão, antes de tentar transmitir declarações via ReceitanetBX:"
+            - paragraph [ref=f2e394]: 1. Executar seu navegador (Netscape ou Internet Explorer).
+            - paragraph [ref=f2e395]: 2. Acessar qualquer site na internet (ex. www.receita.fazenda.gov.br).
+            - paragraph [ref=f2e396]: 3. Realizar login (informar endereço de e-mail e senha cadastrados junto ao provedor) com sucesso junto ao provedor de acesso.
+            - paragraph [ref=f2e397]: 4. Executar o programa ReceitanetBX.
+            - paragraph [ref=f2e398]: Lembramos, por fim, que estes passos são necessários devido a restrições na forma de acesso inicial imposta por alguns provedores de acesso.
+      - generic [ref=f2e400]:
+        - generic [ref=f2e401]: "Compartilhe:"
+        - link "Compartilhe por Facebook" [ref=f2e402] [cursor=pointer]:
+          - /url: http://www.facebook.com/sharer.php?u=https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx/perguntas-e-respostas-receitanetbx
+          - generic [ref=f2e403]: 
+        - link "Compartilhe por Twitter" [ref=f2e405] [cursor=pointer]:
+          - /url: https://twitter.com/share?text=Perguntas%20e%20Respostas%20-%20ReceitanetBX&url=https://www.gov.br/receitafederal/resolveuid/cad865eab8064475b00a506507cd81a7
+          - generic [ref=f2e406]: 
+        - link "Compartilhe por LinkedIn" [ref=f2e408] [cursor=pointer]:
+          - /url: https://www.linkedin.com/shareArticle?mini=true&url=https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx/perguntas-e-respostas-receitanetbx&title=Perguntas%20e%20Respostas%20-%20ReceitanetBX
+          - generic [ref=f2e409]: 
+        - link "Compartilhe por WhatsApp" [ref=f2e411] [cursor=pointer]:
+          - /url: https://api.whatsapp.com/send?text=https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx/perguntas-e-respostas-receitanetbx
+          - generic [ref=f2e412]: 
+        - link "link para Copiar para área de transferência" [ref=f2e414] [cursor=pointer]:
+          - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/download/receitanetbx/perguntas-e-respostas-receitanetbx
+          - generic [ref=f2e415]: 
+    - contentinfo [ref=f2e417]:
+      - generic [ref=f2e418]:
+        - list [ref=f2e420]:
+          - listitem [ref=f2e421]:
+            - link "Serviços" [ref=f2e422] [cursor=pointer]:
+              - /url: https://www.gov.br/receitafederal/pt-br/servicos
+            - list [ref=f2e423]:
+              - listitem [ref=f2e424]:
+                - link "Serviços de A a Z" [ref=f2e425] [cursor=pointer]:
+                  - /url: https://www.gov.br/pt-br/orgaos/secretaria-especial-da-receita-federal-do-brasil
+              - listitem [ref=f2e426]:
+                - link "Auditorias Fiscais" [ref=f2e427] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/auditorias-fiscais
+              - listitem [ref=f2e428]:
+                - link "Cadastros" [ref=f2e429] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/cadastro
+              - listitem [ref=f2e430]:
+                - link "Certidões e Atestados" [ref=f2e431] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/certidoes
+              - listitem [ref=f2e432]:
+                - link "Comércio Exterior" [ref=f2e433] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/comercio-exterior
+              - listitem [ref=f2e434]:
+                - link "Comunicações Eletrônicas" [ref=f2e435] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/comunicacoes-eletronicas
+              - listitem [ref=f2e436]:
+                - link "Declarações e Escriturações" [ref=f2e437] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/declaracoes-e-escrituracoes
+              - listitem [ref=f2e438]:
+                - link "Defesas e Recursos" [ref=f2e439] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/defesas-e-recursos
+              - listitem [ref=f2e440]:
+                - link "Interpretação e Programas" [ref=f2e441] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/interpretacao
+              - listitem [ref=f2e442]:
+                - link "Isenções e Regimes Especiais" [ref=f2e443] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/beneficios-fiscais
+              - listitem [ref=f2e444]:
+                - link "Processos Digitais" [ref=f2e445] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/processos-digitais
+              - listitem [ref=f2e446]:
+                - link "Autorizações de Acesso (Procurações)" [ref=f2e447] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/procuracoes
+              - listitem [ref=f2e448]:
+                - link "Regularização de Impostos" [ref=f2e449] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/regularizacao-de-impostos
+              - listitem [ref=f2e450]:
+                - link "Restituições e Compensações" [ref=f2e451] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/restituicoes-e-compensacoes
+              - listitem [ref=f2e452]:
+                - link "Conveniados e Parceiros" [ref=f2e453] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/conveniados-e-parceiros
+              - listitem [ref=f2e454]:
+                - link "Reforma Tributária" [ref=f2e455] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/servicos/reforma-tributaria
+          - listitem [ref=f2e456]:
+            - link "Assuntos" [ref=f2e457] [cursor=pointer]:
+              - /url: https://www.gov.br/receitafederal/pt-br/assuntos
+            - list [ref=f2e458]:
+              - listitem [ref=f2e459]:
+                - link "Notícias" [ref=f2e460] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/noticias
+              - listitem [ref=f2e461]:
+                - link "Agenda Tributária" [ref=f2e462] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/agenda-tributaria
+              - listitem [ref=f2e463]:
+                - link "Taxas de Juros" [ref=f2e464] [cursor=pointer]:
+                  - /url: /receitafederal/pt-br/assuntos/orientacao-tributaria/pagamentos-e-parcelamentos
+              - listitem [ref=f2e465]:
+                - link "Aduana e Comércio Exterior" [ref=f2e466] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior
+              - listitem [ref=f2e467]:
+                - link "Meu CPF" [ref=f2e468] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/meu-cpf
+              - listitem [ref=f2e469]:
+                - link "Meu Imposto de Renda" [ref=f2e470] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/meu-imposto-de-renda
+              - listitem [ref=f2e471]:
+                - link "Minhas Empresas e Negócios" [ref=f2e472] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/empresas-e-negocios
+              - listitem [ref=f2e473]:
+                - link "Construção Civil" [ref=f2e474] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/construcao-civil
+              - listitem [ref=f2e475]:
+                - link "Leilão e Doação" [ref=f2e476] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/leilao
+              - listitem [ref=f2e477]:
+                - link "Orientações sobre Processos Digitais" [ref=f2e478] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/processos-digitais
+              - listitem [ref=f2e479]:
+                - link "Transação Tributária" [ref=f2e480] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/transacao-tributaria
+              - listitem [ref=f2e481]:
+                - link "Mais Orientações Tributárias" [ref=f2e482] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria
+          - listitem [ref=f2e483]:
+            - link "Acesso à Informação" [ref=f2e484] [cursor=pointer]:
+              - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao
+            - list [ref=f2e485]:
+              - listitem [ref=f2e486]:
+                - link "Institucional" [ref=f2e487] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/institucional
+              - listitem [ref=f2e488]:
+                - link "Ações e Programas" [ref=f2e489] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas
+              - listitem [ref=f2e490]:
+                - link "Participação Social" [ref=f2e491] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/participacao-social
+              - listitem [ref=f2e492]:
+                - link "Auditorias" [ref=f2e493] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/auditorias
+              - listitem [ref=f2e494]:
+                - link "Convênios e Transferências" [ref=f2e495] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/convenios-e-transferencias
+              - listitem [ref=f2e496]:
+                - link "Receitas e Despesas" [ref=f2e497] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/receitas-e-despesas
+              - listitem [ref=f2e498]:
+                - link "Licitações e Contratos" [ref=f2e499] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/licitacoes-e-contratos
+              - listitem [ref=f2e500]:
+                - link "Servidores" [ref=f2e501] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/servidores
+              - listitem [ref=f2e502]:
+                - link "Serviço de Informação ao Cidadão (SIC)" [ref=f2e503] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/servico-de-informacao-ao-cidadao
+              - listitem [ref=f2e504]:
+                - link "Perguntas Frequentes" [ref=f2e505] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes
+              - listitem [ref=f2e506]:
+                - link "Dados Abertos" [ref=f2e507] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/dados-abertos
+              - listitem [ref=f2e508]:
+                - link "Sanções Administrativas" [ref=f2e509] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/sancoes-administrativas
+              - listitem [ref=f2e510]:
+                - link "Privacidade e Proteção de Dados" [ref=f2e511] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/lgpd
+              - listitem [ref=f2e512]:
+                - link "Legislação e Jurisprudência" [ref=f2e513] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/legislacao
+              - listitem [ref=f2e514]:
+                - link "Processos Seletivos" [ref=f2e515] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/processos-seletivos
+          - listitem [ref=f2e516]:
+            - link "Canais de Atendimento" [ref=f2e517] [cursor=pointer]:
+              - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento
+            - list [ref=f2e518]:
+              - listitem [ref=f2e519]:
+                - link "Digital" [ref=f2e520] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/digital
+              - listitem [ref=f2e521]:
+                - link "Portal e-CAC" [ref=f2e522] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/atendimento-virtual
+              - listitem [ref=f2e523]:
+                - link "Presencial" [ref=f2e524] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/atendimento-presencial
+              - listitem [ref=f2e525]:
+                - link "E-mail" [ref=f2e526] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/atendimento-email
+              - listitem [ref=f2e527]:
+                - link "Online (Chat)" [ref=f2e528] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/chat
+              - listitem [ref=f2e529]:
+                - link "Fale Conosco" [ref=f2e530] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/fale-conosco
+              - listitem [ref=f2e531]:
+                - link "Conveniados" [ref=f2e532] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/conveniados
+              - listitem [ref=f2e533]:
+                - link "Alfândegas" [ref=f2e534] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/aduana-e-comercio-exterior/atendimento/alfandegas-da-receita-federal-atendimento-especifico-ou-especializado
+              - listitem [ref=f2e535]:
+                - link "Imprensa" [ref=f2e536] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/imprensa
+              - listitem [ref=f2e537]:
+                - link "Ouvidoria" [ref=f2e538] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/canais_atendimento/ouvidoria
+          - listitem [ref=f2e539]:
+            - link "Centrais de Conteúdo" [ref=f2e540] [cursor=pointer]:
+              - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo
+            - list [ref=f2e541]:
+              - listitem [ref=f2e542]:
+                - link "Atas e Pautas" [ref=f2e543] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/atas-e-pautas
+              - listitem [ref=f2e544]:
+                - link "Editais" [ref=f2e545] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/editais
+              - listitem [ref=f2e546]:
+                - link "Formulários" [ref=f2e547] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/formularios
+              - listitem [ref=f2e548]:
+                - link "Programas e Aplicativos" [ref=f2e549] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/download
+              - listitem [ref=f2e550]:
+                - link "Publicações" [ref=f2e551] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes
+              - listitem [ref=f2e552]:
+                - link "Redes Sociais" [ref=f2e553] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/redes-sociais
+          - listitem [ref=f2e554]:
+            - link "Composição" [ref=f2e555] [cursor=pointer]:
+              - /url: https://www.gov.br/receitafederal/pt-br/composicao
+          - listitem [ref=f2e556]:
+            - link "Portais Relacionados" [ref=f2e557] [cursor=pointer]:
+              - /url: https://www.gov.br/receitafederal/pt-br/portais
+            - list [ref=f2e558]:
+              - listitem [ref=f2e559]:
+                - link "Empresas e Negócios" [ref=f2e560] [cursor=pointer]:
+                  - /url: https://www.gov.br/empresas-e-negocios
+              - listitem [ref=f2e561]:
+                - link "ENAT" [ref=f2e562] [cursor=pointer]:
+                  - /url: http://www.enat.receita.economia.gov.br/pt-br
+              - listitem [ref=f2e563]:
+                - link "eSocial" [ref=f2e564] [cursor=pointer]:
+                  - /url: https://www.gov.br/esocial
+              - listitem [ref=f2e565]:
+                - link "ITR Orientações para celebração de convênios" [ref=f2e566] [cursor=pointer]:
+                  - /url: http://www.enat.receita.economia.gov.br/pt-br/area_nacional/areas_interesse/portal-itr-1
+              - listitem [ref=f2e567]:
+                - link "Nota Fiscal de Serviço Eletrônica (NFS-e)" [ref=f2e568] [cursor=pointer]:
+                  - /url: https://www.gov.br/nfse/pt-br
+              - listitem [ref=f2e569]:
+                - link "Nota Fiscal Eletrônica" [ref=f2e570] [cursor=pointer]:
+                  - /url: http://www.nfe.fazenda.gov.br
+              - listitem [ref=f2e571]:
+                - link "Nota Fiscal Eletrônica do Ouro (NF-e Ouro)" [ref=f2e572] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/nfeouro
+              - listitem [ref=f2e573]:
+                - link "Portal CNIR" [ref=f2e574] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/cadastros/portal-cnir
+              - listitem [ref=f2e575]:
+                - link "Procuradoria da Fazenda (PGFN)" [ref=f2e576] [cursor=pointer]:
+                  - /url: https://www.gov.br/pgfn
+              - listitem [ref=f2e577]:
+                - link "Registrato" [ref=f2e578] [cursor=pointer]:
+                  - /url: https://www.bcb.gov.br/cidadaniafinanceira/registrato
+              - listitem [ref=f2e579]:
+                - link "Simples Nacional" [ref=f2e580] [cursor=pointer]:
+                  - /url: https://www8.receita.fazenda.gov.br/SimplesNacional/
+              - listitem [ref=f2e581]:
+                - link "Sinter" [ref=f2e582] [cursor=pointer]:
+                  - /url: https://cadastroimobiliario.economia.gov.br
+              - listitem [ref=f2e583]:
+                - link "Siscomex" [ref=f2e584] [cursor=pointer]:
+                  - /url: http://siscomex.gov.br
+              - listitem [ref=f2e585]:
+                - link "Sped" [ref=f2e586] [cursor=pointer]:
+                  - /url: https://www.gov.br/receitafederal/pt-br/portais/sped
+        - generic: 
+        - generic [ref=f2e587]:
+          - generic [ref=f2e588]:
+            - generic [ref=f2e589]: Redes sociais
+            - list [ref=f2e590]:
+              - listitem [ref=f2e591]:
+                - text: 
+                - link "Facebook" [ref=f2e592] [cursor=pointer]:
+                  - /url: https://www.facebook.com/receitafederaloficial
+              - listitem [ref=f2e593]:
+                - text: 
+                - link "Instagram" [ref=f2e594] [cursor=pointer]:
+                  - /url: https://www.instagram.com/receita_federal
+              - listitem [ref=f2e595]:
+                - text: 
+                - link "Linkedin" [ref=f2e596] [cursor=pointer]:
+                  - /url: https://linkedin.com/company/receita-federal
+              - listitem [ref=f2e597]:
+                - text: 
+                - link "Twitter" [ref=f2e598] [cursor=pointer]:
+                  - /url: https://www.twitter.com/ReceitaFederal
+              - listitem [ref=f2e599]:
+                - text: 
+                - link "YouTube" [ref=f2e600] [cursor=pointer]:
+                  - /url: https://www.youtube.com/TVReceitaFederal
+          - link "Acesse o portal sobre o acesso à informação" [ref=f2e603] [cursor=pointer]:
+            - /url: https://www.gov.br/acessoainformacao/pt-br
+            - img [ref=f2e604]:
+              - generic [ref=f2e608]: Acesso àInformação
+      - generic [ref=f2e610]:
+        - text: Todo o conteúdo deste site está publicado sob a licença
+        - link "Creative Commons Atribuição-SemDerivações 3.0 Não Adaptada" [ref=f2e611] [cursor=pointer]:
+          - /url: https://creativecommons.org/licenses/by-nd/3.0/deed.pt_BR
+        - text: .
+    - navigation "Voltar ao topo da página" [ref=f2e612]:
+      - link " Voltar ao topo da página" [ref=f2e613] [cursor=pointer]:
+        - /url: "#wrapper"
+        - generic [ref=f2e614]: 
+        - generic [ref=f2e615]: Voltar ao topo da página
+  - generic [ref=f2e619]:
+    - generic [ref=f2e620]:
+      - text:  
+      - generic [ref=f2e621]:
+        - generic [ref=f2e622]:
+          - text: Para melhorar a sua experiência na plataforma e prover serviços personalizados, utilizamos cookies.
+          - strong [ref=f2e623]: Ao aceitar, você terá acesso a todas as funcionalidades do site. Se clicar em "Rejeitar Cookies", os cookies que não forem estritamente necessários serão desativados.
+          - text: Para escolher quais quer autorizar, clique em "Gerenciar cookies". Saiba mais em nossa
+          - link "Declaração de Cookies" [ref=f2e624] [cursor=pointer]:
+            - /url: https://www.gov.br/pt-br/termos-de-uso
+          - text: .
+        - text: Desativado  Ativado  Desativado  Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  • • • • • • Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado Desativado  Desligado 
+    - generic [ref=f2e625]:
+      - button "Gerenciar cookies" [ref=f2e626] [cursor=pointer]:  Gerenciar cookies
+      - button "Rejeitar cookies" [ref=f2e627] [cursor=pointer]
+      - button "Aceitar cookies" [ref=f2e628] [cursor=pointer]
+  - text:   
+  - generic [ref=f2e630] [cursor=pointer]:
+    - img "Conteúdo acessível em Libras usando o VLibras Widget com opções dos Avatares Ícaro, Hosana ou Guga." [ref=f2e631]
+    - img "Conteúdo acessível em Libras usando o VLibras Widget com opções dos Avatares Ícaro, Hosana ou Guga." [ref=f2e632]
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic [ref=f2e633]:
+            - img "Chatbot" [ref=f2e634] [cursor=pointer]
+            - img "Fechar" [ref=f2e635] [cursor=pointer]
+          - text: Escreva uma mensagem

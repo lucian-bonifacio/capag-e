@@ -87,7 +87,6 @@ def _calculation(value: str):
         ],
         policy=load_plra_policy(),
         methodology_version_id="metodologia-2024.1",
-        j100_available=True,
+        balance_status="VALIDO",
         calculated_at=datetime(2024, 12, 31, tzinfo=timezone.utc),
     )
-

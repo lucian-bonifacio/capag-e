@@ -1,402 +1,281 @@
-import { useMemo, useState } from "react";
-import { Activity, ClipboardCheck, Columns, List, Search, Upload } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState, type CSSProperties } from "react";
+import {
+  AlertTriangle,
+  CheckCircle2,
+  ChevronDown,
+  ChevronRight,
+  ClipboardCheck,
+  Upload,
+  X,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
-import type {
-  DeclaredAccount,
-  DeclaredBalanceConsistencyWarning,
-  DeclaredLayerSummary,
+import {
+  fetchDeclaredBalanceComponents,
+  type DeclaredBalanceComponentsResponse,
+  type DeclaredBalanceLineStatus,
+  type DeclaredBalanceResponse,
+  type DeclaredBalanceRow,
+  type DeclaredBalanceStatus,
 } from "../api/declared";
-import { StatCard } from "../components/dashboard/StatCard";
-import { SegmentedControl } from "../components/dashboard/SegmentedControl";
-import { BalanceGroup } from "../components/dashboard/BalanceGroup";
-import { AccountRow } from "../components/dashboard/AccountRow";
-import { BalanceLedger } from "../components/dashboard/BalanceLedger";
-import { decimalToMinorUnits, formatCurrency } from "../lib/formatters";
+import { formatCurrency } from "../lib/formatters";
 import "./BalanceDashboardPage.css";
 
 type BalanceDashboardPageProps = {
   analysisId: string;
   year: string;
-  summary?: DeclaredLayerSummary;
-  accounts?: DeclaredAccount[];
-  consistencyWarnings?: DeclaredBalanceConsistencyWarning[];
+  balance?: DeclaredBalanceResponse;
   isLoading: boolean;
   isError: boolean;
   onRetry: () => void;
 };
 
-type AccountNode = {
-  account: DeclaredAccount;
-  children: AccountNode[];
-  parent: AccountNode | null;
+type SelectedRow = {
+  aggregationCode: string;
+  description: string;
 };
 
-type DashboardRow = {
-  account: DeclaredAccount;
-  amount: bigint;
+const BALANCE_STATUS: Record<
+  DeclaredBalanceStatus,
+  { label: string; detail: string; variant: "success" | "warning" | "danger" | "neutral" }
+> = {
+  VALIDO: {
+    label: "Válido",
+    detail: "Estrutura e linhas de detalhe conciliadas.",
+    variant: "success",
+  },
+  DIVERGENTE: {
+    label: "Divergente",
+    detail: "Existem diferenças na conciliação das linhas de detalhe.",
+    variant: "warning",
+  },
+  OBRIGATORIO_AUSENTE: {
+    label: "Balanço ausente",
+    detail: "O Balanço Patrimonial era obrigatório, mas não foi declarado.",
+    variant: "danger",
+  },
+  ESTRUTURA_INVALIDA: {
+    label: "Estrutura inválida",
+    detail: "A estrutura declarada não atende às regras do J100.",
+    variant: "danger",
+  },
+  NAO_OBRIGATORIO: {
+    label: "Não obrigatório",
+    detail: "O Bloco J não era obrigatório para este período.",
+    variant: "neutral",
+  },
 };
 
-type DashboardGroup = {
-  id: string;
-  title: string;
-  root: DeclaredAccount;
-  rows: DashboardRow[];
-  side: "asset" | "liabilityEquity";
+const LINE_STATUS: Record<
+  DeclaredBalanceLineStatus,
+  { label: string; variant: "success" | "warning" | "danger" }
+> = {
+  CONCILIADA: { label: "Conciliada", variant: "success" },
+  DIVERGENTE: { label: "Divergente", variant: "warning" },
+  SEM_I052: { label: "Sem vínculo I052", variant: "danger" },
+  SEM_SALDO_I155: { label: "Sem saldo I155", variant: "danger" },
 };
 
-function normalizeText(value: string): string {
-  return value
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toUpperCase();
+function formatPeriod(value: string | null): string {
+  if (!value) {
+    return "Não informado";
+  }
+
+  const [year, month, day] = value.split("-");
+  return `${day}/${month}/${year}`;
 }
 
-function compareAccounts(a: DeclaredAccount, b: DeclaredAccount): number {
-  if (a.account_order !== null && b.account_order !== null) {
-    return a.account_order - b.account_order;
-  }
-
-  if (a.account_order !== null) {
-    return -1;
-  }
-
-  if (b.account_order !== null) {
-    return 1;
-  }
-
-  return a.account_code.localeCompare(b.account_code, "pt-BR", {
-    numeric: true,
-    sensitivity: "base",
-  });
-}
-
-function buildAccountTree(accounts: DeclaredAccount[]): AccountNode[] {
-  const nodes = new Map<string, AccountNode>();
-
-  accounts.forEach((account) => {
-    nodes.set(account.account_code, { account, children: [], parent: null });
-  });
-
-  const roots: AccountNode[] = [];
-
-  nodes.forEach((node) => {
-    const parent = node.account.parent_account_code
-      ? nodes.get(node.account.parent_account_code)
-      : undefined;
-
-    if (parent) {
-      node.parent = parent;
-      parent.children.push(node);
-      return;
-    }
-
-    roots.push(node);
-  });
-
-  const sortNode = (node: AccountNode) => {
-    node.children.sort((a, b) => compareAccounts(a.account, b.account));
-    node.children.forEach(sortNode);
+function limitationText(code: string): string {
+  const known: Record<string, string> = {
+    BLOCO_J_NAO_OBRIGATORIO: "Bloco J não obrigatório para o período.",
+    I010_AUSENTE_OU_AMBIGUO: "Forma de escrituração I010 ausente ou ambígua.",
+    I030_AUSENTE_OU_AMBIGUO: "Data de encerramento I030 ausente ou ambígua.",
+    J100_OBRIGATORIO_AUSENTE: "Balanço J100 obrigatório ausente.",
+    J150_OBRIGATORIO_AUSENTE: "Demonstração J150 obrigatória ausente.",
+    MULTIPLOS_J005_APLICAVEIS: "Mais de um J005 aplicável ao encerramento.",
+    J100_LADOS_DIVERGENTES: "Ativo e Passivo + PL não apresentam o mesmo total.",
   };
 
-  roots.sort((a, b) => compareAccounts(a.account, b.account));
-  roots.forEach(sortNode);
-
-  return roots;
+  return known[code] ?? code.split("_").join(" ").toLocaleLowerCase("pt-BR");
 }
 
-function accountAmount(account: DeclaredAccount): bigint {
-  return decimalToMinorUnits(account.base_value);
-}
-
-function collectDescendants(node: AccountNode): AccountNode[] {
-  return node.children.flatMap((child) => [child, ...collectDescendants(child)]);
-}
-
-function isSyntheticNode(node: AccountNode): boolean {
-  return node.account.account_type === "S";
-}
-
-function collectDeepestSyntheticDescendants(node: AccountNode): AccountNode[] {
-  return node.children.flatMap((child) => {
-    if (!isSyntheticNode(child)) {
-      return collectDeepestSyntheticDescendants(child);
-    }
-
-    const nestedSyntheticRows = collectDeepestSyntheticDescendants(child);
-
-    if (nestedSyntheticRows.length > 0) {
-      return nestedSyntheticRows;
-    }
-
-    return [child];
-  });
-}
-
-function collectAnalyticalRowsOutsideSyntheticBranches(node: AccountNode): AccountNode[] {
-  return node.children.flatMap((child) => {
-    if (isSyntheticNode(child)) {
-      return [];
-    }
-
-    return [child, ...collectAnalyticalRowsOutsideSyntheticBranches(child)];
-  });
-}
-
-function sumAnalyticalDescendants(node: AccountNode): bigint {
-  return collectDescendants(node).reduce((acc, curr) => {
-    if (curr.account.account_type === "S") {
-      return acc;
-    }
-
-    return acc + accountAmount(curr.account);
-  }, 0n);
-}
-
-function presentationAmount(node: AccountNode): bigint {
-  const ownAmount = accountAmount(node.account);
-
-  if (ownAmount !== 0n || !isSyntheticNode(node)) {
-    return ownAmount;
-  }
-
-  return sumAnalyticalDescendants(node);
-}
-
-function collectPresentationRows(node: AccountNode): DashboardRow[] {
-  const summaryRows = collectDeepestSyntheticDescendants(node);
-
-  const presentationNodes =
-    summaryRows.length === 0
-      ? collectDescendants(node)
-      : [
-          ...summaryRows,
-          ...collectAnalyticalRowsOutsideSyntheticBranches(node),
-        ].sort((a, b) => compareAccounts(a.account, b.account));
-
-  return presentationNodes.map((presentationNode) => ({
-    account: presentationNode.account,
-    amount: presentationAmount(presentationNode),
-  }));
-}
-
-function isBroadRoot(account: DeclaredAccount): boolean {
-  const name = normalizeText(account.account_name);
+function BalanceTreeRow({
+  row,
+  onOpenComponents,
+}: {
+  row: DeclaredBalanceRow;
+  onOpenComponents: (row: DeclaredBalanceRow) => void;
+}) {
+  const [isOpen, setIsOpen] = useState(true);
+  const isTotalizer = row.aggregation_code_type === "T";
+  const lineStatus = row.reconciliation_status
+    ? LINE_STATUS[row.reconciliation_status]
+    : null;
 
   return (
-    name === "ATIVO" ||
-    name === "PASSIVO" ||
-    name === "PATRIMONIO LIQUIDO" ||
-    name === "PASSIVO E PATRIMONIO LIQUIDO" ||
-    name === "PASSIVO E PATRIMONIO SOCIAL"
+    <div
+      className={`declared-balance-node ${isTotalizer ? "is-totalizer" : "is-detail"}`}
+      data-level={row.aggregation_level}
+      style={{ "--node-level": row.aggregation_level } as CSSProperties}
+    >
+      <div className="declared-balance-row">
+        <div className="declared-balance-main">
+          {row.children.length > 0 ? (
+            <button
+              type="button"
+              className="tree-toggle"
+              aria-expanded={isOpen}
+              aria-label={`${isOpen ? "Recolher" : "Expandir"} ${row.description}`}
+              onClick={() => setIsOpen((current) => !current)}
+            >
+              {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+            </button>
+          ) : (
+            <span className="tree-toggle-spacer" aria-hidden="true" />
+          )}
+
+          <div className="declared-balance-description">
+            <div className="declared-balance-title-line">
+              <strong>{row.description}</strong>
+              {lineStatus && (
+                <span className="status-badge" data-variant={lineStatus.variant}>
+                  {lineStatus.label}
+                </span>
+              )}
+              {row.structural_status === "INVALIDA" && (
+                <span className="status-badge" data-variant="danger">
+                  Estrutura inválida
+                </span>
+              )}
+            </div>
+            <span className="declared-balance-code tnum">
+              Aglutinação {row.aggregation_code}
+            </span>
+            <span className="declared-balance-initial tnum">
+              Saldo inicial: {formatCurrency(row.initial_amount)}{" "}
+              {row.initial_debit_credit_indicator}
+            </span>
+          </div>
+        </div>
+
+        <div className="declared-balance-values">
+          <strong className="declared-balance-final tnum">
+            {formatCurrency(row.final_amount)}
+          </strong>
+          <span className="declared-balance-indicator">
+            Saldo final {row.final_debit_credit_indicator}
+          </span>
+          {row.difference !== null && row.reconciliation_status !== "CONCILIADA" && (
+            <span className="declared-balance-difference tnum">
+              Diferença: {formatCurrency(row.difference)}
+            </span>
+          )}
+        </div>
+
+        <div className="declared-balance-action">
+          {!isTotalizer && row.component_count > 0 ? (
+            <button
+              type="button"
+              className="button-ghost button-sm"
+              onClick={() => onOpenComponents(row)}
+            >
+              <ClipboardCheck aria-hidden="true" size={16} />
+              Ver componentes ({row.component_count})
+            </button>
+          ) : !isTotalizer ? (
+            <span className="component-empty">Sem componentes</span>
+          ) : null}
+        </div>
+      </div>
+
+      {isOpen && row.children.length > 0 && (
+        <div className="declared-balance-children">
+          {row.children.map((child) => (
+            <BalanceTreeRow
+              key={child.aggregation_code}
+              row={child}
+              onOpenComponents={onOpenComponents}
+            />
+          ))}
+        </div>
+      )}
+    </div>
   );
-}
-
-function isEquityResultNode(node: AccountNode): boolean {
-  return node.account.account_nature === "04";
-}
-
-function isBalanceSheetNode(node: AccountNode): boolean {
-  return !isEquityResultNode(node);
-}
-
-function sideForNode(node: AccountNode): DashboardGroup["side"] | null {
-  let current: AccountNode | null = node;
-
-  while (current?.parent) {
-    current = current.parent;
-  }
-
-  const rootNature = current?.account.account_nature ?? node.account.account_nature;
-
-  if (rootNature === "01") {
-    return "asset";
-  }
-
-  if (rootNature === "02" || rootNature === "03") {
-    return "liabilityEquity";
-  }
-
-  const rootName = normalizeText(current?.account.account_name ?? node.account.account_name);
-  const nodeName = normalizeText(node.account.account_name);
-
-  if (rootName.includes("ATIVO") || nodeName.startsWith("ATIVO")) {
-    return "asset";
-  }
-
-  if (
-    rootName.includes("PASSIVO") ||
-    rootName.includes("PATRIMONIO") ||
-    nodeName.startsWith("PASSIVO") ||
-    nodeName.startsWith("PATRIMONIO")
-  ) {
-    return "liabilityEquity";
-  }
-
-  return null;
-}
-
-function buildDashboardGroups(accounts: DeclaredAccount[]): DashboardGroup[] {
-  const roots = buildAccountTree(accounts);
-  const groupNodes = roots.flatMap((root) => {
-    if (isBroadRoot(root.account) && root.children.length > 0) {
-      return root.children;
-    }
-
-    return [root];
-  });
-
-  return groupNodes.flatMap((node) => {
-    if (!isBalanceSheetNode(node)) {
-      return [];
-    }
-
-    const side = sideForNode(node);
-
-    if (side === null) {
-      return [];
-    }
-
-    const presentationRows = collectPresentationRows(node);
-    const rows =
-      presentationRows.length > 0
-        ? presentationRows
-        : [{ account: node.account, amount: presentationAmount(node) }];
-
-    return [{
-      id: node.account.account_code,
-      root: node.account,
-      rows,
-      side,
-      title: node.account.account_name,
-    }];
-  });
-}
-
-function sumRows(rows: DashboardRow[], included: Record<string, boolean>): bigint {
-  return rows.reduce((acc, curr) => {
-    const isIncluded = included[curr.account.account_code] ?? true;
-
-    if (!isIncluded) {
-      return acc;
-    }
-
-    return acc + curr.amount;
-  }, 0n);
-}
-
-function groupTotal(group: DashboardGroup, included: Record<string, boolean>): bigint {
-  const rootAmount = accountAmount(group.root);
-
-  if (rootAmount !== 0n) {
-    return rootAmount;
-  }
-
-  return sumRows(group.rows, included);
-}
-
-function percentageOf(amount: bigint, total: bigint): number {
-  if (total <= 0n) {
-    return 0;
-  }
-
-  return Number((amount * 1000n) / total) / 10;
 }
 
 export function BalanceDashboardPage({
   analysisId,
   year,
-  summary,
-  accounts = [],
-  consistencyWarnings = [],
+  balance,
   isLoading,
   isError,
   onRetry,
 }: BalanceDashboardPageProps) {
-  const navigate = useNavigate();
-  const [viewMode, setViewMode] = useState("columns");
-  const [includedAccounts, setIncludedAccounts] = useState<Record<string, boolean>>({});
+  const [selectedRow, setSelectedRow] = useState<SelectedRow | null>(null);
+  const [components, setComponents] =
+    useState<DeclaredBalanceComponentsResponse | null>(null);
+  const [componentsLoading, setComponentsLoading] = useState(false);
+  const [componentsError, setComponentsError] = useState(false);
 
-  const toggleInclude = (code: string, isIncluded: boolean) => {
-    setIncludedAccounts((prev) => ({ ...prev, [code]: isIncluded }));
+  useEffect(() => {
+    if (!selectedRow) {
+      return;
+    }
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedRow(null);
+      }
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [selectedRow]);
+
+  const closeComponents = () => {
+    setSelectedRow(null);
+    setComponents(null);
+    setComponentsError(false);
   };
 
-  const grouped = useMemo(() => buildDashboardGroups(accounts), [accounts]);
-  const assetGroups = grouped.filter((group) => group.side === "asset");
-  const liabilityEquityGroups = grouped.filter((group) => group.side === "liabilityEquity");
-  const totalAssets = assetGroups.reduce(
-    (acc, group) => acc + groupTotal(group, includedAccounts),
-    0n,
-  );
-  const totalLiabilityEquity = liabilityEquityGroups.reduce(
-    (acc, group) => acc + groupTotal(group, includedAccounts),
-    0n,
-  );
-  const balanceDifference = totalAssets - totalLiabilityEquity;
-  const visibleConsistencyWarnings = consistencyWarnings.slice(0, 6);
-
-  const renderAccountRows = (rows: DashboardRow[], totalGroup: bigint) => {
-    return rows.map(({ account: acc, amount }) => {
-      const percentage = percentageOf(amount, totalGroup);
-      const isIncluded = includedAccounts[acc.account_code] ?? true;
-      const groupLevel = rows[0]?.account.account_level ?? acc.account_level ?? 1;
-      const depth = Math.max(0, (acc.account_level ?? groupLevel) - groupLevel);
-
-      return (
-        <AccountRow
-          key={acc.account_code}
-          accountName={acc.account_name}
-          accountCode={acc.account_code}
-          value={amount}
-          percentage={percentage}
-          isIncluded={isIncluded}
-          depth={depth}
-          isStructural={acc.account_type === "S"}
-          onToggleInclude={(inc) => toggleInclude(acc.account_code, inc)}
-          onAudit={() => navigate(`/analises/${analysisId}/exercicios/${year}/auditoria`)}
-          isLedgerMode={viewMode === "ledger"}
-        />
-      );
+  const openComponents = async (row: DeclaredBalanceRow) => {
+    setSelectedRow({
+      aggregationCode: row.aggregation_code,
+      description: row.description,
     });
+    setComponents(null);
+    setComponentsError(false);
+    setComponentsLoading(true);
+    try {
+      const result = await fetchDeclaredBalanceComponents(
+        analysisId,
+        year,
+        row.aggregation_code,
+      );
+      setComponents(result);
+    } catch {
+      setComponentsError(true);
+    } finally {
+      setComponentsLoading(false);
+    }
   };
-
-  const renderGroup = (group: DashboardGroup, globalTotal: bigint) => {
-    const total = groupTotal(group, includedAccounts);
-    const percentage = percentageOf(total, globalTotal);
-
-    return (
-      <BalanceGroup
-        groupName={group.title}
-        accountCount={group.rows.length}
-        totalValue={total}
-        percentage={percentage}
-        onAuditGroup={() => navigate(`/analises/${analysisId}/exercicios/${year}/auditoria`)}
-        isLedgerMode={viewMode === "ledger"}
-      >
-        {renderAccountRows(group.rows, total)}
-      </BalanceGroup>
-    );
-  };
-
-  const excludedCount = accounts.filter((account) => includedAccounts[account.account_code] === false).length;
 
   if (isLoading) {
     return (
       <main className="app-content balance-dashboard-content">
         <section className="dashboard-section state-card">
           <h1>Balanço Patrimonial</h1>
-          <p>Carregando contas declaradas da ECD.</p>
+          <p>Carregando balanço declarado da ECD.</p>
         </section>
       </main>
     );
   }
 
-  if (isError) {
+  if (isError || !balance) {
     return (
       <main className="app-content balance-dashboard-content">
         <section className="dashboard-section state-card" aria-live="polite">
           <h1>Erro ao carregar balanço patrimonial</h1>
-          <p>Não foi possível consultar as contas declaradas para esta análise.</p>
+          <p>Não foi possível consultar o balanço declarado para esta análise.</p>
           <button className="button-secondary" onClick={onRetry} type="button">
             Tentar novamente
           </button>
@@ -405,16 +284,9 @@ export function BalanceDashboardPage({
     );
   }
 
-  if (accounts.length === 0) {
-    return (
-      <main className="app-content balance-dashboard-content">
-        <section className="dashboard-section state-card">
-          <h1>Balanço Patrimonial</h1>
-          <p>Sem contas declaradas para montar a hierarquia da ECD.</p>
-        </section>
-      </main>
-    );
-  }
+  const status = BALANCE_STATUS[balance.balance_status];
+  const assetRows = balance.rows.filter((row) => row.balance_group === "A");
+  const liabilityRows = balance.rows.filter((row) => row.balance_group === "P");
 
   return (
     <>
@@ -427,16 +299,12 @@ export function BalanceDashboardPage({
           </p>
         </div>
         <div className="topbar-actions">
-          <div className="search-input-wrap">
-            <Search size={16} />
-            <input type="text" placeholder="Buscar conta ou grupo..." className="search-input" />
-          </div>
           <Link
             to={`/analises/${analysisId}/exercicios/${year}/auditoria`}
             className="button-secondary"
           >
             <ClipboardCheck aria-hidden="true" size={16} />
-            Auditoria
+            Auditoria por conta
           </Link>
           <Link to="/importar-ecd" className="button-primary">
             <Upload aria-hidden="true" size={16} />
@@ -446,148 +314,228 @@ export function BalanceDashboardPage({
       </header>
 
       <main className="app-content balance-dashboard-content">
-        <section className="dashboard-section">
-          <div className="section-header-compact">
-            <h2 className="eyebrow">Indicadores Calculados</h2>
-            {excludedCount > 0 && (
-              <span className="status-badge" data-variant="warning">
-                {excludedCount} {excludedCount === 1 ? "conta excluída" : "contas excluídas"} dos cálculos
-              </span>
+        <section className="declared-status-panel" aria-live="polite">
+          <div className="declared-status-heading">
+            {balance.balance_status === "VALIDO" ? (
+              <CheckCircle2 aria-hidden="true" size={20} />
+            ) : (
+              <AlertTriangle aria-hidden="true" size={20} />
             )}
+            <div>
+              <span className="eyebrow">Base declarada</span>
+              <div className="declared-status-title">
+                <span className="status-badge" data-variant={status.variant}>
+                  {status.label}
+                </span>
+                <span>{status.detail}</span>
+              </div>
+            </div>
           </div>
-
-          <div className="indicators-grid">
-            <StatCard
-              label="Indicador CAPAG"
-              value="B"
-              hint="Capacidade de pagamento boa"
-              variant="success"
-              icon={Activity}
-            />
-            <StatCard
-              label="Liquidez Corrente"
-              value="1,84"
-              hint="Meta ≥ 1,00"
-              variant="neutral"
-              icon={Activity}
-            />
-            <StatCard
-              label="Endividamento"
-              value="42,6%"
-              hint="Dívida / RCL"
-              variant="warning"
-              icon={Activity}
-            />
-            <StatCard
-              label="Poupança Corrente"
-              value="11,2%"
-              hint="Resultado corrente positivo"
-              variant="primary"
-              icon={Activity}
-            />
-          </div>
+          <dl className="declared-status-meta">
+            <div>
+              <dt>Período J005</dt>
+              <dd className="tnum">
+                {formatPeriod(balance.j005_period_start)} a{" "}
+                {formatPeriod(balance.j005_period_end)}
+              </dd>
+            </div>
+            <div>
+              <dt>Diferença dos lados</dt>
+              <dd className="tnum">
+                {balance.difference === null
+                  ? "Não disponível"
+                  : formatCurrency(balance.difference)}
+              </dd>
+            </div>
+            <div>
+              <dt>Resultado anual</dt>
+              <dd>{balance.is_blocking ? "Bloqueado" : "Base liberada"}</dd>
+            </div>
+          </dl>
         </section>
 
-        <section className="dashboard-section">
-          <div className="balance-header-row">
-            <h2 className="eyebrow">Balanço Patrimonial</h2>
-            <SegmentedControl
-              value={viewMode}
-              onChange={setViewMode}
-              options={[
-                { id: "columns", label: "Duas colunas", icon: Columns },
-                { id: "ledger", label: "Livro-razão", icon: List },
-              ]}
-              aria-label="Modo de visualização do balanço"
-            />
-          </div>
+        {balance.limitations.length > 0 && (
+          <section className="declared-limitations" aria-label="Limitações do balanço">
+            <strong>Limitações identificadas</strong>
+            <ul>
+              {balance.limitations.map((limitation) => (
+                <li key={limitation}>{limitationText(limitation)}</li>
+              ))}
+            </ul>
+          </section>
+        )}
 
-          {viewMode === "columns" ? (
-            <div className="balance-columns">
-              <div className="balance-column">
-                <div className="column-header">
-                  <span className="eyebrow">Ativo</span>
-                  <span className="column-total tnum">{formatCurrency(totalAssets)}</span>
-                </div>
-                <h3 className="column-title">Ativo</h3>
-                {assetGroups.map((group) => (
-                  <div key={group.id}>{renderGroup(group, totalAssets)}</div>
-                ))}
+        {balance.rows.length === 0 ? (
+          <section className="dashboard-section state-card">
+            <h2>Balanço declarado indisponível</h2>
+            <p>Sem linhas J100 aplicáveis para apresentar.</p>
+          </section>
+        ) : (
+          <section className="dashboard-section" aria-label="Árvore do J100">
+            <div className="balance-header-row">
+              <div>
+                <h2 className="eyebrow">Demonstração oficial J100</h2>
+                <p className="section-description">
+                  Saldos finais declarados e conciliação automática das linhas de detalhe.
+                </p>
               </div>
-              <div className="balance-column">
-                <div className="column-header">
-                  <span className="eyebrow">Passivo e patrimônio líquido</span>
-                  <span className="column-total tnum">{formatCurrency(totalLiabilityEquity)}</span>
-                </div>
-                <h3 className="column-title">Passivo e PL</h3>
-                {liabilityEquityGroups.map((group) => (
-                  <div key={group.id}>{renderGroup(group, totalLiabilityEquity)}</div>
-                ))}
-              </div>
+              <span className="declared-view-label">Visão declarada · sem ajustes</span>
             </div>
-          ) : (
-            <BalanceLedger>
-              <div className="ledger-section">
-                <div className="column-header">
-                  <span className="eyebrow">Ativo</span>
-                  <span className="column-total tnum">{formatCurrency(totalAssets)}</span>
-                </div>
-                {assetGroups.map((group) => (
-                  <div key={group.id}>{renderGroup(group, totalAssets)}</div>
-                ))}
-              </div>
-              <div className="ledger-section" style={{ marginTop: "var(--space-8)" }}>
-                <div className="column-header">
-                  <span className="eyebrow">Passivo e patrimônio líquido</span>
-                  <span className="column-total tnum">{formatCurrency(totalLiabilityEquity)}</span>
-                </div>
-                {liabilityEquityGroups.map((group) => (
-                  <div key={group.id}>{renderGroup(group, totalLiabilityEquity)}</div>
-                ))}
-              </div>
-            </BalanceLedger>
-          )}
 
-          {balanceDifference !== 0n && (
-            <div className="balance-alert" role="status">
-              <strong>Balanço não fecha.</strong>
-              <span>
-                Diferença entre Ativo e Passivo + Patrimônio Líquido:{" "}
-                <span className="tnum">{formatCurrency(balanceDifference)}</span>.
-              </span>
+            <div className="declared-balance-columns">
+              <section className="declared-balance-side" aria-labelledby="asset-heading">
+                <header className="declared-side-header">
+                  <div>
+                    <span className="eyebrow">Lado do balanço</span>
+                    <h3 id="asset-heading">Ativo</h3>
+                  </div>
+                  <strong className="tnum">
+                    {balance.assets_final_amount === null
+                      ? "Não disponível"
+                      : formatCurrency(balance.assets_final_amount)}
+                  </strong>
+                </header>
+                <div className="declared-tree">
+                  {assetRows.map((row) => (
+                    <BalanceTreeRow
+                      key={row.aggregation_code}
+                      row={row}
+                      onOpenComponents={openComponents}
+                    />
+                  ))}
+                </div>
+              </section>
+
+              <section
+                className="declared-balance-side"
+                aria-labelledby="liability-heading"
+              >
+                <header className="declared-side-header">
+                  <div>
+                    <span className="eyebrow">Lado do balanço</span>
+                    <h3 id="liability-heading">Passivo e Patrimônio Líquido</h3>
+                  </div>
+                  <strong className="tnum">
+                    {balance.liabilities_and_equity_final_amount === null
+                      ? "Não disponível"
+                      : formatCurrency(balance.liabilities_and_equity_final_amount)}
+                  </strong>
+                </header>
+                <div className="declared-tree">
+                  {liabilityRows.map((row) => (
+                    <BalanceTreeRow
+                      key={row.aggregation_code}
+                      row={row}
+                      onOpenComponents={openComponents}
+                    />
+                  ))}
+                </div>
+              </section>
             </div>
-          )}
+          </section>
+        )}
+      </main>
 
-          {consistencyWarnings.length > 0 && (
-            <div className="balance-consistency-panel" role="status">
-              <div className="balance-consistency-header">
-                <strong>Consistência J100 x I050</strong>
-                <span className="status-badge" data-variant="warning">
-                  {consistencyWarnings.length}{" "}
-                  {consistencyWarnings.length === 1 ? "apontamento" : "apontamentos"}
-                </span>
+      {selectedRow && (
+        <div
+          className="dialog-scrim"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              closeComponents();
+            }
+          }}
+        >
+          <section
+            aria-labelledby="components-dialog-title"
+            aria-modal="true"
+            className="components-dialog"
+            role="dialog"
+          >
+            <header className="components-dialog-header">
+              <div>
+                <h2 id="components-dialog-title">
+                  Componentes — {selectedRow.description}
+                </h2>
+                <p className="tnum">
+                  Código de aglutinação {selectedRow.aggregationCode}
+                </p>
               </div>
-              <ul className="balance-consistency-list">
-                {visibleConsistencyWarnings.map((warning) => (
-                  <li key={`${warning.warning_code}-${warning.account_code}`}>
-                    <span className="tnum">{warning.account_code}</span>
-                    <span>{warning.account_name}</span>
-                    <small>{warning.message}</small>
-                  </li>
-                ))}
-              </ul>
-              {consistencyWarnings.length > visibleConsistencyWarnings.length && (
-                <span className="balance-consistency-more">
-                  +{consistencyWarnings.length - visibleConsistencyWarnings.length}{" "}
-                  {consistencyWarnings.length - visibleConsistencyWarnings.length === 1
-                    ? "apontamento"
-                    : "apontamentos"}
-                </span>
+              <button
+                type="button"
+                className="button-ghost dialog-close"
+                aria-label="Fechar"
+                onClick={closeComponents}
+              >
+                <X aria-hidden="true" size={18} />
+              </button>
+            </header>
+
+            <div className="components-dialog-body">
+              {componentsLoading && <p>Carregando componentes.</p>}
+              {componentsError && (
+                <p className="components-error">
+                  Não foi possível consultar os componentes desta linha.
+                </p>
+              )}
+              {!componentsLoading && !componentsError && components?.rows.length === 0 && (
+                <p>Sem registros.</p>
+              )}
+              {!componentsLoading && !componentsError && components && components.rows.length > 0 && (
+                <div className="components-table-wrap">
+                  <table className="components-table">
+                    <thead>
+                      <tr>
+                        <th>Conta</th>
+                        <th>Centro de custo</th>
+                        <th className="numeric">Saldo final</th>
+                        <th>Origem</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {components.rows.map((component) => (
+                        <tr
+                          key={`${component.account_code}-${component.cost_center_code ?? ""}-${component.i052_line_number}`}
+                        >
+                          <td>
+                            <strong>{component.account_name}</strong>
+                            <span className="tnum">{component.account_code}</span>
+                          </td>
+                          <td className="tnum">
+                            {component.cost_center_code ?? "Sem centro de custo"}
+                          </td>
+                          <td className="numeric tnum">
+                            {component.final_amount === null
+                              ? "Sem saldo I155"
+                              : `${formatCurrency(component.final_amount)} ${component.final_debit_credit_indicator ?? ""}`}
+                          </td>
+                          <td className="component-source tnum">
+                            I052 linha {component.i052_line_number}
+                            <br />
+                            {component.i155_line_number === null
+                              ? "I155 ausente"
+                              : `I155 linha ${component.i155_line_number}`}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               )}
             </div>
-          )}
-        </section>
-      </main>
+
+            <footer className="components-dialog-footer">
+              <button
+                className="button-secondary"
+                type="button"
+                onClick={closeComponents}
+              >
+                Fechar
+              </button>
+            </footer>
+          </section>
+        </div>
+      )}
     </>
   );
 }

@@ -1,4 +1,5 @@
 import type { ComponentStatus } from "./capag";
+import type { DeclaredBalanceStatus } from "./declared";
 
 export type PlraInclusionStatus =
   | "incluido_ativo"
@@ -29,7 +30,7 @@ export type PlraCalculation = {
   warnings: string[];
   limitations: string[];
   blocking_issues: string[];
-  j100_reconciliation_status: string;
+  balance_status: DeclaredBalanceStatus;
   methodology_version_id: string;
   calculated_at: string;
 };

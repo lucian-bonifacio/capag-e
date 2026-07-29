@@ -14,6 +14,11 @@ class ProcessingStatus(StrEnum):
     ERROR = "erro"
 
 
+class EcdPreparationStatus(StrEnum):
+    REIMPORT_REQUIRED = "REIMPORTACAO_NECESSARIA"
+    READY_FOR_RECONCILIATION = "PRONTA_PARA_CONCILIACAO"
+
+
 TERMINAL_PROCESSING_STATUSES = frozenset(
     {
         ProcessingStatus.COMPLETED,
@@ -40,7 +45,11 @@ class EcdFile:
     layout: str
     period_start: date
     period_end: date
+    original_content: bytes | None = None
+    content_size: int | None = None
+    parser_version: str | None = None
     imported_at: datetime | None = None
+    reprocessed_at: datetime | None = None
 
 
 @dataclass(frozen=True)

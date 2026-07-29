@@ -59,7 +59,7 @@ def test_plra_calculation_serializes_decimal_snapshot() -> None:
         warnings=(),
         limitations=(),
         blocking_issues=(),
-        j100_reconciliation_status="disponivel_para_conferencia",
+        balance_status="VALIDO",
         methodology_version_id="metodologia-2024.1",
         calculated_at=datetime(2024, 12, 31, tzinfo=timezone.utc),
     )

@@ -38,6 +38,7 @@ export type CapagAssessment = {
   limitations: string[];
   blocking_issues: string[];
   methodology_version_id: string;
+  balance_status: DeclaredBalanceStatus;
 };
 
 export class CapagApiError extends Error {
@@ -74,3 +75,4 @@ async function parseErrorMessage(response: Response): Promise<string> {
     return `HTTP ${response.status}`;
   }
 }
+import type { DeclaredBalanceStatus } from "./declared";

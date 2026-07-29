@@ -242,7 +242,7 @@ def _client(
                 warnings=(),
                 limitations=(),
                 blocking_issues=(),
-                j100_reconciliation_status="conciliado",
+                balance_status="VALIDO",
                 methodology_version_id="metodologia-2024.1",
                 calculated_at=datetime(2026, 7, 24, tzinfo=timezone.utc),
             ),

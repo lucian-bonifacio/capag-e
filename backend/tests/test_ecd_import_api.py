@@ -54,12 +54,16 @@ def test_import_ecd_endpoint_creates_analysis_without_exposing_raw_content() -> 
     assert payload["analysis_id"].startswith("analysis-")
     assert payload["year"] == 2024
     assert payload["status"] == "nao_executado"
+    assert payload["parser_version"] == "2.1.0"
     assert "Lancamento sintetico" not in response.text
 
     with Session(engine) as session:
         stored_analysis = session.get(AnalysisModel, payload["analysis_id"])
+        stored_file = session.get(EcdFileModel, payload["ecd_file_id"])
 
     assert stored_analysis is not None
+    assert stored_file is not None
+    assert stored_file.original_content == content
 
 
 def test_import_ecd_endpoint_rejects_invalid_extension() -> None:
