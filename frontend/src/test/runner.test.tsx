@@ -148,14 +148,16 @@ describe("declared balance route", () => {
     expect(
       await screen.findByRole("heading", { name: "Balanço Patrimonial" }),
     ).toBeInTheDocument();
-    expect(await screen.findByText("Válido")).toBeInTheDocument();
+    expect(await screen.findAllByText("Válido")).toHaveLength(2);
     expect(screen.getByText("Banco conta movimento")).toBeInTheDocument();
     expect(screen.getByText("Capital social")).toBeInTheDocument();
     expect(screen.getAllByText("R$ 800,00")[0]).toHaveClass("tnum");
-    expect(screen.getAllByText(/Saldo inicial: R\$ 100,00/)[0]).toHaveClass("tnum");
-    expect(screen.getAllByText("Conciliada")).toHaveLength(2);
+    expect(screen.getByText("AGL-CAIXA")).toHaveClass("tnum");
+    expect(screen.queryByText("Conciliada")).not.toBeInTheDocument();
     expect(screen.queryByRole("checkbox")).not.toBeInTheDocument();
-    expect(screen.getByText("Visão declarada · sem ajustes")).toBeInTheDocument();
+    expect(
+      screen.getByRole("radio", { name: "Duas colunas" }),
+    ).toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledWith(
       "/api/v1/analyses/7/exercises/2024/declared/balance/accounts",
       undefined,
@@ -167,7 +169,7 @@ describe("declared balance route", () => {
 
     render(<App />);
     const componentButtons = await screen.findAllByRole("button", {
-      name: "Ver componentes (1)",
+      name: "Auditar conta Banco conta movimento",
     });
     fireEvent.click(componentButtons[0]);
 
@@ -185,6 +187,41 @@ describe("declared balance route", () => {
     );
   });
 
+  it("shows divergent balances as navigable diagnostics", async () => {
+    mockBalanceApi({
+      ...balanceResponse,
+      balance_status: "DIVERGENTE",
+      is_blocking: true,
+      rows: [
+        {
+          ...balanceResponse.rows[0],
+          children: [
+            {
+              ...balanceResponse.rows[0].children[0],
+              reconciliation_status: "DIVERGENTE",
+              reconciled_amount: "775.00",
+              difference: "25.00",
+            },
+          ],
+        },
+        balanceResponse.rows[1],
+      ],
+    });
+
+    render(<App />);
+
+    expect(await screen.findAllByText("Conciliação pendente")).toHaveLength(2);
+    expect(screen.getByText("Resultado anual indisponível")).toBeInTheDocument();
+    expect(screen.getByText("Indisponível")).toBeInTheDocument();
+    expect(screen.getByText("Divergente")).toBeInTheDocument();
+    expect(screen.getByText("Banco conta movimento")).toBeInTheDocument();
+    expect(
+      screen.getAllByRole("button", {
+        name: "Auditar conta Banco conta movimento",
+      }).length,
+    ).toBeGreaterThan(0);
+  });
+
   it("shows an objective empty state and backend limitations", async () => {
     mockBalanceApi({
       ...balanceResponse,
@@ -199,7 +236,7 @@ describe("declared balance route", () => {
 
     render(<App />);
 
-    expect(await screen.findByText("Balanço ausente")).toBeInTheDocument();
+    expect(await screen.findAllByText("Balanço ausente")).toHaveLength(2);
     expect(screen.getByText("Balanço J100 obrigatório ausente.")).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "Balanço declarado indisponível" }),

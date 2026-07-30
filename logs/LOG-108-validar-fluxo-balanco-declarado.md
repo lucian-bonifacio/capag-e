@@ -25,12 +25,27 @@
 - Resumo: foram consolidadas fixtures ECD para os cinco estados gerais. A validação real revelou que o `I030` oficial completo guarda a data de encerramento no último campo; o parser foi corrigido para o leiaute completo, elevado para `2.1.0` e importações `2.0.0` foram marcadas para reimportação controlada.
 - DATAPACK: reprocessado no ambiente oficial, balanço `VALIDO`, 48 linhas de detalhe `CONCILIADA` e nenhuma limitação.
 - INVENTCLOUD: importado no ambiente oficial e reimportado em teste isolado, balanço `DIVERGENTE`, com 502 linhas `CONCILIADA` e 19 `SEM_SALDO_I155`.
+- Data: 2026-07-29
+- Ação: ajuste de homologação.
+- Resumo: após decisão governada sobre `balance_status`, fixtures sintéticas antigas da camada declarada foram alinhadas ao requisito de ECD anual com Bloco J válido para importação CAPAG-E. Foi criado teste de rejeição sem persistência para ECD com balanço obrigatório ausente e teste frontend para `DIVERGENTE` diagnóstico.
+- Data: 2026-07-29
+- Ação: validação de ajuste visual em homologação.
+- Resumo: a restauração do padrão visual anterior da tela do balanço declarado foi validada por testes unitários/build e Playwright. Os testes foram ajustados para refletir a duplicidade intencional dos status no card de indicador e no badge do painel.
+- Data: 2026-07-29
+- Ação: validação de correção de reprovação visual.
+- Resumo: a tela foi recomposta com os componentes visuais anteriores da dashboard, mantendo apenas as restrições novas da SPEC-012. Os testes unitários e E2E foram atualizados para o padrão antigo de auditoria por ícone/botão acessível, sem switches.
 
 ## Arquivos Alterados
 
 - `backend/alembic/versions/0059_parser_2_1_reimport.py`
 - `backend/app/io/ecd_parser.py`
 - `backend/tests/fixtures/ecd/README.md`
+- `backend/tests/fixtures/ecd/valid_declared.ecd`
+- `backend/tests/fixtures/ecd/missing_i051.ecd`
+- `backend/tests/fixtures/ecd/official_reference_missing.ecd`
+- `backend/tests/fixtures/ecd/methodology_missing.ecd`
+- `backend/tests/fixtures/ecd/blocked_rule.ecd`
+- `backend/tests/fixtures/ecd/dangerous_prefix.ecd`
 - `backend/tests/fixtures/ecd/balance_declared_divergent.ecd`
 - `backend/tests/fixtures/ecd/balance_declared_invalid_structure.ecd`
 - `backend/tests/fixtures/ecd/balance_declared_not_required.ecd`
@@ -59,6 +74,32 @@
   - Resultado: estados `Válido` e `Divergente`, árvore em duas colunas e trilha de componentes apresentadas sem recalculo ou switches. A única mensagem de console observada foi `404` do `favicon.ico`, sem impacto no fluxo.
 - Comando: `alembic current`, busca por `float`/`parseFloat` e `git diff --check`.
   - Resultado: PostgreSQL em `0059_parser_2_1 (head)`, nenhuma ocorrência proibida e nenhuma inconsistência de whitespace.
+- Comando: `docker compose --profile test run --rm backend-tests`.
+  - Resultado: 279 testes aprovados.
+- Comando: `docker compose --profile test run --rm frontend-tests`.
+  - Resultado: 28 testes aprovados e build de produção concluído.
+- Comando: `docker compose --profile test run --rm frontend-e2e`.
+  - Resultado: 9 testes Playwright aprovados.
+- Comando: `git diff --check`.
+  - Resultado: aprovado, sem inconsistência de whitespace.
+- Comando: busca por `parseFloat` e `float(` nos arquivos alterados.
+  - Resultado: nenhuma ocorrência encontrada.
+- Comando: `docker compose --profile test run --rm frontend-tests`.
+  - Resultado: 28 testes aprovados e build de produção concluído após correção de fidelidade visual.
+- Comando: `docker compose --profile test run --rm frontend-e2e`.
+  - Resultado: 9 testes Playwright aprovados após correção de fidelidade visual.
+- Comando: `git diff --check`.
+  - Resultado: aprovado, sem inconsistência de whitespace.
+- Comando: busca por `parseFloat` e `float(` nos arquivos alterados.
+  - Resultado: nenhuma ocorrência encontrada.
+- Comando: `docker compose --profile test run --rm frontend-tests`.
+  - Resultado: 28 testes aprovados e build de produção concluído após restauração visual.
+- Comando: `docker compose --profile test run --rm frontend-e2e`.
+  - Resultado: 9 testes Playwright aprovados após restauração visual.
+- Comando: `git diff --check`.
+  - Resultado: aprovado, sem inconsistência de whitespace.
+- Comando: busca por `parseFloat` e `float(` nos arquivos alterados.
+  - Resultado: nenhuma ocorrência encontrada.
 
 ## Pendências Ou Bloqueios
 

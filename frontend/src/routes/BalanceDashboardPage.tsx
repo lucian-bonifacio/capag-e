@@ -1,15 +1,12 @@
-import { useEffect, useState, type CSSProperties } from "react";
-import {
-  AlertTriangle,
-  CheckCircle2,
-  ChevronDown,
-  ChevronRight,
-  ClipboardCheck,
-  Upload,
-  X,
-} from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Activity, AlertTriangle, CheckCircle2, ClipboardCheck, Columns, List, Search, Upload, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import { AccountRow } from "../components/dashboard/AccountRow";
+import { BalanceGroup } from "../components/dashboard/BalanceGroup";
+import { BalanceLedger } from "../components/dashboard/BalanceLedger";
+import { SegmentedControl } from "../components/dashboard/SegmentedControl";
+import { StatCard } from "../components/dashboard/StatCard";
 import {
   fetchDeclaredBalanceComponents,
   type DeclaredBalanceComponentsResponse,
@@ -33,6 +30,26 @@ type BalanceDashboardPageProps = {
 type SelectedRow = {
   aggregationCode: string;
   description: string;
+  declaredAmount: string;
+  reconciledAmount: string | null;
+  difference: string | null;
+  reconciliationStatus: DeclaredBalanceLineStatus | null;
+  componentCount: number;
+};
+
+type ViewMode = "columns" | "ledger";
+
+type DashboardRow = {
+  row: DeclaredBalanceRow;
+  depth: number;
+};
+
+type DashboardGroup = {
+  id: string;
+  title: string;
+  root: DeclaredBalanceRow;
+  rows: DashboardRow[];
+  side: "asset" | "liabilityEquity";
 };
 
 const BALANCE_STATUS: Record<
@@ -45,8 +62,9 @@ const BALANCE_STATUS: Record<
     variant: "success",
   },
   DIVERGENTE: {
-    label: "Divergente",
-    detail: "Existem diferenças na conciliação das linhas de detalhe.",
+    label: "Conciliação pendente",
+    detail:
+      "A ECD foi importada, mas existem divergências entre J100 e I050/I052/I155.",
     variant: "warning",
   },
   OBRIGATORIO_AUSENTE: {
@@ -76,6 +94,13 @@ const LINE_STATUS: Record<
   SEM_SALDO_I155: { label: "Sem saldo I155", variant: "danger" },
 };
 
+function normalizeText(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toUpperCase();
+}
+
 function formatPeriod(value: string | null): string {
   if (!value) {
     return "Não informado";
@@ -99,108 +124,143 @@ function limitationText(code: string): string {
   return known[code] ?? code.split("_").join(" ").toLocaleLowerCase("pt-BR");
 }
 
-function BalanceTreeRow({
-  row,
-  onOpenComponents,
-}: {
-  row: DeclaredBalanceRow;
-  onOpenComponents: (row: DeclaredBalanceRow) => void;
-}) {
-  const [isOpen, setIsOpen] = useState(true);
-  const isTotalizer = row.aggregation_code_type === "T";
-  const lineStatus = row.reconciliation_status
-    ? LINE_STATUS[row.reconciliation_status]
-    : null;
+function countProblemRows(rows: DeclaredBalanceRow[]): number {
+  return rows.reduce((total, row) => {
+    const current =
+      row.reconciliation_status && row.reconciliation_status !== "CONCILIADA"
+        ? 1
+        : 0;
+    return total + current + countProblemRows(row.children);
+  }, 0);
+}
+
+function countDetailRows(rows: DeclaredBalanceRow[]): number {
+  return rows.reduce((total, row) => {
+    const current = row.aggregation_code_type === "D" ? 1 : 0;
+    return total + current + countDetailRows(row.children);
+  }, 0);
+}
+
+function rowMatches(row: DeclaredBalanceRow, query: string): boolean {
+  const normalized = query.trim().toLocaleLowerCase("pt-BR");
+
+  if (!normalized) {
+    return true;
+  }
+
+  if (
+    row.description.toLocaleLowerCase("pt-BR").includes(normalized) ||
+    row.aggregation_code.toLocaleLowerCase("pt-BR").includes(normalized)
+  ) {
+    return true;
+  }
+
+  return row.children.some((child) => rowMatches(child, query));
+}
+
+function isBroadRoot(row: DeclaredBalanceRow): boolean {
+  const name = normalizeText(row.description);
 
   return (
-    <div
-      className={`declared-balance-node ${isTotalizer ? "is-totalizer" : "is-detail"}`}
-      data-level={row.aggregation_level}
-      style={{ "--node-level": row.aggregation_level } as CSSProperties}
-    >
-      <div className="declared-balance-row">
-        <div className="declared-balance-main">
-          {row.children.length > 0 ? (
-            <button
-              type="button"
-              className="tree-toggle"
-              aria-expanded={isOpen}
-              aria-label={`${isOpen ? "Recolher" : "Expandir"} ${row.description}`}
-              onClick={() => setIsOpen((current) => !current)}
-            >
-              {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-            </button>
-          ) : (
-            <span className="tree-toggle-spacer" aria-hidden="true" />
-          )}
-
-          <div className="declared-balance-description">
-            <div className="declared-balance-title-line">
-              <strong>{row.description}</strong>
-              {lineStatus && (
-                <span className="status-badge" data-variant={lineStatus.variant}>
-                  {lineStatus.label}
-                </span>
-              )}
-              {row.structural_status === "INVALIDA" && (
-                <span className="status-badge" data-variant="danger">
-                  Estrutura inválida
-                </span>
-              )}
-            </div>
-            <span className="declared-balance-code tnum">
-              Aglutinação {row.aggregation_code}
-            </span>
-            <span className="declared-balance-initial tnum">
-              Saldo inicial: {formatCurrency(row.initial_amount)}{" "}
-              {row.initial_debit_credit_indicator}
-            </span>
-          </div>
-        </div>
-
-        <div className="declared-balance-values">
-          <strong className="declared-balance-final tnum">
-            {formatCurrency(row.final_amount)}
-          </strong>
-          <span className="declared-balance-indicator">
-            Saldo final {row.final_debit_credit_indicator}
-          </span>
-          {row.difference !== null && row.reconciliation_status !== "CONCILIADA" && (
-            <span className="declared-balance-difference tnum">
-              Diferença: {formatCurrency(row.difference)}
-            </span>
-          )}
-        </div>
-
-        <div className="declared-balance-action">
-          {!isTotalizer && row.component_count > 0 ? (
-            <button
-              type="button"
-              className="button-ghost button-sm"
-              onClick={() => onOpenComponents(row)}
-            >
-              <ClipboardCheck aria-hidden="true" size={16} />
-              Ver componentes ({row.component_count})
-            </button>
-          ) : !isTotalizer ? (
-            <span className="component-empty">Sem componentes</span>
-          ) : null}
-        </div>
-      </div>
-
-      {isOpen && row.children.length > 0 && (
-        <div className="declared-balance-children">
-          {row.children.map((child) => (
-            <BalanceTreeRow
-              key={child.aggregation_code}
-              row={child}
-              onOpenComponents={onOpenComponents}
-            />
-          ))}
-        </div>
-      )}
-    </div>
+    name === "ATIVO" ||
+    name === "PASSIVO" ||
+    name === "PATRIMONIO LIQUIDO" ||
+    name === "PASSIVO E PATRIMONIO LIQUIDO" ||
+    name === "PASSIVO E PATRIMONIO SOCIAL"
   );
+}
+
+function compareRows(a: DeclaredBalanceRow, b: DeclaredBalanceRow): number {
+  return a.line_number - b.line_number;
+}
+
+function collectDeepestSyntheticDescendants(row: DeclaredBalanceRow): DeclaredBalanceRow[] {
+  return row.children.flatMap((child) => {
+    if (child.aggregation_code_type !== "T") {
+      return collectDeepestSyntheticDescendants(child);
+    }
+
+    const nestedSyntheticRows = collectDeepestSyntheticDescendants(child);
+
+    if (nestedSyntheticRows.length > 0) {
+      return nestedSyntheticRows;
+    }
+
+    return [child];
+  });
+}
+
+function collectDetailsOutsideSyntheticBranches(row: DeclaredBalanceRow): DeclaredBalanceRow[] {
+  return row.children.flatMap((child) => {
+    if (child.aggregation_code_type === "T") {
+      return [];
+    }
+
+    return [child, ...collectDetailsOutsideSyntheticBranches(child)];
+  });
+}
+
+function collectPresentationRows(root: DeclaredBalanceRow): DashboardRow[] {
+  const summaryRows = collectDeepestSyntheticDescendants(root);
+  const rows =
+    summaryRows.length > 0
+      ? [
+          ...summaryRows,
+          ...collectDetailsOutsideSyntheticBranches(root),
+        ].sort(compareRows)
+      : root.children.length > 0
+        ? root.children
+        : [root];
+
+  const uniqueRows = rows.filter(
+    (row, index, allRows) =>
+      allRows.findIndex((candidate) => candidate.aggregation_code === row.aggregation_code) ===
+      index,
+  );
+
+  return uniqueRows.map((row) => ({
+    row,
+    depth: Math.max(0, row.aggregation_level - root.aggregation_level - 1),
+  }));
+}
+
+function buildDashboardGroups(rows: DeclaredBalanceRow[], query: string): DashboardGroup[] {
+  const groupRoots = rows.flatMap((root) => {
+    if (isBroadRoot(root) && root.children.length > 0) {
+      return root.children;
+    }
+
+    return [root];
+  });
+
+  return groupRoots.flatMap((root) => {
+    if (!rowMatches(root, query)) {
+      return [];
+    }
+
+    const side = root.balance_group === "A" ? "asset" : "liabilityEquity";
+    const presentationRows = collectPresentationRows(root).filter(({ row }) =>
+      rowMatches(row, query),
+    );
+
+    return [
+      {
+        id: root.aggregation_code,
+        root,
+        rows: presentationRows.length > 0 ? presentationRows : [{ row: root, depth: 0 }],
+        side,
+        title: root.description,
+      },
+    ];
+  });
+}
+
+function lineStatusFor(row: DeclaredBalanceRow) {
+  if (!row.reconciliation_status || row.reconciliation_status === "CONCILIADA") {
+    return null;
+  }
+
+  return LINE_STATUS[row.reconciliation_status];
 }
 
 export function BalanceDashboardPage({
@@ -216,6 +276,8 @@ export function BalanceDashboardPage({
     useState<DeclaredBalanceComponentsResponse | null>(null);
   const [componentsLoading, setComponentsLoading] = useState(false);
   const [componentsError, setComponentsError] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>("columns");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     if (!selectedRow) {
@@ -224,12 +286,17 @@ export function BalanceDashboardPage({
 
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setSelectedRow(null);
+        closeComponents();
       }
     };
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, [selectedRow]);
+
+  const grouped = useMemo(
+    () => (balance ? buildDashboardGroups(balance.rows, searchQuery) : []),
+    [balance, searchQuery],
+  );
 
   const closeComponents = () => {
     setSelectedRow(null);
@@ -241,6 +308,11 @@ export function BalanceDashboardPage({
     setSelectedRow({
       aggregationCode: row.aggregation_code,
       description: row.description,
+      declaredAmount: row.final_amount,
+      reconciledAmount: row.reconciled_amount,
+      difference: row.difference,
+      reconciliationStatus: row.reconciliation_status,
+      componentCount: row.component_count,
     });
     setComponents(null);
     setComponentsError(false);
@@ -285,8 +357,48 @@ export function BalanceDashboardPage({
   }
 
   const status = BALANCE_STATUS[balance.balance_status];
-  const assetRows = balance.rows.filter((row) => row.balance_group === "A");
-  const liabilityRows = balance.rows.filter((row) => row.balance_group === "P");
+  const assetGroups = grouped.filter((group) => group.side === "asset");
+  const liabilityEquityGroups = grouped.filter((group) => group.side === "liabilityEquity");
+  const problemRows = countProblemRows(balance.rows);
+  const totalDetails = countDetailRows(balance.rows);
+
+  const renderAccountRows = (rows: DashboardRow[]) =>
+    rows.map(({ row, depth }) => {
+      const status = lineStatusFor(row);
+
+      return (
+        <AccountRow
+          key={row.aggregation_code}
+          accountName={row.description}
+          accountCode={row.aggregation_code}
+          value={row.final_amount}
+          isIncluded
+          showSwitch={false}
+          depth={depth}
+          isStructural={row.aggregation_code_type === "T"}
+          statusLabel={status?.label}
+          statusVariant={status?.variant}
+          onToggleInclude={() => undefined}
+          onAudit={() => openComponents(row)}
+          isLedgerMode={viewMode === "ledger"}
+        />
+      );
+    });
+
+  const renderGroup = (group: DashboardGroup, globalTotal: string | null) => (
+    <BalanceGroup
+      key={group.id}
+      groupName={group.title}
+      accountCount={group.rows.length}
+      totalValue={group.root.final_amount}
+      onAuditGroup={() => openComponents(group.root)}
+      isLedgerMode={viewMode === "ledger"}
+      percentage={undefined}
+    >
+      {renderAccountRows(group.rows)}
+      {globalTotal === null ? null : null}
+    </BalanceGroup>
+  );
 
   return (
     <>
@@ -299,12 +411,22 @@ export function BalanceDashboardPage({
           </p>
         </div>
         <div className="topbar-actions">
+          <div className="search-input-wrap">
+            <Search size={16} />
+            <input
+              type="text"
+              placeholder="Buscar conta ou grupo..."
+              className="search-input"
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+            />
+          </div>
           <Link
             to={`/analises/${analysisId}/exercicios/${year}/auditoria`}
             className="button-secondary"
           >
             <ClipboardCheck aria-hidden="true" size={16} />
-            Auditoria por conta
+            Auditoria
           </Link>
           <Link to="/importar-ecd" className="button-primary">
             <Upload aria-hidden="true" size={16} />
@@ -314,6 +436,56 @@ export function BalanceDashboardPage({
       </header>
 
       <main className="app-content balance-dashboard-content">
+        <section className="dashboard-section">
+          <div className="section-header-compact">
+            <h2 className="eyebrow">Indicadores Calculados</h2>
+            {balance.is_blocking && (
+              <span className="status-badge" data-variant="warning">
+                Resultado anual indisponível
+              </span>
+            )}
+          </div>
+
+          <div className="indicators-grid">
+            <StatCard
+              label="Base declarada"
+              value={status.label}
+              hint={status.detail}
+              variant={status.variant}
+              icon={balance.balance_status === "VALIDO" ? CheckCircle2 : AlertTriangle}
+            />
+            <StatCard
+              label="Ativo"
+              value={
+                balance.assets_final_amount === null
+                  ? "N/D"
+                  : formatCurrency(balance.assets_final_amount)
+              }
+              hint="Saldo final J100"
+              variant="neutral"
+              icon={Activity}
+            />
+            <StatCard
+              label="Passivo + PL"
+              value={
+                balance.liabilities_and_equity_final_amount === null
+                  ? "N/D"
+                  : formatCurrency(balance.liabilities_and_equity_final_amount)
+              }
+              hint="Saldo final J100"
+              variant="neutral"
+              icon={Activity}
+            />
+            <StatCard
+              label="Divergências"
+              value={String(problemRows)}
+              hint={`${totalDetails} linhas de detalhe J100`}
+              variant={problemRows > 0 ? "warning" : "success"}
+              icon={Activity}
+            />
+          </div>
+        </section>
+
         <section className="declared-status-panel" aria-live="polite">
           <div className="declared-status-heading">
             {balance.balance_status === "VALIDO" ? (
@@ -349,7 +521,11 @@ export function BalanceDashboardPage({
             </div>
             <div>
               <dt>Resultado anual</dt>
-              <dd>{balance.is_blocking ? "Bloqueado" : "Base liberada"}</dd>
+              <dd>{balance.is_blocking ? "Indisponível" : "Disponível"}</dd>
+            </div>
+            <div>
+              <dt>Divergências</dt>
+              <dd className="tnum">{problemRows}</dd>
             </div>
           </dl>
         </section>
@@ -365,75 +541,87 @@ export function BalanceDashboardPage({
           </section>
         )}
 
-        {balance.rows.length === 0 ? (
-          <section className="dashboard-section state-card">
-            <h2>Balanço declarado indisponível</h2>
-            <p>Sem linhas J100 aplicáveis para apresentar.</p>
-          </section>
-        ) : (
-          <section className="dashboard-section" aria-label="Árvore do J100">
-            <div className="balance-header-row">
-              <div>
-                <h2 className="eyebrow">Demonstração oficial J100</h2>
-                <p className="section-description">
-                  Saldos finais declarados e conciliação automática das linhas de detalhe.
-                </p>
-              </div>
-              <span className="declared-view-label">Visão declarada · sem ajustes</span>
-            </div>
+        <section className="dashboard-section">
+          <div className="balance-header-row">
+            <h2 className="eyebrow">Balanço Patrimonial</h2>
+            <SegmentedControl
+              value={viewMode}
+              onChange={(value) => setViewMode(value as ViewMode)}
+              options={[
+                { id: "columns", label: "Duas colunas", icon: Columns },
+                { id: "ledger", label: "Livro-razão", icon: List },
+              ]}
+              aria-label="Modo de visualização do balanço"
+            />
+          </div>
 
-            <div className="declared-balance-columns">
-              <section className="declared-balance-side" aria-labelledby="asset-heading">
-                <header className="declared-side-header">
-                  <div>
-                    <span className="eyebrow">Lado do balanço</span>
-                    <h3 id="asset-heading">Ativo</h3>
-                  </div>
-                  <strong className="tnum">
+          {balance.rows.length === 0 ? (
+            <section className="state-card">
+              <h2>Balanço declarado indisponível</h2>
+              <p>Sem linhas J100 aplicáveis para apresentar.</p>
+            </section>
+          ) : viewMode === "columns" ? (
+            <div className="balance-columns">
+              <div className="balance-column">
+                <div className="column-header">
+                  <span className="eyebrow">Ativo</span>
+                  <span className="column-total tnum">
                     {balance.assets_final_amount === null
                       ? "Não disponível"
                       : formatCurrency(balance.assets_final_amount)}
-                  </strong>
-                </header>
-                <div className="declared-tree">
-                  {assetRows.map((row) => (
-                    <BalanceTreeRow
-                      key={row.aggregation_code}
-                      row={row}
-                      onOpenComponents={openComponents}
-                    />
-                  ))}
+                  </span>
                 </div>
-              </section>
-
-              <section
-                className="declared-balance-side"
-                aria-labelledby="liability-heading"
-              >
-                <header className="declared-side-header">
-                  <div>
-                    <span className="eyebrow">Lado do balanço</span>
-                    <h3 id="liability-heading">Passivo e Patrimônio Líquido</h3>
-                  </div>
-                  <strong className="tnum">
+                <h3 className="column-title">Ativo</h3>
+                {assetGroups.map((group) =>
+                  renderGroup(group, balance.assets_final_amount),
+                )}
+              </div>
+              <div className="balance-column">
+                <div className="column-header">
+                  <span className="eyebrow">Passivo e patrimônio líquido</span>
+                  <span className="column-total tnum">
                     {balance.liabilities_and_equity_final_amount === null
                       ? "Não disponível"
                       : formatCurrency(balance.liabilities_and_equity_final_amount)}
-                  </strong>
-                </header>
-                <div className="declared-tree">
-                  {liabilityRows.map((row) => (
-                    <BalanceTreeRow
-                      key={row.aggregation_code}
-                      row={row}
-                      onOpenComponents={openComponents}
-                    />
-                  ))}
+                  </span>
                 </div>
-              </section>
+                <h3 className="column-title">Passivo e PL</h3>
+                {liabilityEquityGroups.map((group) =>
+                  renderGroup(group, balance.liabilities_and_equity_final_amount),
+                )}
+              </div>
             </div>
-          </section>
-        )}
+          ) : (
+            <BalanceLedger>
+              <div className="ledger-section">
+                <div className="column-header">
+                  <span className="eyebrow">Ativo</span>
+                  <span className="column-total tnum">
+                    {balance.assets_final_amount === null
+                      ? "Não disponível"
+                      : formatCurrency(balance.assets_final_amount)}
+                  </span>
+                </div>
+                {assetGroups.map((group) =>
+                  renderGroup(group, balance.assets_final_amount),
+                )}
+              </div>
+              <div className="ledger-section" style={{ marginTop: "var(--space-8)" }}>
+                <div className="column-header">
+                  <span className="eyebrow">Passivo e patrimônio líquido</span>
+                  <span className="column-total tnum">
+                    {balance.liabilities_and_equity_final_amount === null
+                      ? "Não disponível"
+                      : formatCurrency(balance.liabilities_and_equity_final_amount)}
+                  </span>
+                </div>
+                {liabilityEquityGroups.map((group) =>
+                  renderGroup(group, balance.liabilities_and_equity_final_amount),
+                )}
+              </div>
+            </BalanceLedger>
+          )}
+        </section>
       </main>
 
       {selectedRow && (
@@ -472,6 +660,36 @@ export function BalanceDashboardPage({
             </header>
 
             <div className="components-dialog-body">
+              <dl className="component-summary">
+                <div>
+                  <dt>Valor declarado J100</dt>
+                  <dd className="tnum">{formatCurrency(selectedRow.declaredAmount)}</dd>
+                </div>
+                <div>
+                  <dt>Valor conciliado I155</dt>
+                  <dd className="tnum">
+                    {selectedRow.reconciledAmount === null
+                      ? "Não disponível"
+                      : formatCurrency(selectedRow.reconciledAmount)}
+                  </dd>
+                </div>
+                <div>
+                  <dt>Diferença</dt>
+                  <dd className="tnum">
+                    {selectedRow.difference === null
+                      ? "Não disponível"
+                      : formatCurrency(selectedRow.difference)}
+                  </dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>
+                    {selectedRow.reconciliationStatus
+                      ? LINE_STATUS[selectedRow.reconciliationStatus].label
+                      : "Não informado"}
+                  </dd>
+                </div>
+              </dl>
               {componentsLoading && <p>Carregando componentes.</p>}
               {componentsError && (
                 <p className="components-error">
@@ -479,7 +697,11 @@ export function BalanceDashboardPage({
                 </p>
               )}
               {!componentsLoading && !componentsError && components?.rows.length === 0 && (
-                <p>Sem registros.</p>
+                <p>
+                  {selectedRow.reconciliationStatus === "SEM_I052"
+                    ? "Nenhum vínculo I052 foi encontrado para este código de aglutinação. O CAPAG não consegue relacionar esta linha J100 às contas analíticas."
+                    : "Sem registros."}
+                </p>
               )}
               {!componentsLoading && !componentsError && components && components.rows.length > 0 && (
                 <div className="components-table-wrap">

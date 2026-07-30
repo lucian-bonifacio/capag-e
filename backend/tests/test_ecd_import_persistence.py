@@ -108,7 +108,7 @@ def test_persist_parsed_ecd_preserves_original_bytes_and_balance_relationships()
         ecd_file = session.scalars(select(EcdFileModel)).one()
         bookkeeping = session.scalars(select(EcdI010BookkeepingModel)).one()
         book_header = session.scalars(select(EcdI030BookHeaderModel)).one()
-        link = session.scalars(select(EcdI052AggregationLinkModel)).one()
+        links = session.scalars(select(EcdI052AggregationLinkModel)).all()
         period = session.scalars(select(EcdI150BalancePeriodModel)).one()
         balance = session.scalars(select(EcdI155BalanceModel)).one()
         statement = session.scalars(select(EcdJ005StatementModel)).one()
@@ -122,8 +122,10 @@ def test_persist_parsed_ecd_preserves_original_bytes_and_balance_relationships()
     assert ecd_file.content_hash == f"sha256:{sha256(ecd_file.original_content).hexdigest()}"
     assert ecd_file.parser_version == "2.0.0"
     assert bookkeeping.exercise_id == book_header.exercise_id
-    assert link.account_id is not None
-    assert link.cost_center_code == "CC01"
+    assert len(links) == 2
+    assert all(link.account_id is not None for link in links)
+    assert {link.aggregation_code for link in links} == {"AGL-CAIXA", "AGL-CAPITAL"}
+    assert {link.cost_center_code for link in links} == {"CC01"}
     assert balance.balance_period_id == period.id
     assert balance.cost_center_code == "CC01"
     assert j100_rows[1].statement_id == statement.id

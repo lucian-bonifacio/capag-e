@@ -18,6 +18,11 @@ from app.application import (
     reprocess_existing_ecd,
     remove_ecd_import,
 )
+from app.application.ecd_balance_preflight import (
+    calculate_import_balance_preflight,
+    import_rejection_message,
+    is_import_rejected_balance_status,
+)
 from app.db.session import SessionLocal
 from app.domain import EcdPreparationStatus, ProcessingStatus
 from app.io import ECD_PARSER_VERSION, EcdParseError, parse_ecd_bytes
@@ -94,6 +99,18 @@ async def import_ecd(
             "ECD_PARSE_ERROR",
             str(exc),
         ) from exc
+
+    balance_preflight = calculate_import_balance_preflight(parsed)
+    if is_import_rejected_balance_status(balance_preflight.status):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail={
+                "error_code": f"ECD_BALANCE_{balance_preflight.status.value}",
+                "message": import_rejection_message(balance_preflight.status),
+                "balance_status": balance_preflight.status.value,
+                "limitations": list(balance_preflight.limitations),
+            },
+        )
 
     try:
         if existing_import is not None:

@@ -99,6 +99,37 @@ def test_import_ecd_endpoint_reports_existing_import_without_reimporting() -> No
         assert len(list(session.scalars(select(AnalysisModel)))) == 1
 
 
+def test_import_ecd_endpoint_rejects_balance_ineligible_ecd_without_persisting() -> None:
+    engine, SessionForTest = _create_test_database()
+    app.dependency_overrides[get_import_session] = _override_session(SessionForTest)
+    client = TestClient(app)
+    content = (FIXTURES_DIR / "balance_declared_required_absent.ecd").read_bytes()
+
+    response = client.post(
+        "/api/v1/ecd/import",
+        data={"methodology_version_id": "metodologia-2024.1"},
+        files={
+            "file": (
+                "balance_declared_required_absent.ecd",
+                content,
+                "text/plain",
+            )
+        },
+    )
+
+    app.dependency_overrides.clear()
+    assert response.status_code == 400
+    payload = response.json()["detail"]
+    assert payload["error_code"] == "ECD_BALANCE_OBRIGATORIO_AUSENTE"
+    assert payload["balance_status"] == "OBRIGATORIO_AUSENTE"
+    assert payload["limitations"] == ["J100_OBRIGATORIO_AUSENTE"]
+    assert "ECD rejeitada" in payload["message"]
+
+    with Session(engine) as session:
+        assert list(session.scalars(select(AnalysisModel))) == []
+        assert list(session.scalars(select(EcdFileModel))) == []
+
+
 def test_list_and_remove_existing_ecd_import_then_reimport() -> None:
     engine, SessionForTest = _create_test_database()
     app.dependency_overrides[get_import_session] = _override_session(SessionForTest)

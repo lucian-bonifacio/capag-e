@@ -115,10 +115,10 @@ test("exibe a arvore J100 sem switches ou recalculo local", async ({ page }) => 
   releaseBalance();
 
   await expect(page.getByRole("heading", { name: "Balanço Patrimonial" })).toBeVisible();
-  await expect(page.getByText("Válido")).toBeVisible();
-  await expect(page.getByText("Banco conta movimento")).toBeVisible();
-  await expect(page.getByText("Capital social")).toBeVisible();
-  await expect(page.getByText("Visão declarada · sem ajustes")).toBeVisible();
+  await expect(page.getByText("Válido")).toHaveCount(2);
+  await expect(page.getByText("Banco Conta Movimento", { exact: true })).toBeVisible();
+  await expect(page.getByText("Capital Social", { exact: true })).toBeVisible();
+  await expect(page.getByRole("radio", { name: "Duas colunas" })).toBeVisible();
   await expect(page.getByRole("checkbox")).toHaveCount(0);
 });
 
@@ -152,7 +152,10 @@ test("abre os componentes I050 I052 e I155 sob demanda", async ({ page }) => {
   );
 
   await page.goto("/analises/7/exercicios/2024/declarada");
-  await page.getByRole("button", { name: "Ver componentes (1)" }).first().click();
+  await page
+    .getByRole("button", { name: "Auditar conta Banco conta movimento" })
+    .first()
+    .click();
 
   await expect(
     page.getByRole("dialog", { name: "Componentes — Banco conta movimento" }),
@@ -182,7 +185,7 @@ test("exibe estado bloqueante e limitacao sem fabricar balanco", async ({ page }
 
   await page.goto("/analises/7/exercicios/2024/declarada");
 
-  await expect(page.getByText("Balanço ausente")).toBeVisible();
+  await expect(page.getByText("Balanço ausente")).toHaveCount(2);
   await expect(page.getByText("Balanço J100 obrigatório ausente.")).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Balanço declarado indisponível" }),

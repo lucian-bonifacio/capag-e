@@ -12,6 +12,9 @@ export type AccountRowProps = {
   isIncluded: boolean;
   onToggleInclude: (included: boolean) => void;
   onAudit: () => void;
+  showSwitch?: boolean;
+  statusLabel?: string;
+  statusVariant?: "success" | "warning" | "danger";
   isLedgerMode?: boolean;
   depth?: number;
   isStructural?: boolean;
@@ -39,6 +42,9 @@ export function AccountRow({
   isIncluded,
   onToggleInclude,
   onAudit,
+  showSwitch = true,
+  statusLabel,
+  statusVariant,
   isLedgerMode = false,
   depth = 0,
   isStructural = false,
@@ -52,7 +58,14 @@ export function AccountRow({
       style={{ "--account-row-indent": indentation } as CSSProperties}
     >
       <div className="account-row-main">
-        <span className="account-row-name">{toTitleCase(accountName)}</span>
+        <span className="account-row-name">
+          {toTitleCase(accountName)}
+          {statusLabel && (
+            <span className="status-badge" data-variant={statusVariant ?? "warning"}>
+              {statusLabel}
+            </span>
+          )}
+        </span>
         {accountCode && <span className="account-row-code tnum">{accountCode}</span>}
       </div>
 
@@ -63,12 +76,14 @@ export function AccountRow({
       <div className="account-row-value tnum">{formatCurrency(value)}</div>
 
       <div className="account-row-actions">
-        <Switch
-          checked={isIncluded}
-          onChange={onToggleInclude}
-          aria-label={`Incluir conta ${accountName}`}
-          variant="soft"
-        />
+        {showSwitch && (
+          <Switch
+            checked={isIncluded}
+            onChange={onToggleInclude}
+            aria-label={`Incluir conta ${accountName}`}
+            variant="soft"
+          />
+        )}
         <button
           type="button"
           className="button-ghost button-sm account-row-audit"

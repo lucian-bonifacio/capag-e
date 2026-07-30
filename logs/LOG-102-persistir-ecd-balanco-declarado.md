@@ -18,6 +18,9 @@
 - Ação: persistência e migration implementadas.
 - Resumo: bytes originais, hash, tamanho, versão do parser e registros `I010/I030/I052/I150/J005/J100/J150` passaram a ser persistidos atomicamente com relacionamentos formais.
 - Ajuste: a primeira aplicação da migration excedeu o limite do identificador Alembic; o identificador foi reduzido e a migration reaplicada com sucesso.
+- Data: 2026-07-29
+- Ação: ajuste de homologação.
+- Resumo: a importação passou a executar pré-validação do balanço antes da persistência. Estados `OBRIGATORIO_AUSENTE`, `NAO_OBRIGATORIO` e `ESTRUTURA_INVALIDA` rejeitam a ECD sem criar análise ou ECD operacional; `DIVERGENTE` continua persistindo para diagnóstico.
 
 ## Arquivos Alterados
 
@@ -28,6 +31,7 @@
 - `backend/app/domain/imports.py`
 - `backend/app/schemas/imports.py`
 - `backend/tests/`
+- `backend/app/application/ecd_balance_preflight.py`
 
 ## Validações
 
@@ -39,6 +43,10 @@
   - Resultado: 246 testes aprovados.
 - Validação: hash recalculado dos bytes persistidos, busca por `float` e `git diff --check`.
   - Resultado: conteúdo idêntico e nenhuma inconsistência.
+- Comando: `docker compose --profile test run --rm backend-tests`.
+  - Resultado: 279 testes aprovados.
+- Comando: `git diff --check`.
+  - Resultado: aprovado, sem inconsistência de whitespace.
 
 ## Pendências Ou Bloqueios
 

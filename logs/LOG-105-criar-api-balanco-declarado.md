@@ -20,6 +20,9 @@
 - Data: 2026-07-29
 - Ação: implementação e validação.
 - Resumo: a rota do balanço passou a entregar contrato específico com estado, período, totais, árvore J100 e conciliação; foi criada rota sob demanda para componentes I050/I052/I155. Comparações diretas incorretas entre COD_AGL e COD_CTA foram removidas.
+- Data: 2026-07-29
+- Ação: ajuste de homologação.
+- Resumo: a API de importação passou a rejeitar ECDs inelegíveis ao fluxo CAPAG-E anual antes de persistir (`OBRIGATORIO_AUSENTE`, `NAO_OBRIGATORIO`, `ESTRUTURA_INVALIDA`) e a retornar erro objetivo com `balance_status` e limitações. `DIVERGENTE` permanece consultável pela API do balanço para diagnóstico.
 
 ## Arquivos Alterados
 
@@ -29,7 +32,10 @@
 - `backend/tests/test_app_bootstrap.py`
 - `backend/tests/test_declared_api.py`
 - `backend/tests/test_declared_end_to_end.py`
+- `backend/tests/test_ecd_import_api.py`
 - `backend/tests/test_declared_run_service.py`
+- `backend/app/api/imports.py`
+- `backend/app/application/ecd_balance_preflight.py`
 
 ## Validações
 
@@ -39,6 +45,10 @@
   - Resultado: 260 testes aprovados.
 - Comando: busca por `float`, warnings removidos e `git diff --check`.
   - Resultado: nenhuma ocorrência proibida ou inconsistência de whitespace.
+- Comando: `docker compose --profile test run --rm backend-tests`.
+  - Resultado: 279 testes aprovados.
+- Comando: `git diff --check`.
+  - Resultado: aprovado, sem inconsistência de whitespace.
 
 ## Pendências Ou Bloqueios
 

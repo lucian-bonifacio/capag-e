@@ -129,14 +129,34 @@ Decisao:
 
 ### 1. Tratamento De Cada `balance_status`
 
-O usuario nao conseguiu tomar decisao final sobre o tratamento visual e
-funcional dos estados:
+Decisao tomada em 2026-07-29:
 
-- `VALIDO`;
-- `DIVERGENTE`;
-- `OBRIGATORIO_AUSENTE`;
-- `ESTRUTURA_INVALIDA`;
-- `NAO_OBRIGATORIO`.
+- `VALIDO`: fluxo normal. A importacao gera analise utilizavel e permite
+  resultado anual final PLRA/CAPAG-E.
+- `OBRIGATORIO_AUSENTE`: falha de importacao/preparacao. Se o Bloco J era
+  obrigatorio e o `J100` esta ausente, a ECD deve ser rejeitada antes de criar
+  analise utilizavel. Mensagem-base: "ECD rejeitada: Balanco Patrimonial
+  obrigatorio ausente. Envie uma ECD corrigida ou substituta."
+- `NAO_OBRIGATORIO`: falha de elegibilidade da importacao. Para CAPAG-E, a ECD
+  deve cobrir o exercicio anual encerrado e conter Bloco J. Mensagem-base:
+  "ECD rejeitada: o arquivo nao cobre o encerramento anual necessario para
+  analise CAPAG-E. Envie a ECD do exercicio encerrado contendo o Bloco J."
+- `ESTRUTURA_INVALIDA`: falha de importacao/preparacao. A ECD enviada ao CAPAG
+  deve ter sido previamente transmitida/validada no ambiente oficial da Receita
+  Federal/PGE do SPED. Estrutura `J100` invalida nao deve gerar analise
+  navegavel. Mensagem-base: "ECD rejeitada: o Balanco Patrimonial declarado no
+  J100 nao possui estrutura valida para analise CAPAG-E. Envie a ECD anual
+  transmitida/validada no PGE do SPED ou uma ECD substituta valida."
+- `DIVERGENTE`: a importacao conclui e cria analise diagnostica. A arvore
+  `J100` permanece navegavel, linhas problematicas devem ser destacadas, e os
+  componentes `I050/I052/I155` devem abrir sob demanda. Nao ha correcao manual
+  na camada declarada e a CAPAG-E final nao deve ser emitida nesse fluxo.
+
+Requisito de produto consolidado:
+
+- para analise CAPAG-E, a ECD importada deve corresponder ao exercicio anual
+  encerrado e ter sido previamente transmitida/validada no ambiente oficial da
+  Receita Federal/PGE do SPED.
 
 Ponto sensivel:
 
@@ -147,11 +167,9 @@ Ponto sensivel:
 
 Proposta em discussao, ainda nao aprovada:
 
-- tratar cada `balance_status` de forma especifica na UI;
-- estados diferentes de `VALIDO` nao escondem a analise nem impedem auditoria;
-- usar linguagem como "resultado final indisponivel", "base declarada em
-  diagnostico", "calculo exibido para conferencia" ou "nao emitir como
-  resultado final", evitando a leitura de que todo calculo desaparece.
+- criar regra governada futura para permitir CAPAG-E com divergencia auditada,
+  se aplicavel. Essa regra nao pertence a camada declarada pura e exige decisao
+  propria, pois altera elegibilidade/metodologia do resultado final.
 
 ### 2. Especificacao Futura Para Simulacoes Manuais
 
@@ -177,3 +195,60 @@ Ainda precisa ser decidido, em fluxo governado proprio:
    receber autorizacao expressa do usuario para um recorte especifico.
 6. Apos decisao, enquadrar o ajuste como ajuste da homologacao do grupo
    `TASK-101` a `TASK-108`, afetando principalmente a `TASK-106`.
+
+## Rodada De Ajuste Visual - 2026-07-29
+
+Decisao do usuario:
+
+- a tela ajustada nao ficou parecida com a tela anterior;
+- foi autorizada a recuperacao do padrao visual anterior.
+
+Ajuste executado:
+
+- restaurado o padrao de tela com indicadores superiores, busca, alternancia
+  `Duas colunas`/`Livro-razao`, cards de grupo e arvore expansivel;
+- preservado o contrato da camada declarada: sem switches, sem calculo local e
+  com componentes `I050/I052/I155` abertos sob demanda;
+- mantido `DIVERGENTE` como diagnostico navegavel, com resultado anual
+  indisponivel nesse fluxo.
+
+Validacoes:
+
+- `docker compose --profile test run --rm frontend-tests`: 28 testes aprovados
+  e build de producao concluido;
+- `docker compose --profile test run --rm frontend-e2e`: 9 testes Playwright
+  aprovados;
+- `git diff --check`: aprovado;
+- busca por `parseFloat` e `float(` nos arquivos alterados: nenhuma ocorrencia
+  encontrada.
+
+## Rodada De Correcao De Fidelidade Visual - 2026-07-29
+
+Nova reprovação do usuario:
+
+- a visualizacao `Duas colunas` ainda estava diferente da tela anterior;
+- os cards dos microgrupos estavam ruins;
+- a fonte, espacamentos e composicao visual divergiam do padrao anterior;
+- grupos sinteticos apareciam repetidos, por exemplo `Ativo Circulante`.
+
+Ajuste executado:
+
+- a rota voltou a usar os componentes visuais anteriores `BalanceGroup`,
+  `AccountRow` e `BalanceLedger`;
+- `AccountRow` recebeu suporte opcional para ocultar o switch somente na camada
+  declarada, preservando o comportamento padrao das demais telas;
+- a apresentacao dos grupos foi reorganizada para usar macrogrupos como cards
+  e mostrar os sinteticos mais profundos como linhas, evitando repeticao
+  artificial da cadeia sintetica;
+- o contrato novo foi preservado: valores vindos da API, sem recalculo local e
+  componentes `I050/I052/I155` sob demanda.
+
+Validacoes:
+
+- `docker compose --profile test run --rm frontend-tests`: 28 testes aprovados
+  e build de producao concluido;
+- `docker compose --profile test run --rm frontend-e2e`: 9 testes Playwright
+  aprovados;
+- `git diff --check`: aprovado;
+- busca por `parseFloat` e `float(` nos arquivos alterados: nenhuma ocorrencia
+  encontrada.
