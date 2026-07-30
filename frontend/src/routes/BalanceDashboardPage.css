@@ -16,12 +16,6 @@
   justify-content: space-between;
 }
 
-.indicators-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
-}
-
 .topbar-actions,
 .topbar-title-row,
 .balance-header-row,
@@ -82,37 +76,39 @@
 
 .declared-status-panel {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: var(--space-6);
-  padding: var(--space-5) var(--space-6);
+  gap: var(--space-5);
+  padding: var(--space-4);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--surface-card);
-  box-shadow: var(--shadow-xs);
 }
 
 .declared-status-heading {
   display: flex;
   align-items: flex-start;
-  gap: var(--space-3);
+  gap: var(--space-2);
+  min-width: 260px;
 }
 
 .declared-status-heading > svg {
   color: var(--text-secondary);
-  margin-top: var(--space-1);
+  margin-top: 2px;
 }
 
 .declared-status-title {
   margin-top: var(--space-1);
   color: var(--text-secondary);
   font-size: var(--text-sm);
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
 .declared-status-meta {
   display: grid;
-  grid-template-columns: repeat(4, minmax(132px, 1fr));
-  gap: var(--space-6);
+  grid-template-columns: repeat(4, minmax(112px, 1fr));
+  gap: var(--space-4);
   margin: 0;
 }
 
@@ -131,7 +127,8 @@
 .declared-status-meta dd {
   margin: 0;
   color: var(--text-primary);
-  font-weight: var(--weight-semibold);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
 }
 
 .declared-limitations {
@@ -525,6 +522,17 @@
   gap: var(--space-1);
 }
 
+.components-table td:first-child strong {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.component-status-badge {
+  width: max-content;
+}
+
 .components-table .numeric {
   text-align: right;
 }
@@ -553,9 +561,6 @@
     grid-template-columns: 1fr;
   }
 
-  .indicators-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (max-width: 720px) {
@@ -569,10 +574,6 @@
 
   .declared-status-meta,
   .component-summary {
-    grid-template-columns: 1fr;
-  }
-
-  .indicators-grid {
     grid-template-columns: 1fr;
   }
 

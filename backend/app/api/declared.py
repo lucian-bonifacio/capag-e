@@ -21,7 +21,7 @@ from app.application.declared_balance_service import (
     get_declared_balance,
 )
 from app.db.session import SessionLocal
-from app.domain import DeclaredBalanceRow
+from app.domain import BalanceComponent, DeclaredBalanceRow
 from app.engine.methodology_matcher import MethodologyRule, OfficialReferenceAccount
 from app.export import serialize_declared_layer_workbook
 from app.schemas.declared import (
@@ -285,7 +285,7 @@ def list_declared_balance_components(
         analysis_id=analysis_id,
         year=year,
         aggregation_code=aggregation_code,
-        rows=list(row.components),
+        rows=list(_collect_balance_components(row)),
     )
 
 
@@ -353,3 +353,15 @@ def _find_balance_row(
         if child is not None:
             return child
     return None
+
+
+def _collect_balance_components(
+    row: DeclaredBalanceRow,
+) -> tuple[BalanceComponent, ...]:
+    if row.aggregation_code_type == "D":
+        return row.components
+
+    components: list[BalanceComponent] = []
+    for child in row.children:
+        components.extend(_collect_balance_components(child))
+    return tuple(components)

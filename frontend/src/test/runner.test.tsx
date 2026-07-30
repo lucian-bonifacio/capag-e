@@ -36,24 +36,45 @@ const balanceResponse: DeclaredBalanceResponse = {
       component_count: 0,
       children: [
         {
-          aggregation_code: "AGL-CAIXA",
-          aggregation_code_type: "D",
+          aggregation_code: "ATIVO-CIRC",
+          aggregation_code_type: "T",
           aggregation_level: 2,
           parent_aggregation_code: "ATIVO",
           balance_group: "A",
-          description: "Banco conta movimento",
+          description: "Ativo circulante",
           initial_amount: "100.00",
           initial_debit_credit_indicator: "D",
           final_amount: "800.00",
           final_debit_credit_indicator: "D",
-          explanatory_note_reference: "N1",
+          explanatory_note_reference: null,
           line_number: 31,
           structural_status: "VALIDA",
-          reconciliation_status: "CONCILIADA",
-          reconciled_amount: "800.00",
-          difference: "0.00",
-          component_count: 1,
-          children: [],
+          reconciliation_status: null,
+          reconciled_amount: null,
+          difference: null,
+          component_count: 0,
+          children: [
+            {
+              aggregation_code: "AGL-CAIXA",
+              aggregation_code_type: "D",
+              aggregation_level: 3,
+              parent_aggregation_code: "ATIVO-CIRC",
+              balance_group: "A",
+              description: "Banco conta movimento",
+              initial_amount: "100.00",
+              initial_debit_credit_indicator: "D",
+              final_amount: "800.00",
+              final_debit_credit_indicator: "D",
+              explanatory_note_reference: "N1",
+              line_number: 32,
+              structural_status: "VALIDA",
+              reconciliation_status: "CONCILIADA",
+              reconciled_amount: "800.00",
+              difference: "0.00",
+              component_count: 1,
+              children: [],
+            },
+          ],
         },
       ],
     },
@@ -148,8 +169,8 @@ describe("declared balance route", () => {
     expect(
       await screen.findByRole("heading", { name: "Balanço Patrimonial" }),
     ).toBeInTheDocument();
-    expect(await screen.findAllByText("Válido")).toHaveLength(2);
-    expect(screen.getByText("Banco conta movimento")).toBeInTheDocument();
+    expect(await screen.findByText("Válido")).toBeInTheDocument();
+    expect(screen.getByText("Banco Conta Movimento")).toBeInTheDocument();
     expect(screen.getByText("Capital social")).toBeInTheDocument();
     expect(screen.getAllByText("R$ 800,00")[0]).toHaveClass("tnum");
     expect(screen.getByText("AGL-CAIXA")).toHaveClass("tnum");
@@ -187,6 +208,28 @@ describe("declared balance route", () => {
     );
   });
 
+  it("loads descendant analytic components when auditing a totalizer", async () => {
+    const fetchMock = mockBalanceApi();
+
+    render(<App />);
+    const totalizerButtons = await screen.findAllByRole("button", {
+      name: "Auditar grupo Ativo circulante",
+    });
+    fireEvent.click(totalizerButtons[0]);
+
+    expect(
+      await screen.findByRole("dialog", {
+        name: "Componentes — Ativo circulante",
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Código de aglutinação ATIVO-CIRC")).toHaveClass("tnum");
+    expect(screen.getByText("1.01.01.001")).toHaveClass("tnum");
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/v1/analyses/7/exercises/2024/declared/balance/accounts/ATIVO-CIRC/components",
+      undefined,
+    );
+  });
+
   it("shows divergent balances as navigable diagnostics", async () => {
     mockBalanceApi({
       ...balanceResponse,
@@ -198,9 +241,14 @@ describe("declared balance route", () => {
           children: [
             {
               ...balanceResponse.rows[0].children[0],
-              reconciliation_status: "DIVERGENTE",
-              reconciled_amount: "775.00",
-              difference: "25.00",
+              children: [
+                {
+                  ...balanceResponse.rows[0].children[0].children[0],
+                  reconciliation_status: "DIVERGENTE",
+                  reconciled_amount: "775.00",
+                  difference: "25.00",
+                },
+              ],
             },
           ],
         },
@@ -210,16 +258,17 @@ describe("declared balance route", () => {
 
     render(<App />);
 
-    expect(await screen.findAllByText("Conciliação pendente")).toHaveLength(2);
-    expect(screen.getByText("Resultado anual indisponível")).toBeInTheDocument();
+    expect(await screen.findByText("Conciliação pendente")).toBeInTheDocument();
+    expect(screen.getByText("Resultado anual")).toBeInTheDocument();
     expect(screen.getByText("Indisponível")).toBeInTheDocument();
     expect(screen.getByText("Divergente")).toBeInTheDocument();
-    expect(screen.getByText("Banco conta movimento")).toBeInTheDocument();
+    expect(screen.queryByText("Banco Conta Movimento")).not.toBeInTheDocument();
+    expect(screen.getByText("Ativo Circulante")).toBeInTheDocument();
     expect(
-      screen.getAllByRole("button", {
-        name: "Auditar conta Banco conta movimento",
-      }).length,
-    ).toBeGreaterThan(0);
+      screen.getByRole("button", {
+        name: "Auditar item com problema Ativo circulante: Divergente. Código de aglutinação ATIVO-CIRC",
+      }),
+    ).toBeInTheDocument();
   });
 
   it("shows an objective empty state and backend limitations", async () => {
@@ -236,7 +285,7 @@ describe("declared balance route", () => {
 
     render(<App />);
 
-    expect(await screen.findAllByText("Balanço ausente")).toHaveLength(2);
+    expect(await screen.findByText("Balanço ausente")).toBeInTheDocument();
     expect(screen.getByText("Balanço J100 obrigatório ausente.")).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "Balanço declarado indisponível" }),

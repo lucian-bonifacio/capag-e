@@ -64,6 +64,7 @@
 
 .balance-group-total {
   font-size: var(--text-base);
+  white-space: nowrap;
 }
 
 .balance-group-audit {
@@ -98,7 +99,10 @@
 
 .balance-group-ledger .balance-group-header {
   display: grid;
-  grid-template-columns: 1fr 60px 140px auto;
+  grid-template-columns: var(
+    --balance-ledger-columns,
+    minmax(0, 1fr) 60px 168px 44px
+  );
   align-items: center;
   gap: var(--space-4);
   background-color: var(--surface-muted);
@@ -126,8 +130,6 @@
 }
 
 .balance-group-ledger .balance-group-actions {
-  display: grid;
-  grid-template-columns: 70px 70px;
-  justify-items: center;
-  gap: 0;
+  display: flex;
+  justify-content: center;
 }

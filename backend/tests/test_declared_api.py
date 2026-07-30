@@ -182,6 +182,34 @@ def test_declared_balance_components_endpoint_returns_audit_sources(monkeypatch)
     }
 
 
+def test_declared_balance_components_endpoint_aggregates_totalizer_descendants(
+    monkeypatch,
+) -> None:
+    monkeypatch.setattr("app.api.declared.get_declared_balance", lambda *args, **kwargs: _balance())
+    client = TestClient(app)
+
+    response = client.get(
+        "/api/v1/analyses/analysis-1/exercises/2024/declared/"
+        "balance/accounts/ATIVO/components"
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["aggregation_code"] == "ATIVO"
+    assert payload["rows"] == [
+        {
+            "account_code": "100",
+            "account_name": "Caixa",
+            "cost_center_code": "CC01",
+            "final_amount": "800.00",
+            "final_debit_credit_indicator": "D",
+            "signed_final_amount": "800.00",
+            "i052_line_number": 20,
+            "i155_line_number": 25,
+        }
+    ]
+
+
 def test_declared_balance_components_endpoint_returns_explicit_missing_row(monkeypatch) -> None:
     monkeypatch.setattr("app.api.declared.get_declared_balance", lambda *args, **kwargs: _balance())
     client = TestClient(app)

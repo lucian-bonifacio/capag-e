@@ -28,13 +28,14 @@ Regras:
 Ao iniciar a próxima sessão:
 
 1. Ler integralmente o
-   `logs/LOG-ESPECIAL-001-29.07.2026-23h16min.md`.
-2. Informar ao usuário que o Log Especial de retomada final foi consultado.
-3. Retomar a homologação do grupo `TASK-101` a `TASK-108` da `SPEC-012`.
-4. Perguntar se a tela atual do Balanço Patrimonial declarado está homologada.
-5. Antes de seguir para novas execuções, tratar a pendência obrigatória de criar
-   TASK governada para melhorar os gates das skills em ajustes de
-   frontend/design, se o usuário confirmar.
+   `logs/LOG-ESPECIAL-002-30.07.2026-16h50min.md`.
+2. Informar ao usuário que o Log Especial de pendências pós-homologação foi
+   consultado.
+3. Tratar primeiro a pendência obrigatória de criar TASK governada para melhorar
+   os gates das skills em ajustes de frontend/design/UI/UX.
+4. Pedir confirmação explícita antes de criar qualquer TASK.
+5. Após resolver a pendência obrigatória, recalcular a próxima tarefa pelo fluxo
+   normal deste roadmap.
 
 ## Lista De Tarefas
 
@@ -433,43 +434,43 @@ Ao iniciar a próxima sessão:
     - Task: `tasks/TASK-093-desenhar-crud-controlado-plano-referencial.md`
     - Log: `logs/LOG-093-desenhar-crud-controlado-plano-referencial.md`
 
-80. [ ] Ampliar parser do balanco declarado
-    - Status: aguardando_homologacao
+80. [x] Ampliar parser do balanco declarado
+    - Status: concluido
     - Task: `tasks/TASK-101-ampliar-parser-balanco-declarado.md`
     - Log: `logs/LOG-101-ampliar-parser-balanco-declarado.md`
 
-81. [ ] Persistir ECD e balanco declarado
-    - Status: aguardando_homologacao
+81. [x] Persistir ECD e balanco declarado
+    - Status: concluido
     - Task: `tasks/TASK-102-persistir-ecd-balanco-declarado.md`
     - Log: `logs/LOG-102-persistir-ecd-balanco-declarado.md`
 
-82. [ ] Reprocessar importacoes ECD legadas
-    - Status: aguardando_homologacao
+82. [x] Reprocessar importacoes ECD legadas
+    - Status: concluido
     - Task: `tasks/TASK-103-reprocessar-importacoes-ecd-legadas.md`
     - Log: `logs/LOG-103-reprocessar-importacoes-ecd-legadas.md`
 
-83. [ ] Implementar conciliacao do balanco declarado
-    - Status: aguardando_homologacao
+83. [x] Implementar conciliacao do balanco declarado
+    - Status: concluido
     - Task: `tasks/TASK-104-implementar-conciliacao-balanco-declarado.md`
     - Log: `logs/LOG-104-implementar-conciliacao-balanco-declarado.md`
 
-84. [ ] Criar API do balanco declarado
-    - Status: aguardando_homologacao
+84. [x] Criar API do balanco declarado
+    - Status: concluido
     - Task: `tasks/TASK-105-criar-api-balanco-declarado.md`
     - Log: `logs/LOG-105-criar-api-balanco-declarado.md`
 
-85. [ ] Criar UI do balanco declarado
-    - Status: aguardando_homologacao
+85. [x] Criar UI do balanco declarado
+    - Status: concluido
     - Task: `tasks/TASK-106-criar-ui-balanco-declarado.md`
     - Log: `logs/LOG-106-criar-ui-balanco-declarado.md`
 
-86. [ ] Integrar validade do balanco ao PLRA e CAPAG-E
-    - Status: aguardando_homologacao
+86. [x] Integrar validade do balanco ao PLRA e CAPAG-E
+    - Status: concluido
     - Task: `tasks/TASK-107-integrar-validade-balanco-plra-capag.md`
     - Log: `logs/LOG-107-integrar-validade-balanco-plra-capag.md`
 
-87. [ ] Validar fluxo do balanco declarado
-    - Status: aguardando_homologacao
+87. [x] Validar fluxo do balanco declarado
+    - Status: concluido
     - Task: `tasks/TASK-108-validar-fluxo-balanco-declarado.md`
     - Log: `logs/LOG-108-validar-fluxo-balanco-declarado.md`
 

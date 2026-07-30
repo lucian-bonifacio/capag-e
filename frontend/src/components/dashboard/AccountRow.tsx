@@ -12,6 +12,7 @@ export type AccountRowProps = {
   isIncluded: boolean;
   onToggleInclude: (included: boolean) => void;
   onAudit: () => void;
+  auditLabel?: string;
   showSwitch?: boolean;
   statusLabel?: string;
   statusVariant?: "success" | "warning" | "danger";
@@ -42,6 +43,7 @@ export function AccountRow({
   isIncluded,
   onToggleInclude,
   onAudit,
+  auditLabel,
   showSwitch = true,
   statusLabel,
   statusVariant,
@@ -88,7 +90,8 @@ export function AccountRow({
           type="button"
           className="button-ghost button-sm account-row-audit"
           onClick={onAudit}
-          aria-label={`Auditar conta ${accountName}`}
+          aria-label={auditLabel ?? `Auditar conta ${accountName}`}
+          title={auditLabel ?? `Auditar conta ${accountName}`}
         >
           <ClipboardCheck aria-hidden="true" size={16} />
         </button>

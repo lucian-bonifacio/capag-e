@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-108-validar-fluxo-balanco-declarado.md`
 - SPEC: `specs/SPEC-012-modulo-1c-balanco-patrimonial-declarado.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -34,6 +34,21 @@
 - Data: 2026-07-29
 - Ação: validação de correção de reprovação visual.
 - Resumo: a tela foi recomposta com os componentes visuais anteriores da dashboard, mantendo apenas as restrições novas da SPEC-012. Os testes unitários e E2E foram atualizados para o padrão antigo de auditoria por ícone/botão acessível, sem switches.
+- Data: 2026-07-30
+- Ação: validação de ajuste visual em homologação.
+- Resumo: após autorização do usuário no flow de homologação, os cards iniciais redundantes de Ativo e Passivo + PL foram removidos da tela do Balanço Patrimonial declarado. O painel de status foi compactado e os testes unitários/E2E foram ajustados para validar status único no topo, mantendo a árvore J100 e a auditoria de componentes.
+- Data: 2026-07-30
+- Ação: validação de ajuste de auditoria em homologação.
+- Resumo: a auditoria de totalizadores `J100` passou a retornar os componentes analíticos dos detalhes descendentes. A validação cobriu API, UI unitária e E2E para garantir que totalizadores apresentados como resumo abrem contas `I050/I052/I155` sem cálculo no frontend.
+- Data: 2026-07-30
+- Ação: validação de ajuste visual em homologação.
+- Resumo: o alinhamento do modo `Livro-razão` foi corrigido para reservar coluna própria ao botão de auditoria, evitando sobreposição com os valores. A validação cobriu testes frontend/build, E2E e verificação de whitespace.
+- Data: 2026-07-30
+- Ação: validação de ajuste visual em homologação.
+- Resumo: a grade do modo `Livro-razão` foi unificada entre macrogrupos e microgrupos, com coluna de valor ampliada e sem quebra de linha. A validação cobriu testes frontend/build, E2E e verificação de whitespace.
+- Data: 2026-07-30
+- Ação: validação de ajuste de auditoria visual.
+- Resumo: a tela mantém a apresentação principal nos totalizadores/microgrupos, com badge herdado quando há detalhe descendente problemático. A conta analítica problemática é destacada somente no diálogo de auditoria. A validação cobriu testes frontend/build, E2E e verificação de whitespace.
 
 ## Arquivos Alterados
 
@@ -56,6 +71,14 @@
 - `backend/tests/test_ecd_import_api.py`
 - `backend/tests/test_ecd_parser.py`
 - `backend/tests/test_ecd_reprocessing.py`
+- `backend/app/api/declared.py`
+- `backend/tests/test_declared_api.py`
+- `frontend/e2e/declared-layer.spec.ts`
+- `frontend/src/components/dashboard/AccountRow.css`
+- `frontend/src/components/dashboard/BalanceGroup.css`
+- `frontend/src/components/dashboard/BalanceLedger.css`
+- `frontend/src/routes/BalanceDashboardPage.css`
+- `frontend/src/routes/BalanceDashboardPage.tsx`
 - `frontend/src/test/runner.test.tsx`
 - `task-108-datapack-valid.png`
 - `task-108-inventcloud-divergent.png`
@@ -80,6 +103,42 @@
   - Resultado: 28 testes aprovados e build de produção concluído.
 - Comando: `docker compose --profile test run --rm frontend-e2e`.
   - Resultado: 9 testes Playwright aprovados.
+- Comando: `git diff --check`.
+  - Resultado: aprovado, sem inconsistência de whitespace.
+- Comando: `docker compose --profile test run --rm frontend-tests`.
+  - Resultado: 29 testes aprovados e build de produção concluído após destacar totalizador problemático sem inserir conta analítica na apresentação principal.
+- Comando: `docker compose --profile test run --rm frontend-e2e`.
+  - Resultado: 11 testes Playwright aprovados, incluindo cenário em que a analítica com `Sem saldo I155` aparece destacada apenas no diálogo de auditoria.
+- Comando: `git diff --check`.
+  - Resultado: aprovado, sem inconsistência de whitespace.
+- Comando: `docker compose --profile test run --rm frontend-tests`.
+  - Resultado: 29 testes aprovados e build de produção concluído após alinhamento compartilhado entre macrogrupo e microgrupos do modo `Livro-razão`.
+- Comando: `docker compose --profile test run --rm frontend-e2e`.
+  - Resultado: 10 testes Playwright aprovados após impedir quebra de linha em valores monetários no modo `Livro-razão`.
+- Comando: `git diff --check`.
+  - Resultado: aprovado, sem inconsistência de whitespace.
+- Comando: busca por `parseFloat` e `float(` nos arquivos alterados.
+  - Resultado: nenhuma ocorrência encontrada.
+- Comando: `docker compose --profile test run --rm frontend-tests`.
+  - Resultado: 29 testes aprovados e build de produção concluído após realinhamento das colunas do modo `Livro-razão`.
+- Comando: `docker compose --profile test run --rm frontend-e2e`.
+  - Resultado: 10 testes Playwright aprovados após ajuste do botão de auditoria no modo `Livro-razão`.
+- Comando: `git diff --check`.
+  - Resultado: aprovado, sem inconsistência de whitespace.
+- Comando: `docker compose --profile test run --rm backend-tests`.
+  - Resultado: 280 testes aprovados, incluindo auditoria de componentes agregados de totalizador.
+- Comando: `docker compose --profile test run --rm frontend-tests`.
+  - Resultado: 29 testes aprovados e build de produção concluído, incluindo auditoria de totalizador.
+- Comando: `docker compose --profile test run --rm frontend-e2e`.
+  - Resultado: 10 testes Playwright aprovados, incluindo auditoria de totalizador com componentes analíticos descendentes.
+- Comando: `git diff --check`.
+  - Resultado: aprovado, sem inconsistência de whitespace.
+- Comando: busca por `parseFloat` e `float(` nos arquivos alterados.
+  - Resultado: nenhuma ocorrência encontrada.
+- Comando: `docker compose --profile test run --rm frontend-tests`.
+  - Resultado: 28 testes aprovados e build de produção concluído após suavização do topo da tela.
+- Comando: `docker compose --profile test run --rm frontend-e2e`.
+  - Resultado: 9 testes Playwright aprovados após ajuste dos asserts de status único no painel compacto.
 - Comando: `git diff --check`.
   - Resultado: aprovado, sem inconsistência de whitespace.
 - Comando: busca por `parseFloat` e `float(` nos arquivos alterados.
@@ -107,7 +166,7 @@
 
 ## Homologação
 
-- Status: aguardando_homologacao
-- Data: 2026-07-29
-- Decisão do usuário: homologação adiada para a próxima sessão.
-- Observação: a retomada consolidada foi transferida para `logs/LOG-ESPECIAL-retomada-homologacao-spec-012.md`.
+- Status: aprovado
+- Data: 2026-07-30
+- Decisão do usuário: grupo `TASK-101` a `TASK-108` homologado após validações e ajustes finais de UI/auditoria.
+- Observação: TASK concluída por homologação consolidada do grupo.

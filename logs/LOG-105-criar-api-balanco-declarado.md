@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-105-criar-api-balanco-declarado.md`
 - SPEC: `specs/SPEC-012-modulo-1c-balanco-patrimonial-declarado.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -23,6 +23,9 @@
 - Data: 2026-07-29
 - Ação: ajuste de homologação.
 - Resumo: a API de importação passou a rejeitar ECDs inelegíveis ao fluxo CAPAG-E anual antes de persistir (`OBRIGATORIO_AUSENTE`, `NAO_OBRIGATORIO`, `ESTRUTURA_INVALIDA`) e a retornar erro objetivo com `balance_status` e limitações. `DIVERGENTE` permanece consultável pela API do balanço para diagnóstico.
+- Data: 2026-07-30
+- Ação: ajuste de homologação.
+- Resumo: a rota de componentes do balanço passou a agregar, quando o código consultado é um totalizador `J100`, os componentes analíticos `I050/I052/I155` dos detalhes descendentes. Linhas de detalhe continuam retornando seus próprios componentes; o frontend permanece sem cálculo ou reconstrução local.
 
 ## Arquivos Alterados
 
@@ -49,6 +52,12 @@
   - Resultado: 279 testes aprovados.
 - Comando: `git diff --check`.
   - Resultado: aprovado, sem inconsistência de whitespace.
+- Comando: `docker compose --profile test run --rm backend-tests`.
+  - Resultado: 280 testes aprovados, incluindo auditoria de componentes agregados de totalizador.
+- Comando: `git diff --check`.
+  - Resultado: aprovado, sem inconsistência de whitespace.
+- Comando: busca por `parseFloat` e `float(` nos arquivos alterados.
+  - Resultado: nenhuma ocorrência encontrada.
 
 ## Pendências Ou Bloqueios
 
@@ -56,7 +65,7 @@
 
 ## Homologação
 
-- Status: aguardando_homologacao
-- Data: 2026-07-29
-- Decisão do usuário: grupo TASK-101 a TASK-108 autorizado para execução contínua.
-- Observação: homologação consolidada será solicitada ao final do grupo.
+- Status: aprovado
+- Data: 2026-07-30
+- Decisão do usuário: grupo `TASK-101` a `TASK-108` homologado após ajuste de auditoria de totalizadores.
+- Observação: TASK concluída por homologação consolidada do grupo.

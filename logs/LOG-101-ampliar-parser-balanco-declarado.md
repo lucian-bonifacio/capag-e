@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-101-ampliar-parser-balanco-declarado.md`
 - SPEC: `specs/SPEC-012-modulo-1c-balanco-patrimonial-declarado.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -40,7 +40,7 @@
 
 ## Homologação
 
-- Status: aguardando_homologacao
-- Data: 2026-07-29
-- Decisão do usuário: execução em grupo autorizada para `TASK-101` a `TASK-108`.
-- Observação: continuidade automática para a `TASK-102`.
+- Status: aprovado
+- Data: 2026-07-30
+- Decisão do usuário: grupo `TASK-101` a `TASK-108` homologado.
+- Observação: TASK concluída por homologação consolidada do grupo.

@@ -32,24 +32,45 @@ const declaredBalance = {
       component_count: 0,
       children: [
         {
-          aggregation_code: "AGL-CAIXA",
-          aggregation_code_type: "D",
+          aggregation_code: "ATIVO-CIRC",
+          aggregation_code_type: "T",
           aggregation_level: 2,
           parent_aggregation_code: "ATIVO",
           balance_group: "A",
-          description: "Banco conta movimento",
+          description: "Ativo circulante",
           initial_amount: "100.00",
           initial_debit_credit_indicator: "D",
           final_amount: "800.00",
           final_debit_credit_indicator: "D",
-          explanatory_note_reference: "N1",
+          explanatory_note_reference: null,
           line_number: 31,
           structural_status: "VALIDA",
-          reconciliation_status: "CONCILIADA",
-          reconciled_amount: "800.00",
-          difference: "0.00",
-          component_count: 1,
-          children: [],
+          reconciliation_status: null,
+          reconciled_amount: null,
+          difference: null,
+          component_count: 0,
+          children: [
+            {
+              aggregation_code: "AGL-CAIXA",
+              aggregation_code_type: "D",
+              aggregation_level: 3,
+              parent_aggregation_code: "ATIVO-CIRC",
+              balance_group: "A",
+              description: "Banco conta movimento",
+              initial_amount: "100.00",
+              initial_debit_credit_indicator: "D",
+              final_amount: "800.00",
+              final_debit_credit_indicator: "D",
+              explanatory_note_reference: "N1",
+              line_number: 32,
+              structural_status: "VALIDA",
+              reconciliation_status: "CONCILIADA",
+              reconciled_amount: "800.00",
+              difference: "0.00",
+              component_count: 1,
+              children: [],
+            },
+          ],
         },
       ],
     },
@@ -115,7 +136,7 @@ test("exibe a arvore J100 sem switches ou recalculo local", async ({ page }) => 
   releaseBalance();
 
   await expect(page.getByRole("heading", { name: "Balanço Patrimonial" })).toBeVisible();
-  await expect(page.getByText("Válido")).toHaveCount(2);
+  await expect(page.getByText("Válido")).toBeVisible();
   await expect(page.getByText("Banco Conta Movimento", { exact: true })).toBeVisible();
   await expect(page.getByText("Capital Social", { exact: true })).toBeVisible();
   await expect(page.getByRole("radio", { name: "Duas colunas" })).toBeVisible();
@@ -165,6 +186,103 @@ test("abre os componentes I050 I052 e I155 sob demanda", async ({ page }) => {
   await expect(page.getByText(/I052 linha 5/)).toBeVisible();
 });
 
+test("abre componentes analiticos descendentes ao auditar totalizador", async ({ page }) => {
+  await page.route(
+    "**/api/v1/analyses/7/exercises/2024/declared/balance/accounts",
+    async (route) => route.fulfill({ json: declaredBalance }),
+  );
+  await page.route(
+    "**/api/v1/analyses/7/exercises/2024/declared/balance/accounts/ATIVO-CIRC/components",
+    async (route) =>
+      route.fulfill({
+        json: {
+          analysis_id: "7",
+          year: 2024,
+          aggregation_code: "ATIVO-CIRC",
+          rows: [
+            {
+              account_code: "1.01.01.001",
+              account_name: "Banco conta movimento",
+              cost_center_code: "CC01",
+              final_amount: "800.00",
+              final_debit_credit_indicator: "D",
+              signed_final_amount: "800.00",
+              i052_line_number: 5,
+              i155_line_number: 9,
+            },
+          ],
+        },
+      }),
+  );
+
+  await page.goto("/analises/7/exercicios/2024/declarada");
+  await page.getByRole("button", { name: "Auditar grupo Ativo circulante" }).click();
+
+  await expect(page.getByRole("dialog", { name: "Componentes — Ativo circulante" })).toBeVisible();
+  await expect(page.getByText("Código de aglutinação ATIVO-CIRC")).toBeVisible();
+  await expect(page.getByText("1.01.01.001")).toBeVisible();
+  await expect(page.getByText(/I052 linha 5/)).toBeVisible();
+});
+
+test("destaca linhas de detalhe com problema de conciliacao", async ({ page }) => {
+  const divergentBalance = JSON.parse(JSON.stringify(declaredBalance));
+  divergentBalance.balance_status = "DIVERGENTE";
+  divergentBalance.is_blocking = true;
+  divergentBalance.rows[0].children[0].children[0].reconciliation_status = "SEM_SALDO_I155";
+  divergentBalance.rows[0].children[0].children[0].reconciled_amount = "0.00";
+  divergentBalance.rows[0].children[0].children[0].difference = "800.00";
+
+  await page.route(
+    "**/api/v1/analyses/7/exercises/2024/declared/balance/accounts",
+    async (route) => route.fulfill({ json: divergentBalance }),
+  );
+  await page.route(
+    "**/api/v1/analyses/7/exercises/2024/declared/balance/accounts/ATIVO-CIRC/components",
+    async (route) =>
+      route.fulfill({
+        json: {
+          analysis_id: "7",
+          year: 2024,
+          aggregation_code: "ATIVO-CIRC",
+          rows: [
+            {
+              account_code: "1.01.01.001",
+              account_name: "Banco conta movimento",
+              cost_center_code: "CC01",
+              final_amount: null,
+              final_debit_credit_indicator: null,
+              signed_final_amount: null,
+              i052_line_number: 5,
+              i155_line_number: null,
+            },
+          ],
+        },
+      }),
+  );
+
+  await page.goto("/analises/7/exercicios/2024/declarada");
+
+  await expect(page.getByText("Conciliação pendente")).toBeVisible();
+  await expect(page.getByText("Sem saldo I155")).toBeVisible();
+  await expect(page.getByText("Banco Conta Movimento", { exact: true })).toHaveCount(0);
+
+  const auditProblemButton = page.getByRole("button", {
+    name: "Auditar item com problema Ativo circulante: Sem saldo I155. Código de aglutinação ATIVO-CIRC",
+  });
+  await expect(auditProblemButton).toBeVisible();
+  await auditProblemButton.click();
+
+  await expect(
+    page.getByRole("dialog", { name: "Componentes — Ativo circulante" }),
+  ).toBeVisible();
+  await expect(page.getByRole("dialog").getByText(/Banco conta movimento/)).toBeVisible();
+  await expect(
+    page.getByRole("dialog").locator(".component-status-badge", {
+      hasText: "Sem saldo I155",
+    }),
+  ).toBeVisible();
+});
+
 test("exibe estado bloqueante e limitacao sem fabricar balanco", async ({ page }) => {
   await page.route(
     "**/api/v1/analyses/7/exercises/2024/declared/balance/accounts",
@@ -185,7 +303,7 @@ test("exibe estado bloqueante e limitacao sem fabricar balanco", async ({ page }
 
   await page.goto("/analises/7/exercicios/2024/declarada");
 
-  await expect(page.getByText("Balanço ausente")).toHaveCount(2);
+  await expect(page.getByText("Balanço ausente")).toBeVisible();
   await expect(page.getByText("Balanço J100 obrigatório ausente.")).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Balanço declarado indisponível" }),

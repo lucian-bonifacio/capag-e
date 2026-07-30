@@ -1,12 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
-import { Activity, AlertTriangle, CheckCircle2, ClipboardCheck, Columns, List, Search, Upload, X } from "lucide-react";
+import { AlertTriangle, CheckCircle2, ClipboardCheck, Columns, List, Search, Upload, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import { AccountRow } from "../components/dashboard/AccountRow";
 import { BalanceGroup } from "../components/dashboard/BalanceGroup";
 import { BalanceLedger } from "../components/dashboard/BalanceLedger";
 import { SegmentedControl } from "../components/dashboard/SegmentedControl";
-import { StatCard } from "../components/dashboard/StatCard";
 import {
   fetchDeclaredBalanceComponents,
   type DeclaredBalanceComponentsResponse,
@@ -50,6 +49,12 @@ type DashboardGroup = {
   root: DeclaredBalanceRow;
   rows: DashboardRow[];
   side: "asset" | "liabilityEquity";
+};
+
+type PresentedLineStatus = {
+  code: DeclaredBalanceLineStatus;
+  label: string;
+  variant: "success" | "warning" | "danger";
 };
 
 const BALANCE_STATUS: Record<
@@ -208,7 +213,7 @@ function collectPresentationRows(root: DeclaredBalanceRow): DashboardRow[] {
           ...summaryRows,
           ...collectDetailsOutsideSyntheticBranches(root),
         ].sort(compareRows)
-      : root.children.length > 0
+      : root.children.length > 0 && lineStatusFor(root) === null
         ? root.children
         : [root];
 
@@ -255,12 +260,65 @@ function buildDashboardGroups(rows: DeclaredBalanceRow[], query: string): Dashbo
   });
 }
 
-function lineStatusFor(row: DeclaredBalanceRow) {
-  if (!row.reconciliation_status || row.reconciliation_status === "CONCILIADA") {
+function statusSeverity(status: DeclaredBalanceLineStatus): number {
+  if (status === "SEM_I052" || status === "SEM_SALDO_I155") {
+    return 2;
+  }
+
+  if (status === "DIVERGENTE") {
+    return 1;
+  }
+
+  return 0;
+}
+
+function lineStatusFor(row: DeclaredBalanceRow): PresentedLineStatus | null {
+  const statuses: DeclaredBalanceLineStatus[] = [];
+
+  if (row.reconciliation_status && row.reconciliation_status !== "CONCILIADA") {
+    statuses.push(row.reconciliation_status);
+  }
+
+  for (const child of row.children) {
+    const childStatus = lineStatusFor(child);
+
+    if (childStatus) {
+      statuses.push(childStatus.code);
+    }
+  }
+
+  if (statuses.length === 0) {
     return null;
   }
 
-  return LINE_STATUS[row.reconciliation_status];
+  const code = statuses.sort((a, b) => statusSeverity(b) - statusSeverity(a))[0];
+
+  return {
+    code,
+    ...LINE_STATUS[code],
+  };
+}
+
+function componentStatusFor(
+  component: DeclaredBalanceComponentsResponse["rows"][number],
+  selectedStatus: DeclaredBalanceLineStatus | null,
+  componentCount: number,
+): PresentedLineStatus | null {
+  if (component.i155_line_number === null) {
+    return {
+      code: "SEM_SALDO_I155",
+      ...LINE_STATUS.SEM_SALDO_I155,
+    };
+  }
+
+  if (selectedStatus === "DIVERGENTE" && componentCount === 1) {
+    return {
+      code: "DIVERGENTE",
+      ...LINE_STATUS.DIVERGENTE,
+    };
+  }
+
+  return null;
 }
 
 export function BalanceDashboardPage({
@@ -305,13 +363,15 @@ export function BalanceDashboardPage({
   };
 
   const openComponents = async (row: DeclaredBalanceRow) => {
+    const presentedStatus = lineStatusFor(row);
+
     setSelectedRow({
       aggregationCode: row.aggregation_code,
       description: row.description,
       declaredAmount: row.final_amount,
       reconciledAmount: row.reconciled_amount,
       difference: row.difference,
-      reconciliationStatus: row.reconciliation_status,
+      reconciliationStatus: presentedStatus?.code ?? row.reconciliation_status,
       componentCount: row.component_count,
     });
     setComponents(null);
@@ -380,6 +440,11 @@ export function BalanceDashboardPage({
           statusVariant={status?.variant}
           onToggleInclude={() => undefined}
           onAudit={() => openComponents(row)}
+          auditLabel={
+            status
+              ? `Auditar item com problema ${row.description}: ${status.label}. Código de aglutinação ${row.aggregation_code}`
+              : `Auditar conta ${row.description}`
+          }
           isLedgerMode={viewMode === "ledger"}
         />
       );
@@ -436,56 +501,6 @@ export function BalanceDashboardPage({
       </header>
 
       <main className="app-content balance-dashboard-content">
-        <section className="dashboard-section">
-          <div className="section-header-compact">
-            <h2 className="eyebrow">Indicadores Calculados</h2>
-            {balance.is_blocking && (
-              <span className="status-badge" data-variant="warning">
-                Resultado anual indisponível
-              </span>
-            )}
-          </div>
-
-          <div className="indicators-grid">
-            <StatCard
-              label="Base declarada"
-              value={status.label}
-              hint={status.detail}
-              variant={status.variant}
-              icon={balance.balance_status === "VALIDO" ? CheckCircle2 : AlertTriangle}
-            />
-            <StatCard
-              label="Ativo"
-              value={
-                balance.assets_final_amount === null
-                  ? "N/D"
-                  : formatCurrency(balance.assets_final_amount)
-              }
-              hint="Saldo final J100"
-              variant="neutral"
-              icon={Activity}
-            />
-            <StatCard
-              label="Passivo + PL"
-              value={
-                balance.liabilities_and_equity_final_amount === null
-                  ? "N/D"
-                  : formatCurrency(balance.liabilities_and_equity_final_amount)
-              }
-              hint="Saldo final J100"
-              variant="neutral"
-              icon={Activity}
-            />
-            <StatCard
-              label="Divergências"
-              value={String(problemRows)}
-              hint={`${totalDetails} linhas de detalhe J100`}
-              variant={problemRows > 0 ? "warning" : "success"}
-              icon={Activity}
-            />
-          </div>
-        </section>
-
         <section className="declared-status-panel" aria-live="polite">
           <div className="declared-status-heading">
             {balance.balance_status === "VALIDO" ? (
@@ -715,31 +730,49 @@ export function BalanceDashboardPage({
                       </tr>
                     </thead>
                     <tbody>
-                      {components.rows.map((component) => (
-                        <tr
-                          key={`${component.account_code}-${component.cost_center_code ?? ""}-${component.i052_line_number}`}
-                        >
-                          <td>
-                            <strong>{component.account_name}</strong>
-                            <span className="tnum">{component.account_code}</span>
-                          </td>
-                          <td className="tnum">
-                            {component.cost_center_code ?? "Sem centro de custo"}
-                          </td>
-                          <td className="numeric tnum">
-                            {component.final_amount === null
-                              ? "Sem saldo I155"
-                              : `${formatCurrency(component.final_amount)} ${component.final_debit_credit_indicator ?? ""}`}
-                          </td>
-                          <td className="component-source tnum">
-                            I052 linha {component.i052_line_number}
-                            <br />
-                            {component.i155_line_number === null
-                              ? "I155 ausente"
-                              : `I155 linha ${component.i155_line_number}`}
-                          </td>
-                        </tr>
-                      ))}
+                      {components.rows.map((component) => {
+                        const componentStatus = componentStatusFor(
+                          component,
+                          selectedRow.reconciliationStatus,
+                          components.rows.length,
+                        );
+
+                        return (
+                          <tr
+                            key={`${component.account_code}-${component.cost_center_code ?? ""}-${component.i052_line_number}`}
+                          >
+                            <td>
+                              <strong>
+                                {component.account_name}
+                                {componentStatus && (
+                                  <span
+                                    className="status-badge component-status-badge"
+                                    data-variant={componentStatus.variant}
+                                  >
+                                    {componentStatus.label}
+                                  </span>
+                                )}
+                              </strong>
+                              <span className="tnum">{component.account_code}</span>
+                            </td>
+                            <td className="tnum">
+                              {component.cost_center_code ?? "Sem centro de custo"}
+                            </td>
+                            <td className="numeric tnum">
+                              {component.final_amount === null
+                                ? "Sem saldo I155"
+                                : `${formatCurrency(component.final_amount)} ${component.final_debit_credit_indicator ?? ""}`}
+                            </td>
+                            <td className="component-source tnum">
+                              I052 linha {component.i052_line_number}
+                              <br />
+                              {component.i155_line_number === null
+                                ? "I155 ausente"
+                                : `I155 linha ${component.i155_line_number}`}
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>

@@ -4,7 +4,7 @@
 
 - Task: `tasks/TASK-103-reprocessar-importacoes-ecd-legadas.md`
 - SPEC: `specs/SPEC-012-modulo-1c-balanco-patrimonial-declarado.md`
-- Status: aguardando_homologacao
+- Status: concluido
 
 ## Fontes Consultadas
 
@@ -49,7 +49,7 @@
 
 ## Homologação
 
-- Status: aguardando_homologacao
-- Data: 2026-07-29
-- Decisão do usuário: grupo TASK-101 a TASK-108 autorizado para execução contínua.
-- Observação: homologação consolidada será solicitada ao final do grupo.
+- Status: aprovado
+- Data: 2026-07-30
+- Decisão do usuário: grupo `TASK-101` a `TASK-108` homologado.
+- Observação: TASK concluída por homologação consolidada do grupo.
